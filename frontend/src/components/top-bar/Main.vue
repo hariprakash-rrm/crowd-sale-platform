@@ -5,13 +5,13 @@
   >
     <div class="h-full flex items-center">
       <!-- BEGIN: Logo -->
-      <a href="" class="logo -intro-x hidden md:flex xl:w-[180px] block">
+      <a href="" class="logo -intro-x hidden md:flex md:items-center xl:w-[250] block">
         <img
           alt="Enigma Tailwind HTML Admin Template"
-          class="logo__image w-6"
-          src="@/assets/images/logo.svg"
+          class="logo__image w-32"
+          src="@/assets/images/uc/uc-light.png"
         />
-        <span class="logo__text text-white text-lg ml-3"> Enigma </span>
+        <!-- <span class="logo__text text-white text-lg ml-3"> Enigma </span> -->
       </a>
       <!-- END: Logo -->
       <!-- BEGIN: Breadcrumb -->
@@ -23,7 +23,7 @@
       </nav>
       <!-- END: Breadcrumb -->
       <!-- BEGIN: Search -->
-      <div class="intro-x relative mr-3 sm:mr-6">
+      <!-- <div class="intro-x relative mr-3 sm:mr-6">
         <div class="search hidden sm:block">
           <input
             type="text"
@@ -112,10 +112,10 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- END: Search -->
       <!-- BEGIN: Notifications -->
-      <Dropdown class="intro-x mr-4 sm:mr-6">
+      <!-- <Dropdown class="intro-x mr-4 sm:mr-6">
         <DropdownToggle
           tag="div"
           role="button"
@@ -158,8 +158,49 @@
             </div>
           </DropdownContent>
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown> -->
       <!-- END: Notifications -->
+       <Dropdown class="intro-x w-48 mr-4">
+        <DropdownToggle
+          tag="div"
+          role="button"
+          class="w-40 overflow-hidden zoom-in scale-110"
+        >
+         <p class="text-white text-center bg-primary p-2 rounded-full">Connect Wallet</p>
+        </DropdownToggle>
+        <DropdownMenu class="w-56">
+          <DropdownContent
+            class="bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white"
+          >
+            <DropdownHeader tag="div" class="!font-normal">
+              <div class="font-medium">
+                {{ $f()[0].users[0].name }}
+              </div>
+              <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
+                {{ $f()[0].jobs[0] }}
+              </div>
+            </DropdownHeader>
+            <DropdownDivider class="border-white/[0.08]" />
+            <DropdownItem class="dropdown-item hover:bg-white/5">
+              <UserIcon class="w-4 h-4 mr-2" /> Profile</DropdownItem
+            >
+            <DropdownItem class="dropdown-item hover:bg-white/5">
+              <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
+            >
+            <DropdownItem class="dropdown-item hover:bg-white/5">
+              <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
+            >
+            <DropdownItem class="dropdown-item hover:bg-white/5">
+              <HelpCircleIcon class="w-4 h-4 mr-2" /> Help</DropdownItem
+            >
+            <DropdownDivider class="border-white/[0.08]" />
+            <DropdownItem class="dropdown-item hover:bg-white/5">
+              <ToggleRightIcon class="w-4 h-4 mr-2" /> Logout</DropdownItem
+            >
+          </DropdownContent>
+        </DropdownMenu>
+      </Dropdown>
+      
       <!-- BEGIN: Account Menu -->
       <Dropdown class="intro-x w-8 h-8">
         <DropdownToggle
@@ -205,6 +246,7 @@
         </DropdownMenu>
       </Dropdown>
       <!-- END: Account Menu -->
+     
     </div>
   </div>
   <!-- END: Top Bar -->
