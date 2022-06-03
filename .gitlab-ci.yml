@@ -6,8 +6,8 @@ before_script:
 
 stages:
   # - test
-  - build-stag
-  - deploy-stag
+  - build
+  - deploy
 
 tests:
   stage: test
@@ -17,7 +17,7 @@ tests:
     - build
     - test
 
-build-stag:
+build-unreal:
   stage: build
   script:
     - TAG=stag FRONTEND_ENV=production sh ./scripts/build-push.sh
@@ -26,16 +26,7 @@ build-stag:
   tags:
     - dev-unreal
 
-build-prod:
-  stage: build
-  script:
-    - TAG=prod FRONTEND_ENV=production sh ./scripts/build-push.sh
-  only:
-    - main
-  tags:
-    - dev-unreal
-
-deploy-stag:
+deploy-unreal:
   stage: deploy
   script:
     - >
@@ -52,19 +43,3 @@ deploy-stag:
   tags:
     - dev-unreal
 
-deploy-prod:
-  stage: deploy
-  script:
-    - >
-      DOMAIN=unreal-capital.com
-      TRAEFIK_TAG=unreal-capital.com
-      STACK_NAME=unreal-capital-com
-      TAG=prod
-      sh ./scripts/deploy.sh
-  environment:
-    name: production
-    url: https://unreal-capital.com
-  only:
-    - main
-  tags:
-    - dev-unreal
