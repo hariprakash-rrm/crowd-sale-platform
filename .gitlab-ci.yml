@@ -5,9 +5,9 @@ before_script:
   - pip install docker-auto-labels
 
 stages:
-  - test
-  - build
-  - deploy
+  # - test
+  - build-stag
+  - deploy-stag
 
 tests:
   stage: test
@@ -20,55 +20,51 @@ tests:
 build-stag:
   stage: build
   script:
-    - TAG=stag FRONTEND_ENV=staging sh ./scripts/build-push.sh
+    - TAG=stag FRONTEND_ENV=production sh ./scripts/build-push.sh
   only:
-    - master
+    - main
   tags:
-    - build
-    - test
-    
+    - dev-unreal
+
 build-prod:
   stage: build
   script:
     - TAG=prod FRONTEND_ENV=production sh ./scripts/build-push.sh
   only:
-    - production
+    - main
   tags:
-    - build
-    - test
+    - dev-unreal
 
 deploy-stag:
   stage: deploy
-  script: 
+  script:
     - >
-      DOMAIN=stag.base-project.com
-      TRAEFIK_TAG=stag.base-project.com
-      STACK_NAME=stag-base-project-com
+      DOMAIN=unreal-capital.com
+      TRAEFIK_TAG=unreal-capital.com
+      STACK_NAME=dev-unreal-capital-com
       TAG=stag
       sh ./scripts/deploy.sh
   environment:
     name: staging
-    url: https://stag.base-project.com
+    url: https://unreal-capital.com
   only:
-    - master
+    - main
   tags:
-    - swarm
-    - stag
+    - dev-unreal
 
 deploy-prod:
   stage: deploy
   script:
     - >
-      DOMAIN=base-project.com
-      TRAEFIK_TAG=base-project.com
-      STACK_NAME=base-project-com
+      DOMAIN=unreal-capital.com
+      TRAEFIK_TAG=unreal-capital.com
+      STACK_NAME=unreal-capital-com
       TAG=prod
       sh ./scripts/deploy.sh
   environment:
     name: production
-    url: https://base-project.com
+    url: https://unreal-capital.com
   only:
-    - production
+    - main
   tags:
-    - swarm
-    - prod
+    - dev-unreal
