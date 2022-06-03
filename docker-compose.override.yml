@@ -41,6 +41,6 @@ services:
       - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
 
 networks:
-  public-proxy:
+  traefik-public:
     # For local dev, don't expect an external Traefik network
     external: false
