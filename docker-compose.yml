@@ -18,12 +18,18 @@ services:
       - --providers.docker.exposedbydefault=false
       # Enable Docker Swarm mode
       - --providers.docker.swarmmode
+      - "--providers.docker.network=traefik-public"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
       # Enable the access log, with HTTP requests
       - --accesslog
       # Enable the Traefik log, for configurations and errors
       - --log
       # Enable the Dashboard and API
       - --api
+    ports:
+      - 80:80
+      - 443:443
     deploy:
       placement:
         constraints:
