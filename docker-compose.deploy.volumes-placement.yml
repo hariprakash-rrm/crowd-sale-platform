@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  db:
+    volumes:
+      - app-db-data:/data/db
+    deploy:
+      placement:
+        constraints:
+          - node.labels.${STACK_NAME}.app-db-data == true
+  proxy:
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - "letsencrypt:/letsencrypt/"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  letsencrypt:
+  app-db-data:

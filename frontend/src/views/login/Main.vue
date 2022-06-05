@@ -15,7 +15,7 @@
           </a>
           <div class="my-auto">
             <img
-              alt="unreal-captital"
+              alt="unreal-capital"
               class="-intro-x opacity-5 m-auto ml-20 lg:w-3/5 xl:w-4/5 xl:-ml-24 xl:-mt-12 globe__spin"
               src="@/assets/images/uc/globe-removebg-preview.png"
             />
@@ -141,7 +141,7 @@
                 <div class="ml-4 mr-4">
                   <div class="font-medium">Registration failed!</div>
                   <div class="text-slate-500 mt-1">
-                    Please check the fileld form.
+                    Please check the field form.
                   </div>
                 </div>
               </div>

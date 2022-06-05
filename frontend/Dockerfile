@@ -9,8 +9,8 @@ WORKDIR /app
 # Copy all files from current directory to working dir in image
 COPY . .
 # RUN apk add --no-cache git
-RUN if test -e package-lock.json; then echo "Package Lock file Exists" && rm package-lock.json; fi
-RUN if test -d node_modules; then echo "Node Modules Exists" && rm -rf node_modules; fi
+# RUN if test -e package-lock.json; then echo "Package Lock file Exists" && rm package-lock.json; fi
+# RUN if test -d node_modules; then echo "Node Modules Exists" && rm -rf node_modules; fi
 # install node modules and build assets
 RUN npm install
 # Build

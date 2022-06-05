@@ -71,7 +71,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-package-lock.json
 README.md
 # dotenv environment variables file
 .env
@@ -107,5 +106,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-package-lock.json

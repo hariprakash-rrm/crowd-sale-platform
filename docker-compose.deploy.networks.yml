@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  proxy:
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+  db:
+    ports:
+      - '27018:27017'
+
+networks:
+  traefik-public:
+    external: true

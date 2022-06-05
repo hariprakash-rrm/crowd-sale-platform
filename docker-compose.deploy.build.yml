@@ -1,0 +1,10 @@
+version: '3.6'
+services:
+  backend:
+    build:
+      context: ./backend
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        FRONTEND_ENV: ${FRONTEND_ENV-production}

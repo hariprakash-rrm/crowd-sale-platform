@@ -1,0 +1,16 @@
+version: "3.6"
+
+services:
+  backend:
+    volumes:
+      - ./backend:/app
+  db:
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: unreal
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+  frontend:
+    volumes:
+      - ./frontend/src:/frontend/src
