@@ -30,9 +30,9 @@
             <h2
               class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left pb-4"
             >
-              Creata a New Account
+              Create a New Account
             </h2>
-            <form action="#" class="validate-form">
+            <form @submit.prevent="onRegister" class="validate-form">
               <div
                 class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
               >
@@ -42,6 +42,7 @@
                   type="text"
                   placeholder="Enter your Name"
                   required
+                  v-model="user.name"
                 />
                 <i
                   data-lucide="user"
@@ -60,10 +61,34 @@
               >
                 <input
                   class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
+                  id="userName"
+                  type="text"
+                  placeholder="Enter your Username"
+                  required
+                  v-model="user.userName"
+                />
+                <i
+                  data-lucide="user"
+                  class="ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
+                ></i>
+                <label
+                  name="name"
+                  class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
+                  for="username"
+                >
+                  Username
+                </label>
+              </div>
+              <div
+                class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
+              >
+                <input
+                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
                   id="username"
                   type="email"
                   placeholder="Email"
                   required
+                  v-model="user.email"
                 />
                 <i
                   data-lucide="mail"
@@ -89,6 +114,7 @@
                       placeholder="Password"
                       minlength="6"
                       required
+                      v-model="user.password"
                     />
                     <i
                       data-lucide="eye"
@@ -115,6 +141,7 @@
                       placeholder="Confirm Password"
                       minlength="6"
                       required
+                      v-model="user.confirmPassword"
                     />
                     <i
                       data-lucide="eye"
@@ -139,11 +166,12 @@
                 >
                   <!-- <input id="remember-me" type="checkbox" class="form-check-input border mr-2"> -->
                   <p class="cursor-pointer select-none">Already a Member?</p>
-                  <a
+                  <router-link
                     class="text-primary text-sm 2xl:text-base dark:text-slate-200 ml-1"
-                    href="login-light.html"
-                    >Login</a
+                    to="/login"
                   >
+                    login
+                  </router-link>
                 </div>
                 <div>
                   <button
@@ -156,33 +184,20 @@
               </div>
 
               <!-- END: Validation Form -->
-              <!-- BEGIN: Success Notification Content -->
+              <!-- BEGIN: Notification Content -->
               <div
-                id="success-notification-content"
+                id="notification-content"
                 class="toastify-content hidden flex"
               >
                 <i class="text-success" data-lucide="check-circle"></i>
                 <div class="ml-4 mr-4">
-                  <div class="font-medium">Registration success!</div>
+                  <div class="font-medium">{{ toaster.title }}</div>
                   <div class="text-slate-500 mt-1">
-                    Please check your e-mail for further info!
+                    {{ toaster.content }}
                   </div>
                 </div>
               </div>
-              <!-- END: Success Notification Content -->
-              <!-- BEGIN: Failed Notification Content -->
-              <div
-                id="failed-notification-content"
-                class="toastify-content hidden flex"
-              >
-                <i class="text-danger" data-lucide="x-circle"></i>
-                <div class="ml-4 mr-4">
-                  <div class="font-medium">Registration failed!</div>
-                  <div class="text-slate-500 mt-1">
-                    Please check the field form.
-                  </div>
-                </div>
-              </div>
+              <!-- END: Notification Content -->
             </form>
           </div>
         </div>
@@ -193,11 +208,67 @@
 </template>
 
 <script>
+import { useAuthUserStore } from "../../stores/auth";
+import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
-
+import dom from "@left4code/tw-starter/dist/js/dom";
+import Toastify from "toastify-js";
 export default {
   components: {
     DarkModeSwitcher,
+  },
+  data: () => ({
+    user: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      name: "",
+      userName: "",
+    },
+    toaster: {
+      title: "",
+      content: "",
+    },
+  }),
+  methods: {
+    ...mapActions(useAuthUserStore, ["userRegistration"]),
+    onRegister() {
+      if (this.user.password !== this.user.confirmPassword) {
+        this.showToast("Error", "Passwords do not match");
+        return;
+      }
+      let finalPayload = {
+        email: this.user.email,
+        password: this.user.password,
+        name: this.user.name,
+        userName: this.user.userName,
+      };
+      this.userRegistration(finalPayload).then((res) => {
+        let { data, status } = res.response;
+        if (status === 200) {
+          this.showToast("success", "Please check your email!");
+        } else {
+          this.showToast("error", data.message);
+        }
+      });
+    },
+    showToast(title = "", content = "") {
+      this.toaster = {
+        title,
+        content,
+      };
+      setTimeout(() => {
+        Toastify({
+          node: dom("#notification-content").clone().removeClass("hidden")[0],
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "right",
+          stopOnFocus: true,
+        }).showToast();
+      }, 500);
+    },
   },
   mounted() {
     dom("body").removeClass("main").removeClass("error-page").addClass("login");

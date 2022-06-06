@@ -34,7 +34,7 @@
             </h2>
             <div class="intro-x text-slate-400">Login your Account</div>
 
-            <form action="#" class="validate-form pt-4">
+            <form @submit.prevent="onSubmit" class="validate-form pt-4">
               <div
                 class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
               >
@@ -44,20 +44,13 @@
                   type="email"
                   placeholder="Email"
                   required
+                  v-model="email"
                 />
                 <i
                   data-lucide="mail"
                   class="ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
                 ></i>
-                <label
-                  name="email"
-                  class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
-                  for="username"
-                >
-                  Email
-                </label>
               </div>
-
               <div
                 class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
               >
@@ -68,47 +61,33 @@
                   placeholder="Password"
                   minlength="6"
                   required
+                  v-model="password"
                 />
                 <i
                   data-lucide="eye"
                   id="toggler"
                   class="eye-show ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
                 ></i>
-                <label
-                  name="password"
-                  class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
-                  for="password"
-                >
-                  Password
-                </label>
               </div>
 
               <div
                 class="intro-x flex text-slate-600 dark:text-slate-500 text-xs sm:text-sm 2xl:text-base mt-6"
               >
-                <div class="flex items-center mr-auto">
-                  <input
-                    id="remember-me"
-                    type="checkbox"
-                    class="form-check-input border mr-2"
-                  />
-                  <label class="cursor-pointer select-none" for="remember-me"
-                    >Remember me</label
-                  >
-                </div>
-                <a href="">Forgot Password?</a>
+                <router-link to="/forgot-password">
+                  Forgot Password?
+                </router-link>
               </div>
               <div
                 class="intro-x mt-5 xl:mt-8 text-center xl:text-left flex flex-col-reverse lg:flex-row gap-4"
               >
-                <a href="register-dark.html" class="w-full">
+                <router-link to="/register" class="w-full">
                   <button
                     type="button"
                     class="btn btn-outline-primary text-sm 2xl:text-base py-3 px-4 w-full rounded-full xl:mt-0 align-top"
                   >
                     Create an Account
                   </button>
-                </a>
+                </router-link>
                 <button
                   type="submit"
                   class="btn btn-primary text-sm 2xl:text-base py-3 px-4 w-full lg:w-56 rounded-full align-top"
@@ -118,33 +97,20 @@
               </div>
 
               <!-- END: Validation Form -->
-              <!-- BEGIN: Success Notification Content -->
+              <!-- BEGIN: Notification Content -->
               <div
-                id="success-notification-content"
+                id="notification-content"
                 class="toastify-content hidden flex"
               >
                 <i class="text-success" data-lucide="check-circle"></i>
                 <div class="ml-4 mr-4">
-                  <div class="font-medium">Registration success!</div>
+                  <div class="font-medium">{{ toaster.title }}</div>
                   <div class="text-slate-500 mt-1">
-                    Please check your e-mail for further info!
+                    {{ toaster.content }}
                   </div>
                 </div>
               </div>
-              <!-- END: Success Notification Content -->
-              <!-- BEGIN: Failed Notification Content -->
-              <div
-                id="failed-notification-content"
-                class="toastify-content hidden flex"
-              >
-                <i class="text-danger" data-lucide="x-circle"></i>
-                <div class="ml-4 mr-4">
-                  <div class="font-medium">Registration failed!</div>
-                  <div class="text-slate-500 mt-1">
-                    Please check the field form.
-                  </div>
-                </div>
-              </div>
+              <!-- END: Notification Content -->
             </form>
           </div>
         </div>
@@ -154,12 +120,58 @@
   </div>
 </template>
 
-<script setup>
-import { onMounted } from "vue";
+<script>
+import { useAuthUserStore } from "../../stores/auth";
+import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
-
-onMounted(() => {
-  dom("body").removeClass("main").removeClass("error-page").addClass("login");
-});
+import Toastify from "toastify-js";
+export default {
+  components: {
+    DarkModeSwitcher,
+  },
+  data: () => ({
+    email: "",
+    password: "",
+    toaster: {
+      title: "",
+      content: "",
+    },
+  }),
+  methods: {
+    ...mapActions(useAuthUserStore, ["login"]),
+    onSubmit() {
+      this.login({ email: this.email, password: this.password })
+        .then((res) => {
+          let { data, status } = res.response;
+          if (status === 200) {
+            this.showToast("Success", "Login Successful");
+          } else {
+            this.showToast("error", data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    showToast(title = "", content = "") {
+      this.toaster.title = title;
+      this.toaster.content = content;
+      setTimeout(() => {
+        Toastify({
+          node: dom("#notification-content").clone().removeClass("hidden")[0],
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "right",
+          stopOnFocus: true,
+        }).showToast();
+      }, 500);
+    },
+  },
+  mounted() {
+    dom("body").removeClass("main").removeClass("error-page").addClass("login");
+  },
+};
 </script>
