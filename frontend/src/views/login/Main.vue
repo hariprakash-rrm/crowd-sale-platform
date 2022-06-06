@@ -147,7 +147,7 @@ export default {
           if (status === 200) {
             this.showToast("Success", "Login Successful");
           } else {
-            this.showToast("error", data.message);
+            this.showToast("error", "Login Failed");
           }
         })
         .catch((err) => {

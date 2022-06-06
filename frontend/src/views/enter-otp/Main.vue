@@ -123,7 +123,7 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, ["otpVerification"]),
     onSubmit() {
-      this.otpVerification({ user_id: this.user_id, otp: this.user_id })
+      this.otpVerification({ user_id: this.user_id, otp: this.otp })
         .then((res) => {
           let { data, status } = res.response;
           if (status === 200) {
@@ -158,6 +158,7 @@ export default {
     dom("body").removeClass("main").removeClass("error-page").addClass("login");
     let { user_id } = this.$router.currentRoute.value.params;
     this.user_id = user_id;
+    console.log(this.user_id);
     this.otp = "";
   },
 };

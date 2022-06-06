@@ -18,15 +18,16 @@ export const useAuthUserStore = defineStore("authUserStore", {
         login({ email, password }) {
             localStorage.removeItem("token");
             const payload = new URLSearchParams();
-            payload.append("username", email);
+            payload.append("email", email);
             payload.append("password", password);
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    const { data } = res;
-                    localStorage.setItem("token", JSON.stringify(data));
-                    // commit("LOGIN_SUCCESS", data);
-                    router.push("/dashboard");
+                    const { data, status } = res;
+                    if (status === 200) {
+                        localStorage.setItem("token", JSON.stringify(data));
+                        router.push("/dashboard");
+                    }
                     return res;
                 })
                 .catch((err) => {
@@ -59,7 +60,9 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 });
         },
         otpVerification({ user_id, otp }) {
-            return auth.otpVerification(user_id, { otp: otp }).then(res => {
+            let data = new FormData();
+            data.append("otp", otp);
+            return auth.otpVerification(user_id, data).then(res => {
                 const { data, status } = res;
                 if (status === 200) {
                     router.push("/dashboard");
