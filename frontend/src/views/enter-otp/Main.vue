@@ -123,7 +123,7 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, ["otpVerification"]),
     onSubmit() {
-      this.otpVerification({ user_id: this.user_id, otp: "48402" })
+      this.otpVerification({ user_id: this.user_id, otp: this.user_id })
         .then((res) => {
           let { data, status } = res.response;
           if (status === 200) {
