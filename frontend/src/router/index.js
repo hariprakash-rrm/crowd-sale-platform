@@ -6,13 +6,9 @@ import EnterOtp from "../views/enter-otp/Main.vue";
 import ResetPassword from "../views/reset-password/Main.vue";
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
+import SideMenu from "../layouts/side-menu/Main.vue";
 
 const routes = [
-    {
-        path: "/dashboard",
-        name: "side-menu-dashboard-overview-1",
-        component: DashboardOverview1,
-    },
     {
         path: "/login",
         name: "login",
@@ -47,6 +43,17 @@ const routes = [
         path: "/:pathMatch(.*)*",
         component: ErrorPage,
     },
+    {
+        path: "/",
+        component: SideMenu,
+        children: [
+            {
+                path: "dashboard",
+                name: "side-menu-dashboard-overview-1",
+                component: DashboardOverview1,
+            },
+        ]
+    }
 ];
 
 const router = createRouter({

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <FullCalendar :options="options" />
 </template>
 
@@ -59,4 +59,4 @@ const options = {
     }
   },
 };
-</script>
+</script> -->

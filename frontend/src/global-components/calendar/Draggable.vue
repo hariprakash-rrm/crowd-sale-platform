@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div ref="draggableRef">
     <slot></slot>
   </div>
@@ -23,4 +23,4 @@ const init = () => {
 onMounted(() => {
   init();
 });
-</script>
+</script> -->

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div ref="calendarRef" class="full-calendar"></div>
 </template>
 
@@ -22,4 +22,4 @@ const init = () => {
 onMounted(() => {
   init();
 });
-</script>
+</script> -->

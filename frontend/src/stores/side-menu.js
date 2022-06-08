@@ -133,26 +133,26 @@ export const useSideMenuStore = defineStore("sideMenu", {
         pageName: "side-menu-dashboard-overview-1",
         title: "Deals",
       },
-      {
-        icon: "TrelloIcon",
-        pageName: "side-menu-file-manager",
-        title: "Portfolio",
-      },
-      {
-        icon: "CreditCardIcon",
-        pageName: "side-menu-point-of-sale",
-        title: "My Wallets",
-      },
-      {
-        icon: "MessageSquareIcon",
-        pageName: "side-menu-chat",
-        title: "Staking",
-      },
-      {
-        icon: "CalendarIcon",
-        pageName: "side-menu-calendar",
-        title: "Calendar",
-      },
+      // {
+      //   icon: "TrelloIcon",
+      //   pageName: "side-menu-file-manager",
+      //   title: "Portfolio",
+      // },
+      // {
+      //   icon: "CreditCardIcon",
+      //   pageName: "side-menu-point-of-sale",
+      //   title: "My Wallets",
+      // },
+      // {
+      //   icon: "MessageSquareIcon",
+      //   pageName: "side-menu-chat",
+      //   title: "Staking",
+      // },
+      // {
+      //   icon: "CalendarIcon",
+      //   pageName: "side-menu-calendar",
+      //   title: "Calendar",
+      // },
       // "devider",
       // {
       //   icon: "EditIcon",

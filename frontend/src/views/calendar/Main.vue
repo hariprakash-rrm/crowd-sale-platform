@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">Calendar</h2>
     <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
@@ -206,9 +206,9 @@
     </div>
     <!-- END: Calendar Content -->
   </div>
-</template>
+</template> -->
 
-<script setup>
+<!-- <script setup>
 import Calendar from "@/components/calendar/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
 
@@ -223,4 +223,4 @@ const dragableOptions = {
     };
   },
 };
-</script>
+</script> -->
