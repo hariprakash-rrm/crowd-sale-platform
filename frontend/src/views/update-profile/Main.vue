@@ -1,6 +1,7 @@
 <template>
+<div>
   <div class="intro-y flex items-center mt-8">
-    <h2 class="text-lg font-medium mr-auto">Update Profile</h2>
+    <h2 class="text-lg font-medium mr-auto">Profile</h2>
   </div>
   <div class="grid grid-cols-12 gap-6">
     <!-- BEGIN: Profile Menu -->
@@ -17,7 +18,7 @@
             />
           </div>
           <div class="ml-4 mr-auto">
-            <div class="font-medium text-base">
+            <div class="font-semibold text-base">
               {{ $f()[0].users[0].name }}
             </div>
             <div class="text-slate-500">{{ $f()[0].jobs[0] }}</div>
@@ -68,34 +69,21 @@
           </Dropdown>
         </div>
         <div class="p-5 border-t border-slate-200/60 dark:border-darkmode-400">
-          <a class="flex items-center text-primary font-medium" href="">
-            <ActivityIcon class="w-4 h-4 mr-2" /> Personal Information
+          <a class="flex items-center text-primary font-medium" href="#personalInformation">
+            <UserIcon class="w-4 h-4 mr-2" /> Personal Information
           </a>
-          <a class="flex items-center mt-5" href="">
-            <BoxIcon class="w-4 h-4 mr-2" /> Account Settings
-          </a>
-          <a class="flex items-center mt-5" href="">
+          <a class="flex items-center mt-5" href="#changePassword">
             <LockIcon class="w-4 h-4 mr-2" /> Change Password
           </a>
           <a class="flex items-center mt-5" href="">
-            <SettingsIcon class="w-4 h-4 mr-2" /> User Settings
+            <ActivityIcon class="w-4 h-4 mr-2" /> Notifications
+          </a>
+          <a class="flex items-center mt-5" href="">
+            <SettingsIcon class="w-4 h-4 mr-2" /> Social Networks
           </a>
         </div>
-        <div class="p-5 border-t border-slate-200/60 dark:border-darkmode-400">
-          <a class="flex items-center" href="">
-            <ActivityIcon class="w-4 h-4 mr-2" /> Email Settings
-          </a>
-          <a class="flex items-center mt-5" href="">
-            <BoxIcon class="w-4 h-4 mr-2" /> Saved Credit Cards
-          </a>
-          <a class="flex items-center mt-5" href="">
-            <LockIcon class="w-4 h-4 mr-2" /> Social Networks
-          </a>
-          <a class="flex items-center mt-5" href="">
-            <SettingsIcon class="w-4 h-4 mr-2" /> Tax Information
-          </a>
-        </div>
-        <div
+       
+        <!-- <div
           class="p-5 border-t border-slate-200/60 dark:border-darkmode-400 flex"
         >
           <button type="button" class="btn btn-primary py-1 px-2">
@@ -107,109 +95,63 @@
           >
             New Quick Link
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- END: Profile Menu -->
     <div class="col-span-12 lg:col-span-8 2xl:col-span-9">
-      <!-- BEGIN: Display Information -->
-      <div class="intro-y box lg:mt-5">
+      <!-- BEGIN: Personal Settings -->
+      <div class="intro-y box lg:mt-5" id="personalInformation">
         <div
-          class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
-        >
-          <h2 class="font-medium text-base mr-auto">Display Information</h2>
+          class="flex items-center p-6 border-b border-slate-200/60 dark:border-darkmode-400">
+          <h2 class="font-semibold text-base mr-auto px-2">Personal Settings</h2>
         </div>
-        <div class="p-5">
+        <div class="p-8">
           <div class="flex flex-col-reverse xl:flex-row flex-col">
             <div class="flex-1 mt-6 xl:mt-0">
               <div class="grid grid-cols-12 gap-x-5">
-                <div class="col-span-12 2xl:col-span-6">
-                  <div>
-                    <label for="update-profile-form-1" class="form-label"
-                      >Display Name</label
-                    >
-                    <input
-                      id="update-profile-form-1"
-                      type="text"
-                      class="form-control"
-                      placeholder="Input text"
-                      :value="$f()[0].users[0].name"
-                      disabled
-                    />
-                  </div>
-                  <div class="mt-3">
-                    <label for="update-profile-form-2" class="form-label"
-                      >Nearest MRT Station</label
-                    >
-                    <TomSelect
-                      id="update-profile-form-2"
-                      v-model="select"
-                      class="w-full"
-                    >
-                      <option value="1">Admiralty</option>
-                      <option value="2">Aljunied</option>
-                      <option value="3">Ang Mo Kio</option>
-                      <option value="4">Bartley</option>
-                      <option value="5">Beauty World</option>
-                    </TomSelect>
-                  </div>
+                <div class="col-span-12 md:col-span-12">
+                 
+                <div class="relative mb-6">
+                  <input type="text" id="username" class="input__field peer" placeholder=" " />
+                  <label for="username" class="input__label">Username</label>
                 </div>
-                <div class="col-span-12 2xl:col-span-6">
-                  <div class="mt-3 2xl:mt-0">
-                    <label for="update-profile-form-3" class="form-label"
-                      >Postal Code</label
-                    >
-                    <TomSelect
-                      id="update-profile-form-3"
-                      v-model="select"
-                      class="w-full"
-                    >
-                      <option value="1">
-                        018906 - 1 STRAITS BOULEVARD SINGA...
-                      </option>
-                      <option value="2">
-                        018910 - 5A MARINA GARDENS DRIVE...
-                      </option>
-                      <option value="3">
-                        018915 - 100A CENTRAL BOULEVARD...
-                      </option>
-                      <option value="4">
-                        018925 - 21 PARK STREET MARINA...
-                      </option>
-                      <option value="5">
-                        018926 - 23 PARK STREET MARINA...
-                      </option>
-                    </TomSelect>
-                  </div>
-                  <div class="mt-3">
-                    <label for="update-profile-form-4" class="form-label"
-                      >Phone Number</label
-                    >
-                    <input
-                      id="update-profile-form-4"
-                      type="text"
-                      class="form-control"
-                      placeholder="Input text"
-                      value="65570828"
-                    />
-                  </div>
+                <div class="relative mb-6">
+                  <input type="email" id="email" class="input__field peer" placeholder=" " />
+                  <label for="email" class="input__label">Email</label>
                 </div>
-                <div class="col-span-12">
-                  <div class="mt-3">
-                    <label for="update-profile-form-5" class="form-label"
-                      >Address</label
-                    >
-                    <textarea
+                 <div class="relative mb-6">
+                  <input type="number" id="phone-no" class="input__field peer" placeholder=" " />
+                  <label for="phone-no" class="input__label">Mobile Number</label>
+                </div>
+                 <div class="relative mb-6">
+                     <textarea
                       id="update-profile-form-5"
-                      class="form-control"
-                      placeholder="Adress"
-                    >
-10 Anson Road, International Plaza, #10-11, 079903 Singapore, Singapore</textarea
-                    >
-                  </div>
+                      placeholder=" "
+                      class="input__field peer"></textarea>
+                    <label for="phone-no" class="input__label">Bio</label>
                 </div>
+               
+                <div class="mb-6">
+                  <label for="update-profile-form-2" class="form-label"
+                    >Location</label
+                  >
+                  <TomSelect
+                    id="update-profile-form-2"
+                    v-model="select"
+                    class="w-full"
+                  >
+                    <option value="1">Admiralty</option>
+                    <option value="2">Aljunied</option>
+                    <option value="3">Ang Mo Kio</option>
+                    <option value="4">Bartley</option>
+                    <option value="5">Beauty World</option>
+                  </TomSelect>
+                </div>
+                </div>
+               
               </div>
-              <button type="button" class="btn btn-primary w-20 mt-3">
+              <button type="button" class="btn btn-primary text-sm 2xl:text-base w-full xl:w-40 py-2 px-8 rounded-md mt-4">
                 Save
               </button>
             </div>
@@ -247,133 +189,141 @@
           </div>
         </div>
       </div>
-      <!-- END: Display Information -->
-      <!-- BEGIN: Personal Information -->
-      <div class="intro-y box mt-5">
+      <!-- END: Personal Settings -->
+    
+      <!-- BEGIN: Change Password -->
+      <div class="intro-y box lg:mt-5" id="changePassword">
         <div
-          class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
+          class="flex items-center p-6 border-b border-slate-200/60 dark:border-darkmode-400"
         >
-          <h2 class="font-medium text-base mr-auto">Personal Information</h2>
+          <h2 class="font-semibold text-base mr-auto px-2">Reset Password</h2>
         </div>
-        <div class="p-5">
-          <div class="grid grid-cols-12 gap-x-5">
-            <div class="col-span-12 xl:col-span-6">
-              <div>
-                <label for="update-profile-form-6" class="form-label"
-                  >Email</label
-                >
-                <input
-                  id="update-profile-form-6"
-                  type="text"
-                  class="form-control"
-                  placeholder="Input text"
-                  :value="$f()[0].users[0].email"
-                  disabled
-                />
-              </div>
-              <div class="mt-3">
-                <label for="update-profile-form-7" class="form-label"
-                  >Name</label
-                >
-                <input
-                  id="update-profile-form-7"
-                  type="text"
-                  class="form-control"
-                  placeholder="Input text"
-                  :value="$f()[0].users[0].name"
-                  disabled
-                />
-              </div>
-              <div class="mt-3">
-                <label for="update-profile-form-8" class="form-label"
-                  >ID Type</label
-                >
-                <select id="update-profile-form-8" class="form-select">
-                  <option>IC</option>
-                  <option>FIN</option>
-                  <option>Passport</option>
-                </select>
-              </div>
-              <div class="mt-3">
-                <label for="update-profile-form-9" class="form-label"
-                  >ID Number</label
-                >
-                <input
-                  id="update-profile-form-9"
-                  type="text"
-                  class="form-control"
-                  placeholder="Input text"
-                  value="357821204950001"
-                />
-              </div>
+        <div class="p-8">
+           <div class="relative mb-6">
+              <input type="password" id="old-password" class="input__field peer" placeholder=" " />
+              <label for="old-password" class="input__label">Old Password</label>
             </div>
-            <div class="col-span-12 xl:col-span-6">
-              <div class="mt-3 xl:mt-0">
-                <label for="update-profile-form-10" class="form-label"
-                  >Phone Number</label
-                >
-                <input
-                  id="update-profile-form-10"
-                  type="text"
-                  class="form-control"
-                  placeholder="Input text"
-                  value="65570828"
-                />
-              </div>
-              <div class="mt-3">
-                <label for="update-profile-form-11" class="form-label"
-                  >Address</label
-                >
-                <input
-                  id="update-profile-form-11"
-                  type="text"
-                  class="form-control"
-                  placeholder="Input text"
-                  value="10 Anson Road, International Plaza, #10-11, 079903 Singapore, Singapore"
-                />
-              </div>
-              <div class="mt-3">
-                <label for="update-profile-form-12" class="form-label"
-                  >Bank Name</label
-                >
-                <TomSelect
-                  id="update-profile-form-12"
-                  v-model="select"
-                  class="w-full"
-                >
-                  <option value="1">SBI - STATE BANK OF INDIA</option>
-                  <option value="2">CITI BANK - CITI BANK</option>
-                </TomSelect>
-              </div>
-              <div class="mt-3">
-                <label for="update-profile-form-13" class="form-label"
-                  >Bank Account</label
-                >
-                <input
-                  id="update-profile-form-13"
-                  type="text"
-                  class="form-control"
-                  placeholder="Input text"
-                  value="DBS Current 011-903573-0"
-                />
-              </div>
+           <div class="relative mb-6">
+              <input type="password" id="new-password" class="input__field peer" placeholder=" " />
+              <label for="new-password" class="input__label">New Password</label>
             </div>
-          </div>
-          <div class="flex justify-end mt-4">
-            <button type="button" class="btn btn-primary w-20 mr-auto">
-              Save
-            </button>
-            <a href="" class="text-danger flex items-center">
-              <Trash2Icon class="w-4 h-4 mr-1" /> Delete Account
-            </a>
-          </div>
+           <div class="relative mb-6">
+              <input type="password" id="confirm-password" class="input__field peer" placeholder=" " />
+              <label for="confirm-password" class="input__label">Confrim Password</label>
+            </div>
+         
+          <button type="button" class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4">
+            Reset Password
+          </button>
         </div>
       </div>
-      <!-- END: Personal Information -->
-    </div>
-  </div>
-</template>
+      <!-- END: Change Password -->
+      
+      <!-- BEGIN: Enable 2 factor Authentication -->
+      <div class="intro-y box lg:mt-5" id="enableTw0FactorAuth">
+        <div
+          class="flex items-center p-6 border-b border-slate-200/60 dark:border-darkmode-400"
+        >
+          <h2 class="font-semibold text-base mr-auto px-2">Two-Factor Authentication (2FA)</h2>
+        </div>
+        <div class="p-8">
+         <p class="text-lg text-black font-regular mb-4">
+           Protect your account from potential intruders, and uninvited guests. 2FA will provide you that extra layer of security. Next time you login to your account you will be asked to provide both your password and an authentication code that you will receive from your phone.
+         </p>
+          <button type="button" class="btn btn-primary mt-4">
+           Enable 2FA
+          </button>
+        </div>
+      </div>
+      <!-- END: Enable 2 factor Authentication -->
+       <!-- BEGIN: Notification -->
+      <div class="intro-y box lg:mt-5">
+        <div
+          class="flex items-center p-6 border-b border-slate-200/60 dark:border-darkmode-400">
+          <h2 class="font-semibold text-base mr-auto px-2">Notifications</h2>
+        </div>
+        <div class="p-8 space-y-12">
+              <div class="form-check form-switch flex justify-between">
+                  <div>
+                    <label class="form-check-label font-semibold text-base ml-0" for="checkbox-switch-7">Deal</label>
+                    <p class="font-regular text-base">Get notified when a new deal is available</p>
+                  </div>
+                  <input id="checkbox-switch-7" class="form-check-input" type="checkbox">
+                
+              </div>
+              <div class="form-check form-switch flex justify-between">
+                  <div>
+                    <label class="form-check-label font-semibold text-base ml-0" for="checkbox-switch-7">Pledge</label>
+                    <p class="font-regular text-base">Get notified when a new pledge is available</p>
+                  </div>
+                  <input id="checkbox-switch-7" class="form-check-input" type="checkbox">
+                
+              </div>
+              <div class="form-check form-switch flex justify-between">
+                  <div>
+                    <label class="form-check-label font-semibold text-base ml-0" for="checkbox-switch-7">Event</label>
+                    <p class="font-regular text-base">Get notified when a new event is available</p>
+                  </div>
+                  <input id="checkbox-switch-7" class="form-check-input" type="checkbox">
+                
+              </div>
+              <div class="form-check form-switch flex justify-between">
+                  <div>
+                    <label class="form-check-label font-semibold text-base ml-0" for="checkbox-switch-7">Newsletter</label>
+                    <p class="font-regular text-base">Receive newsletter updates about marketing</p>
+                  </div>
+                  <input id="checkbox-switch-7" class="form-check-input" type="checkbox">
+              </div>
+        
+        </div>
+      </div>
+      <!-- END: Notification -->
 
+      <!-- BEGIN: Social Network -->
+      <div class="intro-y box lg:mt-5" id="changePassword">
+        <div
+          class="flex items-center p-6 border-b border-slate-200/60 dark:border-darkmode-400">
+          <h2 class="font-semibold text-base mr-auto px-2">Social Networks</h2>
+        </div>
+        <div class="p-8">
+          <div class="flex items-center w-full gap-4 mb-6"> 
+            <div class="relative w-full ">
+              <input type="text" id="twitter" class="input__field peer" placeholder=" " />
+              <label for="twitter" class="input__label">Twitter</label>
+            </div>
+            <div class="intro-x border hover:border-primary border-solid flex items-center justify-center rounded-md h-14 w-14">
+               <TwitterIcon class="w-6 h-6 m-auto text-slate-400 hover:text-primary" />
+            </div>
+          </div>
+            
+           <div class="flex items-center w-full gap-4 mb-6"> 
+            <div class="relative w-full ">
+              <input type="text" id="telegram" class="input__field peer" placeholder=" " />
+              <label for="telegram" class="input__label">Telegram</label>
+            </div>
+            <div class="border hover:border-primary border-solid flex items-center justify-center rounded-md h-14 w-14">
+               <SendIcon class="w-6 h-6 m-auto text-slate-400 hover:text-primary" />
+            </div>
+          </div>
+            <!-- <div class="relative mb-6">
+              <input type="text" id="discord" class="input__field peer" placeholder=" " />
+              <label for="discord" class="input__label">Discord</label>
+            </div> -->
+        </div>
+      </div>
+      <!-- END: Social Network -->
+    </div>
+     
+  </div>
+</div>
+  
+</template>
+<style>
+  .tom-select .ts-input {
+    border: none !important;
+    box-shadow: none !important;
+  }
+</style>
 <script setup>
 import { ref } from "vue";
 
