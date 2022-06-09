@@ -7,6 +7,7 @@ import ResetPassword from "../views/reset-password/Main.vue";
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
+import UpdateProfile from "../views/update-profile/Main.vue";
 
 const routes = [
     {
@@ -43,6 +44,7 @@ const routes = [
         path: "/:pathMatch(.*)*",
         component: ErrorPage,
     },
+  
     {
         path: "/",
         component: SideMenu,
@@ -52,8 +54,15 @@ const routes = [
                 name: "side-menu-dashboard-overview-1",
                 component: DashboardOverview1,
             },
+            {
+                path: "/profile",
+                name: "side-menu-update-profile",
+                component: UpdateProfile,
+            },
+            
         ]
     }
+    
 ];
 
 const router = createRouter({
