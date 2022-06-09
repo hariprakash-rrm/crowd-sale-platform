@@ -18,7 +18,7 @@ services:
   frontend:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=(Host(`ticket.${DOMAIN}`) || Host(`proxy`))"
+      - "traefik.http.routers.frontend.rule=(Host(`${DOMAIN}`) || Host(`proxy`))"
       - "traefik.http.routers.frontend.entrypoints=web"
       - "traefik.http.services.frontend.loadbalancer.server.port=80"
       
