@@ -15,8 +15,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-RUN npm build
-
 EXPOSE 80
 
-CMD [ "node", "lib/app.js" ]
+CMD [ "npm", "start" ]
