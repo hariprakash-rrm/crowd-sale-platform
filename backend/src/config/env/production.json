@@ -4,12 +4,12 @@
     "PORT": 3000,
     "baseUrl": "http://www.sparkouttech.com",
     "mongodb": {
-        "host": "mongodb://ip/",
-        "uri": "mongodb://ip:27017/BOILERPLATE-DB",
-        "db_name": "BOILERPLATE-DB",
+        "host": "mongodb://db/",
+        "uri": "mongodb://db/admin",
+        "db_name": "admin",
         "credentials": {
-            "username": "",
-            "password": ""
+            "username": "root",
+            "password": "mongo"
         },
         "enableMongoDebugging": false
     },
