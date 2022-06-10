@@ -32,7 +32,7 @@ deploy-unreal:
   script:
     - >
       DOMAIN=unreal-capital.com
-      TRAEFIK_TAG=dev-unreal
+      TRAEFIK_TAG=unreal
       STACK_NAME=dev-unreal
       TAG=stag
       sh ./scripts/deploy.sh
