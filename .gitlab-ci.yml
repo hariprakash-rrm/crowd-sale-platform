@@ -31,7 +31,7 @@ deploy-unreal:
   stage: deploy
   script:
     - >
-      DOMAIN=unreal-capital.com
+      DOMAIN=159.89.192.6
       TRAEFIK_TAG=unreal
       STACK_NAME=dev-unreal
       TAG=stag
