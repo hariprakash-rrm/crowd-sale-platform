@@ -2,14 +2,14 @@
     "appTitle": "Node Project",
     "env": "staging",
     "PORT": 8080,
-    "baseUrl": "http://www.sparkouttech.com",
+    "baseUrl": "http://www.mukilselvam.com",
     "mongodb": {
-        "host": "mongodb://db/",
-        "uri": "mongodb://db/admin",
-        "db_name": "admin",
+        "host": "mongodb://localhost:27017/",
+        "uri": "mongodb://localhost:27017/UNREAL-COLLECTIONS",
+        "db_name": "UNREAL-COLLECTIONS",
         "credentials": {
-            "username": "root",
-            "password": "mongo"
+            "username": "",
+            "password": ""
         },
         "enableMongoDebugging": false
     },

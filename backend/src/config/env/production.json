@@ -2,14 +2,13 @@
     "appTitle": "Node Project",
     "env": "production",
     "PORT": 3000,
-    "baseUrl": "http://www.sparkouttech.com",
     "mongodb": {
-        "host": "mongodb://db/",
-        "uri": "mongodb://db/admin",
-        "db_name": "admin",
+        "host": "mongodb://ip/",
+        "uri": "mongodb://ip:27017/BOILERPLATE-DB",
+        "db_name": "BOILERPLATE-DB",
         "credentials": {
-            "username": "root",
-            "password": "mongo"
+            "username": "",
+            "password": ""
         },
         "enableMongoDebugging": false
     },
