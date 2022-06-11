@@ -8,6 +8,7 @@ import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
 import UpdateProfile from "../views/update-profile/Main.vue";
+import UserLayout from "../views/users-layout-1/Main.vue";
 
 const routes = [
     {
@@ -58,6 +59,11 @@ const routes = [
                 path: "/profile",
                 name: "side-menu-update-profile",
                 component: UpdateProfile,
+            },
+            {
+                path: "/notification",
+                name: "side-menu-users-layout-1",
+                component: UserLayout,
             },
             
         ]

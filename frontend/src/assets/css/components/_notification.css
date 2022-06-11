@@ -1,7 +1,7 @@
 .notification {
-    @apply relative text-white/70;
+    @apply relative text-[#313131]/70;
     .notification__icon {
-        @apply w-5 h-5;
+        @apply w-7 h-7;
     }
     &.notification--bullet:before {
         content: "";

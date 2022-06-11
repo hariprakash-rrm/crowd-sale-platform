@@ -1,105 +1,190 @@
 <template>
   <div class="grid grid-cols-12 gap-6">
-    <div class="col-span-12 2xl:col-span-9">
-      <div class="grid grid-cols-12 gap-6">
-        <!-- BEGIN: General Report -->
-        <div class="col-span-12 mt-8">
-          <div class="intro-y flex items-center h-10">
-            <h2 class="text-lg font-medium truncate mr-5">General Report</h2>
-            <a href="" class="ml-auto flex items-center text-primary">
-              <RefreshCcwIcon class="w-4 h-4 mr-3" /> Reload Data
-            </a>
-          </div>
-          <div class="grid grid-cols-12 gap-6 mt-5">
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div class="report-box zoom-in">
-                <div class="box p-5">
-                  <div class="flex">
-                    <ShoppingCartIcon class="report-box__icon text-primary" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-success cursor-pointer"
-                        content="33% Higher than last month"
-                      >
-                        33%
-                        <ChevronUpIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">Item Sales</div>
-                </div>
+    <!-- BEGIN: General Report -->
+    <div class="col-span-12 grid grid-cols-12 gap-6 mt-8">
+      <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
+        <div class="box p-5 zoom-in">
+          <div class="flex items-center">
+            <div class="w-2/4 flex-none">
+              <!-- <div class="text-lg font-medium truncate"></div> -->
+              <div class="text-lg font-semibold truncate">
+                0% Allocation Share
               </div>
+              <div class="text-slate-500 mt-1">Tier Level</div>
             </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div class="report-box zoom-in">
-                <div class="box p-5">
-                  <div class="flex">
-                    <CreditCardIcon class="report-box__icon text-pending" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-danger cursor-pointer"
-                        content="2% Lower than last month"
-                      >
-                        2%
-                        <ChevronDownIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">3.721</div>
-                  <div class="text-base text-slate-500 mt-1">New Orders</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div class="report-box zoom-in">
-                <div class="box p-5">
-                  <div class="flex">
-                    <MonitorIcon class="report-box__icon text-warning" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-success cursor-pointer"
-                        content="12% Higher than last month"
-                      >
-                        12% <ChevronUpIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">2.149</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Total Products
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div class="report-box zoom-in">
-                <div class="box p-5">
-                  <div class="flex">
-                    <UserIcon class="report-box__icon text-success" />
-                    <div class="ml-auto">
-                      <Tippy
-                        tag="div"
-                        class="report-box__indicator bg-success cursor-pointer"
-                        content="22% Higher than last month"
-                      >
-                        22% <ChevronUpIcon class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="text-3xl font-medium leading-8 mt-6">152.040</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Unique Visitor
-                  </div>
-                </div>
+            <div class="flex-none ml-auto relative">
+              <ReportDonutChart1 :width="90" :height="90" />
+              <div
+                class="
+                  font-medium
+                  absolute
+                  w-full
+                  h-full
+                  flex
+                  items-center
+                  justify-center
+                  top-0
+                  left-0
+                "
+              >
+                20%
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
+        <div class="box p-5 zoom-in">
+          <div class="flex items-center">
+            <div class="w-2/4 flex-none">
+              <!-- <div class="text-lg font-medium truncate"></div> -->
+              <div class="text-lg font-semibold truncate">0</div>
+              <div class="text-slate-500 mt-1">UC Staked</div>
+            </div>
+            <div class="flex-none ml-auto relative">
+              <ReportDonutChart1 :width="90" :height="90" />
+              <div
+                class="
+                  font-medium
+                  absolute
+                  w-full
+                  h-full
+                  flex
+                  items-center
+                  justify-center
+                  top-0
+                  left-0
+                "
+              >
+                20%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
+        <div class="box p-5 zoom-in">
+          <div class="flex items-center">
+            <div class="w-2/4 flex-none">
+              <!-- <div class="text-lg font-medium truncate"></div> -->
+              <div class="text-lg font-semibold truncate">0.14 USD</div>
+              <div class="text-slate-500 mt-1">Current Token Price</div>
+            </div>
+            <div class="flex-none ml-auto relative">
+              <ReportDonutChart1 :width="90" :height="90" />
+              <div
+                class="
+                  font-medium
+                  absolute
+                  w-full
+                  h-full
+                  flex
+                  items-center
+                  justify-center
+                  top-0
+                  left-0
+                "
+              >
+                45%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
+        <div class="box p-5 zoom-in">
+          <div class="flex items-center">
+            <div class="w-2/4 flex-none">
+              <!-- <div class="text-lg font-medium truncate"></div> -->
+              <div class="text-lg font-semibold truncate">4,810,009 USD</div>
+              <div class="text-slate-500 mt-1">Market Capitalization</div>
+            </div>
+            <div class="flex-none ml-auto relative">
+              <ReportDonutChart1 :width="90" :height="90" />
+              <div
+                class="
+                  font-medium
+                  absolute
+                  w-full
+                  h-full
+                  flex
+                  items-center
+                  justify-center
+                  top-0
+                  left-0
+                "
+              >
+                45%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: General Report -->
+
+      <!-- BEGIN: General Report -->
+        <div class="col-span-12 mt-8">
+          <div class="grid grid-cols-12 gap-6 gap-x-10">
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+              <div class="report-box report-box__right zoom-in">
+                <div class="box bg-[#ffffff] p-8">
+                  <div class="flex items-center">
+                    <div>
+                       <div class="text-3xl font-medium leading-8">4.710</div>
+                      <div class="text-base text-slate-500 mt-1">Project Invested</div>
+                    </div>
+                    <div class="ml-auto p-6 rounded-xl bg__icon-1">
+                       <ShoppingCartIcon class="report-box__icon text-cyan-600 " />
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+           <div class="report-box report-box__right zoom-in">
+                <div class="box bg-[#ffffff] p-8">
+                  <div class="flex items-center">
+                    <div>
+                       <div class="text-3xl font-medium leading-8">4.710</div>
+                      <div class="text-base text-slate-500 mt-1">Amount Contributed</div>
+                    </div>
+                    <div class="ml-auto p-6 rounded-xl bg__icon-2">
+                       <ShoppingCartIcon class="report-box__icon text-pink-600" />
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+              <div class="report-box report-box__right zoom-in">
+                <div class="box bg-[#ffffff] p-8">
+                  <div class="flex items-center">
+                    <div>
+                       <div class="text-3xl font-medium leading-8">4.710</div>
+                      <div class="text-base text-slate-500 mt-1">UC Wallet Balance</div>
+                    </div>
+                    <div class="ml-auto p-6 rounded-xl bg__icon-3">
+                       <ShoppingCartIcon class="report-box__icon text-violet-600" />
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
         <!-- END: General Report -->
+
+
+        <!-- END: General Report -->
+    <div class="col-span-12 2xl:col-span-9">
+      <div class="grid grid-cols-12 gap-6">
+      
         <!-- BEGIN: Sales Report -->
         <div class="col-span-12 lg:col-span-6 mt-8">
           <div class="intro-y block sm:flex items-center h-10">
@@ -132,14 +217,27 @@
               <div class="flex">
                 <div>
                   <div
-                    class="text-primary dark:text-slate-300 text-lg xl:text-xl font-medium"
+                    class="
+                      text-primary
+                      dark:text-slate-300
+                      text-lg
+                      xl:text-xl
+                      font-medium
+                    "
                   >
                     $15,000
                   </div>
                   <div class="mt-0.5 text-slate-500">This Month</div>
                 </div>
                 <div
-                  class="w-px h-12 border border-r border-dashed border-slate-200 dark:border-darkmode-300 mx-4 xl:mx-5"
+                  class="
+                    w-px
+                    h-12
+                    border border-r border-dashed border-slate-200
+                    dark:border-darkmode-300
+                    mx-4
+                    xl:mx-5
+                  "
                 ></div>
                 <div>
                   <div class="text-slate-500 text-lg xl:text-xl font-medium">
@@ -269,7 +367,14 @@
             >
               <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
                 <div
-                  class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden"
+                  class="
+                    w-10
+                    h-10
+                    flex-none
+                    image-fit
+                    rounded-md
+                    overflow-hidden
+                  "
                 >
                   <img
                     alt="Midone Tailwind HTML Admin Template"
@@ -285,7 +390,16 @@
                   </div>
                 </div>
                 <div
-                  class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium"
+                  class="
+                    py-1
+                    px-2
+                    rounded-full
+                    text-xs
+                    bg-success
+                    text-white
+                    cursor-pointer
+                    font-medium
+                  "
                 >
                   137 Sales
                 </div>
@@ -293,84 +407,23 @@
             </div>
             <a
               href=""
-              class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500"
+              class="
+                intro-y
+                w-full
+                block
+                text-center
+                rounded-md
+                py-4
+                border border-dotted border-slate-400
+                dark:border-darkmode-300
+                text-slate-500
+              "
               >View More</a
             >
           </div>
         </div>
         <!-- END: Weekly Best Sellers -->
-        <!-- BEGIN: General Report -->
-        <div class="col-span-12 grid grid-cols-12 gap-6 mt-8">
-          <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
-            <div class="box p-5 zoom-in">
-              <div class="flex items-center">
-                <div class="w-2/4 flex-none">
-                  <div class="text-lg font-medium truncate">Target Sales</div>
-                  <div class="text-slate-500 mt-1">300 Sales</div>
-                </div>
-                <div class="flex-none ml-auto relative">
-                  <ReportDonutChart1 :width="90" :height="90" />
-                  <div
-                    class="font-medium absolute w-full h-full flex items-center justify-center top-0 left-0"
-                  >
-                    20%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
-            <div class="box p-5 zoom-in">
-              <div class="flex">
-                <div class="text-lg font-medium truncate mr-3">
-                  Social Media
-                </div>
-                <div
-                  class="py-1 px-2 flex items-center rounded-full text-xs bg-slate-100 dark:bg-darkmode-400 text-slate-500 cursor-pointer ml-auto truncate"
-                >
-                  320 Followers
-                </div>
-              </div>
-              <div class="mt-1">
-                <SimpleLineChart1 :height="58" class="-ml-1" />
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
-            <div class="box p-5 zoom-in">
-              <div class="flex items-center">
-                <div class="w-2/4 flex-none">
-                  <div class="text-lg font-medium truncate">New Products</div>
-                  <div class="text-slate-500 mt-1">1450 Products</div>
-                </div>
-                <div class="flex-none ml-auto relative">
-                  <ReportDonutChart1 :width="90" :height="90" />
-                  <div
-                    class="font-medium absolute w-full h-full flex items-center justify-center top-0 left-0"
-                  >
-                    45%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
-            <div class="box p-5 zoom-in">
-              <div class="flex">
-                <div class="text-lg font-medium truncate mr-3">Posted Ads</div>
-                <div
-                  class="py-1 px-2 flex items-center rounded-full text-xs bg-slate-100 dark:bg-darkmode-400 text-slate-500 cursor-pointer ml-auto truncate"
-                >
-                  180 Campaign
-                </div>
-              </div>
-              <div class="mt-1">
-                <SimpleLineChart1 :height="58" class="-ml-1" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END: General Report -->
+
         <!-- BEGIN: Weekly Top Products -->
         <div class="col-span-12 mt-6">
           <div class="intro-y block sm:flex items-center h-10">
@@ -379,13 +432,28 @@
             </h2>
             <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
               <button
-                class="btn box flex items-center text-slate-600 dark:text-slate-300"
+                class="
+                  btn
+                  box
+                  flex
+                  items-center
+                  text-slate-600
+                  dark:text-slate-300
+                "
               >
                 <FileTextIcon class="hidden sm:block w-4 h-4 mr-2" />
                 Export to Excel
               </button>
               <button
-                class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300"
+                class="
+                  ml-3
+                  btn
+                  box
+                  flex
+                  items-center
+                  text-slate-600
+                  dark:text-slate-300
+                "
               >
                 <FileTextIcon class="hidden sm:block w-4 h-4 mr-2" />
                 Export to PDF
@@ -479,7 +547,13 @@
             </table>
           </div>
           <div
-            class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3"
+            class="
+              intro-y
+              flex flex-wrap
+              sm:flex-row sm:flex-nowrap
+              items-center
+              mt-3
+            "
           >
             <nav class="w-full sm:w-auto sm:mr-auto">
               <ul class="pagination">
@@ -536,7 +610,14 @@
         <div class="2xl:pl-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
           <!-- BEGIN: Transactions -->
           <div
-            class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8"
+            class="
+              col-span-12
+              md:col-span-6
+              xl:col-span-4
+              2xl:col-span-12
+              mt-3
+              2xl:mt-8
+            "
           >
             <div class="intro-x flex items-center h-10">
               <h2 class="text-lg font-medium truncate mr-5">Transactions</h2>
@@ -549,7 +630,14 @@
               >
                 <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
                   <div
-                    class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden"
+                    class="
+                      w-10
+                      h-10
+                      flex-none
+                      image-fit
+                      rounded-full
+                      overflow-hidden
+                    "
                   >
                     <img
                       alt="Midone Tailwind HTML Admin Template"
@@ -576,7 +664,17 @@
               </div>
               <a
                 href=""
-                class="intro-x w-full block text-center rounded-md py-3 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500"
+                class="
+                  intro-x
+                  w-full
+                  block
+                  text-center
+                  rounded-md
+                  py-3
+                  border border-dotted border-slate-400
+                  dark:border-darkmode-300
+                  text-slate-500
+                "
                 >View More</a
               >
             </div>
@@ -593,14 +691,41 @@
               <a href="" class="ml-auto text-primary truncate">Show More</a>
             </div>
             <div
-              class="mt-5 relative before:block before:absolute before:w-px before:h-[85%] before:bg-slate-200 before:dark:bg-darkmode-400 before:ml-5 before:mt-5"
+              class="
+                mt-5
+                relative
+                before:block
+                before:absolute
+                before:w-px
+                before:h-[85%]
+                before:bg-slate-200
+                before:dark:bg-darkmode-400
+                before:ml-5
+                before:mt-5
+              "
             >
               <div class="intro-x relative flex items-center mb-3">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
+                  class="
+                    before:block
+                    before:absolute
+                    before:w-20
+                    before:h-px
+                    before:bg-slate-200
+                    before:dark:bg-darkmode-400
+                    before:mt-5
+                    before:ml-5
+                  "
                 >
                   <div
-                    class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden"
+                    class="
+                      w-10
+                      h-10
+                      flex-none
+                      image-fit
+                      rounded-full
+                      overflow-hidden
+                    "
                   >
                     <img
                       alt="Midone Tailwind HTML Admin Template"
@@ -620,10 +745,26 @@
               </div>
               <div class="intro-x relative flex items-center mb-3">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
+                  class="
+                    before:block
+                    before:absolute
+                    before:w-20
+                    before:h-px
+                    before:bg-slate-200
+                    before:dark:bg-darkmode-400
+                    before:mt-5
+                    before:ml-5
+                  "
                 >
                   <div
-                    class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden"
+                    class="
+                      w-10
+                      h-10
+                      flex-none
+                      image-fit
+                      rounded-full
+                      overflow-hidden
+                    "
                   >
                     <img
                       alt="Midone Tailwind HTML Admin Template"
@@ -683,10 +824,26 @@
               </div>
               <div class="intro-x relative flex items-center mb-3">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
+                  class="
+                    before:block
+                    before:absolute
+                    before:w-20
+                    before:h-px
+                    before:bg-slate-200
+                    before:dark:bg-darkmode-400
+                    before:mt-5
+                    before:ml-5
+                  "
                 >
                   <div
-                    class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden"
+                    class="
+                      w-10
+                      h-10
+                      flex-none
+                      image-fit
+                      rounded-full
+                      overflow-hidden
+                    "
                   >
                     <img
                       alt="Midone Tailwind HTML Admin Template"
@@ -712,10 +869,26 @@
               </div>
               <div class="intro-x relative flex items-center mb-3">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
+                  class="
+                    before:block
+                    before:absolute
+                    before:w-20
+                    before:h-px
+                    before:bg-slate-200
+                    before:dark:bg-darkmode-400
+                    before:mt-5
+                    before:ml-5
+                  "
                 >
                   <div
-                    class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden"
+                    class="
+                      w-10
+                      h-10
+                      flex-none
+                      image-fit
+                      rounded-full
+                      overflow-hidden
+                    "
                   >
                     <img
                       alt="Midone Tailwind HTML Admin Template"
@@ -744,7 +917,13 @@
           <!-- END: Recent Activities -->
           <!-- BEGIN: Important Notes -->
           <div
-            class="col-span-12 md:col-span-6 xl:col-span-12 xl:col-start-1 xl:row-start-1 2xl:col-start-auto 2xl:row-start-auto mt-3"
+            class="
+              col-span-12
+              md:col-span-6
+              xl:col-span-12 xl:col-start-1 xl:row-start-1
+              2xl:col-start-auto 2xl:row-start-auto
+              mt-3
+            "
           >
             <div class="intro-x flex items-center h-10">
               <h2 class="text-lg font-medium truncate mr-auto">
@@ -753,7 +932,15 @@
               <button
                 data-carousel="important-notes"
                 data-target="prev"
-                class="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
+                class="
+                  tiny-slider-navigator
+                  btn
+                  px-2
+                  border-slate-300
+                  text-slate-600
+                  dark:text-slate-300
+                  mr-2
+                "
                 @click="prevImportantNotes"
               >
                 <ChevronLeftIcon class="w-4 h-4" />
@@ -761,7 +948,15 @@
               <button
                 data-carousel="important-notes"
                 data-target="next"
-                class="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
+                class="
+                  tiny-slider-navigator
+                  btn
+                  px-2
+                  border-slate-300
+                  text-slate-600
+                  dark:text-slate-300
+                  mr-2
+                "
                 @click="nextImportantNotes"
               >
                 <ChevronRightIcon class="w-4 h-4" />
@@ -786,7 +981,12 @@
                       </button>
                       <button
                         type="button"
-                        class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
+                        class="
+                          btn btn-outline-secondary
+                          py-1
+                          px-2
+                          ml-auto ml-auto
+                        "
                       >
                         Dismiss
                       </button>
@@ -808,7 +1008,12 @@
                       </button>
                       <button
                         type="button"
-                        class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
+                        class="
+                          btn btn-outline-secondary
+                          py-1
+                          px-2
+                          ml-auto ml-auto
+                        "
                       >
                         Dismiss
                       </button>
@@ -830,7 +1035,12 @@
                       </button>
                       <button
                         type="button"
-                        class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
+                        class="
+                          btn btn-outline-secondary
+                          py-1
+                          px-2
+                          ml-auto ml-auto
+                        "
                       >
                         Dismiss
                       </button>
@@ -843,7 +1053,15 @@
           <!-- END: Important Notes -->
           <!-- BEGIN: Schedules -->
           <div
-            class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto mt-3"
+            class="
+              col-span-12
+              md:col-span-6
+              xl:col-span-4
+              2xl:col-span-12
+              xl:col-start-1 xl:row-start-2
+              2xl:col-start-auto 2xl:row-start-auto
+              mt-3
+            "
           >
             <div class="intro-x flex items-center h-10">
               <h2 class="text-lg font-medium truncate mr-5">Schedules</h2>
@@ -879,7 +1097,13 @@
                     <div class="py-0.5 rounded relative">4</div>
                     <div class="py-0.5 rounded relative">5</div>
                     <div
-                      class="py-0.5 bg-success/20 dark:bg-success/30 rounded relative"
+                      class="
+                        py-0.5
+                        bg-success/20
+                        dark:bg-success/30
+                        rounded
+                        relative
+                      "
                     >
                       6
                     </div>
@@ -902,7 +1126,13 @@
                     <div class="py-0.5 rounded relative">21</div>
                     <div class="py-0.5 rounded relative">22</div>
                     <div
-                      class="py-0.5 bg-pending/20 dark:bg-pending/30 rounded relative"
+                      class="
+                        py-0.5
+                        bg-pending/20
+                        dark:bg-pending/30
+                        rounded
+                        relative
+                      "
                     >
                       23
                     </div>
@@ -910,7 +1140,13 @@
                     <div class="py-0.5 rounded relative">25</div>
                     <div class="py-0.5 rounded relative">26</div>
                     <div
-                      class="py-0.5 bg-primary/10 dark:bg-primary/50 rounded relative"
+                      class="
+                        py-0.5
+                        bg-primary/10
+                        dark:bg-primary/50
+                        rounded
+                        relative
+                      "
                     >
                       27
                     </div>
@@ -981,3 +1217,26 @@ const nextImportantNotes = () => {
   el.tns.goTo("next");
 };
 </script>
+<style>
+  .report-box__dashboard:before {
+        width: 96% !important;
+  }
+  .report-box__right:before {
+        width: 100% !important;
+        margin-left: 12px !important;
+        border-radius: .675rem !important;
+  }
+  /* .bg-report-box-1 {
+    background: linear-gradient(50.1deg, rgba(69, 145, 178, 0.6) 0%, rgba(211, 220, 251, 0.6) 124.36%) !important;
+  } */
+  .bg__icon-1 {
+    background:  linear-gradient(50.1deg, rgb(69 145 178 / 53%) 0%, rgba(211, 220, 251, 0.6) 124.36%);
+  }
+  .bg__icon-2 {
+    background: linear-gradient(45.57deg, rgb(178 69 121 / 53%) 2.44%, rgba(251, 211, 233, 0.6) 99.99%);
+  }
+  .bg__icon-3 {
+    background: linear-gradient(45.57deg, rgb(101 78 163 / 47%) 2.44%, rgba(251, 211, 233, 0.6) 100%);
+  }
+</style>
+

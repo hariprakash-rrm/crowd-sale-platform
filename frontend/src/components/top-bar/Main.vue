@@ -1,7 +1,7 @@
 <template>
   <!-- BEGIN: Top Bar -->
   <div
-    class="top-bar-boxed h-[70px] md:h-[65px] z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative md:fixed md:inset-x-0 md:top-0 sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700"
+    class="top-bar-boxed h-[70px] md:h-[65px] backdrop-blur z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative md:fixed md:inset-x-0 md:top-0 sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700"
   >
     <div class="h-full flex items-center">
       <!-- BEGIN: Logo -->
@@ -172,31 +172,13 @@
           <DropdownContent
             class="bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white"
           >
-            <DropdownHeader tag="div" class="!font-normal">
-              <div class="font-medium">
-                {{ $f()[0].users[0].name }}
-              </div>
-              <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
-                {{ $f()[0].jobs[0] }}
-              </div>
-            </DropdownHeader>
-            <DropdownDivider class="border-white/[0.08]" />
+           
+           
             <DropdownItem class="dropdown-item hover:bg-white/5">
-              <UserIcon class="w-4 h-4 mr-2" /> Profile</DropdownItem
+              <SlashIcon class="w-4 h-4 mr-2" /> Disconnect</DropdownItem
             >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
-            >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
-            >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <HelpCircleIcon class="w-4 h-4 mr-2" /> Help</DropdownItem
-            >
-            <DropdownDivider class="border-white/[0.08]" />
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <ToggleRightIcon class="w-4 h-4 mr-2" /> Logout</DropdownItem
-            >
+           
+          
           </DropdownContent>
         </DropdownMenu>
       </Dropdown>
@@ -226,9 +208,13 @@
               </div>
             </DropdownHeader>
             <DropdownDivider class="border-white/[0.08]" />
+            <router-link to="/profile">
             <DropdownItem class="dropdown-item hover:bg-white/5">
-              <UserIcon class="w-4 h-4 mr-2" /> Profile</DropdownItem
-            >
+            
+              <UserIcon class="w-4 h-4 mr-2" /> Profile
+               
+            </DropdownItem>
+             </router-link>
             <DropdownItem class="dropdown-item hover:bg-white/5">
               <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
             >
