@@ -10,8 +10,8 @@
       <a href="" class="flex mr-auto">
         <img
           alt="Enigma Tailwind HTML Admin Template"
-          class="w-6"
-          src="@/assets/images/logo.svg"
+          class="w-40"
+          src="@/assets/images/uc/uc-light.png"
         />
       </a>
       <a href="javascript:;" class="mobile-menu-toggler">
