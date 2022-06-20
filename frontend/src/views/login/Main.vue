@@ -143,8 +143,8 @@ export default {
     onSubmit() {
       this.login({ email: this.email, password: this.password })
         .then((res) => {
-          let { data, status } = res.response;
-          if (status === 200) {
+          let { success } = res.data;
+          if (success) {
             this.showToast("Success", "Login Successful");
           } else {
             this.showToast("error", "Login Failed");

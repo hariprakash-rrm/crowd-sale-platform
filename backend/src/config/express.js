@@ -44,6 +44,7 @@ require('./config')((err) => {
                 'http://localhost:3000',
                 'http://localhost:4200',
                 'http://localhost:8080',
+                'http://159.89.192.6',
             ];
             if (allowedOrigins.includes(req.header('Origin'))) {
                 corsOptions = {

@@ -97,7 +97,7 @@ export const loginUser = async (req, res, next) => {
           });
           return responseModule.successResponse(res, {
             success: 1,
-            message: "User Login successfull",
+            message: "User Login successful",
             data: user,
             token: token
           });

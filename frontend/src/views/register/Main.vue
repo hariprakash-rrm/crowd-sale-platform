@@ -244,13 +244,13 @@ export default {
         userName: this.user.userName,
       };
       this.userRegistration(finalPayload).then((res) => {
-        let { data, status } = res.response;
-        if (status === 200) {
+        let { data, success } = res.response;
+        if (success) {
           this.showToast("success", "Please check your email!");
         } else {
           this.showToast("error", data.message);
         }
-      });
+      }).catch(err => console.log(err))
     },
     showToast(title = "", content = "") {
       this.toaster = {

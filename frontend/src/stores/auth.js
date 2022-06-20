@@ -23,8 +23,8 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    const { data, status } = res;
-                    if (status === 200) {
+                    const { data, success } = res.data;
+                    if (success) {
                         localStorage.setItem("token", JSON.stringify(data));
                         router.push("/dashboard");
                     }
