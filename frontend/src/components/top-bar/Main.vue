@@ -160,7 +160,7 @@
         </DropdownMenu>
       </Dropdown> -->
       <!-- END: Notifications -->
-       <Dropdown class="intro-x w-48 mr-4">
+       <Dropdown class="intro-x w-48 md:mr-4">
         <DropdownToggle
           tag="div"
           role="button"

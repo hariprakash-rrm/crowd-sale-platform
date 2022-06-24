@@ -9,6 +9,7 @@ import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
 import UpdateProfile from "../views/update-profile/Main.vue";
 import UserLayout from "../views/users-layout-1/Main.vue";
+import SingleDeal from "../views/profile-overview-2/Main.vue"
 
 const routes = [
     {
@@ -64,6 +65,11 @@ const routes = [
                 path: "/notification",
                 name: "side-menu-users-layout-1",
                 component: UserLayout,
+            },
+            {
+                path: "/single-deal",
+                name: "side-menu-profile-overview-2",
+                component: SingleDeal,
             },
             
         ]

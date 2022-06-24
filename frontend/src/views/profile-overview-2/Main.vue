@@ -1,11 +1,182 @@
 <template>
   <div class="intro-y flex items-center mt-8">
-    <h2 class="text-lg font-medium mr-auto">Profile Layout</h2>
+    <h2 class="text-xl font-semibold mr-auto">Single Deal</h2>
   </div>
   <TabGroup>
     <!-- BEGIN: Profile Info -->
-    <div class="intro-y box px-5 pt-5 mt-5">
-      <div
+    <div class="intro-y mt-5">
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-8 box">
+          <div class="intro-y px-5 mt-5">
+            <div class="flex flex-col justify-between mx-auto">
+              <div
+                style="
+                  background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png)"
+                class="
+                  bg-gray-300
+                  h-64
+                  w-full
+                  rounded-lg
+                  shadow-md
+                  bg-cover bg-center
+                "
+              ></div>
+              <div class="flex items-center justify-between">
+                <div class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md">
+                  <img
+                    alt="Midone Tailwind HTML Admin Template"
+                    class="rounded-md w-40 h-40 shadow-xl object-cover"
+                    src="@/assets/images/uc/gt-protocol.jpg"
+                  />
+                </div>
+                <div class="flex flex-wrap items-center gap-4 my-8 float-right">
+                  <button class="btn btn-facebook p-3 rounded-full">
+                    <FacebookIcon class="w-5 h-5" />
+                  </button>
+                  <button class="btn btn-twitter p-3 rounded-full">
+                    <TwitterIcon class="w-5 h-5" />
+                  </button>
+                  <button class="btn btn-instagram p-3 rounded-full">
+                    <InstagramIcon class="w-5 h-5" />
+                  </button>
+                  <button class="btn btn-linkedin p-3 rounded-full">
+                    <LinkedinIcon class="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-12">
+              <div class="col-span-12">
+                <div
+                  class="
+                    flex
+                    items-center
+                    border-b border-slate-200/60
+                    dark:border-darkmode-400
+                    p-5
+                  "
+                >
+                  <div>
+                    <h2 class="font-semibold text-xl pt-6">
+                      GT- Protocol
+                      <span
+                        class="
+                          p-2
+                          px-4
+                          font-semibold
+                          text-sm
+                          btn-secondary
+                          rounded
+                          text-slate-500
+                          ml-2
+                        "
+                        >GTP</span
+                      >
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <TabList
+              class="
+                nav-link-tabs
+                flex-col
+                sm:flex-row
+                justify-center
+                lg:justify-start
+                text-center
+              "
+            >
+              <Tab
+                :fullWidth="false"
+                class="py-4 flex items-center cursor-pointer"
+              >
+                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+              </Tab>
+              <Tab
+                :fullWidth="false"
+                class="py-4 flex items-center cursor-pointer"
+              >
+                <ShieldIcon class="w-4 h-4 mr-2" /> Team
+              </Tab>
+              <Tab
+                :fullWidth="false"
+                class="py-4 flex items-center cursor-pointer"
+              >
+                <LockIcon class="w-4 h-4 mr-2" />Partners
+              </Tab>
+              <Tab
+                :fullWidth="false"
+                class="py-4 flex items-center cursor-pointer"
+              >
+                <SettingsIcon class="w-4 h-4 mr-2" /> Token Metrics
+              </Tab>
+              <Tab
+                :fullWidth="false"
+                class="py-4 flex items-center cursor-pointer"
+              >
+                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+              </Tab>
+            </TabList>
+          </div>
+        </div>
+        <div class="col-span-4">
+          <div class="intro-y box col-span-12 lg:col-span-6">
+            <div
+              class="
+                flex
+                items-center
+                px-5
+                py-5
+                sm:py-3
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
+            >
+              <h2 class="font-semibold text-base py-2 px-5 mr-auto">Details</h2>
+          
+              <button class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10">
+                Closed
+              </button>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center">
+               
+                <div class="ml-4">
+                  <div class="font-medium text-base" href="">Tier Access</div>
+                  <div class="text-slate-500 text-lg font-semibold mt-0.5">Public Offering</div>
+                </div>
+               
+              </div>
+              <div class="flex items-center mt-5">
+              
+                <div class="ml-4">
+                  <div class="font-medium text-base" href="">Price Per</div>
+                  <div class="text-slate-500 text-lg font-semibold mt-0.5">1 GTP = 0.15 USDC</div>
+                </div>
+               
+              </div>
+              <div class="flex items-center mt-5">
+                
+                <div class="ml-4">
+                  <div class="font-medium text-base" href="">Total Offering</div>
+                  <div class="text-slate-500 text-lg font-semibold mt-0.5">733,333 GTP</div>
+                </div>
+               
+              </div>
+              <div class="flex items-center mt-5">
+                
+                <div class="ml-4">
+                  <div class="font-medium text-base" href="">Global Cap</div>
+                  <div class="text-slate-500 text-lg font-semibold mt-0.5">110,000 USDC</div>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div
         class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5"
       >
         <div
@@ -68,23 +239,7 @@
             <div class="text-slate-500">Reviews</div>
           </div>
         </div>
-      </div>
-      <TabList
-        class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
-      >
-        <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-          <UserIcon class="w-4 h-4 mr-2" /> Profile
-        </Tab>
-        <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-          <ShieldIcon class="w-4 h-4 mr-2" /> Account
-        </Tab>
-        <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-          <LockIcon class="w-4 h-4 mr-2" /> Change Password
-        </Tab>
-        <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-          <SettingsIcon class="w-4 h-4 mr-2" /> Settings
-        </Tab>
-      </TabList>
+      </div> -->
     </div>
     <!-- END: Profile Info -->
     <TabPanels class="mt-5">
@@ -93,7 +248,15 @@
           <!-- BEGIN: Latest Uploads -->
           <div class="intro-y box col-span-12 lg:col-span-6">
             <div
-              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+              class="
+                flex
+                items-center
+                px-5
+                py-5
+                sm:py-3
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
             >
               <h2 class="font-medium text-base mr-auto">Latest Uploads</h2>
               <Dropdown class="ml-auto sm:hidden">
@@ -210,7 +373,15 @@
           <!-- BEGIN: Work In Progress -->
           <TabGroup class="intro-y box col-span-12 lg:col-span-6">
             <div
-              class="flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400"
+              class="
+                flex
+                items-center
+                px-5
+                py-5
+                sm:py-0
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
             >
               <h2 class="font-medium text-base mr-auto">Work In Progress</h2>
               <Dropdown class="ml-auto sm:hidden">
@@ -304,7 +475,15 @@
           <!-- BEGIN: Daily Sales -->
           <div class="intro-y box col-span-12 lg:col-span-6">
             <div
-              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+              class="
+                flex
+                items-center
+                px-5
+                py-5
+                sm:py-3
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
             >
               <h2 class="font-medium text-base mr-auto">Daily Sales</h2>
               <Dropdown class="ml-auto sm:hidden">
@@ -388,7 +567,15 @@
           <!-- BEGIN: Latest Tasks -->
           <TabGroup class="intro-y box col-span-12 lg:col-span-6">
             <div
-              class="flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400"
+              class="
+                flex
+                items-center
+                px-5
+                py-5
+                sm:py-0
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
             >
               <h2 class="font-medium text-base mr-auto">Latest Tasks</h2>
               <Dropdown class="ml-auto sm:hidden">
@@ -467,11 +654,23 @@
           <!-- BEGIN: New Products -->
           <div class="intro-y box col-span-12">
             <div
-              class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+              class="
+                flex
+                items-center
+                px-5
+                py-3
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
             >
               <h2 class="font-medium text-base mr-auto">New Products</h2>
               <button
-                class="tiny-slider-navigator btn btn-outline-secondary px-2 mr-2"
+                class="
+                  tiny-slider-navigator
+                  btn btn-outline-secondary
+                  px-2
+                  mr-2
+                "
                 @click="prevNewProducts"
               >
                 <ChevronLeftIcon class="w-4 h-4" />
@@ -492,7 +691,15 @@
                 >
                   <div class="flex flex-col lg:flex-row items-center pb-5">
                     <div
-                      class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-slate-200/60 dark:border-darkmode-400"
+                      class="
+                        flex flex-col
+                        sm:flex-row
+                        items-center
+                        pr-5
+                        lg:border-r
+                        border-slate-200/60
+                        dark:border-darkmode-400
+                      "
                     >
                       <div class="sm:mr-5">
                         <div class="w-20 h-20 image-fit">
@@ -515,7 +722,22 @@
                       </div>
                     </div>
                     <div
-                      class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-slate-200/60 dark:border-darkmode-400"
+                      class="
+                        w-full
+                        lg:w-auto
+                        mt-6
+                        lg:mt-0
+                        pt-4
+                        lg:pt-0
+                        flex-1 flex
+                        items-center
+                        justify-center
+                        px-5
+                        border-t
+                        lg:border-t-0
+                        border-slate-200/60
+                        dark:border-darkmode-400
+                      "
                     >
                       <div class="text-center rounded-md w-20 py-3">
                         <div class="font-medium text-primary text-xl">
@@ -538,13 +760,42 @@
                     </div>
                   </div>
                   <div
-                    class="flex flex-col sm:flex-row items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5"
+                    class="
+                      flex flex-col
+                      sm:flex-row
+                      items-center
+                      border-t border-slate-200/60
+                      dark:border-darkmode-400
+                      pt-5
+                    "
                   >
                     <div
-                      class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-slate-200/60 dark:border-darkmode-400 pb-5 sm:pb-0"
+                      class="
+                        w-full
+                        sm:w-auto
+                        flex
+                        justify-center
+                        sm:justify-start
+                        items-center
+                        border-b
+                        sm:border-b-0
+                        border-slate-200/60
+                        dark:border-darkmode-400
+                        pb-5
+                        sm:pb-0
+                      "
                     >
                       <div
-                        class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium mr-3"
+                        class="
+                          px-3
+                          py-2
+                          text-primary
+                          bg-primary/10
+                          dark:bg-darkmode-400 dark:text-slate-300
+                          rounded
+                          font-medium
+                          mr-3
+                        "
                       >
                         {{ faker.dates[0] }}
                       </div>
@@ -567,11 +818,23 @@
           <!-- BEGIN: New Authors -->
           <div class="intro-y box col-span-12">
             <div
-              class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+              class="
+                flex
+                items-center
+                px-5
+                py-3
+                border-b border-slate-200/60
+                dark:border-darkmode-400
+              "
             >
               <h2 class="font-medium text-base mr-auto">New Authors</h2>
               <button
-                class="tiny-slider-navigator btn btn-outline-secondary px-2 mr-2"
+                class="
+                  tiny-slider-navigator
+                  btn btn-outline-secondary
+                  px-2
+                  mr-2
+                "
                 @click="prevNewAuthors"
               >
                 <ChevronLeftIcon class="w-4 h-4" />
@@ -592,7 +855,15 @@
                 >
                   <div class="flex flex-col lg:flex-row items-center pb-5">
                     <div
-                      class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-slate-200/60 dark:border-darkmode-400"
+                      class="
+                        flex-1 flex flex-col
+                        sm:flex-row
+                        items-center
+                        pr-5
+                        lg:border-r
+                        border-slate-200/60
+                        dark:border-darkmode-400
+                      "
                     >
                       <div class="sm:mr-5">
                         <div class="w-20 h-20 image-fit">
@@ -615,12 +886,38 @@
                       </div>
                     </div>
                     <div
-                      class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-slate-200/60 dark:border-darkmode-400"
+                      class="
+                        w-full
+                        lg:w-auto
+                        mt-6
+                        lg:mt-0
+                        pt-4
+                        lg:pt-0
+                        flex-1 flex flex-col
+                        justify-center
+                        items-center
+                        lg:items-start
+                        px-5
+                        border-t
+                        lg:border-t-0
+                        border-slate-200/60
+                        dark:border-darkmode-400
+                      "
                     >
                       <div class="flex items-center">
                         <a
                           href=""
-                          class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-slate-400"
+                          class="
+                            w-8
+                            h-8
+                            rounded-full
+                            flex
+                            items-center
+                            justify-center
+                            border
+                            mr-2
+                            text-slate-400
+                          "
                         >
                           <FacebookIcon class="w-3 h-3 fill-current" />
                         </a>
@@ -629,7 +926,17 @@
                       <div class="flex items-center mt-2">
                         <a
                           href=""
-                          class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-slate-400"
+                          class="
+                            w-8
+                            h-8
+                            rounded-full
+                            flex
+                            items-center
+                            justify-center
+                            border
+                            mr-2
+                            text-slate-400
+                          "
                         >
                           <TwitterIcon class="w-3 h-3 fill-current" />
                         </a>
@@ -638,13 +945,42 @@
                     </div>
                   </div>
                   <div
-                    class="flex flex-col sm:flex-row items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5"
+                    class="
+                      flex flex-col
+                      sm:flex-row
+                      items-center
+                      border-t border-slate-200/60
+                      dark:border-darkmode-400
+                      pt-5
+                    "
                   >
                     <div
-                      class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-slate-200/60 dark:border-darkmode-400 pb-5 sm:pb-0"
+                      class="
+                        w-full
+                        sm:w-auto
+                        flex
+                        justify-center
+                        sm:justify-start
+                        items-center
+                        border-b
+                        sm:border-b-0
+                        border-slate-200/60
+                        dark:border-darkmode-400
+                        pb-5
+                        sm:pb-0
+                      "
                     >
                       <div
-                        class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium mr-3"
+                        class="
+                          px-3
+                          py-2
+                          text-primary
+                          bg-primary/10
+                          dark:bg-darkmode-400 dark:text-slate-300
+                          rounded
+                          font-medium
+                          mr-3
+                        "
                       >
                         {{ faker.dates[0] }}
                       </div>
