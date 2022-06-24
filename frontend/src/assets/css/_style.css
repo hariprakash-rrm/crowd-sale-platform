@@ -55,3 +55,6 @@ input[type=number] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
+.dark .box {
+  background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
+}

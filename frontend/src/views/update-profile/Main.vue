@@ -418,7 +418,7 @@
               your password and an authentication code that you will receive
               from your phone.
             </p>
-            <button type="button" class="btn btn-primary mt-4">
+            <button type="button" class="btn btn-primary text-base px-6 mt-4">
               Enable 2FA
             </button>
           </div>
@@ -436,7 +436,7 @@
               dark:border-darkmode-400
             "
           >
-            <h2 class="font-semibold text-base mr-auto px-2">Wallets</h2>
+            <h2 class="font-semibold text-base mr-auto px-2">Wallet</h2>
           </div>
           <div class="p-8">
             <div class="relative mb-6">
@@ -450,17 +450,7 @@
                 >Add Wallet</label
               >
             </div>
-            <div class="relative mb-6">
-              <input
-                type="text"
-                id="remove-wallet"
-                class="input__field peer"
-                placeholder=" "
-              />
-              <label for="remove-wallet" class="input__label"
-                >Remove Wallet</label
-              >
-            </div>
+          
            
 
             <button
@@ -477,7 +467,7 @@
                 mt-4
               "
             >
-              Reset Password
+              Remove Wallet
             </button>
           </div>
         </div>
