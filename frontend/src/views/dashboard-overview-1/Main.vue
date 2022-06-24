@@ -323,7 +323,7 @@
               </td>
               <td class="table-report__action w-40">
                 <div class="flex justify-center items-center">
-                  <a
+                  <a @click="save"
                     class="
                       flex
                       items-center
@@ -333,9 +333,9 @@
                       px-6
                       rounded
                     "
-                    href=""
+                   
                   >
-                    Claim
+                    Contribute
                   </a>
                 </div>
               </td>
@@ -700,14 +700,66 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts">
+
 import { ref, provide } from "vue";
-import ReportLineChart from "@/components/report-line-chart/Main.vue";
+import {ReportLineChart} from "@/components/report-line-chart/Main.vue";
 import ReportDonutChart from "@/components/report-donut-chart/Main.vue";
 import ReportPieChart from "@/components/report-pie-chart/Main.vue";
 import ReportMap from "@/components/report-map/Main.vue";
 import ReportDonutChart1 from "@/components/report-donut-chart-1/Main.vue";
 import SimpleLineChart1 from "@/components/simple-line-chart-1/Main.vue";
+import Web3 from "web3";
+export default {
+  name: "app",
+  contractResult: "",
+ 
+  methods: {
+    save:async function() {
+      // web3wallet.title;/
+
+      let web3 = new Web3(window.ethereum);
+      let contractAddress = "0x22b3928ef5a2c7dAb63Ed12FC5985595489B1018";
+      let abi = JSON.parse(`[
+	{
+		"inputs": [],
+		"name": "getName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "newName",
+				"type": "string"
+			}
+		],
+		"name": "setName",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]`);
+      let contract = new web3.eth.Contract(abi, contractAddress);
+
+      let set = await contract.methods
+        .setName("hari")
+        .send({ from: localStorage.getItem('address') })
+        .then (result => (this.contractResult = result));
+      await console.log(set);
+      
+    }
+  }
+};
+
 
 const salesReportFilter = ref();
 const importantNotesRef = ref();

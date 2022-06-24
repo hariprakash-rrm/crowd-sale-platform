@@ -20,6 +20,7 @@
     "@googlemaps/js-api-loader": "^1.11.4",
     "@googlemaps/markerclustererplus": "^1.1.0",
     "@left4code/tw-starter": "^3.1.35",
+    "@metamask/providers": "^9.0.0",
     "@popperjs/core": "^2.7.0",
     "@vuelidate/core": "^2.0.0-alpha.12",
     "@vuelidate/validators": "^2.0.0-alpha.11",
@@ -41,6 +42,9 @@
     "tom-select": "^1.7.5",
     "vue": "^3.2.25",
     "vue-router": "4",
+    "web3": "^1.7.4",
+    "web3-core-requestmanager": "^1.7.4",
+    "web3-eth-contract": "^1.7.4",
     "xlsx": "^0.16.9",
     "zoom-vanilla.js": "^2.0.6"
   },
