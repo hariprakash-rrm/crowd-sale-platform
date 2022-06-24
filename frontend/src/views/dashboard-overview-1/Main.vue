@@ -252,7 +252,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="intro-x">
+            <tr class="intro-x zoom-in">
               <td class="w-20">
                 <div class="flex">
                   <div class="w-16 h-16 image-fit zoom-in">
@@ -340,7 +340,7 @@
                 </div>
               </td>
             </tr>
-            <tr class="intro-x">
+            <tr class="intro-x zoom-in">
               <td class="w-20">
                 <div class="flex">
                   <div class="w-16 h-16 image-fit zoom-in">
@@ -428,7 +428,7 @@
                 </div>
               </td>
             </tr>
-            <tr class="intro-x">
+            <tr class="intro-x zoom-in">
               <td class="w-20">
                 <div class="flex">
                   <div class="w-16 h-16 image-fit zoom-in">
@@ -516,7 +516,7 @@
                 </div>
               </td>
             </tr>
-            <tr class="intro-x">
+            <tr class="intro-x zoom-in">
               <td class="w-20">
                 <div class="flex">
                   <div class="w-16 h-16 image-fit zoom-in">
@@ -604,7 +604,7 @@
                 </div>
               </td>
             </tr>
-            <tr class="intro-x">
+            <tr class="intro-x zoom-in">
               <td class="w-20">
                 <div class="flex">
                   <div class="w-16 h-16 image-fit zoom-in">
