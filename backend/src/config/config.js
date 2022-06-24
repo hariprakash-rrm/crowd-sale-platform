@@ -4,7 +4,7 @@ import path from "path";
 var env = process.env.NODE_ENV || "development";
 import mongoose from "mongoose";
 import asyncLib from "async";
-import autoIncrement from "mongoose-auto-increment";
+//import autoIncrement from "mongoose-auto-increment";
 // import local files
 import winston from "./winston";
 import chalk from "chalk";
@@ -27,7 +27,8 @@ module.exports = function (callback) {
             } else {
               winston.info("loaded config file:" + env);
 
-              var dbURI = config.mongodb.host + config.mongodb.db_name;
+              var dbURI = config.mongodb.uri
+              // var dbURI = config.mongodb.host + config.mongodb.db_name;
               winston.info("Try to Connect MongoDb: " + dbURI);
               // make connection with mongodb
               if (!mongoose.connection.readyState) {
@@ -52,7 +53,7 @@ module.exports = function (callback) {
                 return envCb();
               });
 
-              autoIncrement.initialize(mongoose.connection);
+             // autoIncrement.initialize(mongoose.connection);
 
               // if the connection throws an error
               mongoose.connection.on("error", function (err) {
