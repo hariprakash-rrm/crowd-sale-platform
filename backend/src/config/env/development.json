@@ -5,7 +5,7 @@
     "baseUrl": "http://www.mukilselvam.com",
     "mongodb": {
         "host": "mongodb://db/",
-        "uri": "mongodb://db/admin",
+        "uri": "mongodb+srv://karthik:karthik132@un-real.jzjoe.mongodb.net/?retryWrites=true&w=majority",
         "db_name": "admin",
         "credentials": {
             "username": "root",

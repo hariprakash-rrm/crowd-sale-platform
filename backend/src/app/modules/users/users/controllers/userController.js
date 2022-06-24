@@ -15,7 +15,7 @@ import winston from '../../../../../config/winston';
  * @param {Object} res 
  */
 export const userSignup = async (req, res, next) => {
-
+ 
   const password = bcrypt.hashSync(req.body.password, 10);
   const otp = otpGenerator.generate(5, {
     upperCaseAlphabets: false,
