@@ -11,7 +11,7 @@
     },
     "scripts": {
         "build": "babel src -s -D -d lib",
-        "start": "npm run build && nodemon node lib/app.js",
+        "start": "npm run build &&  nodemon node lib/app.js",
         "start-old": "./node_modules/.bin/cross-env NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 ./node_modules/.bin/nodemon DEBUG=* app.js",
         "test": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/babel-tape-runner test/test-*.js"
     },
@@ -45,7 +45,7 @@
         "decompress": "^4.2.1",
         "directory-exists": "^2.0.1",
         "dotenv": "^10.0.0",
-        "ejs": "^3.1.6",
+        "ejs": "^3.1.8",
         "email-templates": "^8.0.8",
         "eslint-scope": "^7.1.0",
         "express": "^4.17.2",

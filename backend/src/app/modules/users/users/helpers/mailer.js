@@ -1,38 +1,32 @@
-import winston from "../../../../../config/winston"
-import nodemailer from 'nodemailer'
+import winston from "../../../../../config/winston";
+import nodemailer from "nodemailer";
 
-const transporter  = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com", // hostname
-    secureConnection: false, // TLS requires secureConnection to be false
-    port: 587, // port for secure SMTP
-    tls: {
-       ciphers:'SSLv3'
-    },
-    auth: {
-        user: 'team_quantum@outlook.com',
-        pass: 'quantum@team10'
-    }
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com", // hostname
+  secureConnection: false, // TLS requires secureConnection to be false
+  secure: true,
+  port: 465,
+  auth: {
+    user: "karthik.bca1417@gmail.com",
+    pass: "vmbtdwyyuhndzzte",
+  },
 });
-     
 
-export const sendMail = async (userMail, otp) => {
-    const options = {
-        from: "team_quantum@outlook.com",
-        to: userMail,
-        subject: "Welcome to the unreal world",
-        text: `Verify with otp ${otp}`
+export const sendMail = async (toEmail, subject, message) => {
+  winston.info("Inside Mail Function");
+  var mailOptions = {
+    from: "team_quantum@outlook.com",
+    to: toEmail,
+    subject: subject,
+    text: message,
+    html: message,
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      winston.error(err);
+      return;
     }
-    
-
-    transporter.sendMail(options,function(err, info){
-        if (err){
-            winston.error(err)
-            return
-        }
-        winston.info("Mail sent successfully")
-    })
-
-}
-
-
-
+    winston.info("Mail sent successfully");
+  });
+};
