@@ -160,15 +160,15 @@
         </DropdownMenu>
       </Dropdown> -->
       <!-- END: Notifications -->
-       <Dropdown class="intro-x w-48 md:mr-4">
+       <Dropdown class="intro-x w-48 mr-4">
         <DropdownToggle
           tag="div"
           role="button"
           class="w-40 overflow-hidden zoom-in scale-110"
         >
-         <p class="text-white text-center bg-primary p-2 rounded-full">Connect Wallet</p>
+         <p @click="connect" class="text-white text-center bg-primary p-1 rounded-full truncate">{{title}}</p>
         </DropdownToggle>
-        <DropdownMenu class="w-56">
+        <DropdownMenu v-if="connected" class="w-56">
           <DropdownContent
             class="bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white"
           >
@@ -238,8 +238,51 @@
   <!-- END: Top Bar -->
 </template>
 
-<script setup>
+<script lang="ts">
 import { ref } from "vue";
+import { MetaMaskInpageProvider } from "@metamask/providers";
+
+declare global {
+  interface Window {
+    ethereum?: MetaMaskInpageProvider;
+  }
+}
+
+// import Web3 from "web3";
+export default {
+  name: "web3wallet",
+  data() {
+    return {
+      connected: false,
+      contractResult: "",
+      title: "connect Wallet"
+    };
+  },
+
+  methods: {
+    connect: function() {
+      // this connects to the wallet
+
+      if (window.ethereum) {
+        // first we check if metamask is installed
+        window.ethereum.request({ method: "eth_requestAccounts" }).then(() => {
+          this.connected = true; // If users successfully connected their wallet
+          window.ethereum
+            .request({ method: "eth_accounts" })
+            .then(account => {
+              localStorage.setItem("address", account);
+              let address = localStorage.getItem("address") + "";
+              this.title = address.slice(0, 12) + "..." + address.slice(37, 41);
+              console.log(address);
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        });
+      }
+    }
+  }
+};
 
 const searchDropdown = ref(false);
 const showSearchDropdown = () => {
