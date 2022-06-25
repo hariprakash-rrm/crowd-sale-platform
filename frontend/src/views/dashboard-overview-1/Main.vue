@@ -527,7 +527,7 @@
               </tr>
             </thead>
              <tbody>
-                <tr v-for="user in poolsUpcoming" :key="user.id" class="intro-x zoom-in">
+                <tr v-for="user in poolsMyDeal" :key="user.id" class="intro-x zoom-in">
               
                 <td class="w-20">
                   <div class="flex">
@@ -541,6 +541,7 @@
                     </div>
                   </div>
                 </td>
+                  <td class="text-center">{{user.id}}</td>
                 <td>
                   
                   <a href="" class="text-lg font-semibold whitespace-nowrap">{{
@@ -562,17 +563,17 @@
                     </div>
                   </div>
                 </td>
-                 <td class="text-center">{{user.id}}</td>
+               
                 <td class="text-center">{{ user.symbol }}</td>
-                <td class="text-center">{{user.currentlyStaked}}<br>-------<br>{{user.poolStakableAmount}}</td>
+                <td class="text-center">{{user.currentPercentage}}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
                
 
-                <td class="w-40">
+                <!-- <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
                     Not Pledged
                   </div>
-                </td>
+                </td> -->
                 <td class="text-center">
                   <input
                     type="text"
@@ -689,6 +690,7 @@ export default {
         set.currentlyStaked = currentlyStaked/10**18
         var currentPercentage = (set.currentlyStaked*100)/set.poolStakableAmount;
         set.currentPercentage= currentPercentage;
+        var stakedAmount=await contract.methods.getUserStakedTokenInPool(i,localStorage.getItem("address")).call()
         // await this.pools.push(set);
         var currentTime = await Math.floor(Date.now() / 1000)
         console.log(currentTime);
@@ -704,6 +706,9 @@ export default {
         else if(currentTime < set.endTime && currentTime > set.startTime){
           this.poolsOngoing.push(set)
           console.log("Ongoing")
+        }
+        if(stakedAmount > 0){
+          this.poolsMyDeal.push(set)
         }
       }
     },
