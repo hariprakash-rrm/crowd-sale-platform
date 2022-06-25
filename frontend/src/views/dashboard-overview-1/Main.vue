@@ -158,12 +158,13 @@
           <thead>
             <tr>
               <th class="whitespace-nowrap">IMAGES</th>
+                 <th class="text-center whitespace-nowrap">POOL ID</th>
               <th class="whitespace-nowrap">PRODUCT NAME</th>
               <th class="text-center whitespace-nowrap">TICKER</th>
               <th class="text-center whitespace-nowrap">ROUND</th>
-              <th class="text-center whitespace-nowrap">CONTRIBUTION</th>
-              <th class="text-center whitespace-nowrap">STATUS</th>
-              <th class="text-center whitespace-nowrap">ACTIVITY STATUS</th>
+              <th class="text-center whitespace-nowrap">ENDTIME</th>
+              <th class="text-center whitespace-nowrap">MAXIMUM CONTRIBUTION</th>
+           
               <th class="text-center whitespace-nowrap">ACTIONS</th>
             </tr>
           </thead>
