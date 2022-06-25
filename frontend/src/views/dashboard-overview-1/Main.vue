@@ -73,7 +73,7 @@
             class="
               nav nav-pills
               w-3/4
-              2xl:w-1/6
+              lg:w-2/6
               bg-slate-200
               dark:bg-black/10
               rounded-md
@@ -83,7 +83,8 @@
             role="tablist"
           >
             <li
-              id="active-users-tab"
+              @click="activeTabOne"
+              id="active-ongoing-tab"
               class="nav-item flex-1"
               role="presentation"
             >
@@ -96,11 +97,46 @@
                 aria-controls="active-users"
                 aria-selected="true"
               >
-                All Deals
+                Ongoing
               </button>
             </li>
             <li
-              id="inactive-users-tab"
+              @click="activeTabTwo"
+              id="inactive-upcoming-tab"
+              class="nav-item flex-1"
+              role="presentation"
+            >
+              <button
+                class="nav-link w-full py-1.5 px-2"
+                data-tw-toggle="pill"
+                data-tw-target="#inactive-users"
+                type="button"
+                role="tab"
+                aria-selected="false"
+              >
+                Upcoming
+              </button>
+            </li>
+            <li
+              @click="activeTabThree"
+              id="inactive-completed-tab"
+              class="nav-item flex-1"
+              role="presentation"
+            >
+              <button
+                class="nav-link w-full py-1.5 px-2"
+                data-tw-toggle="pill"
+                data-tw-target="#inactive-users"
+                type="button"
+                role="tab"
+                aria-selected="false"
+              >
+                Completed
+              </button>
+            </li>
+            <li
+              @click="activeTabFour"
+              id="inactive-mydeals-tab"
               class="nav-item flex-1"
               role="presentation"
             >
@@ -117,7 +153,7 @@
             </li>
           </ul>
           <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <!-- <div class="w-64 relative text-slate-500">
+            <div class="w-64 relative text-slate-500">
               <input
                 type="text"
                 class="form-control w-64 rounded-md input--rounded box pr-10"
@@ -149,116 +185,446 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-            </div> -->
+            </div>
           </div>
         </div>
-                
+        <!-- BEGIN: TAB CONTENT UPCOMING -->
+        <div v-show="tab === 1">
+          <table class="table table-report">
+            <thead>
+              <tr>
+                <th class="whitespace-nowrap">PRODUCT</th>
+                <th class="text-center whitespace-nowrap w-72">POOL ID</th>
+                <th class="whitespace-nowrap">NAME</th>
+                <th class="text-center whitespace-nowrap">SYMBOL</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">
+                  MAXIMUM CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">
+                  ENTER YOUR CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="user in pools" :key="user.id" class="intro-x zoom-in">
+                <td class="w-20">
+                  <div class="flex">
+                    <div class="w-16 h-16 image-fit zoom-in">
+                      <Tippy
+                        tag="img"
+                        alt="Midone Tailwind HTML Admin Template"
+                        class="rounded-md"
+                        src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="" class="text-lg font-semibold whitespace-nowrap">{{
+                    user.name
+                  }}</a>
+                  <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                    <div class="flex text-slate-500 text-xs">
+                      <div class="mr-auto">Progress</div>
+                      <div>20%</div>
+                    </div>
+                    <div class="progress h-1 mt-2">
+                      <div
+                        class="progress-bar w-1/4 bg-primary"
+                        role="progressbar"
+                        aria-valuenow="0"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">{{ user.symbol }}</td>
+                <td class="text-center">Private</td>
+                <td class="text-center">{{ user.endTime }}</td>
+                <td class="w-40">
+                  <div class="flex items-center justify-center text-danger">
+                    Not Pledged
+                  </div>
+                </td>
+                <td class="text-center">
+                  <input
+                    type="text"
+                    class="
+                      form-control
+                      w-56
+                      rounded-md
+                      input--rounded
+                      box
+                      pr-10
+                    "
+                    placeholder="Enter Amount..."
+                  />
+                </td>
+                <td class="table-report__action w-40">
+                  <div class="flex justify-center gap-4 items-center">
+                    <a
+                      @click="save"
+                      class="
+                        flex
+                        items-center
+                        text-white text-center
+                        bg-primary
+                        p-2
+                        px-6
+                        rounded
+                      "
+                    >
+                      Contribute
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END: TAB CONTENT UPCOMING -->
 
-        <table class="table table-report">
-          <thead>
-            <tr>
-              <th class="whitespace-nowrap">IMAGES</th>
-                 <th class="text-center whitespace-nowrap">POOL ID</th>
-              <th class="whitespace-nowrap">PRODUCT NAME</th>
-              <th class="text-center whitespace-nowrap">TICKER</th>
-              <th class="text-center whitespace-nowrap">ROUND</th>
-              <th class="text-center whitespace-nowrap">ENDTIME</th>
-              <th class="text-center whitespace-nowrap">MAXIMUM CONTRIBUTION</th>
-           
-              <th class="text-center whitespace-nowrap">ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="user in pools" :key="user.id" class="intro-x zoom-in">
-              <td class="w-20">
-                <div class="flex">
-                  <div class="w-16 h-16 image-fit zoom-in">
-                    <Tippy
-                      tag="img"
-                      alt="Midone Tailwind HTML Admin Template"
-                      class="rounded-md"
-                      src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                    />
+        <!-- BEGIN: TAB CONTENT ONGOING -->
+        <div v-show="tab === 2">
+          <table class="table table-report">
+            <thead>
+              <tr>
+                <th class="whitespace-nowrap">PRODUCT</th>
+                <th class="text-center whitespace-nowrap w-72">POOL ID</th>
+                <th class="whitespace-nowrap">NAME</th>
+                <th class="text-center whitespace-nowrap">SYMBOL</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">
+                  MAXIMUM CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">
+                  ENTER YOUR CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="intro-x zoom-in">
+                <td class="w-20">
+                  <div class="flex">
+                    <div class="w-16 h-16 image-fit zoom-in">
+                      <Tippy
+                        tag="img"
+                        alt="Midone Tailwind HTML Admin Template"
+                        class="rounded-md"
+                        src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <a href="" class="text-lg font-semibold whitespace-nowrap"
-                  >{{user.name}}</a
-                >
-                <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                  <div class="flex text-slate-500 text-xs">
-                    <div class="mr-auto">Progress</div>
-                    <div>20%</div>
+                </td>
+                <td>
+                  <a href="" class="text-lg font-semibold whitespace-nowrap"
+                    >GT Protocol</a
+                  >
+                  <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                    <div class="flex text-slate-500 text-xs">
+                      <div class="mr-auto">Progress</div>
+                      <div>20%</div>
+                    </div>
+                    <div class="progress h-1 mt-2">
+                      <div
+                        class="progress-bar w-1/4 bg-primary"
+                        role="progressbar"
+                        aria-valuenow="0"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
                   </div>
-                  <div class="progress h-1 mt-2">
-                    <div
-                      class="progress-bar w-1/4 bg-primary"
-                      role="progressbar"
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
+                </td>
+                <td class="text-center">GTP</td>
+                <td class="text-center">Private</td>
+                <td class="text-center">24/05/2022</td>
+                <td class="w-40">
+                  <div class="flex items-center justify-center text-danger">
+                    Not Pledged
                   </div>
-                </div>
-              </td>
-              <td class="text-center">{{user.symbol}}</td>
-              <td class="text-center">Private</td>
-              <td class="text-center">{{user.endTime}}</td>
-              <td class="w-40">
-                <div class="flex items-center justify-center text-danger">
-                  Not Pledged
-                </div>
-              </td>
-              <td class="text-center">
-                <div>
-                  <span
-                    class="
-                      bg-gray-400/20
-                      text-gray-600 text-xs
-                      m-2
-                      px-2
-                      py-1
-                      rounded
-                      z-10
-                    "
-                    >Closed</span
+                </td>
+                <td class="text-center">
+                  <div>
+                    <span
+                      class="
+                        bg-gray-400/20
+                        text-gray-600 text-xs
+                        m-2
+                        px-2
+                        py-1
+                        rounded
+                        z-10
+                      "
+                      >Closed</span
+                    >
+                    <span
+                      class="
+                        bg-green-400/20
+                        text-green-600 text-xs
+                        m-2
+                        px-2
+                        py-1
+                        rounded
+                        z-10
+                      "
+                      >Live</span
+                    >
+                  </div>
+                </td>
+                <td class="table-report__action w-40">
+                  <div class="flex justify-center items-center">
+                    <a
+                      class="
+                        flex
+                        items-center
+                        text-white text-center
+                        bg-primary
+                        p-2
+                        px-6
+                        rounded
+                      "
+                      href=""
+                    >
+                      Claim
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END: TAB CONTENT ONGOING -->
+
+        <!-- BEGIN: TAB CONTENT COMPLETED -->
+        <div v-show="tab === 3">
+          <table class="table table-report">
+            <thead>
+              <tr>
+                <th class="whitespace-nowrap">PRODUCT</th>
+                <th class="text-center whitespace-nowrap w-72">POOL ID</th>
+                <th class="whitespace-nowrap">NAME</th>
+                <th class="text-center whitespace-nowrap">SYMBOL</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">
+                  MAXIMUM CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">
+                  ENTER YOUR CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="intro-x zoom-in">
+                <td class="w-20">
+                  <div class="flex">
+                    <div class="w-16 h-16 image-fit zoom-in">
+                      <Tippy
+                        tag="img"
+                        alt="Midone Tailwind HTML Admin Template"
+                        class="rounded-md"
+                        src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="" class="text-lg font-semibold whitespace-nowrap"
+                    >GT Protocol</a
                   >
-                  <span
-                    class="
-                      bg-green-400/20
-                      text-green-600 text-xs
-                      m-2
-                      px-2
-                      py-1
-                      rounded
-                      z-10
-                    "
-                    >Live</span
+                  <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                    <div class="flex text-slate-500 text-xs">
+                      <div class="mr-auto">Progress</div>
+                      <div>20%</div>
+                    </div>
+                    <div class="progress h-1 mt-2">
+                      <div
+                        class="progress-bar w-1/4 bg-primary"
+                        role="progressbar"
+                        aria-valuenow="0"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">GTP</td>
+                <td class="text-center">Private</td>
+                <td class="text-center">24/05/2022</td>
+                <td class="w-40">
+                  <div class="flex items-center justify-center text-danger">
+                    Not Pledged
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div>
+                    <span
+                      class="
+                        bg-gray-400/20
+                        text-gray-600 text-xs
+                        m-2
+                        px-2
+                        py-1
+                        rounded
+                        z-10
+                      "
+                      >Closed</span
+                    >
+                    <span
+                      class="
+                        bg-green-400/20
+                        text-green-600 text-xs
+                        m-2
+                        px-2
+                        py-1
+                        rounded
+                        z-10
+                      "
+                      >Live</span
+                    >
+                  </div>
+                </td>
+                <td class="table-report__action w-40">
+                  <div class="flex justify-center items-center">
+                    <a
+                      class="
+                        flex
+                        items-center
+                        text-white text-center
+                        bg-primary
+                        p-2
+                        px-6
+                        rounded
+                      "
+                      href=""
+                    >
+                      Claim
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END: TAB CONTENT COMPLETED -->
+
+        <!-- BEGIN: TAB CONTENT MYDEALS -->
+        <div v-show="tab === 4">
+          <table class="table table-report">
+            <thead>
+              <tr>
+                <th class="whitespace-nowrap">PRODUCT</th>
+                <th class="text-center whitespace-nowrap w-72">POOL ID</th>
+                <th class="whitespace-nowrap">NAME</th>
+                <th class="text-center whitespace-nowrap">SYMBOL</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">
+                  MAXIMUM CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">
+                  ENTER YOUR CONTRIBUTION
+                </th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="intro-x zoom-in">
+                <td class="w-20">
+                  <div class="flex">
+                    <div class="w-16 h-16 image-fit zoom-in">
+                      <Tippy
+                        tag="img"
+                        alt="Midone Tailwind HTML Admin Template"
+                        class="rounded-md"
+                        src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="" class="text-lg font-semibold whitespace-nowrap"
+                    >GT Protocol</a
                   >
-                </div>
-              </td>
-              <td class="table-report__action w-40">
-                <div class="flex justify-center items-center">
-                  <a
-                    @click="save"
-                    class="
-                      flex
-                      items-center
-                      text-white text-center
-                      bg-primary
-                      p-2
-                      px-6
-                      rounded
-                    "
-                  >
-                    Contribute
-                  </a>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                    <div class="flex text-slate-500 text-xs">
+                      <div class="mr-auto">Progress</div>
+                      <div>20%</div>
+                    </div>
+                    <div class="progress h-1 mt-2">
+                      <div
+                        class="progress-bar w-1/4 bg-primary"
+                        role="progressbar"
+                        aria-valuenow="0"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">GTP</td>
+                <td class="text-center">Private</td>
+                <td class="text-center">24/05/2022</td>
+                <td class="w-40">
+                  <div class="flex items-center justify-center text-danger">
+                    Not Pledged
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div>
+                    <span
+                      class="
+                        bg-gray-400/20
+                        text-gray-600 text-xs
+                        m-2
+                        px-2
+                        py-1
+                        rounded
+                        z-10
+                      "
+                      >Closed</span
+                    >
+                    <span
+                      class="
+                        bg-green-400/20
+                        text-green-600 text-xs
+                        m-2
+                        px-2
+                        py-1
+                        rounded
+                        z-10
+                      "
+                      >Live</span
+                    >
+                  </div>
+                </td>
+                <td class="table-report__action w-40">
+                  <div class="flex justify-center items-center">
+                    <a
+                      class="
+                        flex
+                        items-center
+                        text-white text-center
+                        bg-primary
+                        p-2
+                        px-6
+                        rounded
+                      "
+                      href=""
+                    >
+                      Claim
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- BEGIN: TAB CONTENT MYDEALS -->
       </div>
     </div>
     <!-- END: Deals Info -->
@@ -282,8 +648,8 @@ export default {
   data() {
     return {
       card: 70,
-
-      pools: []
+      pools: [],
+      tab: 1,
     };
   },
 
@@ -292,7 +658,20 @@ export default {
   },
 
   methods: {
-    save1: async function() {
+    activeTabOne() {
+      this.tab = 1;
+    },
+    activeTabTwo() {
+      this.tab = 2;
+    },
+    activeTabThree() {
+      this.tab = 3;
+    },
+    activeTabFour() {
+      this.tab = 4;
+    },
+
+    save1: async function () {
       this.card = 30;
       console.log(this.card);
       // web3wallet.title;/
@@ -305,7 +684,7 @@ export default {
       let contract = new web3.eth.Contract(abi, contractAddress);
       let poolLength = await contract.methods
         .poolLength()
-        .call({ from: localStorage.getItem("address") })
+        .call({ from: localStorage.getItem("address") });
 
       let i;
 
@@ -316,18 +695,18 @@ export default {
         var myJSON = JSON.stringify(set);
         localStorage.setItem("pools", myJSON);
         // const date = new Date(set.endTime * 1000);
-        var newDate =new Date(parseInt(set.endTime*1000)).toLocaleString();
+        var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
         set.endTime = newDate;
         await this.pools.push(set);
       }
-    }
-  }
+    },
+  },
 };
 
 const salesReportFilter = ref();
 const importantNotesRef = ref();
 
-provide("bind[importantNotesRef]", el => {
+provide("bind[importantNotesRef]", (el) => {
   importantNotesRef.value = el;
 });
 
