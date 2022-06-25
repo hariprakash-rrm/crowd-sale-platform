@@ -188,7 +188,7 @@
             </div>
           </div>
         </div>
-        <!-- BEGIN: TAB CONTENT UPCOMING -->
+        <!-- BEGIN: TAB CONTENT ONGOING -->
         <div v-show="tab === 1">
           <table class="table table-report">
             <thead>
@@ -208,7 +208,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in pools" :key="user.id" class="intro-x zoom-in">
+              <tr v-for="user in poolsOngoing" :key="user.id" class="intro-x zoom-in">
+              
                 <td class="w-20">
                   <div class="flex">
                     <div class="w-16 h-16 image-fit zoom-in">
@@ -222,6 +223,7 @@
                   </div>
                 </td>
                 <td>
+                  
                   <a href="" class="text-lg font-semibold whitespace-nowrap">{{
                     user.name
                   }}</a>
@@ -241,9 +243,12 @@
                     </div>
                   </div>
                 </td>
+                 <td class="text-center">{{user.id}}</td>
                 <td class="text-center">{{ user.symbol }}</td>
-                <td class="text-center">Private</td>
-                <td class="text-center">{{ user.endTime }}</td>
+                <td class="text-center">{{user.currentlyStaked}}<br>-------<br>{{user.poolStakableAmount}}</td>
+                <td class="text-center">{{ user.humanEndTime }}</td>
+               
+
                 <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
                     Not Pledged
@@ -285,9 +290,9 @@
             </tbody>
           </table>
         </div>
-        <!-- END: TAB CONTENT UPCOMING -->
+        <!-- END: TAB CONTENT ONGOING -->
 
-        <!-- BEGIN: TAB CONTENT ONGOING -->
+        <!-- BEGIN: TAB CONTENT UPCOMING -->
         <div v-show="tab === 2">
           <table class="table table-report">
             <thead>
@@ -307,7 +312,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="intro-x zoom-in">
+                <tr v-for="user in poolsUpcoming" :key="user.id" class="intro-x zoom-in">
+              
                 <td class="w-20">
                   <div class="flex">
                     <div class="w-16 h-16 image-fit zoom-in">
@@ -321,9 +327,10 @@
                   </div>
                 </td>
                 <td>
-                  <a href="" class="text-lg font-semibold whitespace-nowrap"
-                    >GT Protocol</a
-                  >
+                  
+                  <a href="" class="text-lg font-semibold whitespace-nowrap">{{
+                    user.name
+                  }}</a>
                   <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                     <div class="flex text-slate-500 text-xs">
                       <div class="mr-auto">Progress</div>
@@ -340,45 +347,35 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-center">GTP</td>
-                <td class="text-center">Private</td>
-                <td class="text-center">24/05/2022</td>
+                 <td class="text-center">{{user.id}}</td>
+                <td class="text-center">{{ user.symbol }}</td>
+                <td class="text-center">{{user.currentlyStaked}}<br>-------<br>{{user.poolStakableAmount}}</td>
+                <td class="text-center">{{ user.humanEndTime }}</td>
+               
+
                 <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
                     Not Pledged
                   </div>
                 </td>
                 <td class="text-center">
-                  <div>
-                    <span
-                      class="
-                        bg-gray-400/20
-                        text-gray-600 text-xs
-                        m-2
-                        px-2
-                        py-1
-                        rounded
-                        z-10
-                      "
-                      >Closed</span
-                    >
-                    <span
-                      class="
-                        bg-green-400/20
-                        text-green-600 text-xs
-                        m-2
-                        px-2
-                        py-1
-                        rounded
-                        z-10
-                      "
-                      >Live</span
-                    >
-                  </div>
+                  <input
+                    type="text"
+                    class="
+                      form-control
+                      w-56
+                      rounded-md
+                      input--rounded
+                      box
+                      pr-10
+                    "
+                    placeholder="Enter Amount..."
+                  />
                 </td>
                 <td class="table-report__action w-40">
-                  <div class="flex justify-center items-center">
+                  <div class="flex justify-center gap-4 items-center">
                     <a
+                      @click="save"
                       class="
                         flex
                         items-center
@@ -388,17 +385,17 @@
                         px-6
                         rounded
                       "
-                      href=""
                     >
-                      Claim
+                      Contribute
                     </a>
                   </div>
                 </td>
               </tr>
+            
             </tbody>
           </table>
         </div>
-        <!-- END: TAB CONTENT ONGOING -->
+        <!-- END: TAB CONTENT UPCOMING -->
 
         <!-- BEGIN: TAB CONTENT COMPLETED -->
         <div v-show="tab === 3">
@@ -648,13 +645,17 @@ export default {
   data() {
     return {
       card: 70,
-      pools: [],
+      poolsOngoing: [],
+      poolsUpcoming: [],
+      poolsCompleted:[],
+      poolsMyDeal:[],
+    
       tab: 1,
     };
   },
 
   mounted() {
-    this.save1();
+    this.loadFromContract();
   },
 
   methods: {
@@ -671,16 +672,13 @@ export default {
       this.tab = 4;
     },
 
-    save1: async function () {
-      this.card = 30;
-      console.log(this.card);
-      // web3wallet.title;/
+    loadFromContract: async function () {
+     
 
       let web3 = new Web3(window.ethereum);
-      let contractAddress = "0x833Eeb926f7FF2Fc19585FdFF62a103c728661a6";
+      let contractAddress = "0x6bBFF77771f303F6a210F5f1b0D08529E98431Af";
       let abi = JSON.parse(
-        `[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsauthorizedUserUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"previousAdmin","type":"address"},{"indexed":false,"internalType":"address","name":"newAdmin","type":"address"}],"name":"AdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"_recipients","type":"address[]"},{"indexed":false,"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirDropStatus","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"beacon","type":"address"}],"name":"BeaconUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Reward","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"StakedToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"UpdatedStakingEndTime","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"WithdrawAll","type":"event"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"rewardToken","type":"address"},{"internalType":"address[]","name":"_recipients","type":"address[]"},{"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirdropdropTokens","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"_lpToken","type":"address"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"uint256","name":"_startTime","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"},{"internalType":"uint256","name":"_minimumcontributeAmount","type":"uint256"},{"internalType":"uint256","name":"_poolStakableAmount","type":"uint256"}],"name":"addPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"authorizedUser","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"balanceStakableToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"blacklisted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"getTotalStakedInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"address","name":"_address","type":"address"}],"name":"getUserStakedTokenInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"poolInfo","outputs":[{"internalType":"contract IERC20Upgradeable","name":"lpToken","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"poolStakableAmount","type":"uint256"},{"internalType":"uint256","name":"minimumContributeAmount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"poolLength","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"}],"name":"setPoolStakingEndTime","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"stakeTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"totalContributedAmountInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unPauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"}],"name":"upgradeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"userInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"stakingStartTime","type":"uint256"},{"internalType":"uint256","name":"stakingEndTime","type":"uint256"},{"internalType":"bool","name":"hasStaked","type":"bool"},{"internalType":"bool","name":"isStaking","type":"bool"},{"internalType":"uint256","name":"expectedReward","type":"uint256"}],"stateMutability":"view","type":"function"}]`
-      );
+        `[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsauthorizedUserUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"previousAdmin","type":"address"},{"indexed":false,"internalType":"address","name":"newAdmin","type":"address"}],"name":"AdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"_recipients","type":"address[]"},{"indexed":false,"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirDropStatus","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"beacon","type":"address"}],"name":"BeaconUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Reward","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"StakedToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"UpdatedStakingEndTime","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"WithdrawAll","type":"event"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"rewardToken","type":"address"},{"internalType":"address[]","name":"_recipients","type":"address[]"},{"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirdropdropTokens","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"_lpToken","type":"address"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"uint256","name":"_startTime","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"},{"internalType":"uint256","name":"_minimumcontributeAmount","type":"uint256"},{"internalType":"uint256","name":"_poolStakableAmount","type":"uint256"}],"name":"addPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"authorizedUser","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"balanceStakableToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"blacklisted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"getTotalStakedInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"address","name":"_address","type":"address"}],"name":"getUserStakedTokenInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"poolInfo","outputs":[{"internalType":"contract IERC20Upgradeable","name":"lpToken","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"poolStakableAmount","type":"uint256"},{"internalType":"uint256","name":"minimumContributeAmount","type":"uint256"},{"internalType":"uint256","name":"id","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"poolLength","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"}],"name":"setPoolStakingEndTime","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"stakeTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"totalContributedAmountInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unPauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"}],"name":"upgradeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"userInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"stakingStartTime","type":"uint256"},{"internalType":"uint256","name":"stakingEndTime","type":"uint256"},{"internalType":"bool","name":"hasStaked","type":"bool"},{"internalType":"bool","name":"isStaking","type":"bool"},{"internalType":"uint256","name":"expectedReward","type":"uint256"}],"stateMutability":"view","type":"function"}]`);
       let contract = new web3.eth.Contract(abi, contractAddress);
       let poolLength = await contract.methods
         .poolLength()
@@ -695,9 +693,25 @@ export default {
         var myJSON = JSON.stringify(set);
         localStorage.setItem("pools", myJSON);
         // const date = new Date(set.endTime * 1000);
+        var currentlyStaked = await contract.methods.getTotalStakedInPool(i).call()
         var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
-        set.endTime = newDate;
-        await this.pools.push(set);
+        set.humanEndTime = newDate;
+        set.poolStakableAmount = set.poolStakableAmount/10**18
+        set.currentlyStaked = currentlyStaked/10**18
+        // await this.pools.push(set);
+        var currentTime = Date.now()/1000
+        console.log(currentTime)
+        if(currentTime>set.endTime){
+            this.poolsCompleted.push(set)
+            console.log("completed")
+        }else if(currentTime < set.endTime){
+          this.poolsOngoing.push(set)
+          console.log("Ongoing")
+        }else if(currentTime < set.startTime){
+          this.poolsUpcoming.push(set)
+          console.log("upcoming")
+        }
+
       }
     },
   },
