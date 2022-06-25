@@ -1,4 +1,5 @@
 import User from "../models/user.model";
+import WalletAddress from "../models/wallet-address.model";
 import jwt from "jsonwebtoken";
 import otpGenerator from "otp-generator";
 import bcrypt from "bcrypt";
@@ -28,7 +29,7 @@ export const userSignup = async (req, res, next) => {
     email: req.body.email,
     otp: otp,
     password: password,
-    walletAddress: req.body.walletAddress,
+    // walletAddress: req.body.walletAddress,
   });
   if (req.file) {
     const profileImage = req.file.path;
@@ -36,6 +37,13 @@ export const userSignup = async (req, res, next) => {
   }
   try {
     await user.save(async(error, result) => {
+      if(req.body.walletAddress){
+        let walletAddress = new WalletAddress({
+          user : result._id,
+          walletAddress: req.body.walletAddress
+        })
+        await walletAddress.save()
+      }
       await sendWelcomeMail(req.body.name, req.body.email, otp);
       if (error) {
         if (error.name == "ValidationError" || "MongoServerError") {
@@ -55,7 +63,7 @@ export const userSignup = async (req, res, next) => {
         return responseModule.successResponse(res, {
           success: 1,
           message: "User created successfully",
-          data: result,
+          // data: result,
         });
       }
     });
