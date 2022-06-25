@@ -6,7 +6,7 @@
     "mongodb": {
         "host": "mongodb://db/",
         "uri": "mongodb://db/admin",
-        "uri_test": "mongodb://localhost:27017",
+        "uri_test": "mongodb://localhost:27017/un-real",
         "db_name": "admin",
         "credentials": {
             "username": "root",

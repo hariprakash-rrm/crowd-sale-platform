@@ -40,13 +40,13 @@ const userSchema = mongoose.Schema({
         type : Boolean,
         default: false
     },
-    walletAddress: {
-        type: String,
-        uppercase: true,
-        lowercase: true,
-        unique: true,
-        sparse: true
-    }
+    // walletAddress: {
+    //     type: String,
+    //     uppercase: true,
+    //     lowercase: true,
+    //     unique: true,
+    //     sparse: true
+    // }
    
 }, {
     timestamps: true
