@@ -70,16 +70,7 @@
       <div class="intro-y py-8 rounded-xl overflow-auto lg:overflow-visible">
         <div class="flex items-center justify-between mb-8">
           <ul
-            class="
-              nav nav-pills
-              w-3/4
-              lg:w-2/6
-              bg-slate-200
-              dark:bg-black/10
-              rounded-md
-              mr-auto
-              p-1
-            "
+            class="nav nav-pills w-3/4 lg:w-2/6 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
             role="tablist"
           >
             <li
@@ -170,16 +161,7 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 icon-name="search"
-                class="
-                  lucide lucide-search
-                  w-4
-                  h-4
-                  absolute
-                  my-auto
-                  inset-y-0
-                  mr-3
-                  right-0
-                "
+                class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"
                 data-lucide="search"
               >
                 <circle cx="11" cy="11" r="8"></circle>
@@ -197,11 +179,11 @@
                 <th class="text-center whitespace-nowrap">POOL ID</th>
                 <th class="whitespace-nowrap w-72">NAME</th>
                 <th class="text-center whitespace-nowrap">SYMBOL</th>
-              
+
                 <th class="text-center whitespace-nowrap">
                   MAXIMUM CONTRIBUTION
                 </th>
-                  <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
                 <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
@@ -209,8 +191,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in poolsOngoing" :key="user.id" class="intro-x zoom-in">
-              
+              <tr
+                v-for="pool in poolsOngoing"
+                :key="pool.id"
+                class="intro-x zoom-in"
+              >
                 <td class="w-20">
                   <div class="flex">
                     <div class="w-16 h-16 image-fit zoom-in">
@@ -219,15 +204,15 @@
                         alt="Midone Tailwind HTML Admin Template"
                         class="rounded-md"
                         src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                        content=""
                       />
                     </div>
                   </div>
                 </td>
-                  <td class="text-center">{{user.id}}</td>
+                <td class="text-center">{{ pool.id }}</td>
                 <td>
-                  
                   <a href="" class="text-lg font-semibold whitespace-nowrap">{{
-                    user.name
+                    pool.name
                   }}</a>
                   <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                     <div class="flex text-slate-500 text-xs">
@@ -245,11 +230,10 @@
                     </div>
                   </div>
                 </td>
-               
-                <td class="text-center">{{ user.symbol }}</td>
-                <td class="text-center">{{user.currentPercentage}}%</td>
-                <td class="text-center">{{ user.humanEndTime }}</td>
-               
+
+                <td class="text-center">{{ pool.symbol }}</td>
+                <td class="text-center">{{ pool.currentPercentage }}%</td>
+                <td class="text-center">{{ pool.humanEndTime }}</td>
 
                 <!-- <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
@@ -258,31 +242,18 @@
                 </td> -->
                 <td class="text-center">
                   <input
+                    @input="handleInput(pool.id, $event)"
+                    :value="payload[pool.id]"
                     type="text"
-                    class="
-                      form-control
-                      w-56
-                      rounded-md
-                      input--rounded
-                      box
-                      pr-10
-                    "
+                    class="form-control w-56 rounded-md input--rounded box pr-10"
                     placeholder="Enter Amount..."
                   />
                 </td>
                 <td class="table-report__action w-40">
                   <div class="flex justify-center gap-4 items-center">
                     <a
-                      @click="save"
-                      class="
-                        flex
-                        items-center
-                        text-white text-center
-                        bg-primary
-                        p-2
-                        px-6
-                        rounded
-                      "
+                      @click="contribute(pool.id)"
+                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
                       Contribute
                     </a>
@@ -298,16 +269,16 @@
         <div v-show="tab === 2">
           <table class="table table-report">
             <thead>
-               <tr>
+              <tr>
                 <th class="whitespace-nowrap">PRODUCT</th>
                 <th class="text-center whitespace-nowrap">POOL ID</th>
                 <th class="whitespace-nowrap w-72">NAME</th>
                 <th class="text-center whitespace-nowrap">SYMBOL</th>
-              
+
                 <th class="text-center whitespace-nowrap">
                   MAXIMUM CONTRIBUTION
                 </th>
-                  <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
                 <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
@@ -315,8 +286,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in poolsUpcoming" :key="user.id" class="intro-x zoom-in">
-              
+              <tr
+                v-for="user in poolsUpcoming"
+                :key="user.id"
+                class="intro-x zoom-in"
+              >
                 <td class="w-20">
                   <div class="flex">
                     <div class="w-16 h-16 image-fit zoom-in">
@@ -325,13 +299,13 @@
                         alt="Midone Tailwind HTML Admin Template"
                         class="rounded-md"
                         src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                        content=""
                       />
                     </div>
                   </div>
                 </td>
-                  <td class="text-center">{{user.id}}</td>
+                <td class="text-center">{{ user.id }}</td>
                 <td>
-                  
                   <a href="" class="text-lg font-semibold whitespace-nowrap">{{
                     user.name
                   }}</a>
@@ -351,11 +325,10 @@
                     </div>
                   </div>
                 </td>
-               
+
                 <td class="text-center">{{ user.symbol }}</td>
-                <td class="text-center">{{user.currentPercentage}}%</td>
+                <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-               
 
                 <!-- <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
@@ -365,14 +338,7 @@
                 <td class="text-center">
                   <input
                     type="text"
-                    class="
-                      form-control
-                      w-56
-                      rounded-md
-                      input--rounded
-                      box
-                      pr-10
-                    "
+                    class="form-control w-56 rounded-md input--rounded box pr-10"
                     placeholder="Enter Amount..."
                   />
                 </td>
@@ -380,15 +346,7 @@
                   <div class="flex justify-center gap-4 items-center">
                     <a
                       @click="save"
-                      class="
-                        flex
-                        items-center
-                        text-white text-center
-                        bg-primary
-                        p-2
-                        px-6
-                        rounded
-                      "
+                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
                       Contribute
                     </a>
@@ -404,25 +362,28 @@
         <div v-show="tab === 3">
           <table class="table table-report">
             <thead>
-               <tr>
+              <tr>
                 <th class="whitespace-nowrap">PRODUCT</th>
                 <th class="text-center whitespace-nowrap">POOL ID</th>
                 <th class="whitespace-nowrap w-72">NAME</th>
                 <th class="text-center whitespace-nowrap">SYMBOL</th>
-              
+
                 <th class="text-center whitespace-nowrap">
                   MAXIMUM CONTRIBUTION
                 </th>
-                  <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
                 <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
                 <th class="text-center whitespace-nowrap">ACTIONS</th>
               </tr>
             </thead>
-           <tbody>
-              <tr v-for="user in poolsCompleted" :key="user.id" class="intro-x zoom-in">
-              
+            <tbody>
+              <tr
+                v-for="user in poolsCompleted"
+                :key="user.id"
+                class="intro-x zoom-in"
+              >
                 <td class="w-20">
                   <div class="flex">
                     <div class="w-16 h-16 image-fit zoom-in">
@@ -431,13 +392,13 @@
                         alt="Midone Tailwind HTML Admin Template"
                         class="rounded-md"
                         src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                        content=""
                       />
                     </div>
                   </div>
                 </td>
-                  <td class="text-center">{{user.id}}</td>
+                <td class="text-center">{{ user.id }}</td>
                 <td>
-                  
                   <a href="" class="text-lg font-semibold whitespace-nowrap">{{
                     user.name
                   }}</a>
@@ -457,11 +418,10 @@
                     </div>
                   </div>
                 </td>
-               
+
                 <td class="text-center">{{ user.symbol }}</td>
-                <td class="text-center">{{user.currentPercentage}}%</td>
+                <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-               
 
                 <!-- <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
@@ -471,14 +431,7 @@
                 <td class="text-center">
                   <input
                     type="text"
-                    class="
-                      form-control
-                      w-56
-                      rounded-md
-                      input--rounded
-                      box
-                      pr-10
-                    "
+                    class="form-control w-56 rounded-md input--rounded box pr-10"
                     placeholder="Enter Amount..."
                   />
                 </td>
@@ -486,15 +439,7 @@
                   <div class="flex justify-center gap-4 items-center">
                     <a
                       @click="save"
-                      class="
-                        flex
-                        items-center
-                        text-white text-center
-                        bg-primary
-                        p-2
-                        px-6
-                        rounded
-                      "
+                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
                       Contribute
                     </a>
@@ -510,25 +455,28 @@
         <div v-show="tab === 4">
           <table class="table table-report">
             <thead>
-               <tr>
+              <tr>
                 <th class="whitespace-nowrap">PRODUCT</th>
                 <th class="text-center whitespace-nowrap">POOL ID</th>
                 <th class="whitespace-nowrap w-72">NAME</th>
                 <th class="text-center whitespace-nowrap">SYMBOL</th>
-              
+
                 <th class="text-center whitespace-nowrap">
                   MAXIMUM CONTRIBUTION
                 </th>
-                  <th class="text-center whitespace-nowrap">ENDTIME</th>
+                <th class="text-center whitespace-nowrap">ENDTIME</th>
                 <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
                 <th class="text-center whitespace-nowrap">ACTIONS</th>
               </tr>
             </thead>
-             <tbody>
-                <tr v-for="user in poolsMyDeal" :key="user.id" class="intro-x zoom-in">
-              
+            <tbody>
+              <tr
+                v-for="user in poolsMyDeal"
+                :key="user.id"
+                class="intro-x zoom-in"
+              >
                 <td class="w-20">
                   <div class="flex">
                     <div class="w-16 h-16 image-fit zoom-in">
@@ -537,13 +485,13 @@
                         alt="Midone Tailwind HTML Admin Template"
                         class="rounded-md"
                         src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                        content=""
                       />
                     </div>
                   </div>
                 </td>
-                  <td class="text-center">{{user.id}}</td>
+                <td class="text-center">{{ user.id }}</td>
                 <td>
-                  
                   <a href="" class="text-lg font-semibold whitespace-nowrap">{{
                     user.name
                   }}</a>
@@ -563,11 +511,10 @@
                     </div>
                   </div>
                 </td>
-               
+
                 <td class="text-center">{{ user.symbol }}</td>
-                <td class="text-center">{{user.currentPercentage}}%</td>
+                <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-               
 
                 <!-- <td class="w-40">
                   <div class="flex items-center justify-center text-danger">
@@ -577,14 +524,7 @@
                 <td class="text-center">
                   <input
                     type="text"
-                    class="
-                      form-control
-                      w-56
-                      rounded-md
-                      input--rounded
-                      box
-                      pr-10
-                    "
+                    class="form-control w-56 rounded-md input--rounded box pr-10"
                     placeholder="Enter Amount..."
                   />
                 </td>
@@ -592,22 +532,13 @@
                   <div class="flex justify-center gap-4 items-center">
                     <a
                       @click="save"
-                      class="
-                        flex
-                        items-center
-                        text-white text-center
-                        bg-primary
-                        p-2
-                        px-6
-                        rounded
-                      "
+                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
                       Contribute
                     </a>
                   </div>
                 </td>
               </tr>
-            
             </tbody>
           </table>
         </div>
@@ -618,28 +549,20 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { ref, provide } from "vue";
-import { ReportLineChart } from "@/components/report-line-chart/Main.vue";
-import ReportDonutChart from "@/components/report-donut-chart/Main.vue";
-import ReportPieChart from "@/components/report-pie-chart/Main.vue";
-import ReportMap from "@/components/report-map/Main.vue";
-import ReportDonutChart1 from "@/components/report-donut-chart-1/Main.vue";
-import SimpleLineChart1 from "@/components/simple-line-chart-1/Main.vue";
 import Web3 from "web3";
-import { log } from "util";
 export default {
   name: "",
   contractResult: "",
 
   data() {
     return {
-      card: 70,
       poolsOngoing: [],
       poolsUpcoming: [],
-      poolsCompleted:[],
-      poolsMyDeal:[],
-    
+      poolsCompleted: [],
+      poolsMyDeal: [],
+      payload: {},
       tab: 1,
     };
   },
@@ -649,6 +572,11 @@ export default {
   },
 
   methods: {
+    handleInput(id, event) {
+      let value = event.target.value;
+      this.payload[id] = value;
+      console.log(this.payload)
+    },
     activeTabOne() {
       this.tab = 1;
     },
@@ -661,14 +589,12 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-
-    loadFromContract: async function () {
-     
-
+    async loadFromContract() {
       let web3 = new Web3(window.ethereum);
       let contractAddress = "0x6bBFF77771f303F6a210F5f1b0D08529E98431Af";
       let abi = JSON.parse(
-        `[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsauthorizedUserUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"previousAdmin","type":"address"},{"indexed":false,"internalType":"address","name":"newAdmin","type":"address"}],"name":"AdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"_recipients","type":"address[]"},{"indexed":false,"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirDropStatus","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"beacon","type":"address"}],"name":"BeaconUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Reward","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"StakedToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"UpdatedStakingEndTime","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"WithdrawAll","type":"event"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"rewardToken","type":"address"},{"internalType":"address[]","name":"_recipients","type":"address[]"},{"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirdropdropTokens","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"_lpToken","type":"address"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"uint256","name":"_startTime","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"},{"internalType":"uint256","name":"_minimumcontributeAmount","type":"uint256"},{"internalType":"uint256","name":"_poolStakableAmount","type":"uint256"}],"name":"addPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"authorizedUser","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"balanceStakableToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"blacklisted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"getTotalStakedInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"address","name":"_address","type":"address"}],"name":"getUserStakedTokenInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"poolInfo","outputs":[{"internalType":"contract IERC20Upgradeable","name":"lpToken","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"poolStakableAmount","type":"uint256"},{"internalType":"uint256","name":"minimumContributeAmount","type":"uint256"},{"internalType":"uint256","name":"id","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"poolLength","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"}],"name":"setPoolStakingEndTime","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"stakeTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"totalContributedAmountInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unPauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"}],"name":"upgradeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"userInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"stakingStartTime","type":"uint256"},{"internalType":"uint256","name":"stakingEndTime","type":"uint256"},{"internalType":"bool","name":"hasStaked","type":"bool"},{"internalType":"bool","name":"isStaking","type":"bool"},{"internalType":"uint256","name":"expectedReward","type":"uint256"}],"stateMutability":"view","type":"function"}]`);
+        `[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsauthorizedUserUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"accounts","type":"address[]"},{"indexed":false,"internalType":"bool","name":"status","type":"bool"}],"name":"AccountsblacklistUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"previousAdmin","type":"address"},{"indexed":false,"internalType":"address","name":"newAdmin","type":"address"}],"name":"AdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address[]","name":"_recipients","type":"address[]"},{"indexed":false,"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirDropStatus","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"beacon","type":"address"}],"name":"BeaconUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Reward","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"StakedToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"UpdatedStakingEndTime","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"WithdrawAll","type":"event"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"rewardToken","type":"address"},{"internalType":"address[]","name":"_recipients","type":"address[]"},{"internalType":"uint256[]","name":"_amount","type":"uint256[]"}],"name":"AirdropdropTokens","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"_lpToken","type":"address"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"uint256","name":"_startTime","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"},{"internalType":"uint256","name":"_minimumcontributeAmount","type":"uint256"},{"internalType":"uint256","name":"_poolStakableAmount","type":"uint256"}],"name":"addPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"authorizedUser","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"balanceStakableToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"blacklisted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"excludeAllFromblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"getTotalStakedInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"address","name":"_address","type":"address"}],"name":"getUserStakedTokenInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInauthorizedUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"accounts","type":"address[]"}],"name":"includeAllInblacklist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"poolInfo","outputs":[{"internalType":"contract IERC20Upgradeable","name":"lpToken","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"poolStakableAmount","type":"uint256"},{"internalType":"uint256","name":"minimumContributeAmount","type":"uint256"},{"internalType":"uint256","name":"id","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"poolLength","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_endTime","type":"uint256"}],"name":"setPoolStakingEndTime","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"stakeTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"totalContributedAmountInPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unPauseContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"}],"name":"upgradeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"userInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"stakingStartTime","type":"uint256"},{"internalType":"uint256","name":"stakingEndTime","type":"uint256"},{"internalType":"bool","name":"hasStaked","type":"bool"},{"internalType":"bool","name":"isStaking","type":"bool"},{"internalType":"uint256","name":"expectedReward","type":"uint256"}],"stateMutability":"view","type":"function"}]`
+      );
       let contract = new web3.eth.Contract(abi, contractAddress);
       let poolLength = await contract.methods
         .poolLength()
@@ -683,34 +609,41 @@ export default {
         var myJSON = JSON.stringify(set);
         localStorage.setItem("pools", myJSON);
         // const date = new Date(set.endTime * 1000);
-        var currentlyStaked = await contract.methods.getTotalStakedInPool(i).call()
+        var currentlyStaked = await contract.methods
+          .getTotalStakedInPool(i)
+          .call();
         var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
         set.humanEndTime = newDate;
-        set.poolStakableAmount = set.poolStakableAmount/10**18
-        set.currentlyStaked = currentlyStaked/10**18
-        var currentPercentage = (set.currentlyStaked*100)/set.poolStakableAmount;
-        set.currentPercentage= currentPercentage;
-        var stakedAmount=await contract.methods.getUserStakedTokenInPool(i,localStorage.getItem("address")).call()
+        set.poolStakableAmount = set.poolStakableAmount / 10 ** 18;
+        set.currentlyStaked = currentlyStaked / 10 ** 18;
+        var currentPercentage =
+          (set.currentlyStaked * 100) / set.poolStakableAmount;
+        set.currentPercentage = currentPercentage;
+        var stakedAmount = await contract.methods
+          .getUserStakedTokenInPool(i, localStorage.getItem("address"))
+          .call();
         // await this.pools.push(set);
-        var currentTime = await Math.floor(Date.now() / 1000)
+        var currentTime = await Math.floor(Date.now() / 1000);
         console.log(currentTime);
         console.log(set.endTime);
-        if(currentTime>set.endTime && currentTime>set.startTime){
-            this.poolsCompleted.push(set)
-            console.log("completed")
+        if (currentTime > set.endTime && currentTime > set.startTime) {
+          this.poolsCompleted.push(set);
+          console.log("completed");
+        } else if (currentTime < set.startTime && currentTime < set.endTime) {
+          this.poolsUpcoming.push(set);
+          console.log("upcoming");
+        } else if (currentTime < set.endTime && currentTime > set.startTime) {
+          this.poolsOngoing.push(set);
+          console.log("Ongoing");
         }
-        else if(currentTime < set.startTime && currentTime < set.endTime){
-          this.poolsUpcoming.push(set)
-          console.log("upcoming")
-        }
-        else if(currentTime < set.endTime && currentTime > set.startTime){
-          this.poolsOngoing.push(set)
-          console.log("Ongoing")
-        }
-        if(stakedAmount > 0){
-          this.poolsMyDeal.push(set)
+        if (stakedAmount > 0) {
+          this.poolsMyDeal.push(set);
         }
       }
+    },
+    contribute(id) {
+      console.log(id, this.payload[id]);
+
     },
   },
 };
@@ -776,4 +709,3 @@ const nextImportantNotes = () => {
   font-weight: 600 !important;
 }
 </style>
-
