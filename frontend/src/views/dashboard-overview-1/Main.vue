@@ -181,13 +181,13 @@
                 <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                 <th class="text-center whitespace-nowrap">
-                  MAXIMUM CONTRIBUTION
+                  CONTRIBUTION PERCENTAGE
                 </th>
                 <th class="text-center whitespace-nowrap">ENDTIME</th>
                 <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
-                <th class="text-center whitespace-nowrap">ACTIONS</th>
+                <th class="text-center whitespace-nowrap">CONTRIBUTION</th>
               </tr>
             </thead>
             <tbody>
