@@ -177,11 +177,11 @@
               <tr>
                 <th class="whitespace-nowrap">PRODUCT</th>
                 <th class="text-center whitespace-nowrap">POOL ID</th>
-                <th class="whitespace-nowrap w-72">NAME</th>
+                <th class=" whitespace-nowrap w-72">NAME</th>
                 <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                 <th class="text-center whitespace-nowrap">
-                  CONTRIBUTION PERCENTAGE
+                   PERCENTAGE
                 </th>
                 <th class="text-center whitespace-nowrap">ENDTIME</th>
                 <th class="text-center whitespace-nowrap">
