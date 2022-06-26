@@ -646,7 +646,9 @@ export default {
       // }
       let contract = contractABI()
       let approveToken = approveContract()
-      var approveNow = await approveToken.methods.approve("0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",BigInt(this.payload[id]*10**18)).send({ from: localStorage.getItem("address") }).then(receipt=> {console.log(receipt)})
+      let getTokenAddres = await contract.methods.poolInfo(id-1).call()
+      let token = getTokenAddres.lpToken
+      var approveNow = await approveToken.methods.approve(token,BigInt(this.payload[id]*10**18)).send({ from: localStorage.getItem("address") }).then(receipt=> {console.log(receipt)})
       var callContract = await contract.methods.stakeTokens(id-1,  BigInt(this.payload[id]*10**18)).send({ from: localStorage.getItem("address") }).then(receipt=> {console.log(receipt)})
     },
   },
