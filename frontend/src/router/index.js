@@ -9,7 +9,8 @@ import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
 import UpdateProfile from "../views/update-profile/Main.vue";
 import UserLayout from "../views/users-layout-1/Main.vue";
-import SingleDeal from "../views/profile-overview-2/Main.vue"
+import SingleDeal from "../views/profile-overview-2/Main.vue";
+import Admin from "../views/accordion/Main.vue"
 
 const routes = [
     {
@@ -70,6 +71,11 @@ const routes = [
                 path: "/single-deal",
                 name: "side-menu-profile-overview-2",
                 component: SingleDeal,
+            },
+            {
+                path: "/admin",
+                name: "accordion",
+                component: Admin,
             },
             
         ]
