@@ -4,20 +4,7 @@ import mongoose from 'mongoose'
  * User Schema
  */
 const userSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'Name must not be empty'],
-    },
-    userName:  {
-        type: String,
-        unique: true,
-        sparse: true
-
-    },
-
-    profileImage: {
-        type: String,
-    },
+  
     email: {
         type: String,
         unique: true,
@@ -40,14 +27,6 @@ const userSchema = mongoose.Schema({
         type : Boolean,
         default: false
     },
-    // walletAddress: {
-    //     type: String,
-    //     uppercase: true,
-    //     lowercase: true,
-    //     unique: true,
-    //     sparse: true
-    // }
-   
 }, {
     timestamps: true
 });

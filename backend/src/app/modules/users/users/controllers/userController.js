@@ -1,5 +1,6 @@
 import User from "../models/user.model";
 import WalletAddress from "../models/wallet-address.model";
+import UserProfile from "../models/user-profile.model";
 import jwt from "jsonwebtoken";
 import otpGenerator from "otp-generator";
 import bcrypt from "bcrypt";
@@ -8,6 +9,7 @@ import fs from "fs";
 import * as ejs from "ejs";
 const responseModule = require("../../../../../config/response");
 import winston from "../../../../../config/winston";
+import mongoose from "mongoose";
 
 /**
  * Function to create a User
@@ -15,7 +17,6 @@ import winston from "../../../../../config/winston";
  * @param {Object} res
  */
 export const userSignup = async (req, res, next) => {
-  
   const password = bcrypt.hashSync(req.body.password, 10);
   const otp = otpGenerator.generate(5, {
     upperCaseAlphabets: false,
@@ -24,32 +25,21 @@ export const userSignup = async (req, res, next) => {
   });
 
   const user = new User({
-    name: req.body.name,
-    userName: req.body.userName,
     email: req.body.email,
     otp: otp,
     password: password,
-    // walletAddress: req.body.walletAddress,
   });
-  if (req.file) {
-    const profileImage = req.file.path;
-    user.profileImage = profileImage;
-  }
   try {
-    await user.save(async(error, result) => {
-      if(req.body.walletAddress){
-        let walletAddress = new WalletAddress({
-          user : result._id,
-          walletAddress: req.body.walletAddress
-        })
-        await walletAddress.save()
-      }
-      await sendWelcomeMail(req.body.name, req.body.email, otp);
+    await user.save(async (error, result) => {
+      console.log("error",error)
       if (error) {
         if (error.name == "ValidationError" || "MongoServerError") {
           return res.status(400).json({
             success: 0,
-            message: error.message,
+            message:
+              error.code === 11000
+                ? "Email already exists, try differnt email"
+                : error.message,
             response: 400,
             data: {},
           });
@@ -59,13 +49,33 @@ export const userSignup = async (req, res, next) => {
           message: error.message,
           data: {},
         });
-      } else {
-        return responseModule.successResponse(res, {
-          success: 1,
-          message: "User created successfully",
-          // data: result,
+      }
+      let userProfileObj = {
+        name: req.body.name,
+        user: result._id,
+        userName: req.body.userName,
+      };
+      if (req.file) {
+        const profileImage = req.file.path;
+        userProfileObj.profileImage = profileImage;
+      }
+      let profile = await createuserProfile(userProfileObj);
+      let isWalletSaved = await createWallet(req, profile);
+      if (!isWalletSaved) {
+        await User.find({ _id: result._id }).deleteOne().exec();
+        await UserProfile.find({ _id: profile._id }).deleteOne().exec();
+        return res.status(400).json({
+          success: 0,
+          message: "Wallet Address already exists",
+          response: 400,
+          data: {},
         });
       }
+      await sendWelcomeMail(req.body.name, req.body.email, otp);
+      return responseModule.successResponse(res, {
+        success: 1,
+        message: "User created successfully",
+      });
     });
   } catch (err) {
     winston.error(err);
@@ -86,7 +96,7 @@ export const loginUser = async (req, res, next) => {
     }).exec();
 
     if (user) {
-      bcrypt.compare(req.body.password, user.password, (err, result) => {
+      bcrypt.compare(req.body.password, user.password,async (err, result) => {
         if (err) {
           return responseModule.errorResponse(res, {
             success: 0,
@@ -95,21 +105,26 @@ export const loginUser = async (req, res, next) => {
           });
         }
         if (result === true) {
+          let userProfile = await UserProfile.findOne({user : user._id})
+
           const token = jwt.sign(
             {
               email: user.email,
               userId: user._id,
+              profileId :  userProfile._id,
             },
             config.JWT_KEY,
             {
               expiresIn: "7h",
             }
           );
+           user.password = ""
           return responseModule.successResponse(res, {
             success: 1,
             message: "User Login successful",
             data: user,
             token: token,
+            profile:userProfile
           });
         }
         if (result === false) {
@@ -309,6 +324,36 @@ export const passwordReset = async (req, res, next) => {
   }
 };
 
+export const createuserProfile = async (data) => {
+  try {
+    let profile = new UserProfile(data);
+    let savProfile = profile.save();
+    return savProfile;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const createWallet = async (req, user) => {
+  return new Promise(async (resolve, reject) => {
+    if (req.body.walletAddress) {
+      let walletAddress = new WalletAddress({
+        profile: user._id,
+        walletAddress: req.body.walletAddress,
+      });
+      await walletAddress.save(async (error, result) => {
+        if (error) {
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      });
+    } else {
+      resolve(true);
+    }
+  });
+};
+
 export const sendWelcomeMail = async (userName, email, otp) => {
   try {
     const tmpl = fs.readFileSync(
@@ -325,3 +370,84 @@ export const sendWelcomeMail = async (userName, email, otp) => {
     let send = await sendMail(email, subject, html);
   } catch (error) {}
 };
+
+export const updateProfile = async (req, res)=>{
+  try {
+    let updates  = {
+      userName : req.body.userName,
+      telegramUrl :  req.body.telegramUrl,
+      bio :  req.body.bio,
+      location :  req.body.location,
+      mobile :  req.body.mobile,
+    }
+    if (req.file) {
+      const profileImage = req.file.path;
+      updates.profileImage = profileImage;
+    }
+    const profile = await UserProfile.findOneAndUpdate(
+      {
+        _id: req.userData.profileId,
+      },
+      {
+        $set: updates,
+      },
+      {
+        new: true,
+      }
+    ).exec();
+    const user = await User.findOneAndUpdate(
+      {
+        _id: req.userData.userId,
+      },
+      {
+        $set: {updates},
+      },
+      {
+        new: true,
+      }
+      ).exec((error, response) => {
+        if (error) {
+          if (error.name == "ValidationError" || "MongoServerError") {
+            return res.status(400).json({
+              success: 0,
+              message: error.message,
+              response: 400,
+              data: {},
+            });
+          }
+          return responseModule.errorResponse(res, {
+            success: 0,
+            message: "Could not update user details",
+          });
+        } else {
+          return responseModule.successResponse(res, {
+            success: 1,
+            message: "User Details updated successfully",
+          });
+        }
+      });
+
+  } catch (error) {
+    console.log(err);
+    return next(err);
+  }
+}
+
+
+export const getUserData  =  async (req, res) =>{
+  try {
+    let user = await User.findOne({_id: req.userData.userId}).select('-password')
+    let profile = await UserProfile.findOne({_id: req.userData.profileId})
+    let walletAddress =  await WalletAddress.findOne({profile :  profile._id})
+
+    return responseModule.successResponse(res, {
+      success: 1,
+      message: "User Details fetched successfully",
+      user,profile,walletAddress
+    });
+
+  } catch (error) {
+    console.log(err);
+    return next(err);
+  }
+}

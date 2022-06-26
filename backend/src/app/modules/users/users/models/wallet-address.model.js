@@ -7,8 +7,8 @@ const ObjectId = Schema.ObjectId;
  * walletAddressSchema Schema
  */
 const walletAddressSchema = Schema({
-    user: {
-        type: ObjectId, ref: 'user' 
+    profile: {
+        type: ObjectId, ref: 'UserProfile' 
     },
     walletAddress: {
         type: String,

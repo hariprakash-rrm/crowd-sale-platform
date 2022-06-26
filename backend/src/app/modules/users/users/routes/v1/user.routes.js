@@ -1,4 +1,4 @@
-import { userSignup,loginUser ,updateUser, emailVerification} from "../../controllers/userController";
+import { userSignup,loginUser ,updateUser, emailVerification,getUserData,updateProfile} from "../../controllers/userController";
 import { upload } from "../../helpers/multer"; 
 const checkAuth = require('../../../users/helpers/check-auth');
 
@@ -22,5 +22,16 @@ export const routes = (app, version) => {
     app.post(
         version + '/login-user',
         loginUser,
+    );
+    app.get(
+        version + '/user-profile',
+        checkAuth,
+        getUserData,
+    );
+    app.put(
+        version + '/user-update',
+        checkAuth,
+        upload.single('profileImage'),
+        updateProfile,
     );
 };
