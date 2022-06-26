@@ -217,15 +217,16 @@
                   <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                     <div class="flex text-slate-500 text-xs">
                       <div class="mr-auto">Progress</div>
-                      <div>20%</div>
+                      <div>Total contributed - {{pool.currentlyStaked}} / {{pool.poolStakableAmount}}</div>
                     </div>
                     <div class="progress h-1 mt-2">
                       <div
-                        class="progress-bar w-1/4 bg-primary"
+                        class="progress-bar bg-primary"
                         role="progressbar"
                         aria-valuenow="0"
                         aria-valuemin="0"
                         aria-valuemax="100"
+                        :style="`width:${pool.currentPercentage}%`"
                       ></div>
                     </div>
                   </div>
