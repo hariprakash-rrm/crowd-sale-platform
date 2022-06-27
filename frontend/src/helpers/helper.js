@@ -27,6 +27,10 @@ export function parseJwt(token) {
       })
       .join("")
   );
-
   return JSON.parse(jsonPayload);
 }
+
+export const Role = Object.freeze({
+  user: "User",
+  admin: "Admin",
+})

@@ -143,8 +143,8 @@ export default {
     ...mapActions(useAuthUserStore, ["login"]),
     onSubmit() {
       this.login({ email: this.email, password: this.password }).then((res) => {
-        let { response } = res.response["data"];
-        if (response == 200) {
+          let { response, data } = res["data"] || res.response;
+          if (response == 200 || data?.response == 200) {
           this.showToast("Success", "Login Successful");
         } else {
           this.showToast("error", "Login Failed");
