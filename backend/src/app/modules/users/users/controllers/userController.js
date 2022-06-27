@@ -28,6 +28,7 @@ export const userSignup = async (req, res, next) => {
     email: req.body.email,
     otp: otp,
     password: password,
+    role:"User"
   });
   try {
     await user.save(async (error, result) => {
@@ -68,13 +69,13 @@ export const userSignup = async (req, res, next) => {
           success: 0,
           message: "Wallet Address already exists",
           response: 400,
-          data: {},
         });
       }
       await sendWelcomeMail(req.body.name, req.body.email, otp);
       return responseModule.successResponse(res, {
         success: 1,
         message: "User created successfully",
+        data: {_id : result._id},
       });
     });
   } catch (err) {

@@ -23,6 +23,9 @@ const userSchema = mongoose.Schema({
     otp:{
         type: Number,
     },
+    role:{
+      type: String,
+  },
     status: {
         type : Boolean,
         default: false
