@@ -10,5 +10,8 @@ export const auth = {
   },
   otpVerification: (user_id, payload) => {
     return axios.post(`${BASE_URL}/active-user/${user_id}`, payload);
-  }
+  },
+  fetchUser: () => {
+    return axios.get(`${BASE_URL}/user-profile`);
+  },
 };

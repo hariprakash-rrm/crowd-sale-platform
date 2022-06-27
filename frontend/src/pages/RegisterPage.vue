@@ -208,7 +208,7 @@
 </template>
 
 <script>
-import { useAuthUserStore } from "../../stores/auth";
+import { useAuthUserStore } from "../stores/auth";
 import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
@@ -244,13 +244,13 @@ export default {
         userName: this.user.userName,
       };
       this.userRegistration(finalPayload).then((res) => {
-        let { data, success } = res.response;
-        if (success) {
+        let { data, status } = res.response;
+        if (status == 200) {
           this.showToast("success", "Please check your email!");
         } else {
           this.showToast("error", data.message);
         }
-      }).catch(err => console.log(err))
+      });
     },
     showToast(title = "", content = "") {
       this.toaster = {

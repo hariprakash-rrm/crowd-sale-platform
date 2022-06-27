@@ -28,11 +28,11 @@ export const userSignup = async (req, res, next) => {
     email: req.body.email,
     otp: otp,
     password: password,
-    role:"User"
+    role: "User"
   });
   try {
     await user.save(async (error, result) => {
-      console.log("error",error)
+      console.log("error", error)
       if (error) {
         if (error.name == "ValidationError" || "MongoServerError") {
           return res.status(400).json({
@@ -75,7 +75,7 @@ export const userSignup = async (req, res, next) => {
       return responseModule.successResponse(res, {
         success: 1,
         message: "User created successfully",
-        data: {_id : result._id},
+        data: { _id: result._id },
       });
     });
   } catch (err) {
@@ -97,7 +97,7 @@ export const loginUser = async (req, res, next) => {
     }).exec();
 
     if (user) {
-      bcrypt.compare(req.body.password, user.password,async (err, result) => {
+      bcrypt.compare(req.body.password, user.password, async (err, result) => {
         if (err) {
           return responseModule.errorResponse(res, {
             success: 0,
@@ -106,27 +106,27 @@ export const loginUser = async (req, res, next) => {
           });
         }
         if (result === true) {
-          let userProfile = await UserProfile.findOne({user : user._id})
+          let userProfile = await UserProfile.findOne({ user: user._id })
 
           const token = jwt.sign(
             {
               email: user.email,
               userId: user._id,
-              profileId :  userProfile._id,
-              role:"User"
+              profileId: userProfile._id,
+              role: "User"
             },
             config.JWT_KEY,
             {
               expiresIn: "7h",
             }
           );
-           user.password = ""
+          user.password = ""
           return responseModule.successResponse(res, {
             success: 1,
             message: "User Login successful",
             data: user,
             token: token,
-            profile:userProfile
+            profile: userProfile
           });
         }
         if (result === false) {
@@ -370,17 +370,17 @@ export const sendWelcomeMail = async (userName, email, otp) => {
 
     let subject = "Your account created successfully";
     let send = await sendMail(email, subject, html);
-  } catch (error) {}
+  } catch (error) { }
 };
 
-export const updateProfile = async (req, res)=>{
+export const updateProfile = async (req, res) => {
   try {
-    let updates  = {
-      userName : req.body.userName,
-      telegramUrl :  req.body.telegramUrl,
-      bio :  req.body.bio,
-      location :  req.body.location,
-      mobile :  req.body.mobile,
+    let updates = {
+      userName: req.body.userName,
+      telegramUrl: req.body.telegramUrl,
+      bio: req.body.bio,
+      location: req.body.location,
+      mobile: req.body.mobile,
     }
     if (req.file) {
       const profileImage = req.file.path;
@@ -402,32 +402,32 @@ export const updateProfile = async (req, res)=>{
         _id: req.userData.userId,
       },
       {
-        $set: {updates},
+        $set: { updates },
       },
       {
         new: true,
       }
-      ).exec((error, response) => {
-        if (error) {
-          if (error.name == "ValidationError" || "MongoServerError") {
-            return res.status(400).json({
-              success: 0,
-              message: error.message,
-              response: 400,
-              data: {},
-            });
-          }
-          return responseModule.errorResponse(res, {
+    ).exec((error, response) => {
+      if (error) {
+        if (error.name == "ValidationError" || "MongoServerError") {
+          return res.status(400).json({
             success: 0,
-            message: "Could not update user details",
-          });
-        } else {
-          return responseModule.successResponse(res, {
-            success: 1,
-            message: "User Details updated successfully",
+            message: error.message,
+            response: 400,
+            data: {},
           });
         }
-      });
+        return responseModule.errorResponse(res, {
+          success: 0,
+          message: "Could not update user details",
+        });
+      } else {
+        return responseModule.successResponse(res, {
+          success: 1,
+          message: "User Details updated successfully",
+        });
+      }
+    });
 
   } catch (error) {
     console.log(err);
@@ -436,16 +436,16 @@ export const updateProfile = async (req, res)=>{
 }
 
 
-export const getUserData  =  async (req, res) =>{
+export const getUserData = async (req, res) => {
   try {
-    let user = await User.findOne({_id: req.userData.userId}).select('-password')
-    let profile = await UserProfile.findOne({_id: req.userData.profileId})
-    let walletAddress =  await WalletAddress.findOne({profile :  profile._id})
+    let user = await User.findOne({ _id: req.userData.userId }).select('-password')
+    let profile = await UserProfile.findOne({ _id: req.userData.profileId })
+    let walletAddress = await WalletAddress.findOne({ profile: profile._id })
 
     return responseModule.successResponse(res, {
       success: 1,
       message: "User Details fetched successfully",
-      user,profile,walletAddress
+      user, profile, walletAddress
     });
 
   } catch (error) {

@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
 import { auth } from "../service/auth";
 import router from "@/router";
+import { parseJwt } from "@/helpers/helper.js";
 
 export const useAuthUserStore = defineStore("authUserStore", {
     state: () => ({
-        userData: {}
+        userData: JSON.parse(localStorage.getItem("token")) || {},
+        user: []
     }),
     getters: {
         colorScheme(state) {
@@ -23,36 +25,37 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    const { data, success } = res.data;
-                    if (success) {
-                        localStorage.setItem("token", JSON.stringify(data));
-                        router.push("/dashboard");
-                    }
-                    return res;
+                    const { data, token } = res.response["data"];
+                    localStorage.setItem("token", JSON.stringify(token));
+                    console.log(state.user)
+                    router.push("/dashboard");
+                    return res
                 })
                 .catch((err) => {
                     console.error("error in login", err);
                     // commit("LOGINERROR", err);
-                    return err;
-                });
+                    return err
+                })
+        },
+        logout({ state, dispatch, commit, getters }) {
+            localStorage.removeItem("token");
+            setTimeout(() => {
+                router.push("/login");
+            }, 0);
+        },
+        fetchUser({ }) {
+            return auth.fetchUser().then(res => {
+
+            })
         },
         userRegistration(payload) {
-            let data = new FormData();
-            data.append("userName", payload.userName);
-            data.append("password", payload.password);
-            data.append("email", payload.email);
-            data.append("name", payload.name);
             return auth
-                .userRegistration(data)
+                .userRegistration(payload)
                 .then((res) => {
-                    const { data, status } = res;
-                    if (status === 200) {
-                        router.push(`/enter-otp/${data.data?._id}`);
-                        return res;
-                    }
-                    else {
-                        return res;
-                    }
+                    console.log(res)
+                    const { data } = res.response["data"];
+                    router.push(`/enter-otp/${data.data?._id}`);
+                    return res;
                 })
                 .catch((err) => {
                     console.error("error in registration", err);
@@ -60,9 +63,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 });
         },
         otpVerification({ user_id, otp }) {
-            let data = new FormData();
-            data.append("otp", otp);
-            return auth.otpVerification(user_id, data).then(res => {
+            return auth.otpVerification(user_id, { otp: otp }).then(res => {
                 const { data, status } = res;
                 if (status === 200) {
                     router.push("/dashboard");
