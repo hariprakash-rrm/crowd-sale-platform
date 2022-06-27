@@ -10,21 +10,23 @@ export const successResponse = (res, data, statusCode = 200) => {
 };
 
 export const errorResponse = (res, err,) => {
-    if (err.name == 'ValidationError') {
-         res.status(400).json({
-            success: 0,
-            message: err.errors,
-            response: 400,
-            data: {}
-        });
-    } else{
-    res.json({
-        success: 0,
-        data: {},
-        message: err,
-        response: err.Code
-    });
-}
+    res.json(err);
+
+    // if (err.name == 'ValidationError') {
+    //      res.status(400).json({
+    //         success: 0,
+    //         message: err.errors,
+    //         response: 400,
+    //         data: {}
+    //     });
+    // } else{
+    // res.json({
+    //     success: 0,
+    //     data: {},
+    //     message: err,
+    //     response: err.Code
+    // });
+// }
 };
 
 export const errorResponseWithData = (req, res, { msgCode }, data) => {

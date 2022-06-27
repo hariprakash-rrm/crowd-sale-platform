@@ -27,8 +27,8 @@ module.exports = function (callback) {
             } else {
               winston.info("loaded config file:" + env);
 
-              // var dbURI = config.mongodb.uri_test
-              var dbURI = config.mongodb.host + config.mongodb.db_name;
+              //var dbURI = config.mongodb.uri_test
+            var dbURI = config.mongodb.host + config.mongodb.db_name;
               winston.info("Try to Connect MongoDb: " + dbURI);
               // make connection with mongodb
               if (!mongoose.connection.readyState) {
