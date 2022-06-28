@@ -330,30 +330,6 @@
                 <td class="text-center">{{ user.symbol }}</td>
                 <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
-                <!-- <td class="text-center">
-                  <input
-                    type="text"
-                    class="form-control w-56 rounded-md input--rounded box pr-10"
-                    placeholder="Enter Amount..."
-                  />
-                </td> -->
-                <!-- <td class="table-report__action w-40">
-                  <div class="flex justify-center gap-4 items-center">
-                    <a
-                      @click= "largeModalSizePreview = true" 
-                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                    >
-                      Contribute
-                    </a>
-                  </div>
-                  
-                </td>  -->
               </tr>
             </tbody>
           </table>
@@ -424,38 +400,6 @@
                 <td class="text-center">{{ user.symbol }}</td>
                 <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
-                <!-- <td class="text-center">
-                  <input
-                    type="text"
-                    class="form-control w-56 rounded-md input--rounded box pr-10"
-                    placeholder="Enter Amount..."
-                  />
-                </td> -->
-                <!-- <td class="table-report__action w-40">
-                  <div class="flex justify-center gap-4 items-center">
-                    <a
-                      @click="largeModalSizePreview = true"
-                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                    >
-                      Contribute
-                    </a>
-                  </div>
-                  <Modal
-                    size="modal-lg"
-                    :show="largeModalSizePreview"
-                    @hidden="largeModalSizePreview = false"
-                  >
-                    <ModalBody class="p-10 text-center">
-                      This is totally awesome large modal!
-                    </ModalBody>
-                  </Modal>
-                </td>  -->
               </tr>
             </tbody>
           </table>
@@ -526,30 +470,6 @@
                 <td class="text-center">{{ user.symbol }}</td>
                 <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
-                 <!-- <td class="text-center">
-                  <input
-                    type="text"
-                    class="form-control w-56 rounded-md input--rounded box pr-10"
-                    placeholder="Enter Amount..."
-                  />
-                </td> -->
-                <!-- <td class="table-report__action w-40">
-                  <div class="flex justify-center gap-4 items-center">
-                    <a
-                      @click="largeModalSizePreview = true"
-                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                    >
-                      Contribute
-                    </a>
-                  </div>
-                   
-                </td>  -->
               </tr>
             </tbody>
           </table>
@@ -562,32 +482,81 @@
             :show="largeModalSizePreview"
             @hidden="largeModalSizePreview = false"
           >
-          <div class="flex justify-between px-6">
-             <div class="text-xl font-semibold mt-5">Contribution</div>
+          <div class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl">
+             <div class="text-xl font-semibold py-5">Contribution</div>
               <a
               @click="largeModalSizePreview = false"
-              class="absolute right-0 top-0 mt-3 mr-3"
+              class="absolute right-0 top-0 mt-5 mr-3"
               href="javascript:;"
             >
-              <XIcon class="w-8 h-8 text-slate-400" />
+              <XIcon class="w-6 h-6 text-slate-400" />
             </a>
           </div>
            
-            <ModalBody class="p-0">
-              <div class="p-5 text-center">
-                <CheckCircleIcon
-                  class="w-16 h-16 text-success mx-auto mt-3"
-                />
-                <div class="text-xl mt-5">Contribution</div>
-                <div class="text-slate-500 mt-2">Modal with close button</div>
+            <ModalBody class="p-6">
+              <div class="p-6 bg-[#EEF3F7] rounded-xl">
+                <div class="flex justify-between">
+                    <div>
+                      <p class="text-base">Pay</p>
+                      <div class="flex items-center my-2 gap-4">
+                          <img src="@/assets/images/uc/tether.png" class="w-10 h-10" alt="">
+                          <span class="text-black font-bold text-2xl">5 USDT</span>
+                        </div>
+                         <p class="text-base">Include Fees</p>
+                    </div>
+                    <div>
+                      <p class="text-base">Receive</p>
+                      <div class="flex items-center my-2 gap-4">
+                          <span class="text-black font-bold text-2xl">50000 TEST</span>
+                        </div>
+                        
+                    </div>
+                </div>
               </div>
-              <div class="px-5 pb-8 text-center">
+              
+              <div class="my-6 bg-[#F8F8F8] rounded-xl">
+                <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">PRICE</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm">1 USDT = 0.0001 TEST</p>
+                  </div>
+                </div>
+                <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">TOTAL COST WITH FEE</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm">5 USDT</p>
+                  </div>
+                </div>
+                <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">FEE</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm"> <span class="text-yellow-600">0.05 USDT</span> or <span class="text-yellow-600">1%</span></p>
+                  </div>
+                </div>
+                <div class="px-6 py-3 bg-[#FEDCDB] rounded-b-xl flex items-center justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">Your Balance</p>
+                  <p class="text-red-600 font-bold text-sm"> Insufficient Funds</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm"> <span class="text-red-600">0 USDT</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <p>I am investing with my own free will, I know the risks associated with investing in early stage projects I know that I can lose some or all of my investments and I know that this is not investment advice of any kind. By using this platform for investing I AGREE with all statements.</p>
+
+
+
+              <div class=" pt-8 text-center">
                 <button
                   type="button"
                   @click="largeModalSizePreview = false"
-                  class="btn btn-primary w-24"
+                  class="btn btn-primary w-full" disabled
                 >
-                  Ok
+                  Contribute 5.05 USDT
                 </button>
               </div>
             </ModalBody>

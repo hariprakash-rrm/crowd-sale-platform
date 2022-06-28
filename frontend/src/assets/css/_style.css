@@ -68,3 +68,15 @@ background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
   padding: 1.5rem;
   border-radius: 0.5rem;
 }
+.modal-content {
+  border-radius: .75rem;
+}
+.modal-dialog.modal-lg {
+  display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0 !important; 
+     margin-bottom: 0 !important;
+}
