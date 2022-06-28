@@ -57,7 +57,7 @@
 .label-floating input:not(:placeholder-shown) ~ label {
     font-size: 0.75rem;
     transition: all 0.2s ease-in-out;
-    color: #9a9a9a;
+    color: #d1a565;
     top: 0;
     opacity: 1;
 }
