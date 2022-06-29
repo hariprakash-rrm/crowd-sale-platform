@@ -9,7 +9,6 @@ import fs from "fs";
 import * as ejs from "ejs";
 const responseModule = require("../../../../../config/response");
 import winston from "../../../../../config/winston";
-import mongoose from "mongoose";
 
 /**
  * Function to create a User
