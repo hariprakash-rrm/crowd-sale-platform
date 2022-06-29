@@ -121,12 +121,13 @@
 </template>
 
 <script>
-import { useAuthUserStore } from "../../stores/auth";
+import { useAuthUserStore } from "../stores/auth";
 import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
 import Toastify from "toastify-js";
 export default {
+  name: "LoginPage",
   components: {
     DarkModeSwitcher,
   },
@@ -141,18 +142,14 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, ["login"]),
     onSubmit() {
-      this.login({ email: this.email, password: this.password })
-        .then((res) => {
-          let { success } = res.data;
-          if (success) {
-            this.showToast("Success", "Login Successful");
-          } else {
-            this.showToast("error", "Login Failed");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.login({ email: this.email, password: this.password }).then((res) => {
+          let { response, data } = res["data"] || res.response;
+          if (response == 200 || data?.response == 200) {
+          this.showToast("Success", "Login Successful");
+        } else {
+          this.showToast("error", "Login Failed");
+        }
+      });
     },
     showToast(title = "", content = "") {
       this.toaster.title = title;

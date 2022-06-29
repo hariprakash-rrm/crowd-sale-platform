@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import { useAuthUserStore } from "../../stores/auth";
+import { useAuthUserStore } from "../stores/auth";
 import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
@@ -123,18 +123,16 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, ["otpVerification"]),
     onSubmit() {
-      this.otpVerification({ user_id: this.user_id, otp: this.otp })
-        .then((res) => {
-          let { data, status } = res.response;
-          if (status === 200) {
+      this.otpVerification({ user_id: this.user_id, otp: this.otp }).then(
+        (res) => {
+          let { response, data } = res["data"] || res.response;
+          if (response == 200 || data?.response == 200) {
             this.showToast("Success", "Verification Successful");
           } else {
-            this.showToast("error", data.message);
+            this.showToast("error", data?.message);
           }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        }
+      );
     },
     showToast(title = "", content = "") {
       this.toaster = {

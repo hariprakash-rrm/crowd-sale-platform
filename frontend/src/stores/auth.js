@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
 import { auth } from "../service/auth";
 import router from "@/router";
+import { parseJwt, Role } from "@/helpers/helper.js";
 
 export const useAuthUserStore = defineStore("authUserStore", {
     state: () => ({
-        userData: {}
+        userData: JSON.parse(localStorage.getItem("token")) || {},
+        user: []
     }),
     getters: {
         colorScheme(state) {
@@ -12,6 +14,15 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 localStorage.setItem("colorScheme", "default");
             }
             return state.colorSchemeValue;
+        },
+        getUserData: (state) => state.userData || {},
+        getUserDetails: (state, getters, rootState) => {
+            let { getUserData } = getters;
+            if (getUserData && getUserData.token) {
+                return parseJwt(getUserData.token);
+            } else {
+                return {};
+            }
         },
     },
     actions: {
@@ -23,36 +34,40 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    const { data, success } = res.data;
-                    if (success) {
-                        localStorage.setItem("token", JSON.stringify(data));
+                    const { token } = res["data"];
+                    localStorage.setItem("token", JSON.stringify({ token }));
+                    this.userData = token;
+                    const { role } = parseJwt(token);
+                    if (role == Role.user) {
                         router.push("/dashboard");
                     }
-                    return res;
+                    return res
                 })
                 .catch((err) => {
                     console.error("error in login", err);
                     // commit("LOGINERROR", err);
-                    return err;
-                });
+                    return err
+                })
+        },
+        logout() {
+            localStorage.removeItem("token");
+            this.userData = {}
+            setTimeout(() => {
+                router.push("/login");
+            }, 0);
+        },
+        fetchUser({ }) {
+            return auth.fetchUser().then(res => {
+
+            })
         },
         userRegistration(payload) {
-            let data = new FormData();
-            data.append("userName", payload.userName);
-            data.append("password", payload.password);
-            data.append("email", payload.email);
-            data.append("name", payload.name);
             return auth
-                .userRegistration(data)
+                .userRegistration(payload)
                 .then((res) => {
-                    const { data, status } = res;
-                    if (status === 200) {
-                        router.push(`/enter-otp/${data.data?._id}`);
-                        return res;
-                    }
-                    else {
-                        return res;
-                    }
+                    const { data } = res["data"];
+                    router.push(`/enter-otp/${data?._id}`);
+                    return res;
                 })
                 .catch((err) => {
                     console.error("error in registration", err);
@@ -60,17 +75,9 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 });
         },
         otpVerification({ user_id, otp }) {
-            let data = new FormData();
-            data.append("otp", otp);
-            return auth.otpVerification(user_id, data).then(res => {
-                const { data, status } = res;
-                if (status === 200) {
-                    router.push("/dashboard");
-                    return res;
-                }
-                else {
-                    return res;
-                }
+            return auth.otpVerification(user_id, { otp: otp }).then(res => {
+                router.push("/login");
+                return res;
             }).catch(err => {
                 console.error("error in otpVerification", err);
                 return err;

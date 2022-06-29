@@ -5,7 +5,10 @@
   >
     <div class="h-full flex items-center">
       <!-- BEGIN: Logo -->
-      <a href="" class="logo -intro-x hidden md:flex md:items-center xl:w-[250] block">
+      <a
+        href=""
+        class="logo -intro-x hidden md:flex md:items-center xl:w-[250] block"
+      >
         <img
           alt="Enigma Tailwind HTML Admin Template"
           class="logo__image w-32"
@@ -160,29 +163,30 @@
         </DropdownMenu>
       </Dropdown> -->
       <!-- END: Notifications -->
-       <Dropdown class="intro-x w-48 mr-4">
+      <Dropdown class="intro-x w-48 mr-4">
         <DropdownToggle
           tag="div"
           role="button"
           class="w-40 overflow-hidden zoom-in scale-110"
         >
-         <p @click="connect" class="text-white text-center bg-primary p-1 rounded-full truncate">{{title}}</p>
+          <p
+            @click="connect"
+            class="text-white text-center bg-primary p-1 rounded-full truncate"
+          >
+            {{ title }}
+          </p>
         </DropdownToggle>
         <DropdownMenu v-if="connected" class="w-56">
           <DropdownContent
             class="bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white"
           >
-           
-           
             <DropdownItem class="dropdown-item hover:bg-white/5">
               <SlashIcon class="w-4 h-4 mr-2" /> Disconnect</DropdownItem
             >
-           
-          
           </DropdownContent>
         </DropdownMenu>
       </Dropdown>
-      
+
       <!-- BEGIN: Account Menu -->
       <Dropdown class="intro-x w-8 h-8">
         <DropdownToggle
@@ -209,12 +213,10 @@
             </DropdownHeader>
             <DropdownDivider class="border-white/[0.08]" />
             <router-link to="/profile">
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-            
-              <UserIcon class="w-4 h-4 mr-2" /> Profile
-               
-            </DropdownItem>
-             </router-link>
+              <DropdownItem class="dropdown-item hover:bg-white/5">
+                <UserIcon class="w-4 h-4 mr-2" /> Profile
+              </DropdownItem>
+            </router-link>
             <DropdownItem class="dropdown-item hover:bg-white/5">
               <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
             >
@@ -225,14 +227,16 @@
               <HelpCircleIcon class="w-4 h-4 mr-2" /> Help</DropdownItem
             >
             <DropdownDivider class="border-white/[0.08]" />
-            <DropdownItem class="dropdown-item hover:bg-white/5">
+            <DropdownItem
+              class="dropdown-item hover:bg-white/5"
+              @click="logout"
+            >
               <ToggleRightIcon class="w-4 h-4 mr-2" /> Logout</DropdownItem
             >
           </DropdownContent>
         </DropdownMenu>
       </Dropdown>
       <!-- END: Account Menu -->
-     
     </div>
   </div>
   <!-- END: Top Bar -->
@@ -241,6 +245,8 @@
 <script lang="ts">
 import { ref } from "vue";
 import { MetaMaskInpageProvider } from "@metamask/providers";
+import { useAuthUserStore } from "@/stores/auth.js";
+import { mapActions } from "pinia";
 
 declare global {
   interface Window {
@@ -255,12 +261,13 @@ export default {
     return {
       connected: false,
       contractResult: "",
-      title: "connect Wallet"
+      title: "connect Wallet",
     };
   },
 
   methods: {
-    connect: function() {
+    ...mapActions(useAuthUserStore, ["logout"]),
+    connect: function () {
       // this connects to the wallet
 
       if (window.ethereum) {
@@ -269,19 +276,19 @@ export default {
           this.connected = true; // If users successfully connected their wallet
           window.ethereum
             .request({ method: "eth_accounts" })
-            .then(account => {
+            .then((account) => {
               localStorage.setItem("address", account);
               let address = localStorage.getItem("address") + "";
               this.title = address.slice(0, 12) + "..." + address.slice(37, 41);
               console.log(address);
             })
-            .catch(err => {
+            .catch((err) => {
               console.error(err);
             });
         });
       }
-    }
-  }
+    },
+  },
 };
 
 const searchDropdown = ref(false);

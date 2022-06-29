@@ -7,10 +7,10 @@ export const interceptorsSetup = () => {
       let userToken = JSON.parse(localStorage.getItem("token"));
       if (!config.url.includes("/login")) {
         config.headers["Accept"] = "application/json";
-        if (userToken && userToken["access_token"]) {
+        if (userToken && userToken["token"]) {
           config.headers[
             "Authorization"
-          ] = `Bearer ${userToken["access_token"]}`;
+          ] = `Bearer ${userToken["token"]}`;
         }
         if (config.url.includes("/login/refresh-token")) {
           delete config.headers["Authorization"];
