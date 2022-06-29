@@ -494,9 +494,9 @@
           </div>
            
             <ModalBody class="p-6">
-              <div class="p-6 bg-[#EEF3F7] rounded-xl">
-                <div class="flex justify-between">
-                    <div>
+              <!-- <div class="rounded-xl"> -->
+                <div class="flex justify-between gap-6">
+                    <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
                       <div class="flex items-center my-2 gap-4">
                           <img src="@/assets/images/uc/tether.png" class="w-10 h-10" alt="">
@@ -504,31 +504,26 @@
                         </div>
                          <p class="text-base">Include Fees</p>
                     </div>
-                    <div>
-                      <p class="text-base">Receive</p>
-                      <div class="flex items-center my-2 gap-4">
-                          <span class="text-black font-bold text-2xl">50000 TEST</span>
-                        </div>
-                        
-                    </div>
+                
+                  
                 </div>
-              </div>
+              <!-- </div> -->
               
-              <div class="my-6 bg-[#F8F8F8] rounded-xl">
+              <div class="my-6 bg-[#f8f8f8]">
                 <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
-                  <p class="text-sm">PRICE</p>
+                  <p class="text-sm">Amount</p>
                   <div class="flex items-center gap-2">
                     <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
-                    <p class="text-black font-bold text-sm">1 USDT = 0.0001 TEST</p>
+                    <p class="text-black font-bold text-sm">1 USDT</p>
                   </div>
                 </div>
-                <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                <!-- <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
                   <p class="text-sm">TOTAL COST WITH FEE</p>
                   <div class="flex items-center gap-2">
                     <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
                     <p class="text-black font-bold text-sm">5 USDT</p>
                   </div>
-                </div>
+                </div> -->
                 <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
                   <p class="text-sm">FEE</p>
                   <div class="flex items-center gap-2">
@@ -536,18 +531,21 @@
                     <p class="text-black font-bold text-sm"> <span class="text-yellow-600">0.05 USDT</span> or <span class="text-yellow-600">1%</span></p>
                   </div>
                 </div>
-                <div class="px-6 py-3 bg-[#FEDCDB] rounded-b-xl flex items-center justify-between border-b border-[#E7E7E7] border-solid">
-                  <p class="text-sm">Your Balance</p>
-                  <p class="text-red-600 font-bold text-sm"> Insufficient Funds</p>
-                  <div class="flex items-center gap-2">
-                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
-                    <p class="text-black font-bold text-sm"> <span class="text-red-600">0 USDT</span></p>
-                  </div>
-                </div>
+              
               </div>
 
-              <p>I am investing with my own free will, I know the risks associated with investing in early stage projects I know that I can lose some or all of my investments and I know that this is not investment advice of any kind. By using this platform for investing I AGREE with all statements.</p>
-
+              <!-- <p>I am investing with my own free will, I know the risks associated with investing in early stage projects I know that I can lose some or all of my investments and I know that this is not investment advice of any kind. By using this platform for investing </p> -->
+               <div class="form-check mt-5">
+              <input
+                id="vertical-form-3"
+                class="form-check-input"
+                type="checkbox"
+                value=""
+              />
+              <label class="form-check-label" for="vertical-form-3"
+                >I AGREE with all statements.</label
+              >
+            </div>
 
 
               <div class=" pt-8 text-center">
@@ -558,6 +556,14 @@
                 >
                   Contribute 5.05 USDT
                 </button>
+                  <div class="mt-2 py-3 flex items-center justify-between">
+                  <p class="text-sm">Your Balance</p>
+                  <p class="text-red-600 font-bold text-sm"> Insufficient Funds</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm"> <span class="text-red-600">0 USDT</span></p>
+                  </div>
+                </div>
               </div>
             </ModalBody>
           </Modal>
