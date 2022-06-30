@@ -509,7 +509,7 @@
                       <th class="text-center whitespace-nowrap">
                         MAXIMUM CONTRIBUTION
                       </th>
-                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">STATUS</th>
                       
                     </tr>
                   </thead>
@@ -560,7 +560,7 @@
 
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">{{ user.status }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1641,7 +1641,7 @@
                       <th class="text-center whitespace-nowrap">
                         MAXIMUM CONTRIBUTION
                       </th>
-                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">STATUS</th>
                       
                     </tr>
                   </thead>
@@ -1692,7 +1692,7 @@
 
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">{{ user.status }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -2772,7 +2772,7 @@
                       <th class="text-center whitespace-nowrap">
                         MAXIMUM CONTRIBUTION
                       </th>
-                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">STATUS</th>
                     
                     </tr>
                   </thead>
@@ -2823,7 +2823,7 @@
 
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">{{ user.status }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -4200,9 +4200,13 @@ export default {
   data() {
     return {
       poolsOngoing: [],
+      reversePoolsOngoing:[],
       poolsUpcoming: [],
+      reversePoolsUpcoming:[],
       poolsCompleted: [],
+      reversePoolsCompleted:[],
       poolsMyDeal: [],
+      reversePoolsMyDeal:[],
       payload: {},
       tab: 1,
       networkTab: 1,
@@ -4213,6 +4217,7 @@ export default {
   async mounted() {
     await this.loadFromContract();
     await this.pools();
+    await this.reversePool()
   },
 
   methods: {
@@ -4276,12 +4281,15 @@ export default {
         console.log(currentTime);
         console.log(set.endTime);
         if (currentTime > set.endTime && currentTime > set.startTime) {
+          set.status = "Completed"
           this.poolsCompleted.push(set);
           console.log("completed");
         } else if (currentTime < set.startTime && currentTime < set.endTime) {
+          set.status = "upComing"
           this.poolsUpcoming.push(set);
           console.log("upcoming");
         } else if (currentTime < set.endTime && currentTime > set.startTime) {
+          set.status = "Ongoing"
           this.poolsOngoing.push(set);
           console.log("Ongoing");
         }
@@ -4316,6 +4324,12 @@ export default {
         console.log(v);
       });
     },
+    async reversePool(){
+      this.reversePoolsOngoing = this.poolsOngoing.reverse()
+      this.reversePoolsUpcoming = this.poolsUpcoming.reverse()
+      this.reversePoolsCompleted = this.poolsCompleted.reverse()
+      this.reversePoolsMyDeal = this.poolsMyDeal.reverse()
+    }
   },
 };
 
