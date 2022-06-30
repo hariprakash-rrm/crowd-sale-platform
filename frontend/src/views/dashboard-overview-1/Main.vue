@@ -578,12 +578,10 @@
 import { ref, provide } from "vue";
 import Web3 from "web3";
 import { contractABI,approveContract } from "@/helpers/helper.js"
-<<<<<<< HEAD
 import { fetchPools } from "@/service/auth.js"
-=======
 const largeModalSizePreview = ref(false);
 
->>>>>>> 5194ffd5b08a62ade7daccb25e074a959a2c17a4
+
 
 export default {
   name: "",
