@@ -84,3 +84,8 @@ background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
   backdrop-filter: blur(12px) !important;
 
 }
+@media (min-width: 1024px) {
+  .modal .modal-dialog.modal-xl {
+    width: 1280px;
+}
+}
