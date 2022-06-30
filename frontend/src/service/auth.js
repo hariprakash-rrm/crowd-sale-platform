@@ -14,4 +14,10 @@ export const auth = {
   fetchUser: () => {
     return axios.get(`${BASE_URL}/user-profile`);
   },
+ 
 };
+export const fetchPools={
+  fetchPoolsDetails: () => {
+    return axios.get(`${BASE_URL}/pools`);
+  },
+}
