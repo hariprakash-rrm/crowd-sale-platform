@@ -61,16 +61,16 @@
     </div>
     <!-- END: General Report -->
 
+  
     <!-- BEGIN: Deals Info -->
     <div class="col-span-12 mt-8">
-      <div class="intro-y">
+      <div class="intro-y mb-8">
         <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
         <p class="text-lg text-slate-500 mt-2">Available Deals</p>
       </div>
-      <div class="intro-y py-8 rounded-xl overflow-auto lg:overflow-visible">
-        <div class="flex items-center justify-between mb-8">
+       <div class="flex flex-col lg:flex-row items-center justify-between mb-4 lg:mb-8">
           <ul
-            class="nav nav-pills w-3/4 lg:w-2/6 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
+            class="nav nav-pills w-full lg:w-2/6 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
             role="tablist"
           >
             <li
@@ -80,7 +80,7 @@
               role="presentation"
             >
               <button
-                class="nav-link w-full py-1.5 px-2 active"
+                class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 active"
                 data-tw-toggle="pill"
                 data-tw-target="#active-users"
                 type="button"
@@ -98,7 +98,7 @@
               role="presentation"
             >
               <button
-                class="nav-link w-full py-1.5 px-2"
+                class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
                 data-tw-toggle="pill"
                 data-tw-target="#inactive-users"
                 type="button"
@@ -115,7 +115,7 @@
               role="presentation"
             >
               <button
-                class="nav-link w-full py-1.5 px-2"
+                class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
                 data-tw-toggle="pill"
                 data-tw-target="#inactive-users"
                 type="button"
@@ -132,7 +132,7 @@
               role="presentation"
             >
               <button
-                class="nav-link w-full py-1.5 px-2"
+                class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
                 data-tw-toggle="pill"
                 data-tw-target="#inactive-users"
                 type="button"
@@ -143,8 +143,8 @@
               </button>
             </li>
           </ul>
-          <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-64 relative text-slate-500">
+          <div class="w-full sm:w-auto mt-6 sm:mt-0 sm:ml-auto md:ml-0">
+            <div class="ml-auto w-56 lg:w-64 relative text-slate-500">
               <input
                 type="text"
                 class="form-control w-64 rounded-md input--rounded box pr-10"
@@ -169,7 +169,9 @@
               </svg>
             </div>
           </div>
-        </div>
+      </div>
+      <div class="intro-y lg:py-8 rounded-xl overflow-auto lg:overflow-visible">
+       
         <!-- BEGIN: TAB CONTENT ONGOING -->
         <div v-show="tab === 1">
           <table class="table table-report">
@@ -211,13 +213,13 @@
                 </td>
                 <td class="text-center">{{ pool.id }}</td>
                 <td>
-                  <a href="" class="text-lg font-semibold whitespace-nowrap">{{
+                  <a href="" class="text-lg font-semibold capitalize whitespace-nowrap">{{
                     pool.name
                   }}</a>
                   <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                    <div class="flex text-slate-500 text-xs">
-                      <div class="mr-auto">Progress</div>
-                      <div>Total contributed - {{pool.currentlyStaked}} / {{pool.poolStakableAmount}}</div>
+                    <div class="flex gap-4 text-slate-500 text-xs">
+                      <div class="mr-auto font-semibold">Total contribution </div>
+                      <div> {{pool.currentlyStaked}} / {{pool.poolStakableAmount}}</div>
                     </div>
                     <div class="progress h-1 mt-2">
                       <div
@@ -235,12 +237,6 @@
                 <td class="text-center">{{ pool.symbol }}</td>
                 <td class="text-center">{{ pool.currentPercentage }}%</td>
                 <td class="text-center">{{ pool.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
                 <td class="text-center">
                   <input
                     @input="handleInput(pool.id, $event)"
@@ -254,12 +250,15 @@
                 <td class="table-report__action w-40">
                   <div class="flex justify-center gap-4 items-center">
                     <a
-                      @click="contribute(pool.id)"
+                     @click="largeModalSizePreview = true"
+                    
                       class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
                       Contribute
                     </a>
                   </div>
+                  
+         
                 </td>
               </tr>
             </tbody>
@@ -281,10 +280,10 @@
                   MAXIMUM CONTRIBUTION
                 </th>
                 <th class="text-center whitespace-nowrap">ENDTIME</th>
-                <th class="text-center whitespace-nowrap">
+                <!-- <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
-                <th class="text-center whitespace-nowrap">ACTIONS</th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th> -->
               </tr>
             </thead>
             <tbody>
@@ -331,29 +330,6 @@
                 <td class="text-center">{{ user.symbol }}</td>
                 <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
-                <td class="text-center">
-                  <input
-                    type="text"
-                    class="form-control w-56 rounded-md input--rounded box pr-10"
-                    placeholder="Enter Amount..."
-                  />
-                </td>
-                <td class="table-report__action w-40">
-                  <div class="flex justify-center gap-4 items-center">
-                    <a
-                      @click="save"
-                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                    >
-                      Contribute
-                    </a>
-                  </div>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -374,10 +350,10 @@
                   MAXIMUM CONTRIBUTION
                 </th>
                 <th class="text-center whitespace-nowrap">ENDTIME</th>
-                <th class="text-center whitespace-nowrap">
+                <!-- <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
-                <th class="text-center whitespace-nowrap">ACTIONS</th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th> -->
               </tr>
             </thead>
             <tbody>
@@ -424,29 +400,6 @@
                 <td class="text-center">{{ user.symbol }}</td>
                 <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
-                <td class="text-center">
-                  <input
-                    type="text"
-                    class="form-control w-56 rounded-md input--rounded box pr-10"
-                    placeholder="Enter Amount..."
-                  />
-                </td>
-                <td class="table-report__action w-40">
-                  <div class="flex justify-center gap-4 items-center">
-                    <a
-                      @click="save"
-                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                    >
-                      Contribute
-                    </a>
-                  </div>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -467,10 +420,10 @@
                   MAXIMUM CONTRIBUTION
                 </th>
                 <th class="text-center whitespace-nowrap">ENDTIME</th>
-                <th class="text-center whitespace-nowrap">
+                 <th class="text-center whitespace-nowrap">
                   ENTER YOUR CONTRIBUTION
                 </th>
-                <th class="text-center whitespace-nowrap">ACTIONS</th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th> 
               </tr>
             </thead>
             <tbody>
@@ -517,34 +470,104 @@
                 <td class="text-center">{{ user.symbol }}</td>
                 <td class="text-center">{{ user.currentPercentage }}%</td>
                 <td class="text-center">{{ user.humanEndTime }}</td>
-
-                <!-- <td class="w-40">
-                  <div class="flex items-center justify-center text-danger">
-                    Not Pledged
-                  </div>
-                </td> -->
-                <td class="text-center">
-                  <input
-                    type="text"
-                    class="form-control w-56 rounded-md input--rounded box pr-10"
-                    placeholder="Enter Amount..."
-                  />
-                </td>
-                <td class="table-report__action w-40">
-                  <div class="flex justify-center gap-4 items-center">
-                    <a
-                      @click="save"
-                      class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                    >
-                      Contribute
-                    </a>
-                  </div>
-                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!-- BEGIN: TAB CONTENT MYDEALS -->
+                
+        <!-- BEGIN: Large Modal Content -->
+          <Modal
+          size="modal-lg"
+            :show="largeModalSizePreview"
+            @hidden="largeModalSizePreview = false"
+          >
+          <div class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl">
+             <div class="text-xl font-semibold py-5">Contribution</div>
+              <a
+              @click="largeModalSizePreview = false"
+              class="absolute right-0 top-0 mt-5 mr-3"
+              href="javascript:;"
+            >
+              <XIcon class="w-6 h-6 text-slate-400" />
+            </a>
+          </div>
+           
+            <ModalBody class="p-6">
+              <!-- <div class="rounded-xl"> -->
+                <div class="flex justify-between gap-6">
+                    <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                      <p class="text-base">Pay</p>
+                      <div class="flex items-center my-2 gap-4">
+                          <img src="@/assets/images/uc/tether.png" class="w-10 h-10" alt="">
+                          <span class="text-black font-bold text-2xl">5 USDT</span>
+                        </div>
+                         <p class="text-base">Include Fees</p>
+                    </div>
+                
+                  
+                </div>
+              <!-- </div> -->
+              
+              <div class="my-6 bg-[#f8f8f8]">
+                <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">Amount</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm">1 USDT</p>
+                  </div>
+                </div>
+                <!-- <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">TOTAL COST WITH FEE</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm">5 USDT</p>
+                  </div>
+                </div> -->
+                <div class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid">
+                  <p class="text-sm">FEE</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm"> <span class="text-yellow-600">0.05 USDT</span> or <span class="text-yellow-600">1%</span></p>
+                  </div>
+                </div>
+              
+              </div>
+
+              <!-- <p>I am investing with my own free will, I know the risks associated with investing in early stage projects I know that I can lose some or all of my investments and I know that this is not investment advice of any kind. By using this platform for investing </p> -->
+               <div class="form-check mt-5">
+              <input
+                id="vertical-form-3"
+                class="form-check-input"
+                type="checkbox"
+                value=""
+              />
+              <label class="form-check-label" for="vertical-form-3"
+                >I AGREE with all statements.</label
+              >
+            </div>
+
+
+              <div class=" pt-8 text-center">
+                <button
+                  type="button"
+                  @click="largeModalSizePreview = false"
+                  class="btn btn-primary w-full" disabled
+                >
+                  Contribute 5.05 USDT
+                </button>
+                  <div class="mt-2 py-3 flex items-center justify-between">
+                  <p class="text-sm">Your Balance</p>
+                  <p class="text-red-600 font-bold text-sm"> Insufficient Funds</p>
+                  <div class="flex items-center gap-2">
+                    <img src="@/assets/images/uc/tether.png" class="w-5 h-5" alt="">
+                    <p class="text-black font-bold text-sm"> <span class="text-red-600">0 USDT</span></p>
+                  </div>
+                </div>
+              </div>
+            </ModalBody>
+          </Modal>
+        <!-- END: Large Modal Content -->
       </div>
     </div>
     <!-- END: Deals Info -->
@@ -555,6 +578,8 @@
 import { ref, provide } from "vue";
 import Web3 from "web3";
 import { contractABI,approveContract } from "@/helpers/helper.js"
+const largeModalSizePreview = ref(false);
+
 
 export default {
   name: "",
@@ -568,6 +593,7 @@ export default {
       poolsMyDeal: [],
       payload: {},
       tab: 1,
+      largeModalSizePreview : false,
     };
   },
 
@@ -581,6 +607,7 @@ export default {
       this.payload[id] = value;
       console.log(this.payload)
     },
+
     activeTabOne() {
       this.tab = 1;
     },
