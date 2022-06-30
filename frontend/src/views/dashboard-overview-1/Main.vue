@@ -600,8 +600,8 @@ export default {
   },
 
   mounted() {
-    this.loadFromContract();
-    this.pools();
+    await this.loadFromContract();
+    await this.pools();
   },
 
   methods: {
@@ -682,7 +682,7 @@ export default {
       var callContract = await contract.methods.stakeTokens(id-1,  BigInt(this.payload[id]*10**18)).send({ from: localStorage.getItem("address") }).then(receipt=> {console.log(receipt)})
     },
     async pools(){
-      let v = fetchPools.fetchPoolsDetails().then(res=>{
+      let v = await fetchPools.fetchPoolsDetails().then(res=>{
         console.log(v)
       })
       
