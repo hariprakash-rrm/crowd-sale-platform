@@ -555,6 +555,7 @@
 import { ref, provide } from "vue";
 import Web3 from "web3";
 import { contractABI,approveContract } from "@/helpers/helper.js"
+import { fetchPools } from "@/service/auth.js"
 
 export default {
   name: "",
@@ -573,6 +574,7 @@ export default {
 
   mounted() {
     this.loadFromContract();
+    this.pools();
   },
 
   methods: {
@@ -601,7 +603,7 @@ export default {
 
       let i;
 
-      for (i = 0; i <= poolLength; i++) {
+      for (i = 0; i < poolLength; i++) {
         let set = await contract.methods
           .poolInfo(i)
           .call({ from: localStorage.getItem("address") });
@@ -651,7 +653,15 @@ export default {
       var approveNow = await approveToken.methods.approve(token,BigInt(this.payload[id]*10**18)).send({ from: localStorage.getItem("address") }).then(receipt=> {console.log(receipt)})
       var callContract = await contract.methods.stakeTokens(id-1,  BigInt(this.payload[id]*10**18)).send({ from: localStorage.getItem("address") }).then(receipt=> {console.log(receipt)})
     },
+    async pools(){
+      let v = fetchPools.fetchPoolsDetails().then(res=>{
+        console.log(v)
+      })
+      
+      // localStorage.setItem("v",v)
+  }
   },
+  
 };
 
 const salesReportFilter = ref();
