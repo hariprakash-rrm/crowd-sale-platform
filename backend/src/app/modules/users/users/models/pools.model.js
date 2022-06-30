@@ -46,6 +46,27 @@ const poolsSchema = mongoose.Schema(
     poolsStatus: {
       type: String,
     },
+    roadMap: {
+      type: String,
+    },
+    team: {
+      type: String,
+    },
+    vcs: {
+      type: String,
+    },
+    fackBookUrl: {
+      type: String,
+    },
+    instagramUrl: {
+      type: String,
+    },
+    linkedInUrl: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
   },
   {
     timestamps: true,

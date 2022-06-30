@@ -33,10 +33,10 @@ export const createOrUpdatePools = async (data) => {
 export const getPoolsList = async(req, res)=>{
   try {
     
-    let pools = await Pools.find({}).sort([['createdAt', -1]])
+    let pools = await Pools.find({}).sort([['createdAt', -1]]).select()
     return responseModule.successResponse(res, {
       success: 1,
-      message: "User created successfully",
+      message: "Pools fetched successfully",
       data: pools,
     });
 
@@ -47,4 +47,37 @@ export const getPoolsList = async(req, res)=>{
       data: {},
     });
   }
+}
+export const updatePools =async(req, res) =>{
+try {
+  let data = {
+    roadMap:req.body?.roadMap,
+    team:req.body?.team,
+    vcs:req.body?.vcs,
+    fackBookUrl:req.body?.fackBookUrl,
+    instagramUrl:req.body?.instagramUrl,
+    linkedInUrl:req.body?.linkedInUrl,
+    image:req.body?.image,
+    poolsStatus:req.body?.poolsStatus,
+  }
+  const pools = await Pools.findOneAndUpdate(
+    {
+      id: req.params.id,
+    },
+    {
+      $set: data,
+    },
+    {
+      new: true,
+    }
+  ).exec();
+  return responseModule.successResponse(res, {
+    success: 1,
+    message: "Pool updated successfully",
+    data: pools,
+  });
+
+} catch (error) {
+  
+}
 }

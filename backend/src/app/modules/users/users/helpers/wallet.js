@@ -30,6 +30,13 @@ export const loadFromContract = async(req, res)=> {
       set.poolStakableAmount = set.poolStakableAmount / 10 ** 18;
       set.currentlyStaked = currentlyStaked / 10 ** 18;
       set['source']='bsc';
+      set['roadMap']='';
+      set['team']='';
+      set['vcs']='';
+      set['fackBookUrl']='';
+      set['instagramUrl']='';
+      set['linkedInUrl']='';
+      set['image']='';
       var currentPercentage =
         (set.currentlyStaked * 100) / set.poolStakableAmount;
       set.currentPercentage = currentPercentage;
@@ -62,7 +69,7 @@ export const loadFromContract = async(req, res)=> {
       }
     }
 
-    // res.send({poolsMyDeal,poolsOngoing,poolsUpcoming,poolsCompleted});
+    res.send({poolsMyDeal,poolsOngoing,poolsUpcoming,poolsCompleted});
   }
 
 //   "lpToken": "0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",
