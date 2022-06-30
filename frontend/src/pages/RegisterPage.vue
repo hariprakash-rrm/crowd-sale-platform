@@ -23,9 +23,16 @@
         </div>
         <!-- END: Login Info -->
         <!-- BEGIN: Login Form -->
-        <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
+        <div class="h-screen xl:h-auto flex  flex-col py-5 xl:py-0 my-10 xl:my-0">
+            <a href="" class="logo -intro-x lg:hidden">
+            <img
+              alt="unreal-capital"
+              class="logo__image w-32 mx-auto"
+              src="@/assets/images/uc/uc-light.png"
+            />
+          </a>
           <div
-            class="my-auto mx-auto bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 md:w-2/4 xl:w-8/12 2xl:w-9/12"
+            class="my-12 lg:my-auto mx-auto bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 md:w-2/4 xl:w-8/12 2xl:w-9/12"
           >
             <h2
               class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left pb-4"
@@ -37,7 +44,7 @@
                 class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
               >
                 <input
-                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
+                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                   id="name"
                   type="text"
                   placeholder="Enter your Name"
@@ -60,7 +67,7 @@
                 class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
               >
                 <input
-                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
+                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                   id="userName"
                   type="text"
                   placeholder="Enter your Username"
@@ -80,10 +87,10 @@
                 </label>
               </div>
               <div
-                class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
+                class="input-form relative rounded-lg mt-5 mb-0 lg:my-5 h-16 appearance-none label-floating"
               >
                 <input
-                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
+                  class="login__input bg-input h-14 form-control w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                   id="username"
                   type="email"
                   placeholder="Email"
@@ -105,11 +112,11 @@
               <div class="grid grid-cols-12 mt-0 lg:-mt-4 gap-4 lg:gap-x-4">
                 <div class="col-span-12 lg:col-span-6">
                   <div
-                    class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
+                    class="input-form relative rounded-lg mt-5 mb-0 lg:my-5 h-16 appearance-none label-floating"
                   >
                     <input
                       id="showPassword"
-                      class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
+                      class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                       type="password"
                       placeholder="Password"
                       minlength="6"
@@ -132,10 +139,10 @@
                 </div>
                 <div class="col-span-12 lg:col-span-6">
                   <div
-                    class="input-form relative rounded-lg my-5 h-16 appearance-none label-floating"
+                    class="input-form relative rounded-lg mb-5 mt-0 lg:my-5 h-16 appearance-none label-floating"
                   >
                     <input
-                      class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans font-sans leading-normal rounded-lg"
+                      class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                       id="confirmPassword"
                       type="password"
                       placeholder="Confirm Password"
@@ -151,7 +158,7 @@
                     <label
                       name="password"
                       class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
-                      for="password"
+                      for="confirmPassword"
                     >
                       Confirm Password
                     </label>

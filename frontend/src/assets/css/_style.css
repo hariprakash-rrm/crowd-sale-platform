@@ -1,64 +1,86 @@
 .input__field {
-    @apply form-control h-14 px-4 text-base font-medium bg-[#ffffff26] text-black focus:outline-none focus:ring-0 focus:border-primary dark:text-white focus:border;
+  @apply form-control h-14 px-4 text-base font-medium bg-[#ffffff26] text-black focus:outline-none focus:ring-0 focus:border-primary dark:text-white focus:border;
 }
 .input__label {
-    @apply absolute text-base text-black bg-[#f8fafc] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:font-semibold peer-focus:tracking-wider peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 left-3;
+  @apply absolute text-base text-black bg-[#f8fafc] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:font-semibold peer-focus:tracking-wider peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 left-3;
+}
+.input__field--accordion {
+  @apply form-control h-14 px-4 text-base font-medium bg-transparent text-black border border-solid border-[#c8ccd1] focus:outline-none focus:ring-0 focus:border-primary dark:text-white focus:border;
+}
+.input__label--accordion {
+  @apply absolute text-base text-black bg-[#ebf0f5] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:font-semibold peer-focus:tracking-wider peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 left-3;
 }
 .box {
-    /* background: rgba(255,255,255,0.5) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(255,255,255,0.25) !important;
-    border-radius: .75rem !important; */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: .75rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    /* border:1px solid rgb(var(--color-slate-200) / 0.6) !important; */
-    /* border: 1px solid rgba(255, 255, 255, 0.3); */
+  /* background: rgba(255,255,255,0.5) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: .75rem !important; */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: .75rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  /* border:1px solid rgb(var(--color-slate-200) / 0.6) !important; */
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
 }
 .box {
-  backdrop-filter: none !important;
+backdrop-filter: none !important;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+-webkit-appearance: none;
+margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+-moz-appearance: textfield;
 }
 .dark .input__field:focus {
-  border: 1px solid rgb(var(--color-primary) / var(--tw-bg-opacity));
+border: 1px solid rgb(var(--color-primary) / var(--tw-bg-opacity));
 }
 .dark .input__field {
-  border: 1px solid rgb(var(--color-darkmode-400) / var(--tw-bg-opacity)) !important;
-  background-color: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity));
+border: 1px solid rgb(var(--color-darkmode-400) / var(--tw-bg-opacity)) !important;
+background-color: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity));
 }
 .dark .input__label {
-  background-color: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity));
+background-color: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity));
 }
 .dark .tom-select .ts-input {
-  background-color: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
+background-color: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
 }
 .ts-input.full {
-  background-color: #f8fafc !important;
+background-color: #f8fafc !important;
 }
 .tom-select .ts-input {
-  font-size: 1rem !important;
+font-size: 1rem !important;
 }
 .bg-\[\#ffffff\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+--tw-bg-opacity: 1;
+background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
 .dark .box {
-  background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
+background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
 }
 .accordion.accordion-boxed .accordion-item {
-    padding: 1.5rem;
-    border-radius: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+.modal-content {
+  border-radius: .75rem;
+}
+.modal-dialog.modal-lg {
+  display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0 !important; 
+     margin-bottom: 0 !important;
+}
+.modal.show {
+  backdrop-filter: blur(12px) !important;
+
 }
