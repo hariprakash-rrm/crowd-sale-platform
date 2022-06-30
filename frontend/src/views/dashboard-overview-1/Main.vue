@@ -510,10 +510,7 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
-                        ENTER YOUR CONTRIBUTION
-                      </th>
-                      <th class="text-center whitespace-nowrap">ACTIONS</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -1645,10 +1642,7 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
-                        ENTER YOUR CONTRIBUTION
-                      </th>
-                      <th class="text-center whitespace-nowrap">ACTIONS</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -2779,10 +2773,7 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
-                        ENTER YOUR CONTRIBUTION
-                      </th>
-                      <th class="text-center whitespace-nowrap">ACTIONS</th>
+                    
                     </tr>
                   </thead>
                   <tbody>
