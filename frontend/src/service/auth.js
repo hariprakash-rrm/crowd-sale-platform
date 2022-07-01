@@ -16,10 +16,4 @@ export const auth = {
   },
  
 };
-export const fetchPools={
-  fetchPoolsDetails: () => {
-    let details = axios.get(`${BASE_URL}/pools`);
-    let jsonDetails = JSON.parse(details)
-    return jsonDetails;
-  },
-}
+

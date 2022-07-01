@@ -62,17 +62,17 @@
     <!-- END: General Report -->
 
     <!-- BEGIN: Deals Info -->
-      <div class="intro-y col-span-12 mt-12">
-        <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
-        <p class="text-lg text-slate-500 mt-2">Available Deals</p>
-      </div>
+    <div class="intro-y col-span-12 mt-12">
+      <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
+      <p class="text-lg text-slate-500 mt-2">Available Deals</p>
+    </div>
     <div class="intro-y box col-span-12">
       <!-- BEGIN: NETWORK TAB -->
       <div
         class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 items-center justify-between mb-4 lg:mb-8"
       >
         <ul
-          class="nav nav-link-tabs w-full lg:w-2/4  rounded-md mx-auto"
+          class="nav nav-link-tabs w-full lg:w-2/4 rounded-md mx-auto"
           role="tablist"
         >
           <li
@@ -100,7 +100,7 @@
             role="presentation"
           >
             <button
-              class="nav-link text-sm lg:text-base w-full  py-5 px-2"
+              class="nav-link text-sm lg:text-base w-full py-5 px-2"
               data-tw-toggle="pill"
               data-tw-target="#inactive-network"
               type="button"
@@ -117,7 +117,7 @@
             role="presentation"
           >
             <button
-              class="nav-link text-sm lg:text-base w-full  py-5 px-2"
+              class="nav-link text-sm lg:text-base w-full py-5 px-2"
               data-tw-toggle="pill"
               data-tw-target="#inactive-network"
               type="button"
@@ -245,13 +245,11 @@
             </div>
             <!-- END: SINGLE NETWORK TAB -->
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div
-              class="intro-y rounded-xl overflow-auto lg:overflow-visible"
-            >
+            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
               <a href="#" @click="superlargeModalSizePreview = true">
                 <div v-show="tab === 1">
-                  <table class="table table-report">
+                  <table class="table table-report" v-if="getDeals">
                     <thead>
                       <tr>
                         <th class="whitespace-nowrap">PRODUCT</th>
@@ -271,13 +269,16 @@
                         </th>
                       </tr>
                     </thead>
+
                     <tbody>
                       <tr
                         v-for="pool in poolsOngoing"
                         :key="pool.id"
                         class="intro-x zoom-in"
                       >
-                        <td class="w-20  border-l-4 border-primary dark:border-primary pl-4">
+                        <td
+                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        >
                           <div class="flex">
                             <div class="w-16 h-16 image-fit zoom-in">
                               <Tippy
@@ -443,7 +444,9 @@
                       :key="user.id"
                       class="intro-x zoom-in"
                     >
-                      <td class="w-20 border-l-[3px] border-primary dark:border-primary pl-4">
+                      <td
+                        class="w-20 border-l-[3px] border-primary dark:border-primary pl-4"
+                      >
                         <div class="flex">
                           <div class="w-16 h-16 image-fit zoom-in">
                             <Tippy
@@ -510,7 +513,6 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -1377,9 +1379,7 @@
             </div>
             <!-- END: SINGLE NETWORK TAB -->
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div
-              class="intro-y rounded-xl overflow-auto lg:overflow-visible"
-            >
+            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
               <a href="#" @click="superlargeModalSizePreview = true">
                 <div v-show="tab === 1">
@@ -1409,7 +1409,9 @@
                         :key="pool.id"
                         class="intro-x zoom-in"
                       >
-                        <td class="w-20  border-l-4 border-primary dark:border-primary pl-4">
+                        <td
+                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        >
                           <div class="flex">
                             <div class="w-16 h-16 image-fit zoom-in">
                               <Tippy
@@ -1642,7 +1644,6 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -2399,7 +2400,7 @@
 
         <!-- BEGIN: TAB CONTENT POLYGON -->
         <div v-show="networkTab === 3">
-         <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
+          <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
           <div class="mx-8 pb-8">
             <!-- BEGIN: SINGLE NETWORK TAB -->
             <div
@@ -2508,9 +2509,7 @@
             </div>
             <!-- END: SINGLE NETWORK TAB -->
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div
-              class="intro-y rounded-xl overflow-auto lg:overflow-visible"
-            >
+            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
               <a href="#" @click="superlargeModalSizePreview = true">
                 <div v-show="tab === 1">
@@ -2540,7 +2539,9 @@
                         :key="pool.id"
                         class="intro-x zoom-in"
                       >
-                        <td class="w-20  border-l-4 border-primary dark:border-primary pl-4">
+                        <td
+                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        >
                           <div class="flex">
                             <div class="w-16 h-16 image-fit zoom-in">
                               <Tippy
@@ -2773,7 +2774,6 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
-                    
                     </tr>
                   </thead>
                   <tbody>
@@ -4187,9 +4187,10 @@
 
 <script>
 import { ref, provide } from "vue";
+import { useWeb3DealsStore } from "@/stores/web3Deals.js";
+import { mapActions,mapGetters } from "pinia";
 import Web3 from "web3";
 import { contractABI, approveContract } from "@/helpers/helper.js";
-import { fetchPools } from "@/service/auth.js";
 const largeModalSizePreview = ref(false);
 const superlargeModalSizePreview = ref(false);
 
@@ -4200,13 +4201,13 @@ export default {
   data() {
     return {
       poolsOngoing: [],
-      reversePoolsOngoing:[],
+      reversePoolsOngoing: [],
       poolsUpcoming: [],
-      reversePoolsUpcoming:[],
+      reversePoolsUpcoming: [],
       poolsCompleted: [],
-      reversePoolsCompleted:[],
+      reversePoolsCompleted: [],
       poolsMyDeal: [],
-      reversePoolsMyDeal:[],
+      reversePoolsMyDeal: [],
       payload: {},
       tab: 1,
       networkTab: 1,
@@ -4215,12 +4216,22 @@ export default {
   },
 
   async mounted() {
-    await this.loadFromContract();
-    await this.pools();
-    await this.reversePool()
+    this.fetchDeals();
+  },
+  computed: {
+    ...mapGetters(useWeb3DealsStore, ["getDealsData"]),
+    getDeals(){
+      this.poolsOngoing = this.getDealsData.poolsOngoing || [];
+      this.poolsUpcoming = this.getDealsData.poolsUpcoming || [];
+      this.poolsCompleted = this.getDealsData.poolsCompleted || [];
+      this.poolsMyDeal = this.getDealsData.poolsMyDeal || []
+      console.log(this.getDealsData)
+      return true
+    }
   },
 
   methods: {
+    ...mapActions(useWeb3DealsStore, ["fetchDeals"]),
     handleInput(id, event) {
       let value = event.target.value;
       this.payload[id] = value;
@@ -4248,56 +4259,7 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-    async loadFromContract() {
-      let contract = contractABI();
-      let poolLength = await contract.methods
-        .poolLength()
-        .call({ from: localStorage.getItem("address") });
-
-      let i;
-
-      for (i = 0; i < poolLength; i++) {
-        let set = await contract.methods
-          .poolInfo(i)
-          .call({ from: localStorage.getItem("address") });
-        var myJSON = JSON.stringify(set);
-        localStorage.setItem("pools", myJSON);
-        // const date = new Date(set.endTime * 1000);
-        var currentlyStaked = await contract.methods
-          .getTotalStakedInPool(i)
-          .call();
-        var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
-        set.humanEndTime = newDate;
-        set.poolStakableAmount = set.poolStakableAmount / 10 ** 18;
-        set.currentlyStaked = currentlyStaked / 10 ** 18;
-        var currentPercentage =
-          (set.currentlyStaked * 100) / set.poolStakableAmount;
-        set.currentPercentage = currentPercentage;
-        var stakedAmount = await contract.methods
-          .getUserStakedTokenInPool(i, localStorage.getItem("address"))
-          .call();
-        // await this.pools.push(set);
-        var currentTime = await Math.floor(Date.now() / 1000);
-        console.log(currentTime);
-        console.log(set.endTime);
-        if (currentTime > set.endTime && currentTime > set.startTime) {
-          set.status = "Completed"
-          this.poolsCompleted.push(set);
-          console.log("completed");
-        } else if (currentTime < set.startTime && currentTime < set.endTime) {
-          set.status = "upComing"
-          this.poolsUpcoming.push(set);
-          console.log("upcoming");
-        } else if (currentTime < set.endTime && currentTime > set.startTime) {
-          set.status = "Ongoing"
-          this.poolsOngoing.push(set);
-          console.log("Ongoing");
-        }
-        if (stakedAmount > 0) {
-          this.poolsMyDeal.push(set);
-        }
-      }
-    },
+  
     async contribute(id) {
       // if(!this.payload[id]) {
       //   return
@@ -4319,17 +4281,14 @@ export default {
           console.log(receipt);
         });
     },
-    async pools() {
-      let v = await fetchPools.fetchPoolsDetails().then((res) => {
-        console.log(v);
-      });
+    
+    
+    async reversePool() {
+      this.reversePoolsOngoing = this.poolsOngoing.reverse();
+      this.reversePoolsUpcoming = this.poolsUpcoming.reverse();
+      this.reversePoolsCompleted = this.poolsCompleted.reverse();
+      this.reversePoolsMyDeal = this.poolsMyDeal.reverse();
     },
-    async reversePool(){
-      this.reversePoolsOngoing = this.poolsOngoing.reverse()
-      this.reversePoolsUpcoming = this.poolsUpcoming.reverse()
-      this.reversePoolsCompleted = this.poolsCompleted.reverse()
-      this.reversePoolsMyDeal = this.poolsMyDeal.reverse()
-    }
   },
 };
 
