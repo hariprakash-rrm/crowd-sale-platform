@@ -47,7 +47,7 @@ export const loadFromContract = async(req, res)=> {
       console.log(currentTime);
       console.log(set.endTime);
       if (currentTime > set.endTime && currentTime > set.startTime) {
-        set["poolStatus"]="completed"
+        set.poolStatus="completed"
         poolsCompleted.push(set);
         set['poolsStatus']='completed';
         await createOrUpdatePools(set)
