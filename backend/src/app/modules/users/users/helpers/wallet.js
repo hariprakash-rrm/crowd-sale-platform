@@ -47,19 +47,16 @@ export const loadFromContract = async(req, res)=> {
       console.log(currentTime);
       console.log(set.endTime);
       if (currentTime > set.endTime && currentTime > set.startTime) {
-        set.poolStatus="completed"
         poolsCompleted.push(set);
         set['poolsStatus']='completed';
         await createOrUpdatePools(set)
         console.log("completed");
       } else if (currentTime < set.startTime && currentTime < set.endTime) {
-        set.poolStatus="UpComing"
         poolsUpcoming.push(set);
         set['poolsStatus']='upcoming';
         await createOrUpdatePools(set)
         console.log("upcoming");
       } else if (currentTime < set.endTime && currentTime > set.startTime) {
-        set.poolStatus="OnGoing"
         poolsOngoing.push(set);
         console.log("Ongoing");
         set['poolsStatus']='ongoing';

@@ -562,7 +562,7 @@
 
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center">{{ user.poolStatus }}</td>
+                      <td class="text-center">{{ user.poolsStatus }}</td>
                     </tr>
                   </tbody>
                 </table>
