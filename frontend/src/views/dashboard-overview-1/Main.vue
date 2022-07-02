@@ -272,8 +272,8 @@
 
                     <tbody>
                       <tr
-                        v-for="pool in poolsOngoing"
-                        :key="pool.id"
+                        v-for="user in poolsOngoing"
+                        :key="user.id"
                         class="intro-x zoom-in"
                       >
                         <td
@@ -291,12 +291,12 @@
                             </div>
                           </div>
                         </td>
-                        <td class="text-center">{{ pool.id }}</td>
+                        <td class="text-center">{{ user.id }}</td>
                         <td>
                           <a
                             href=""
                             class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ pool.name }}</a
+                            >{{ user.name }}</a
                           >
                           <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                             <div class="flex gap-4 text-slate-500 text-xs">
@@ -304,8 +304,8 @@
                                 Total contribution
                               </div>
                               <div>
-                                {{ pool.currentlyStaked }} /
-                                {{ pool.poolStakableAmount }}
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
                               </div>
                             </div>
                             <div class="progress h-1 mt-2">
@@ -315,21 +315,21 @@
                                 aria-valuenow="0"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                :style="`width:${pool.currentPercentage}%`"
+                                :style="`width:${user.currentPercentage}%`"
                               ></div>
                             </div>
                           </div>
                         </td>
 
-                        <td class="text-center">{{ pool.symbol }}</td>
+                        <td class="text-center">{{ user.symbol }}</td>
                         <td class="text-center">
-                          {{ pool.currentPercentage }}%
+                          {{ user.currentPercentage }}%
                         </td>
-                        <td class="text-center">{{ pool.humanEndTime }}</td>
+                        <td class="text-center">{{ user.humanEndTime }}</td>
                         <td class="text-center">
                           <input
-                            @input="handleInput(pool.id, $event)"
-                            :value="payload[pool.id]"
+                            @input="handleInput(user.id, $event)"
+                            :value="payload[user.id]"
                             type="number"
                             class="form-control w-56 rounded-md input--rounded box pr-10"
                             placeholder="Enter Amount..."
@@ -399,22 +399,26 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.poolStakableAmount }} {{user.symbol}}</td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -433,7 +437,7 @@
                       <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                       <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
+                        TOTAL CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
                     </tr>
@@ -471,16 +475,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
@@ -546,16 +554,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
@@ -1405,8 +1417,8 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="pool in poolsOngoing"
-                        :key="pool.id"
+                        v-for="user in poolsOngoing"
+                        :key="user.id"
                         class="intro-x zoom-in"
                       >
                         <td
@@ -1424,12 +1436,12 @@
                             </div>
                           </div>
                         </td>
-                        <td class="text-center">{{ pool.id }}</td>
+                        <td class="text-center">{{ user.id }}</td>
                         <td>
                           <a
                             href=""
                             class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ pool.name }}</a
+                            >{{ user.name }}</a
                           >
                           <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                             <div class="flex gap-4 text-slate-500 text-xs">
@@ -1437,8 +1449,8 @@
                                 Total contribution
                               </div>
                               <div>
-                                {{ pool.currentlyStaked }} /
-                                {{ pool.poolStakableAmount }}
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
                               </div>
                             </div>
                             <div class="progress h-1 mt-2">
@@ -1448,21 +1460,21 @@
                                 aria-valuenow="0"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                :style="`width:${pool.currentPercentage}%`"
+                                :style="`width:${user.currentPercentage}%`"
                               ></div>
                             </div>
                           </div>
                         </td>
 
-                        <td class="text-center">{{ pool.symbol }}</td>
+                        <td class="text-center">{{ user.symbol }}</td>
                         <td class="text-center">
-                          {{ pool.currentPercentage }}%
+                          {{ user.currentPercentage }}%
                         </td>
-                        <td class="text-center">{{ pool.humanEndTime }}</td>
+                        <td class="text-center">{{ user.humanEndTime }}</td>
                         <td class="text-center">
                           <input
-                            @input="handleInput(pool.id, $event)"
-                            :value="payload[pool.id]"
+                            @input="handleInput(user.id, $event)"
+                            :value="payload[user.id]"
                             type="number"
                             class="form-control w-56 rounded-md input--rounded box pr-10"
                             placeholder="Enter Amount..."
@@ -1532,22 +1544,26 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.poolStakableAmount }} {{user.symbol}}</td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -1566,7 +1582,7 @@
                       <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                       <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
+                        TOTAL CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
                     </tr>
@@ -1602,16 +1618,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
@@ -1677,16 +1697,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
@@ -2535,8 +2559,8 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="pool in poolsOngoing"
-                        :key="pool.id"
+                        v-for="user in poolsOngoing"
+                        :key="user.id"
                         class="intro-x zoom-in"
                       >
                         <td
@@ -2554,12 +2578,12 @@
                             </div>
                           </div>
                         </td>
-                        <td class="text-center">{{ pool.id }}</td>
+                        <td class="text-center">{{ user.id }}</td>
                         <td>
                           <a
                             href=""
                             class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ pool.name }}</a
+                            >{{ user.name }}</a
                           >
                           <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                             <div class="flex gap-4 text-slate-500 text-xs">
@@ -2567,8 +2591,8 @@
                                 Total contribution
                               </div>
                               <div>
-                                {{ pool.currentlyStaked }} /
-                                {{ pool.poolStakableAmount }}
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
                               </div>
                             </div>
                             <div class="progress h-1 mt-2">
@@ -2578,21 +2602,21 @@
                                 aria-valuenow="0"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                :style="`width:${pool.currentPercentage}%`"
+                                :style="`width:${user.currentPercentage}%`"
                               ></div>
                             </div>
                           </div>
                         </td>
 
-                        <td class="text-center">{{ pool.symbol }}</td>
+                        <td class="text-center">{{ user.symbol }}</td>
                         <td class="text-center">
-                          {{ pool.currentPercentage }}%
+                          {{ user.currentPercentage }}%
                         </td>
-                        <td class="text-center">{{ pool.humanEndTime }}</td>
+                        <td class="text-center">{{ user.humanEndTime }}</td>
                         <td class="text-center">
                           <input
-                            @input="handleInput(pool.id, $event)"
-                            :value="payload[pool.id]"
+                            @input="handleInput(user.id, $event)"
+                            :value="payload[user.id]"
                             type="number"
                             class="form-control w-56 rounded-md input--rounded box pr-10"
                             placeholder="Enter Amount..."
@@ -2662,22 +2686,26 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.poolStakableAmount }} {{user.symbol}}</td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -2696,7 +2724,7 @@
                       <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                       <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
+                        TOTAL CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
                     </tr>
@@ -2732,16 +2760,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
@@ -2807,16 +2839,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                             <div>
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
+                              </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            ></div>
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                aria-valuenow="0"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                :style="`width:${user.currentPercentage}%`"
+                              ></div>
                           </div>
                         </div>
                       </td>
