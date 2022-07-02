@@ -247,109 +247,105 @@
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
             <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
-              <a href="#" @click="superlargeModalSizePreview = true">
-                <div v-show="tab === 1">
-                  <table class="table table-report" v-if="getDeals">
-                    <thead>
-                      <tr>
-                        <th class="whitespace-nowrap">PRODUCT</th>
-                        <th class="text-center whitespace-nowrap">POOL ID</th>
-                        <th class="whitespace-nowrap w-72">NAME</th>
-                        <th class="text-center whitespace-nowrap">SYMBOL</th>
+              <!-- <a href="#" @click="superlargeModalSizePreview = true"> -->
+              <div v-show="tab === 1">
+                <table class="table table-report" v-if="getDeals">
+                  <thead>
+                    <tr>
+                      <th class="whitespace-nowrap">PRODUCT</th>
+                      <th class="text-center whitespace-nowrap">POOL ID</th>
+                      <th class="whitespace-nowrap w-72">NAME</th>
+                      <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                        <th class="text-center whitespace-nowrap">
-                          PERCENTAGE
-                        </th>
-                        <th class="text-center whitespace-nowrap">ENDTIME</th>
-                        <th class="text-center whitespace-nowrap">
-                          ENTER YOUR CONTRIBUTION
-                        </th>
-                        <th class="text-center whitespace-nowrap">
-                          CONTRIBUTION
-                        </th>
-                      </tr>
-                    </thead>
+                      <th class="text-center whitespace-nowrap">PERCENTAGE</th>
+                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">
+                        ENTER YOUR CONTRIBUTION
+                      </th>
+                      <th class="text-center whitespace-nowrap">
+                        CONTRIBUTION
+                      </th>
+                    </tr>
+                  </thead>
 
-                    <tbody>
-                      <tr
-                        v-for="user in poolsOngoing"
-                        :key="user.id"
-                        class="intro-x zoom-in"
+                  <tbody>
+                    <tr
+                      v-for="user in poolsOngoing"
+                      :key="user.id"
+                      class="intro-x zoom-in"
+                    >
+                      <td
+                        class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
-                        <td
-                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        <div class="flex">
+                          <div class="w-16 h-16 image-fit zoom-in">
+                            <Tippy
+                              tag="img"
+                              alt="Midone Tailwind HTML Admin Template"
+                              class="rounded-md"
+                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                              content=""
+                            />
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">{{ user.id }}</td>
+                      <td>
+                        <a
+                          href=""
+                          class="text-lg font-semibold capitalize whitespace-nowrap"
+                          >{{ user.name }}</a
                         >
-                          <div class="flex">
-                            <div class="w-16 h-16 image-fit zoom-in">
-                              <Tippy
-                                tag="img"
-                                alt="Midone Tailwind HTML Admin Template"
-                                class="rounded-md"
-                                src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                                content=""
-                              />
+                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                          <div class="flex gap-4 text-slate-500 text-xs">
+                            <div class="mr-auto font-semibold">
+                              Total contribution
+                            </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
                             </div>
                           </div>
-                        </td>
-                        <td class="text-center">{{ user.id }}</td>
-                        <td>
-                          <a
-                            href=""
-                            class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ user.name }}</a
-                          >
-                          <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                            <div class="flex gap-4 text-slate-500 text-xs">
-                              <div class="mr-auto font-semibold">
-                                Total contribution
-                              </div>
-                              <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
-                            </div>
-                            <div class="progress h-1 mt-2">
-                              <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
-                            </div>
+                          <div class="progress h-1 mt-2">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
-                        </td>
+                        </div>
+                      </td>
 
-                        <td class="text-center">{{ user.symbol }}</td>
-                        <td class="text-center">
-                          {{ user.currentPercentage }}%
-                        </td>
-                        <td class="text-center">{{ user.humanEndTime }}</td>
-                        <td class="text-center">
-                          <input
-                            @input="handleInput(user.id, $event)"
-                            :value="payload[user.id]"
-                            type="number"
-                            class="form-control w-56 rounded-md input--rounded box pr-10"
-                            placeholder="Enter Amount..."
-                            :min="1"
-                          />
-                        </td>
-                        <td class="table-report__action w-40">
-                          <div class="flex justify-center gap-4 items-center">
-                            <a
-                              @click="largeModalSizePreview = true"
-                              class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                              >Contribute
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </a>
+                      <td class="text-center">{{ user.symbol }}</td>
+                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">
+                        <input
+                          @input="handleInput(user.id, $event)"
+                          :value="payload[user.id]"
+                          type="number"
+                          class="form-control w-56 rounded-md input--rounded box pr-10"
+                          placeholder="Enter Amount..."
+                          :min="1"
+                        />
+                      </td>
+                      <td class="table-report__action w-40">
+                        <div class="flex justify-center gap-4 items-center">
+                          <a
+                            @click="contribute(user.id,value)"
+                            class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
+                            >Contribute
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- </a> -->
               <!-- END: TAB CONTENT ONGOING -->
 
               <!-- BEGIN: TAB CONTENT UPCOMING -->
@@ -604,9 +600,15 @@
 
                 <ModalBody class="p-6">
                   <!-- <div class="rounded-xl"> -->
+
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
+
+                      <p class="text-black">Name</p>
+                      <p>Name</p>
+                      <p>Name</p>
+
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -633,7 +635,7 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">1 USDT</p>
+                        <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
                       </div>
                     </div>
                     <div
@@ -673,7 +675,7 @@
                       class="btn btn-primary w-full"
                       disabled
                     >
-                      Contribute 5.05 USDT
+                      {{currentModalId}}
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -1751,6 +1753,9 @@
                   <!-- <div class="rounded-xl"> -->
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                      <p class="text-black">Name</p>
+                      <p>Name</p>
+                      <p>Name</p>
                       <p class="text-base">Pay</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
@@ -1778,7 +1783,7 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">1 USDT</p>
+                        <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
                       </div>
                     </div>
                     <div
@@ -1818,7 +1823,7 @@
                       class="btn btn-primary w-full"
                       disabled
                     >
-                      Contribute 5.05 USDT
+                      {{currentModalId}}
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -2896,6 +2901,9 @@
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
+                      <p class="text-black">Name</p>
+                      <p>Name</p>
+                      <p>Name</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -2922,7 +2930,7 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">1 USDT</p>
+                        <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
                       </div>
                     </div>
                     <div
@@ -2962,7 +2970,7 @@
                       class="btn btn-primary w-full"
                       disabled
                     >
-                      Contribute 5.05 USDT
+                      {{currentModalId}}
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -3594,6 +3602,9 @@
             <div class="flex justify-between gap-6">
               <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                 <p class="text-base">Pay</p>
+                <p class="text-black">Name</p>
+                <p>Name</p>
+                <p>Name</p>
                 <div class="flex items-center my-2 gap-4">
                   <img
                     src="@/assets/images/uc/tether.png"
@@ -3618,7 +3629,7 @@
                     class="w-5 h-5"
                     alt=""
                   />
-                  <p class="text-black font-bold text-sm">1 USDT</p>
+                  <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
                 </div>
               </div>
               <div
@@ -3658,7 +3669,7 @@
                 class="btn btn-primary w-full"
                 disabled
               >
-                Contribute 5.05 USDT
+                {{currentModalId}}
               </button>
               <div class="mt-2 py-3 flex items-center justify-between">
                 <p class="text-sm">Your Balance</p>
@@ -4243,17 +4254,16 @@ export default {
   data() {
     return {
       poolsOngoing: [],
-      reversePoolsOngoing: [],
       poolsUpcoming: [],
-      reversePoolsUpcoming: [],
       poolsCompleted: [],
-      reversePoolsCompleted: [],
       poolsMyDeal: [],
-      reversePoolsMyDeal: [],
       payload: {},
       tab: 1,
       networkTab: 1,
       largeModalSizePreview: false,
+
+      currentModalId:'',
+      currentModalAmount:''
     };
   },
 
@@ -4307,22 +4317,26 @@ export default {
       // if(!this.payload[id]) {
       //   return
       // }
-      let contract = contractABI();
-      let approveToken = approveContract();
-      let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
-      let token = getTokenAddres.lpToken;
-      let approveNow = await approveToken.methods
-        .approve(token, BigInt(this.payload[id] * 10 ** 18))
-        .send({ from: localStorage.getItem("address") })
-        .then((receipt) => {
-          console.log(receipt);
-        });
-      let callContract = await contract.methods
-        .stakeTokens(id - 1, BigInt(this.payload[id] * 10 ** 18))
-        .send({ from: localStorage.getItem("address") })
-        .then((receipt) => {
-          console.log(receipt);
-        });
+      console.log(id,this.payload);
+      this.currentModalId = id;
+      this.currentModalAmount = this.payload[id];
+      this.largeModalSizePreview = true;
+      // let contract = contractABI();
+      // let approveToken = approveContract();
+      // let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
+      // let token = getTokenAddres.lpToken;
+      // let approveNow = await approveToken.methods
+      //   .approve(token, BigInt(this.payload[id] * 10 ** 18))
+      //   .send({ from: localStorage.getItem("address") })
+      //   .then((receipt) => {
+      //     console.log(receipt);
+      //   });
+      // let callContract = await contract.methods
+      //   .stakeTokens(id - 1, BigInt(this.payload[id] * 10 ** 18))
+      //   .send({ from: localStorage.getItem("address") })
+      //   .then((receipt) => {
+      //     console.log(receipt);
+      //   });
     },
 
     async reversePool() {

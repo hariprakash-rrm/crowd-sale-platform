@@ -67,9 +67,6 @@ const poolsSchema = mongoose.Schema(
     image: {
       type: String,
     },
-    poolStatus:{
-      typr:String,
-    }
   },
   {
     timestamps: true,
