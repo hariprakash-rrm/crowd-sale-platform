@@ -400,25 +400,27 @@
                               Total contribution
                             </div>
                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.poolStakableAmount }} {{user.symbol}}</td>
+                      <td class="text-center">
+                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                      </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -475,20 +477,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
@@ -554,20 +556,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
@@ -1544,26 +1546,28 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.poolStakableAmount }} {{user.symbol}}</td>
+                      <td class="text-center">
+                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                      </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -1618,20 +1622,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
@@ -1698,19 +1702,19 @@
                               Total contribution
                             </div>
                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
@@ -2686,26 +2690,28 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.poolStakableAmount }} {{user.symbol}}</td>
+                      <td class="text-center">
+                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                      </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -2760,20 +2766,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
@@ -2839,20 +2845,20 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                             <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
                         </div>
                       </td>
@@ -4224,7 +4230,7 @@
 <script>
 import { ref, provide } from "vue";
 import { useWeb3DealsStore } from "@/stores/web3Deals.js";
-import { mapActions,mapGetters } from "pinia";
+import { mapActions, mapGetters } from "pinia";
 import Web3 from "web3";
 import { contractABI, approveContract } from "@/helpers/helper.js";
 const largeModalSizePreview = ref(false);
@@ -4252,18 +4258,19 @@ export default {
   },
 
   async mounted() {
-    this.fetchDeals();
+    await this.fetchDeals();
+    this.reversePool();
   },
   computed: {
     ...mapGetters(useWeb3DealsStore, ["getDealsData"]),
-    getDeals(){
+    getDeals() {
       this.poolsOngoing = this.getDealsData.poolsOngoing || [];
       this.poolsUpcoming = this.getDealsData.poolsUpcoming || [];
       this.poolsCompleted = this.getDealsData.poolsCompleted || [];
-      this.poolsMyDeal = this.getDealsData.poolsMyDeal || []
-      console.log(this.getDealsData)
-      return true
-    }
+      this.poolsMyDeal = this.getDealsData.poolsMyDeal || [];
+      console.log(this.getDealsData);
+      return true;
+    },
   },
 
   methods: {
@@ -4295,7 +4302,7 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-  
+
     async contribute(id) {
       // if(!this.payload[id]) {
       //   return
@@ -4317,13 +4324,12 @@ export default {
           console.log(receipt);
         });
     },
-    
-    
+
     async reversePool() {
-      this.reversePoolsOngoing = this.poolsOngoing.reverse();
-      this.reversePoolsUpcoming = this.poolsUpcoming.reverse();
-      this.reversePoolsCompleted = this.poolsCompleted.reverse();
-      this.reversePoolsMyDeal = this.poolsMyDeal.reverse();
+      this.poolsOngoing = this.poolsOngoing.reverse();
+      this.poolsUpcoming = this.poolsUpcoming.reverse();
+      this.poolsCompleted = this.poolsCompleted.reverse();
+      this.poolsMyDeal = this.poolsMyDeal.reverse();
     },
   },
 };
