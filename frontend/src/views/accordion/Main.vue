@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="intro-y flex items-center mt-8">
     <!-- <h2 class="text-lg font-medium mr-auto">Accordion</h2> -->
   </div>
@@ -516,7 +517,7 @@
                                     placeholder=""
                                   />
                                   <label for="ip-token" class="input__label--accordion"
-                                    >Ip Token</label
+                                    >lp Token</label
                                   >
                               </div>
                               <div class="relative mb-6">
@@ -918,6 +919,7 @@
     </div>
     <!-- END: Basic Accordion -->
     
+  </div>
   </div>
 </template>
 

@@ -674,7 +674,7 @@
                   <div class="pt-8 text-center">
                     <button
                       type="button"
-                      @click="largeModalSizePreview = false"
+                      @click="finalContribute()"
                       class="btn btn-primary w-full"
                       :disabled="inSufficientButtonStatus"
                     >
@@ -1824,7 +1824,7 @@
                   <div class="pt-8 text-center">
                     <button
                       type="button"
-                      @click="largeModalSizePreview = false"
+                      @click="finalContribute()"
                       class="btn btn-primary w-full"
                       :disabled="inSufficientButtonStatus"
                     >
@@ -2973,7 +2973,7 @@
                   <div class="pt-8 text-center">
                     <button
                       type="button"
-                      @click="largeModalSizePreview = false"
+                      @click="finalContribute()"
                       class="btn btn-primary w-full"
                       :disabled="inSufficientButtonStatus"
                     >
@@ -3674,7 +3674,7 @@
             <div class="pt-8 text-center">
               <button
                 type="button"
-                @click="largeModalSizePreview = false"
+                @click="finalContribute()"
                 class="btn btn-primary w-full"
                 :disabled="inSufficientButtonStatus"
               >
@@ -4275,7 +4275,7 @@ export default {
       currentModalAmount: "",
       currentModalName: "",
       currentModalSymbol: "",
-      inSufficientButtonStatus: true,
+      inSufficientButtonStatus: false,
     };
   },
 
@@ -4326,32 +4326,37 @@ export default {
     },
 
     async contribute(id, name, symbol) {
-      // if(!this.payload[id]) {
-      //   return
-      // }
       console.log(id, this.payload);
       this.currentModalId = id;
       this.currentModalAmount = this.payload[id];
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.largeModalSizePreview = true;
+    },
 
-      // let contract = contractABI();
-      // let approveToken = approveContract();
-      // let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
-      // let token = getTokenAddres.lpToken;
-      // let approveNow = await approveToken.methods
-      //   .approve(token, BigInt(this.payload[id] * 10 ** 18))
-      //   .send({ from: localStorage.getItem("address") })
-      //   .then((receipt) => {
-      //     console.log(receipt);
-      //   });
-      // let callContract = await contract.methods
-      //   .stakeTokens(id - 1, BigInt(this.payload[id] * 10 ** 18))
-      //   .send({ from: localStorage.getItem("address") })
-      //   .then((receipt) => {
-      //     console.log(receipt);
-      //   });
+    async finalContribute() {
+      let contract = contractABI();
+      let approveToken = approveContract();
+      let getTokenAddres = await contract.methods
+        .poolInfo(this.currentModalId - 1)
+        .call();
+      let token = getTokenAddres.lpToken;
+      console.log(token);
+      let approveNow = await approveToken.methods
+        .approve(token, BigInt(this.currentModalAmount * 10 ** 18))
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+        });
+      let callContract = await contract.methods
+        .stakeTokens(
+          this.currentModalId - 1,
+          BigInt(this.currentModalAmount * 10 ** 18)
+        )
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+        });
     },
 
     async reversePool() {
