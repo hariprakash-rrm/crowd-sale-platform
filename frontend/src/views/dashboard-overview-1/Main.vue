@@ -247,6 +247,7 @@
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
             <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
+
               <!-- <a href="#" @click="superlargeModalSizePreview = true"> -->
               <div v-show="tab === 1">
                 <table class="table table-report" v-if="getDeals">
@@ -675,7 +676,7 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      :disabled="indufficientButtonStatus"
+                      :disabled="inSufficientButtonStatus"
                     >
                       Final Contribute
                     </button>
@@ -1825,7 +1826,7 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                     :disabled="indufficientButtonStatus"
+                      :disabled="inSufficientButtonStatus"
                     >
                       Final Contribute
                     </button>
@@ -2974,7 +2975,7 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                     :disabled="indufficientButtonStatus"
+                      :disabled="inSufficientButtonStatus"
                     >
                       Final Contribute
                     </button>
@@ -3675,7 +3676,7 @@
                 type="button"
                 @click="largeModalSizePreview = false"
                 class="btn btn-primary w-full"
-                :disabled="indufficientButtonStatus"
+                :disabled="inSufficientButtonStatus"
               >
                 Final Contribute
               </button>
@@ -4274,7 +4275,7 @@ export default {
       currentModalAmount: "",
       currentModalName: "",
       currentModalSymbol: "",
-      indufficientButtonStatus:true,
+      inSufficientButtonStatus: true,
     };
   },
 
@@ -4334,7 +4335,7 @@ export default {
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.largeModalSizePreview = true;
-      
+
       // let contract = contractABI();
       // let approveToken = approveContract();
       // let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
