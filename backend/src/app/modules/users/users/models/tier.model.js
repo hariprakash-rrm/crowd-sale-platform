@@ -9,13 +9,14 @@ const ObjectId = Schema.ObjectId;
 const tierSchema = Schema({
     tierName: {
         type: String,
+        unique: true,
     },
     tierValue: {
         type: Number,
     },
     tierStatus: {
         type : Boolean,
-        default: false
+        default: true
     }
 }, {
     timestamps: true

@@ -5,7 +5,7 @@ const responseModule = require("../../../../../config/response");
 export const createTier = async(req, res)=>{
     try {
         let tier = new Tier(req.body);
-        tier.save().exec();
+        tier.save();
         return responseModule.successResponse(res, {
             success: 1,
             message: "Tier created successfully",

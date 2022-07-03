@@ -24,7 +24,7 @@ export const createOrUpdatePools = async (data) => {
       return true;
     } else {
       const pools = new Pools(data);
-      pools.save().exec();
+      pools.save();
       return true;
     }
   } catch (error) {}
