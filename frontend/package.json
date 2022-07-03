@@ -42,6 +42,7 @@
     "tom-select": "^1.7.5",
     "vue": "^3.2.25",
     "vue-router": "4",
+    "vue2-timepicker": "^1.1.6",
     "web3": "^1.7.4",
     "web3-core-requestmanager": "^1.7.4",
     "web3-eth-contract": "^1.7.4",
