@@ -11,6 +11,7 @@ import UpdateProfile from "../views/update-profile/Main.vue";
 import UserLayout from "../views/users-layout-1/Main.vue";
 import SingleDeal from "../views/profile-overview-2/Main.vue";
 import Admin from "../views/accordion/Main.vue"
+import Notification from "../views/profile-overview-2/Main.vue"
 
 const routes = [
     {
@@ -76,6 +77,11 @@ const routes = [
                 path: "/admin",
                 name: "accordion",
                 component: Admin,
+            },
+            {
+                path: "/notification",
+                name: "profile-overview-1",
+                component: Notification,
             },
             
         ]
