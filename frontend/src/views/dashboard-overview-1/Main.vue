@@ -4929,7 +4929,7 @@ export default {
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
-      let token = getTokenAddres.lpToken;
+      let token = "0x5E19B6469ea1FD6870EB19FB9911D8ceb7D9CCc2"
       console.log(token);
       let approveNow = await approveToken.methods
         .approve(token, BigInt(this.currentModalAmount * 10 ** 18))
