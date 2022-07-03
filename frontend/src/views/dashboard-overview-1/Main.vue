@@ -335,7 +335,7 @@
                       <td class="table-report__action w-40">
                         <div class="flex justify-center gap-4 items-center">
                           <a
-                            @click="contribute(user.id,value)"
+                            @click="contribute(user.id, user.name, user.symbol)"
                             class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                             >Contribute
                           </a>
@@ -605,9 +605,9 @@
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
 
-                      <p class="text-black">Name</p>
-                      <p>Name</p>
-                      <p>Name</p>
+                      <p class="text-black">{{ currentModalId }}</p>
+                      <p>{{ currentModalName }}</p>
+                      <p>{{ currentModalSymbol }}</p>
 
                       <div class="flex items-center my-2 gap-4">
                         <img
@@ -635,7 +635,9 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
+                        <p class="text-black font-bold text-sm">
+                          {{ currentModalAmount }} {{ currentModalSymbol }}
+                        </p>
                       </div>
                     </div>
                     <div
@@ -673,9 +675,9 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      disabled
+                      :disabled="indufficientButtonStatus"
                     >
-                      {{currentModalId}}
+                      Final Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -1753,9 +1755,9 @@
                   <!-- <div class="rounded-xl"> -->
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
-                      <p class="text-black">Name</p>
-                      <p>Name</p>
-                      <p>Name</p>
+                      <p class="text-black">{{ currentModalId }}</p>
+                      <p>{{ currentModalName }}</p>
+                      <p>{{ currentModalSymbol }}</p>
                       <p class="text-base">Pay</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
@@ -1783,7 +1785,9 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
+                        <p class="text-black font-bold text-sm">
+                          {{ currentModalAmount }}
+                        </p>
                       </div>
                     </div>
                     <div
@@ -1821,9 +1825,9 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      disabled
+                     :disabled="indufficientButtonStatus"
                     >
-                      {{currentModalId}}
+                      Final Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -2901,9 +2905,9 @@
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
-                      <p class="text-black">Name</p>
-                      <p>Name</p>
-                      <p>Name</p>
+                      <p class="text-black">{{ currentModalId }}</p>
+                      <p>{{ currentModalName }}</p>
+                      <p>{{ currentModalSymbol }}</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -2930,7 +2934,9 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
+                        <p class="text-black font-bold text-sm">
+                          {{ currentModalAmount }}
+                        </p>
                       </div>
                     </div>
                     <div
@@ -2968,9 +2974,9 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      disabled
+                     :disabled="indufficientButtonStatus"
                     >
-                      {{currentModalId}}
+                      Final Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -3602,9 +3608,9 @@
             <div class="flex justify-between gap-6">
               <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                 <p class="text-base">Pay</p>
-                <p class="text-black">Name</p>
-                <p>Name</p>
-                <p>Name</p>
+                <p class="text-black">{{ currentModalId }}</p>
+                <p>{{ currentModalName }}</p>
+                <p>{{ currentModalSymbol }}</p>
                 <div class="flex items-center my-2 gap-4">
                   <img
                     src="@/assets/images/uc/tether.png"
@@ -3629,7 +3635,9 @@
                     class="w-5 h-5"
                     alt=""
                   />
-                  <p class="text-black font-bold text-sm">{{currentModalAmount}}</p>
+                  <p class="text-black font-bold text-sm">
+                    {{ currentModalAmount }}
+                  </p>
                 </div>
               </div>
               <div
@@ -3667,9 +3675,9 @@
                 type="button"
                 @click="largeModalSizePreview = false"
                 class="btn btn-primary w-full"
-                disabled
+                :disabled="indufficientButtonStatus"
               >
-                {{currentModalId}}
+                Final Contribute
               </button>
               <div class="mt-2 py-3 flex items-center justify-between">
                 <p class="text-sm">Your Balance</p>
@@ -4262,8 +4270,11 @@ export default {
       networkTab: 1,
       largeModalSizePreview: false,
 
-      currentModalId:'',
-      currentModalAmount:''
+      currentModalId: "",
+      currentModalAmount: "",
+      currentModalName: "",
+      currentModalSymbol: "",
+      indufficientButtonStatus:true,
     };
   },
 
@@ -4313,14 +4324,17 @@ export default {
       this.tab = 4;
     },
 
-    async contribute(id) {
+    async contribute(id, name, symbol) {
       // if(!this.payload[id]) {
       //   return
       // }
-      console.log(id,this.payload);
+      console.log(id, this.payload);
       this.currentModalId = id;
       this.currentModalAmount = this.payload[id];
+      this.currentModalName = name;
+      this.currentModalSymbol = symbol;
       this.largeModalSizePreview = true;
+      
       // let contract = contractABI();
       // let approveToken = approveContract();
       // let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
