@@ -30,6 +30,25 @@ export const createOrUpdatePools = async (data) => {
   } catch (error) {}
 };
 
+export const createPool = async (req, res)=>{
+  try {
+    const pools = new Pools(req.body);
+    pools.save();
+    return responseModule.successResponse(res, {
+      success: 1,
+      message: "Pools created successfully",
+      data: pools,
+    });
+
+  } catch (error) {
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: error.message || 'Something went wrong, Please try again',
+      data: {},
+    });
+  }
+}
+
 export const getPoolsList = async(req, res)=>{
   try {
     
