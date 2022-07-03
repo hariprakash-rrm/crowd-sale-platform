@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="intro-y flex items-center mt-8">
     <!-- <h2 class="text-lg font-medium mr-auto">Accordion</h2> -->
   </div>
@@ -516,27 +517,46 @@
                                     placeholder=""
                                   />
                                   <label for="ip-token" class="input__label--accordion"
-                                    >Ip Token</label
+                                    >lp Token</label
                                   >
                               </div>
                               <div class="relative mb-6">
-                                  <input
-                                    type="text"
-                                    id="start-time"
-                                    class="input__field--accordion peer"
-                                    placeholder=""
-                                  />
+                                  
+                                  <Litepicker
+                                        v-model="date"
+                                        :options="{
+                                          autoApply: false,
+                                          showWeekNumbers: true,
+                                          dropdowns: {
+                                            minYear: 1990,
+                                            maxYear: null,
+                                            months: true,
+                                            years: true,
+                                          },
+                                        }"
+                                        class="input__field--accordion peer"
+                                      />
                                   <label for="start-time" class="input__label--accordion"
                                     >Start Time</label
                                   >
                               </div>
+          
                               <div class="relative mb-6">
-                                  <input
-                                    type="text"
-                                    id="end-time"
-                                    class="input__field--accordion peer"
-                                    placeholder=""
-                                  />
+                                 <Litepicker
+                                        v-model="date"
+                                        :options="{
+                                          autoApply: false,
+                                          showWeekNumbers: true,
+                                          dropdowns: {
+                                            minYear: 1990,
+                                            maxYear: null,
+                                            months: true,
+                                            years: true,
+                                          },
+                                        }"
+                                        class="input__field--accordion peer"
+                                      />
+                                 
                                   <label for="end-time" class="input__label--accordion"
                                     >End Time</label
                                   >
@@ -919,10 +939,14 @@
     <!-- END: Basic Accordion -->
     
   </div>
+  </div>
 </template>
 
 <script>
+import VueTimepicker from 'vue2-timepicker'
+
   export default {
+    components: { VueTimepicker },
     data() {
       return {
         tab: 2

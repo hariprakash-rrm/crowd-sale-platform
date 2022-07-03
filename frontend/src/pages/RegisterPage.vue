@@ -23,8 +23,10 @@
         </div>
         <!-- END: Login Info -->
         <!-- BEGIN: Login Form -->
-        <div class="h-screen xl:h-auto flex  flex-col py-5 xl:py-0 my-10 xl:my-0">
-            <a href="" class="logo -intro-x lg:hidden">
+        <div
+          class="h-screen xl:h-auto flex flex-col py-5 xl:py-0 my-10 xl:my-0"
+        >
+          <a href="" class="logo -intro-x lg:hidden">
             <img
               alt="unreal-capital"
               class="logo__image w-32 mx-auto"
@@ -251,8 +253,8 @@ export default {
         userName: this.user.userName,
       };
       this.userRegistration(finalPayload).then((res) => {
-          let { response, data } = res["data"] || res.response;
-          if (response == 200 || data?.response == 200) {
+        let { response, data } = res["data"] || res.response;
+        if (response == 200 || data?.response == 200) {
           this.showToast("success", "Please check your email!");
         } else {
           this.showToast("error", data.message);
