@@ -497,6 +497,17 @@
                             <AccordionPanel
                               class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                             >
+                             <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="image-url"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="image-url" class="input__label--accordion"
+                                    >Product Url</label
+                                  >
+                              </div>
                               <div class="relative mb-6">
                                   <input
                                     type="text"
@@ -552,6 +563,75 @@
                                     >Minimum Contribuition</label
                                   >
                               </div>
+                               <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="roadmap"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="roadmap" class="input__label--accordion"
+                                    >Roadmap Url</label
+                                  >
+                              </div>
+                               <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="team"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="team" class="input__label--accordion"
+                                    >Team Url</label
+                                  >
+                              </div>
+                               <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="vcs"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="vcs" class="input__label--accordion"
+                                    >VCS Url</label
+                                  >
+                              </div>
+                              
+                              <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="facebook-url"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="facebook-url" class="input__label--accordion"
+                                    >Facebook Url</label
+                                  >
+                              </div>
+                             
+                              <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="instagram-url"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="instagram-url" class="input__label--accordion"
+                                    >Instagram Url</label
+                                  >
+                              </div>
+                              <div class="relative mb-6">
+                                  <input
+                                    type="url"
+                                    id="linkedin-url"
+                                    class="input__field--accordion peer"
+                                    placeholder=""
+                                  />
+                                  <label for="linkedin-url" class="input__label--accordion"
+                                    >Linkedin Url</label
+                                  >
+                              </div>
+                             
                               <a
                                   class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                                 >

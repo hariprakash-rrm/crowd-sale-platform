@@ -84,4 +84,5 @@ export const useAuthUserStore = defineStore("authUserStore", {
             })
         }
     },
+    
 });

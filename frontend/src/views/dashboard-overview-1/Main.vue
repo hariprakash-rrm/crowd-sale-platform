@@ -62,17 +62,17 @@
     <!-- END: General Report -->
 
     <!-- BEGIN: Deals Info -->
-      <div class="intro-y col-span-12 mt-12">
-        <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
-        <p class="text-lg text-slate-500 mt-2">Available Deals</p>
-      </div>
+    <div class="intro-y col-span-12 mt-12">
+      <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
+      <p class="text-lg text-slate-500 mt-2">Available Deals</p>
+    </div>
     <div class="intro-y box col-span-12">
       <!-- BEGIN: NETWORK TAB -->
       <div
         class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 items-center justify-between mb-4 lg:mb-8"
       >
         <ul
-          class="nav nav-link-tabs w-full lg:w-2/4  rounded-md mx-auto"
+          class="nav nav-link-tabs w-full lg:w-2/4 rounded-md mx-auto"
           role="tablist"
         >
           <li
@@ -100,7 +100,7 @@
             role="presentation"
           >
             <button
-              class="nav-link text-sm lg:text-base w-full  py-5 px-2"
+              class="nav-link text-sm lg:text-base w-full py-5 px-2"
               data-tw-toggle="pill"
               data-tw-target="#inactive-network"
               type="button"
@@ -117,7 +117,7 @@
             role="presentation"
           >
             <button
-              class="nav-link text-sm lg:text-base w-full  py-5 px-2"
+              class="nav-link text-sm lg:text-base w-full py-5 px-2"
               data-tw-toggle="pill"
               data-tw-target="#inactive-network"
               type="button"
@@ -245,110 +245,108 @@
             </div>
             <!-- END: SINGLE NETWORK TAB -->
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div
-              class="intro-y rounded-xl overflow-auto lg:overflow-visible"
-            >
+            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
-              <a href="#" @click="superlargeModalSizePreview = true">
-                <div v-show="tab === 1">
-                  <table class="table table-report">
-                    <thead>
-                      <tr>
-                        <th class="whitespace-nowrap">PRODUCT</th>
-                        <th class="text-center whitespace-nowrap">POOL ID</th>
-                        <th class="whitespace-nowrap w-72">NAME</th>
-                        <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                        <th class="text-center whitespace-nowrap">
-                          PERCENTAGE
-                        </th>
-                        <th class="text-center whitespace-nowrap">ENDTIME</th>
-                        <th class="text-center whitespace-nowrap">
-                          ENTER YOUR CONTRIBUTION
-                        </th>
-                        <th class="text-center whitespace-nowrap">
-                          CONTRIBUTION
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        v-for="pool in poolsOngoing"
-                        :key="pool.id"
-                        class="intro-x zoom-in"
+              <!-- <a href="#" @click="superlargeModalSizePreview = true"> -->
+              <div v-show="tab === 1">
+                <table class="table table-report" v-if="getDeals">
+                  <thead>
+                    <tr>
+                      <th class="whitespace-nowrap">PRODUCT</th>
+                      <th class="text-center whitespace-nowrap">POOL ID</th>
+                      <th class="whitespace-nowrap w-72">NAME</th>
+                      <th class="text-center whitespace-nowrap">SYMBOL</th>
+
+                      <th class="text-center whitespace-nowrap">PERCENTAGE</th>
+                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">
+                        ENTER YOUR CONTRIBUTION
+                      </th>
+                      <th class="text-center whitespace-nowrap">
+                        CONTRIBUTION
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr
+                      v-for="user in poolsOngoing"
+                      :key="user.id"
+                      class="intro-x zoom-in"
+                    >
+                      <td
+                        class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
-                        <td class="w-20  border-l-4 border-primary dark:border-primary pl-4">
-                          <div class="flex">
-                            <div class="w-16 h-16 image-fit zoom-in">
-                              <Tippy
-                                tag="img"
-                                alt="Midone Tailwind HTML Admin Template"
-                                class="rounded-md"
-                                src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                                content=""
-                              />
+                        <div class="flex">
+                          <div class="w-16 h-16 image-fit zoom-in">
+                            <Tippy
+                              tag="img"
+                              alt="Midone Tailwind HTML Admin Template"
+                              class="rounded-md"
+                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                              content=""
+                            />
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">{{ user.id }}</td>
+                      <td>
+                        <a
+                          href=""
+                          class="text-lg font-semibold capitalize whitespace-nowrap"
+                          >{{ user.name }}</a
+                        >
+                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                          <div class="flex gap-4 text-slate-500 text-xs">
+                            <div class="mr-auto font-semibold">
+                              Total contribution
+                            </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
                             </div>
                           </div>
-                        </td>
-                        <td class="text-center">{{ pool.id }}</td>
-                        <td>
-                          <a
-                            href=""
-                            class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ pool.name }}</a
-                          >
-                          <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                            <div class="flex gap-4 text-slate-500 text-xs">
-                              <div class="mr-auto font-semibold">
-                                Total contribution
-                              </div>
-                              <div>
-                                {{ pool.currentlyStaked }} /
-                                {{ pool.poolStakableAmount }}
-                              </div>
-                            </div>
-                            <div class="progress h-1 mt-2">
-                              <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${pool.currentPercentage}%`"
-                              ></div>
-                            </div>
+                          <div class="progress h-1 mt-2">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
-                        </td>
+                        </div>
+                      </td>
 
-                        <td class="text-center">{{ pool.symbol }}</td>
-                        <td class="text-center">
-                          {{ pool.currentPercentage }}%
-                        </td>
-                        <td class="text-center">{{ pool.humanEndTime }}</td>
-                        <td class="text-center">
-                          <input
-                            @input="handleInput(pool.id, $event)"
-                            :value="payload[pool.id]"
-                            type="number"
-                            class="form-control w-56 rounded-md input--rounded box pr-10"
-                            placeholder="Enter Amount..."
-                            :min="1"
-                          />
-                        </td>
-                        <td class="table-report__action w-40">
-                          <div class="flex justify-center gap-4 items-center">
-                            <a
-                              @click="largeModalSizePreview = true"
-                              class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                              >Contribute
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </a>
+                      <td class="text-center">{{ user.symbol }}</td>
+                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">
+                        <input
+                          @input="handleInput(user.id, $event)"
+                          :value="payload[user.id]"
+                          type="number"
+                          class="form-control w-56 rounded-md input--rounded box pr-10"
+                          placeholder="Enter Amount..."
+                          :min="1"
+                        />
+                      </td>
+                      <td class="table-report__action w-40">
+                        <div class="flex justify-center gap-4 items-center">
+                          <a
+                            @click="contribute(user.id, user.name, user.symbol)"
+                            class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
+                            >Contribute
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- </a> -->
               <!-- END: TAB CONTENT ONGOING -->
 
               <!-- BEGIN: TAB CONTENT UPCOMING -->
@@ -398,22 +396,28 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">
+                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                      </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -432,7 +436,7 @@
                       <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                       <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
+                        TOTAL CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
                     </tr>
@@ -443,7 +447,9 @@
                       :key="user.id"
                       class="intro-x zoom-in"
                     >
-                      <td class="w-20 border-l-[3px] border-primary dark:border-primary pl-4">
+                      <td
+                        class="w-20 border-l-[3px] border-primary dark:border-primary pl-4"
+                      >
                         <div class="flex">
                           <div class="w-16 h-16 image-fit zoom-in">
                             <Tippy
@@ -468,15 +474,19 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
@@ -510,7 +520,6 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -544,15 +553,19 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
@@ -560,7 +573,7 @@
 
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center">{{ user.status }}</td>
+                      <td class="text-center">{{ user.poolsStatus }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -588,9 +601,15 @@
 
                 <ModalBody class="p-6">
                   <!-- <div class="rounded-xl"> -->
+
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
+
+                      <p class="text-black">{{ currentModalId }}</p>
+                      <p>{{ currentModalName }}</p>
+                      <p>{{ currentModalSymbol }}</p>
+
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -617,7 +636,9 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">1 USDT</p>
+                        <p class="text-black font-bold text-sm">
+                          {{ currentModalAmount }} {{ currentModalSymbol }}
+                        </p>
                       </div>
                     </div>
                     <div
@@ -655,9 +676,9 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      disabled
+                      :disabled="inSufficientButtonStatus"
                     >
-                      Contribute 5.05 USDT
+                      Final Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -1377,9 +1398,7 @@
             </div>
             <!-- END: SINGLE NETWORK TAB -->
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div
-              class="intro-y rounded-xl overflow-auto lg:overflow-visible"
-            >
+            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
               <a href="#" @click="superlargeModalSizePreview = true">
                 <div v-show="tab === 1">
@@ -1405,11 +1424,13 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="pool in poolsOngoing"
-                        :key="pool.id"
+                        v-for="user in poolsOngoing"
+                        :key="user.id"
                         class="intro-x zoom-in"
                       >
-                        <td class="w-20  border-l-4 border-primary dark:border-primary pl-4">
+                        <td
+                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        >
                           <div class="flex">
                             <div class="w-16 h-16 image-fit zoom-in">
                               <Tippy
@@ -1422,12 +1443,12 @@
                             </div>
                           </div>
                         </td>
-                        <td class="text-center">{{ pool.id }}</td>
+                        <td class="text-center">{{ user.id }}</td>
                         <td>
                           <a
                             href=""
                             class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ pool.name }}</a
+                            >{{ user.name }}</a
                           >
                           <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                             <div class="flex gap-4 text-slate-500 text-xs">
@@ -1435,8 +1456,8 @@
                                 Total contribution
                               </div>
                               <div>
-                                {{ pool.currentlyStaked }} /
-                                {{ pool.poolStakableAmount }}
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
                               </div>
                             </div>
                             <div class="progress h-1 mt-2">
@@ -1446,21 +1467,21 @@
                                 aria-valuenow="0"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                :style="`width:${pool.currentPercentage}%`"
+                                :style="`width:${user.currentPercentage}%`"
                               ></div>
                             </div>
                           </div>
                         </td>
 
-                        <td class="text-center">{{ pool.symbol }}</td>
+                        <td class="text-center">{{ user.symbol }}</td>
                         <td class="text-center">
-                          {{ pool.currentPercentage }}%
+                          {{ user.currentPercentage }}%
                         </td>
-                        <td class="text-center">{{ pool.humanEndTime }}</td>
+                        <td class="text-center">{{ user.humanEndTime }}</td>
                         <td class="text-center">
                           <input
-                            @input="handleInput(pool.id, $event)"
-                            :value="payload[pool.id]"
+                            @input="handleInput(user.id, $event)"
+                            :value="payload[user.id]"
                             type="number"
                             class="form-control w-56 rounded-md input--rounded box pr-10"
                             placeholder="Enter Amount..."
@@ -1530,22 +1551,28 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">
+                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                      </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -1564,7 +1591,7 @@
                       <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                       <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
+                        TOTAL CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
                     </tr>
@@ -1600,15 +1627,19 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
@@ -1642,7 +1673,6 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -1676,15 +1706,19 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
@@ -1722,6 +1756,9 @@
                   <!-- <div class="rounded-xl"> -->
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                      <p class="text-black">{{ currentModalId }}</p>
+                      <p>{{ currentModalName }}</p>
+                      <p>{{ currentModalSymbol }}</p>
                       <p class="text-base">Pay</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
@@ -1749,7 +1786,9 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">1 USDT</p>
+                        <p class="text-black font-bold text-sm">
+                          {{ currentModalAmount }}
+                        </p>
                       </div>
                     </div>
                     <div
@@ -1787,9 +1826,9 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      disabled
+                      :disabled="inSufficientButtonStatus"
                     >
-                      Contribute 5.05 USDT
+                      Final Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -2399,7 +2438,7 @@
 
         <!-- BEGIN: TAB CONTENT POLYGON -->
         <div v-show="networkTab === 3">
-         <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
+          <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
           <div class="mx-8 pb-8">
             <!-- BEGIN: SINGLE NETWORK TAB -->
             <div
@@ -2508,9 +2547,7 @@
             </div>
             <!-- END: SINGLE NETWORK TAB -->
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div
-              class="intro-y rounded-xl overflow-auto lg:overflow-visible"
-            >
+            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
               <a href="#" @click="superlargeModalSizePreview = true">
                 <div v-show="tab === 1">
@@ -2536,11 +2573,13 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="pool in poolsOngoing"
-                        :key="pool.id"
+                        v-for="user in poolsOngoing"
+                        :key="user.id"
                         class="intro-x zoom-in"
                       >
-                        <td class="w-20  border-l-4 border-primary dark:border-primary pl-4">
+                        <td
+                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        >
                           <div class="flex">
                             <div class="w-16 h-16 image-fit zoom-in">
                               <Tippy
@@ -2553,12 +2592,12 @@
                             </div>
                           </div>
                         </td>
-                        <td class="text-center">{{ pool.id }}</td>
+                        <td class="text-center">{{ user.id }}</td>
                         <td>
                           <a
                             href=""
                             class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ pool.name }}</a
+                            >{{ user.name }}</a
                           >
                           <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                             <div class="flex gap-4 text-slate-500 text-xs">
@@ -2566,8 +2605,8 @@
                                 Total contribution
                               </div>
                               <div>
-                                {{ pool.currentlyStaked }} /
-                                {{ pool.poolStakableAmount }}
+                                {{ user.currentlyStaked }} /
+                                {{ user.poolStakableAmount }}
                               </div>
                             </div>
                             <div class="progress h-1 mt-2">
@@ -2577,21 +2616,21 @@
                                 aria-valuenow="0"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                :style="`width:${pool.currentPercentage}%`"
+                                :style="`width:${user.currentPercentage}%`"
                               ></div>
                             </div>
                           </div>
                         </td>
 
-                        <td class="text-center">{{ pool.symbol }}</td>
+                        <td class="text-center">{{ user.symbol }}</td>
                         <td class="text-center">
-                          {{ pool.currentPercentage }}%
+                          {{ user.currentPercentage }}%
                         </td>
-                        <td class="text-center">{{ pool.humanEndTime }}</td>
+                        <td class="text-center">{{ user.humanEndTime }}</td>
                         <td class="text-center">
                           <input
-                            @input="handleInput(pool.id, $event)"
-                            :value="payload[pool.id]"
+                            @input="handleInput(user.id, $event)"
+                            :value="payload[user.id]"
                             type="number"
                             class="form-control w-56 rounded-md input--rounded box pr-10"
                             placeholder="Enter Amount..."
@@ -2661,22 +2700,28 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
                       </td>
 
                       <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">
+                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                      </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
                   </tbody>
@@ -2695,7 +2740,7 @@
                       <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                       <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
+                        TOTAL CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
                     </tr>
@@ -2731,15 +2776,19 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
@@ -2773,7 +2822,6 @@
                         MAXIMUM CONTRIBUTION
                       </th>
                       <th class="text-center whitespace-nowrap">STATUS</th>
-                    
                     </tr>
                   </thead>
                   <tbody>
@@ -2807,15 +2855,19 @@
                             <div class="mr-auto font-semibold">
                               Total contribution
                             </div>
-                            <div>20%</div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
+                            </div>
                           </div>
                           <div class="progress h-1 mt-2">
                             <div
-                              class="progress-bar w-1/4 bg-primary"
+                              class="progress-bar bg-primary"
                               role="progressbar"
                               aria-valuenow="0"
                               aria-valuemin="0"
                               aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
                             ></div>
                           </div>
                         </div>
@@ -2854,6 +2906,9 @@
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
+                      <p class="text-black">{{ currentModalId }}</p>
+                      <p>{{ currentModalName }}</p>
+                      <p>{{ currentModalSymbol }}</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -2880,7 +2935,9 @@
                           class="w-5 h-5"
                           alt=""
                         />
-                        <p class="text-black font-bold text-sm">1 USDT</p>
+                        <p class="text-black font-bold text-sm">
+                          {{ currentModalAmount }}
+                        </p>
                       </div>
                     </div>
                     <div
@@ -2918,9 +2975,9 @@
                       type="button"
                       @click="largeModalSizePreview = false"
                       class="btn btn-primary w-full"
-                      disabled
+                      :disabled="inSufficientButtonStatus"
                     >
-                      Contribute 5.05 USDT
+                      Final Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -3552,6 +3609,9 @@
             <div class="flex justify-between gap-6">
               <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                 <p class="text-base">Pay</p>
+                <p class="text-black">{{ currentModalId }}</p>
+                <p>{{ currentModalName }}</p>
+                <p>{{ currentModalSymbol }}</p>
                 <div class="flex items-center my-2 gap-4">
                   <img
                     src="@/assets/images/uc/tether.png"
@@ -3576,7 +3636,9 @@
                     class="w-5 h-5"
                     alt=""
                   />
-                  <p class="text-black font-bold text-sm">1 USDT</p>
+                  <p class="text-black font-bold text-sm">
+                    {{ currentModalAmount }}
+                  </p>
                 </div>
               </div>
               <div
@@ -3614,9 +3676,9 @@
                 type="button"
                 @click="largeModalSizePreview = false"
                 class="btn btn-primary w-full"
-                disabled
+                :disabled="inSufficientButtonStatus"
               >
-                Contribute 5.05 USDT
+                Final Contribute
               </button>
               <div class="mt-2 py-3 flex items-center justify-between">
                 <p class="text-sm">Your Balance</p>
@@ -4187,9 +4249,10 @@
 
 <script>
 import { ref, provide } from "vue";
+import { useWeb3DealsStore } from "@/stores/web3Deals.js";
+import { mapActions, mapGetters } from "pinia";
 import Web3 from "web3";
 import { contractABI, approveContract } from "@/helpers/helper.js";
-import { fetchPools } from "@/service/auth.js";
 const largeModalSizePreview = ref(false);
 const superlargeModalSizePreview = ref(false);
 
@@ -4200,27 +4263,40 @@ export default {
   data() {
     return {
       poolsOngoing: [],
-      reversePoolsOngoing:[],
       poolsUpcoming: [],
-      reversePoolsUpcoming:[],
       poolsCompleted: [],
-      reversePoolsCompleted:[],
       poolsMyDeal: [],
-      reversePoolsMyDeal:[],
       payload: {},
       tab: 1,
       networkTab: 1,
       largeModalSizePreview: false,
+
+      currentModalId: "",
+      currentModalAmount: "",
+      currentModalName: "",
+      currentModalSymbol: "",
+      inSufficientButtonStatus: true,
     };
   },
 
   async mounted() {
-    await this.loadFromContract();
-    await this.pools();
-    await this.reversePool()
+    await this.fetchDeals();
+    this.reversePool();
+  },
+  computed: {
+    ...mapGetters(useWeb3DealsStore, ["getDealsData"]),
+    getDeals() {
+      this.poolsOngoing = this.getDealsData.poolsOngoing || [];
+      this.poolsUpcoming = this.getDealsData.poolsUpcoming || [];
+      this.poolsCompleted = this.getDealsData.poolsCompleted || [];
+      this.poolsMyDeal = this.getDealsData.poolsMyDeal || [];
+      console.log(this.getDealsData);
+      return true;
+    },
   },
 
   methods: {
+    ...mapActions(useWeb3DealsStore, ["fetchDeals"]),
     handleInput(id, event) {
       let value = event.target.value;
       this.payload[id] = value;
@@ -4248,88 +4324,42 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-    async loadFromContract() {
-      let contract = contractABI();
-      let poolLength = await contract.methods
-        .poolLength()
-        .call({ from: localStorage.getItem("address") });
 
-      let i;
-
-      for (i = 0; i < poolLength; i++) {
-        let set = await contract.methods
-          .poolInfo(i)
-          .call({ from: localStorage.getItem("address") });
-        var myJSON = JSON.stringify(set);
-        localStorage.setItem("pools", myJSON);
-        // const date = new Date(set.endTime * 1000);
-        var currentlyStaked = await contract.methods
-          .getTotalStakedInPool(i)
-          .call();
-        var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
-        set.humanEndTime = newDate;
-        set.poolStakableAmount = set.poolStakableAmount / 10 ** 18;
-        set.currentlyStaked = currentlyStaked / 10 ** 18;
-        var currentPercentage =
-          (set.currentlyStaked * 100) / set.poolStakableAmount;
-        set.currentPercentage = currentPercentage;
-        var stakedAmount = await contract.methods
-          .getUserStakedTokenInPool(i, localStorage.getItem("address"))
-          .call();
-        // await this.pools.push(set);
-        var currentTime = await Math.floor(Date.now() / 1000);
-        console.log(currentTime);
-        console.log(set.endTime);
-        if (currentTime > set.endTime && currentTime > set.startTime) {
-          set.status = "Completed"
-          this.poolsCompleted.push(set);
-          console.log("completed");
-        } else if (currentTime < set.startTime && currentTime < set.endTime) {
-          set.status = "upComing"
-          this.poolsUpcoming.push(set);
-          console.log("upcoming");
-        } else if (currentTime < set.endTime && currentTime > set.startTime) {
-          set.status = "Ongoing"
-          this.poolsOngoing.push(set);
-          console.log("Ongoing");
-        }
-        if (stakedAmount > 0) {
-          this.poolsMyDeal.push(set);
-        }
-      }
-    },
-    async contribute(id) {
+    async contribute(id, name, symbol) {
       // if(!this.payload[id]) {
       //   return
       // }
-      let contract = contractABI();
-      let approveToken = approveContract();
-      let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
-      let token = getTokenAddres.lpToken;
-      let approveNow = await approveToken.methods
-        .approve(token, BigInt(this.payload[id] * 10 ** 18))
-        .send({ from: localStorage.getItem("address") })
-        .then((receipt) => {
-          console.log(receipt);
-        });
-      let callContract = await contract.methods
-        .stakeTokens(id - 1, BigInt(this.payload[id] * 10 ** 18))
-        .send({ from: localStorage.getItem("address") })
-        .then((receipt) => {
-          console.log(receipt);
-        });
+      console.log(id, this.payload);
+      this.currentModalId = id;
+      this.currentModalAmount = this.payload[id];
+      this.currentModalName = name;
+      this.currentModalSymbol = symbol;
+      this.largeModalSizePreview = true;
+
+      // let contract = contractABI();
+      // let approveToken = approveContract();
+      // let getTokenAddres = await contract.methods.poolInfo(id - 1).call();
+      // let token = getTokenAddres.lpToken;
+      // let approveNow = await approveToken.methods
+      //   .approve(token, BigInt(this.payload[id] * 10 ** 18))
+      //   .send({ from: localStorage.getItem("address") })
+      //   .then((receipt) => {
+      //     console.log(receipt);
+      //   });
+      // let callContract = await contract.methods
+      //   .stakeTokens(id - 1, BigInt(this.payload[id] * 10 ** 18))
+      //   .send({ from: localStorage.getItem("address") })
+      //   .then((receipt) => {
+      //     console.log(receipt);
+      //   });
     },
-    async pools() {
-      let v = await fetchPools.fetchPoolsDetails().then((res) => {
-        console.log(v);
-      });
+
+    async reversePool() {
+      this.poolsOngoing = this.poolsOngoing.reverse();
+      this.poolsUpcoming = this.poolsUpcoming.reverse();
+      this.poolsCompleted = this.poolsCompleted.reverse();
+      this.poolsMyDeal = this.poolsMyDeal.reverse();
     },
-    async reversePool(){
-      this.reversePoolsOngoing = this.poolsOngoing.reverse()
-      this.reversePoolsUpcoming = this.poolsUpcoming.reverse()
-      this.reversePoolsCompleted = this.poolsCompleted.reverse()
-      this.reversePoolsMyDeal = this.poolsMyDeal.reverse()
-    }
   },
 };
 
