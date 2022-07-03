@@ -1401,15 +1401,15 @@
               <!-- BEGIN: CONTRIBUTE MODAL -->
               <Modal
                 size="modal-lg"
-                :show="largeModalSizePreview"
-                @hidden="largeModalSizePreview = false"
+                :show="bscContributeModal"
+                @hidden="bscContributeModal = false"
               >
                 <div
                   class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
                 >
                   <div class="text-xl font-semibold py-5">Contribution</div>
                   <a
-                    @click="largeModalSizePreview = false"
+                    @click="bscContributeModal = false"
                     class="absolute right-0 top-0 mt-5 mr-3"
                     href="javascript:;"
                   >
@@ -1418,15 +1418,28 @@
                 </div>
 
                 <ModalBody class="p-6">
-                  <!-- <div class="rounded-xl"> -->
+                <div class="grid grid-cols-12 gap-4 mb-6">
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">ID</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalId }}</p>
+                    </div>
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">Name</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalName }}</p>
+                    </div>
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalSymbol }}</p>
+                    </div>
+                  </div>
 
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
 
-                      <p class="text-black">{{ currentModalId }}</p>
+                      <!-- <p class="text-black">{{ currentModalId }}</p>
                       <p>{{ currentModalName }}</p>
-                      <p>{{ currentModalSymbol }}</p>
+                      <p>{{ currentModalSymbol }}</p> -->
 
                       <div class="flex items-center my-2 gap-4">
                         <img
@@ -1734,7 +1747,7 @@
                         <td class="table-report__action w-40">
                           <div class="flex justify-center gap-4 items-center">
                             <a
-                              @click="largeModalSizePreview = true"
+                              @click="ethContributeModal = true"
                               class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                               >Contribute
                             </a>
@@ -2793,15 +2806,15 @@
               <!-- BEGIN: ETHEREUM CONTRIBUTE MODAL -->
               <Modal
                 size="modal-lg"
-                :show="largeModalSizePreview"
-                @hidden="largeModalSizePreview = false"
+                :show="ethContributeModal"
+                @hidden="ethContributeModal = false"
               >
                 <div
                   class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
                 >
                   <div class="text-xl font-semibold py-5">Contribution</div>
                   <a
-                    @click="largeModalSizePreview = false"
+                    @click="ethContributeModal = false"
                     class="absolute right-0 top-0 mt-5 mr-3"
                     href="javascript:;"
                   >
@@ -2810,12 +2823,26 @@
                 </div>
 
                 <ModalBody class="p-6">
-                  <!-- <div class="rounded-xl"> -->
+                  
+                  <div class="grid grid-cols-12 gap-4 mb-6">
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">ID</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalId }}</p>
+                    </div>
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">Name</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalName }}</p>
+                    </div>
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalSymbol }}</p>
+                    </div>
+                  </div>
                   <div class="flex justify-between gap-6">
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
-                      <p class="text-black">{{ currentModalId }}</p>
+                      <!-- <p class="text-black">{{ currentModalId }}</p>
                       <p>{{ currentModalName }}</p>
-                      <p>{{ currentModalSymbol }}</p>
+                      <p>{{ currentModalSymbol }}</p> -->
                       <p class="text-base">Pay</p>
                       <div class="flex items-center my-2 gap-4">
                         <img
@@ -3122,7 +3149,7 @@
                         <td class="table-report__action w-40">
                           <div class="flex justify-center gap-4 items-center">
                             <a
-                              @click="largeModalSizePreview = true"
+                              @click="polygonContributeModal = true"
                               class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                               >Contribute
                             </a>
@@ -4181,18 +4208,18 @@
 
               
 
-              <!-- BEGIN: Large Modal Content -->
+              <!-- BEGIN: POLYGON CONTRIBUTE MODAL -->
               <Modal
                 size="modal-lg"
-                :show="largeModalSizePreview"
-                @hidden="largeModalSizePreview = false"
+                :show="polygonContributeModal"
+                @hidden="polygonContributeModal = false"
               >
                 <div
                   class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
                 >
                   <div class="text-xl font-semibold py-5">Contribution</div>
                   <a
-                    @click="largeModalSizePreview = false"
+                    @click="polygonContributeModal = false"
                     class="absolute right-0 top-0 mt-5 mr-3"
                     href="javascript:;"
                   >
@@ -4201,13 +4228,31 @@
                 </div>
 
                 <ModalBody class="p-6">
+                  <div class="grid grid-cols-12 gap-4 mb-6">
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">ID</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalId }}</p>
+                    </div>
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">Name</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalName }}</p>
+                    </div>
+                    <div  class="col-span-12 md:col-span-4">
+                      <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
+                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalSymbol }}</p>
+                    </div>
+                  </div>
+                    <!-- <div class="flex justify-between mb-6">
+                     <p class="text-black">ID {{ currentModalId }}<span class="font-semibold"></span></p>
+                      <p class="text-black"><span class="font-semibold">Name</span>{{ currentModalName }}</p>
+                      <p class="text-black"><span class="font-semibold">Symbol</span>{{ currentModalSymbol }}</p>
+                  </div> -->
                   <!-- <div class="rounded-xl"> -->
                   <div class="flex justify-between gap-6">
+                
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
-                      <p class="text-black">{{ currentModalId }}</p>
-                      <p>{{ currentModalName }}</p>
-                      <p>{{ currentModalSymbol }}</p>
+                     
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -4297,7 +4342,7 @@
                   </div>
                 </ModalBody>
               </Modal>
-              <!-- END: Large Modal Content -->
+              <!-- END: POLYGON CONTRIBUTE MODAL -->
 
               <!-- BEGIN: Super Large Modal Content -->
               <Modal
@@ -4832,6 +4877,9 @@ const polygonOngoingModal = ref(false);
 const polygonUpcomingModal = ref(false);
 const polygonCompletedModal = ref(false);
 const polygonMydealsModal = ref(false);
+const bscContributeModal = ref(false);
+const ethContributeModal = ref(false);
+const polygonContributeModal = ref(false);
 const superlargeModalSizePreview = ref(false);
 
 export default {
@@ -4848,6 +4896,9 @@ export default {
       tab: 1,
       networkTab: 1,
       largeModalSizePreview: false,
+      bscContributeModal: false,
+      ethContributeModal: false,
+      polygonContributeModal: false,
       bscOngoingModal: false,
       bscUpcomingModal: false,
       bscCompletedModal: false,
@@ -4920,7 +4971,7 @@ export default {
       this.currentModalAmount = this.payload[id];
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
-      this.largeModalSizePreview = true;
+      this.bscContributeModal = true;
     },
 
     async finalContribute() {
