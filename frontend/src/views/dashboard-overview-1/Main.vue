@@ -1433,7 +1433,7 @@
                 </div>
 
                 <ModalBody class="p-6">
-                  <div class="grid grid-cols-12 gap-4 mb-6">
+                  <!-- <div class="grid grid-cols-12 gap-4 mb-6">
                     <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">ID</h6>
                       <p
@@ -1458,16 +1458,9 @@
                         {{ currentModalSymbol }}
                       </p>
                     </div>
-                  </div>
-
-                  <div class="flex justify-between gap-6">
-                    <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                    <div class="col-span-12 md:col-span-7">
+                       <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
-
-                      <!-- <p class="text-black">{{ currentModalId }}</p>
-                      <p>{{ currentModalName }}</p>
-                      <p>{{ currentModalSymbol }}</p> -->
-
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -1480,9 +1473,56 @@
                       </div>
                       <p class="text-base">Include Fees</p>
                     </div>
-                  </div>
-                  <!-- </div> -->
+                    </div>
+                  </div> -->
+                    <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                        <div class="col-span-12 md:col-span-5">
+                          <div class="p-6 rounded-xl w-full bg-[#d1a5651c] min-h-[9.5rem] flex flex-col justify-between">
+                              <div class="flex justfy-between items-center">
+                                  <h6 class="font-semibold text-xs md:text-sm w-2/4">ID</h6>
+                                  <p
+                                    class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                                  >
+                                    {{ currentModalId }}
+                                  </p>
+                                </div>
+                                <div class="flex justfy-between items-center">
+                                  <h6 class="font-semibold text-xs md:text-sm w-2/4">Name</h6>
+                                  <p
+                                    class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                                  >
+                                    {{ currentModalName }}
+                                  </p>
+                                </div>
+                                <div class="flex justfy-between items-center">
+                                  <h6 class="font-semibold text-xs md:text-sm w-2/4">Symbol</h6>
+                                  <p
+                                    class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                                  >
+                                    {{ currentModalSymbol }}
+                                  </p>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="col-span-12 md:col-span-7">
+                           <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                            <p class="text-base">Pay</p>
+                            <div class="flex items-center my-2 gap-4">
+                              <img
+                                src="@/assets/images/uc/tether.png"
+                                class="w-10 h-10"
+                                alt=""
+                              />
+                              <span class="text-black font-bold text-2xl">{{
+                                amountIncludeFee
+                              }}</span>
+                            </div>
+                            <p class="text-base">Include Fees</p>
+                          </div>
+                        </div>
+                    </div>
 
+                 
                   <div class="my-6 bg-[#f8f8f8]">
                     <div
                       class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
