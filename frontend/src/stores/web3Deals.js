@@ -15,8 +15,17 @@ export const useWeb3DealsStore = defineStore("web3DealsStore", {
         .then((res) => {
           const { data } = res;
           this.dealsData = data;
+          return res;
         })
         .catch((err) => console.log(err));
     },
+    createPool(payload) {
+      return web3Deals
+        .createPool(payload)
+        .then((res) => {
+          return res;
+        })
+        .catch((err) => console.log(err));
+    }
   },
 });

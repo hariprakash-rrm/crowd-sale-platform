@@ -509,183 +509,218 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="image-url"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="image-url"
-                              class="input__label--accordion"
-                              >Product Url</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="ip-token"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="ip-token"
-                              class="input__label--accordion"
-                              >lp Token</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <Litepicker
-                              v-model="date"
-                              :options="{
-                                autoApply: false,
-                                showWeekNumbers: true,
-                                dropdowns: {
-                                  minYear: 1990,
-                                  maxYear: null,
-                                  months: true,
-                                  years: true,
-                                },
-                              }"
-                              class="input__field--accordion peer"
-                            />
-                            <label
-                              for="start-time"
-                              class="input__label--accordion"
-                              >Start Time</label
-                            >
-                          </div>
-
-                          <div class="relative mb-6">
-                            <Litepicker
-                              v-model="date"
-                              :options="{
-                                autoApply: false,
-                                showWeekNumbers: true,
-                                dropdowns: {
-                                  minYear: 1990,
-                                  maxYear: null,
-                                  months: true,
-                                  years: true,
-                                },
-                              }"
-                              class="input__field--accordion peer"
-                            />
-
-                            <label
-                              for="end-time"
-                              class="input__label--accordion"
-                              >End Time</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="pool-stable-amount"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="pool-stable-amount"
-                              class="input__label--accordion"
-                              >Pool Stakable Amount</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="minimum-contribuition"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="minimum-contribuition"
-                              class="input__label--accordion"
-                              >Minimum Contribuition</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="roadmap"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label for="roadmap" class="input__label--accordion"
-                              >Roadmap Url</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="team"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label for="team" class="input__label--accordion"
-                              >Team Url</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="vcs"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label for="vcs" class="input__label--accordion"
-                              >VCS Url</label
-                            >
-                          </div>
-
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="facebook-url"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="facebook-url"
-                              class="input__label--accordion"
-                              >Facebook Url</label
-                            >
-                          </div>
-
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="instagram-url"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="instagram-url"
-                              class="input__label--accordion"
-                              >Instagram Url</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="url"
-                              id="linkedin-url"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="linkedin-url"
-                              class="input__label--accordion"
-                              >Linkedin Url</label
-                            >
-                          </div>
-
-                          <button
-                            @click="addPool()"
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          <form
+                            @submit.prevent="addPool()"
+                            class="validate-form pt-4"
                           >
-                            Write
-                          </button>
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="image-url"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :v-model="addPoolData.image"
+                                @input="handleInput('image', $event)"
+                              />
+                              <label
+                                for="image-url"
+                                class="input__label--accordion"
+                                >Product Url</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="text"
+                                id="ip-token"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :v-model="addPoolData._lpToken"
+                                @input="handleInput('_lpToken', $event)"
+                                required
+                              />
+                              <label
+                                for="ip-token"
+                                class="input__label--accordion"
+                                >lp Token</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <Litepicker
+                                v-model="date"
+                                :options="{
+                                  autoApply: false,
+                                  showWeekNumbers: true,
+                                  dropdowns: {
+                                    minYear: 1990,
+                                    maxYear: null,
+                                    months: true,
+                                    years: true,
+                                  },
+                                }"
+                                class="input__field--accordion peer"
+                              />
+                              <label
+                                for="start-time"
+                                class="input__label--accordion"
+                                >Start Time</label
+                              >
+                            </div>
+
+                            <div class="relative mb-6">
+                              <Litepicker
+                                v-model="date"
+                                :options="{
+                                  autoApply: false,
+                                  showWeekNumbers: true,
+                                  dropdowns: {
+                                    minYear: 1990,
+                                    maxYear: null,
+                                    months: true,
+                                    years: true,
+                                  },
+                                }"
+                                class="input__field--accordion peer"
+                              />
+
+                              <label
+                                for="end-time"
+                                class="input__label--accordion"
+                                >End Time</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="text"
+                                id="pool-stable-amount"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :value="addPoolData._poolStakableAmount"
+                                @input="
+                                  handleInput('_poolStakableAmount', $event)
+                                "
+                                required
+                              />
+                              <label
+                                for="pool-stable-amount"
+                                class="input__label--accordion"
+                                >Pool Stakable Amount</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="text"
+                                id="minimum-contribuition"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :v-model="addPoolData._minimumcontributeAmount"
+                                @input="
+                                  handleInput(
+                                    '_minimumcontributeAmount',
+                                    $event
+                                  )
+                                "
+                                required
+                              />
+                              <label
+                                for="minimum-contribuition"
+                                class="input__label--accordion"
+                                >Minimum Contribution</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="roadmap"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :v-model="addPoolData.roadmap"
+                                @input="handleInput('roadmap', $event)"
+                              />
+                              <label
+                                for="roadmap"
+                                class="input__label--accordion"
+                                >Roadmap Url</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="team"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :value="addPoolData.team_url"
+                                @input="handleInput('team_url', $event)"
+                              />
+                              <label for="team" class="input__label--accordion">
+                                Team Url
+                              </label>
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="vcs"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                              />
+                              <label for="vcs" class="input__label--accordion"
+                                >VCS Url</label
+                              >
+                            </div>
+
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="facebook-url"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :value="addPoolData.facebook_url"
+                                @input="handleInput('facebook_url', $event)"
+                              />
+                              <label
+                                for="facebook-url"
+                                class="input__label--accordion"
+                                >Facebook Url</label
+                              >
+                            </div>
+
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="instagram-url"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :value="addPoolData.instagram_url"
+                                @input="handleInput('instagram_url', $event)"
+                              />
+                              <label
+                                for="instagram-url"
+                                class="input__label--accordion"
+                                >Instagram Url</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="linkedin-url"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :value="addPoolData.linkedin_url"
+                                @input="handleInput('linkedin_url', $event)"
+                              />
+                              <label
+                                for="linkedin-url"
+                                class="input__label--accordion"
+                                >Linkedin Url</label
+                              >
+                            </div>
+
+                            <button
+                              type="submit"
+                              class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                            >
+                              Write
+                            </button>
+                          </form>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -984,48 +1019,63 @@
 </template>
 
 <script>
-import VueTimepicker from 'vue2-timepicker'
-import { contractABI, approveContract } from "@/helpers/helper.js";
+import VueTimepicker from "vue2-timepicker";
+import { contractABI } from "@/helpers/helper.js";
+import { mapActions } from "pinia";
 
-  export default {
-    components: { VueTimepicker },
-    data() {
-      return {
-        tab: 2,
-        _lpToken : "0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",
-        _name : "Mani",
-        _symbol : "MNI",
-        _startTime : "1656850069",
-        _endTime :"1664798869",
-        _minimumcontributeAmount : "2000000000000000000",
-        _poolStakableAmount : "30000000000000000000000"
-      }
+export default {
+  components: { VueTimepicker },
+  data() {
+    return {
+      addPoolData: {},
+      tab: 2,
+      _lpToken: "0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",
+      _name: "Mani",
+      _symbol: "MNI",
+      _startTime: "1656850069",
+      _endTime: "1664798869",
+      _minimumcontributeAmount: "2000000000000000000",
+      _poolStakableAmount: "30000000000000000000000",
+    };
+  },
+
+  methods: {
+    ...mapActions("useWeb3DealsStore", ["createPool"]),
+    handleInput(name, e) {
+      this.addPoolData[name] = e.target.value;
+      console.log(this.addPoolData)
     },
-
-    methods : {
-       activeTabOne() {
-        this.tab = 1;
-      },
-      activeTabTwo() {
-        this.tab = 2;
-      },
-      activeTabThree() {
-        this.tab = 3;
-      },
-      activeTabFour() {
-        this.tab = 4;
-      },
-
-      async addPool(){
-
-
-          let contract =await contractABI();
-          let newPool =await contract.methods.addPool(this._lpToken,this._name,this._symbol,this._startTime,this._endTime,this._minimumcontributeAmount,this._poolStakableAmount).send({ from: localStorage.getItem("address") }).then((receipt) => {
+    activeTabOne() {
+      this.tab = 1;
+    },
+    activeTabTwo() {
+      this.tab = 2;
+    },
+    activeTabThree() {
+      this.tab = 3;
+    },
+    activeTabFour() {
+      this.tab = 4;
+    },
+    async addPool() {
+      let contract = await contractABI();
+      await contract.methods
+        .addPool(
+          this._lpToken,
+          this._name,
+          this._symbol,
+          this._startTime,
+          this._endTime,
+          this._minimumcontributeAmount,
+          this._poolStakableAmount
+        )
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
           console.log(receipt);
         });
-      }
-    }
-  }
+    },
+  },
+};
 </script>
 <style>
 .accordion-item:nth-child(even) {
