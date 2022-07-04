@@ -1474,9 +1474,9 @@
                           class="w-10 h-10"
                           alt=""
                         />
-                        <span class="text-black font-bold text-2xl"
-                          >{{amountIncludeFee}}</span
-                        >
+                        <span class="text-black font-bold text-2xl">{{
+                          amountIncludeFee
+                        }}</span>
                       </div>
                       <p class="text-base">Include Fees</p>
                     </div>
@@ -1510,8 +1510,13 @@
                           alt=""
                         />
                         <p class="text-black font-bold text-sm">
-                          <span class="text-yellow-600">{{currentModalFeeAmount}} USDT</span> or
-                          <span class="text-yellow-600">{{currentModalFee}}%</span>
+                          <span class="text-yellow-600"
+                            >{{ currentModalFeeAmount }} USDT</span
+                          >
+                          or
+                          <span class="text-yellow-600"
+                            >{{ currentModalFee }}%</span
+                          >
                         </p>
                       </div>
                     </div>
@@ -2902,9 +2907,9 @@
                           class="w-10 h-10"
                           alt=""
                         />
-                        <span class="text-black font-bold text-2xl"
-                          >{{amountIncludeFee}}</span
-                        >
+                        <span class="text-black font-bold text-2xl">{{
+                          amountIncludeFee
+                        }}</span>
                       </div>
                       <p class="text-base">Include Fees</p>
                     </div>
@@ -4334,9 +4339,9 @@
                           class="w-10 h-10"
                           alt=""
                         />
-                        <span class="text-black font-bold text-2xl"
-                          >{{amountIncludeFee}}</span
-                        >
+                        <span class="text-black font-bold text-2xl">{{
+                          amountIncludeFee
+                        }}</span>
                       </div>
                       <p class="text-base">Include Fees</p>
                     </div>
@@ -4489,7 +4494,7 @@ export default {
       currentModalSymbol: "",
       currentModalFee: 0,
       currentModalFeeAmount: 0,
-      amountIncludeFee :0,
+      amountIncludeFee: 0,
       inSufficientButtonStatus: false,
       currentTokenBalance: "",
       inSufficientcurrentTokenBalance: "",
@@ -4554,7 +4559,8 @@ export default {
       this.currentModalFeeAmount = acurrentModalFeeAmount;
       console.log(this.currentModalFeeAmount);
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
-      this.amountIncludeFee =(this.totalCurrentModalAmount + this.currentModalFeeAmount)
+      this.amountIncludeFee =
+        this.totalCurrentModalAmount + this.currentModalFeeAmount;
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.bscContributeModal = true;
@@ -4566,16 +4572,16 @@ export default {
         .call()
         .then((receipt) => {
           this.currentTokenBalance = receipt / 10 ** 18;
-          if (this.amountIncludeFee < this.currentModalAmount) {
-            this.insufficientFund = "insufficient Fund";
-          } else {
-            this.insufficientFund = "";
-          }
         });
+      if (this.amountIncludeFee > this.currentTokenBalance) {
+        this.insufficientFund = "insufficient Fund";
+      } else {
+        this.insufficientFund = "";
+      }
     },
 
     async finalContribute() {
-       this.insufficientFund = "Approving Please wait(D)";
+      this.insufficientFund = "Approving Please wait(D)";
       let contract = contractABI();
       let approveToken = approveContract();
       let getTokenAddres = await contract.methods
