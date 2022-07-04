@@ -4581,7 +4581,7 @@ export default {
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
-      let token = "0x5E19B6469ea1FD6870EB19FB9911D8ceb7D9CCc2";
+      let token = "0x5B52F975F72FaF873B287ae9d5f152aFb1090337";
       console.log(token);
       let approveNow = await approveToken.methods
         .approve(

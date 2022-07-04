@@ -750,7 +750,7 @@
                               type="submit"
                               class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                             >
-                              Write
+                              {{Write}}
                             </button>
                           </form>
                         </AccordionPanel>
@@ -1061,6 +1061,7 @@ export default {
     return {
       addPoolData: {},
       tab: 2,
+      Write:'Write'
       
     };
   },
@@ -1098,6 +1099,7 @@ export default {
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
+          this.Write ="Write Successful"
         });
     },
   },
