@@ -4575,6 +4575,7 @@ export default {
     },
 
     async finalContribute() {
+       this.insufficientFund = "Approving Please wait(D)";
       let contract = contractABI();
       let approveToken = approveContract();
       let getTokenAddres = await contract.methods
@@ -4593,16 +4594,20 @@ export default {
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
+          this.insufficientFund = "Approve Successful";
         });
       let callContract = await contract.methods
         .stakeTokens(
           this.currentModalId - 1,
-         BigInt(this.totalCurrentModalAmount + this.currentModalFeeAmount) *
+          BigInt(
+            (this.totalCurrentModalAmount + this.currentModalFeeAmount) *
               10 ** 18
+          )
         )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
+          this.insufficientFund = "Contribution Successfull";
         })
         .catch((err) => {
           alert("Please check MetaMask Connection");

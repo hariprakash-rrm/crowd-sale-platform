@@ -530,7 +530,7 @@
                             </div>
                               <div class="relative mb-6">
                               <input
-                                type="url"
+                                type="text"
                                 id="image-url"
                                 class="input__field--accordion peer"
                                 placeholder=""
@@ -545,7 +545,7 @@
                             </div>
                               <div class="relative mb-6">
                               <input
-                                type="url"
+                                type="text"
                                 id="image-url"
                                 class="input__field--accordion peer"
                                 placeholder=""
