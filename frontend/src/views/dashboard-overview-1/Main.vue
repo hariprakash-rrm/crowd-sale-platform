@@ -282,16 +282,21 @@
                               tag="img"
                               alt="Midone Tailwind HTML Admin Template"
                               class="rounded-md"
-                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                              src="https://media.istockphoto.com/photos/tree-picture-id543052538?k=20&m=543052538&s=612x612&w=0&h=X3m-COQRykkX19_LAJRVEZ902bA4M_qbkMtWCO3IHRw="
                               content=""
                             />
                           </div>
                         </div>
                       </td>
                       <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="bscOngoingModal = true" class="underline text-primary pt-4">View Details</a>
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="bscOngoingModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -545,8 +550,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                   
-                   
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -587,10 +590,15 @@
                           </div>
                         </div>
                       </td>
-                     <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="bscUpcomingModal = true" class="underline text-primary pt-4">View Details</a>
+                      <td class="text-center">
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="bscUpcomingModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -827,7 +835,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                 
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -871,9 +878,14 @@
                         </div>
                       </td>
                       <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="bscCompletedModal = true" class="underline text-primary pt-4">View Details</a>
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="bscCompletedModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -1113,7 +1125,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -1155,9 +1166,14 @@
                         </div>
                       </td>
                       <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="bscMydealsModal = true" class="underline text-primary pt-4">View Details</a>
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="bscMydealsModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -1392,7 +1408,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -1418,18 +1433,30 @@
                 </div>
 
                 <ModalBody class="p-6">
-                <div class="grid grid-cols-12 gap-4 mb-6">
-                    <div  class="col-span-12 md:col-span-4">
+                  <div class="grid grid-cols-12 gap-4 mb-6">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">ID</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalId }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalId }}
+                      </p>
                     </div>
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">Name</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalName }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalName }}
+                      </p>
                     </div>
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalSymbol }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalSymbol }}
+                      </p>
                     </div>
                   </div>
 
@@ -1448,7 +1475,7 @@
                           alt=""
                         />
                         <span class="text-black font-bold text-2xl"
-                          >5 USDT</span
+                          >{{amountIncludeFee}}</span
                         >
                       </div>
                       <p class="text-base">Include Fees</p>
@@ -1483,8 +1510,8 @@
                           alt=""
                         />
                         <p class="text-black font-bold text-sm">
-                          <span class="text-yellow-600">0.05 USDT</span> or
-                          <span class="text-yellow-600">1%</span>
+                          <span class="text-yellow-600">{{currentModalFeeAmount}} USDT</span> or
+                          <span class="text-yellow-600">{{currentModalFee}}%</span>
                         </p>
                       </div>
                     </div>
@@ -1514,7 +1541,7 @@
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
                       <p class="text-red-600 font-bold text-sm">
-                        Insufficient Funds
+                        {{ insufficientFund }}
                       </p>
                       <div class="flex items-center gap-2">
                         <img
@@ -1523,7 +1550,9 @@
                           alt=""
                         />
                         <p class="text-black font-bold text-sm">
-                          <span class="text-red-600">0 USDT</span>
+                          <span class="text-red-600"
+                            >{{ currentTokenBalance }} USDT</span
+                          >
                         </p>
                       </div>
                     </div>
@@ -1652,111 +1681,112 @@
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
             <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
-                <div v-show="tab === 1">
-                  <table class="table table-report">
-                    <thead>
-                      <tr>
-                        <th class="whitespace-nowrap">PRODUCT</th>
-                        <th class="text-center whitespace-nowrap">POOL ID</th>
-                        <th class="whitespace-nowrap w-72">NAME</th>
-                        <th class="text-center whitespace-nowrap">SYMBOL</th>
+              <div v-show="tab === 1">
+                <table class="table table-report">
+                  <thead>
+                    <tr>
+                      <th class="whitespace-nowrap">PRODUCT</th>
+                      <th class="text-center whitespace-nowrap">POOL ID</th>
+                      <th class="whitespace-nowrap w-72">NAME</th>
+                      <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                        <th class="text-center whitespace-nowrap">
-                          PERCENTAGE
-                        </th>
-                        <th class="text-center whitespace-nowrap">ENDTIME</th>
-                        <th class="text-center whitespace-nowrap">
-                          ENTER YOUR CONTRIBUTION
-                        </th>
-                        <th class="text-center whitespace-nowrap">
-                          CONTRIBUTION
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        v-for="user in poolsOngoing"
-                        :key="user.id"
-                        class="intro-x zoom-in"
+                      <th class="text-center whitespace-nowrap">PERCENTAGE</th>
+                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">
+                        ENTER YOUR CONTRIBUTION
+                      </th>
+                      <th class="text-center whitespace-nowrap">
+                        CONTRIBUTION
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="user in poolsOngoing"
+                      :key="user.id"
+                      class="intro-x zoom-in"
+                    >
+                      <td
+                        class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
-                        <td
-                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
-                        >
-                          <div class="flex">
-                            <div class="w-16 h-16 image-fit zoom-in">
-                              <Tippy
-                                tag="img"
-                                alt="Midone Tailwind HTML Admin Template"
-                                class="rounded-md"
-                                src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                                content=""
-                              />
-                            </div>
+                        <div class="flex">
+                          <div class="w-16 h-16 image-fit zoom-in">
+                            <Tippy
+                              tag="img"
+                              alt="Midone Tailwind HTML Admin Template"
+                              class="rounded-md"
+                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                              content=""
+                            />
                           </div>
-                        </td>
-                        <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="ethOngoingModal = true" class="underline text-primary pt-4">View Details</a>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="ethOngoingModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
-                        <td>
-                          <a
-                            href=""
-                            class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ user.name }}</a
-                          >
-                          <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                            <div class="flex gap-4 text-slate-500 text-xs">
-                              <div class="mr-auto font-semibold">
-                                Total contribution
-                              </div>
-                              <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
+                      <td>
+                        <a
+                          href=""
+                          class="text-lg font-semibold capitalize whitespace-nowrap"
+                          >{{ user.name }}</a
+                        >
+                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                          <div class="flex gap-4 text-slate-500 text-xs">
+                            <div class="mr-auto font-semibold">
+                              Total contribution
                             </div>
-                            <div class="progress h-1 mt-2">
-                              <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
                             </div>
                           </div>
-                        </td>
+                          <div class="progress h-1 mt-2">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
 
-                        <td class="text-center">{{ user.symbol }}</td>
-                        <td class="text-center">
-                          {{ user.currentPercentage }}%
-                        </td>
-                        <td class="text-center">{{ user.humanEndTime }}</td>
-                        <td class="text-center">
-                          <input
-                            @input="handleInput(user.id, $event)"
-                            :value="payload[user.id]"
-                            type="number"
-                            class="form-control w-56 rounded-md input--rounded box pr-10"
-                            placeholder="Enter Amount..."
-                            :min="1"
-                          />
-                        </td>
-                        <td class="table-report__action w-40">
-                          <div class="flex justify-center gap-4 items-center">
-                            <a
-                              @click="ethContributeModal = true"
-                              class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                              >Contribute
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                      <td class="text-center">{{ user.symbol }}</td>
+                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">
+                        <input
+                          @input="handleInput(user.id, $event)"
+                          :value="payload[user.id]"
+                          type="number"
+                          class="form-control w-56 rounded-md input--rounded box pr-10"
+                          placeholder="Enter Amount..."
+                          :min="1"
+                        />
+                      </td>
+                      <td class="table-report__action w-40">
+                        <div class="flex justify-center gap-4 items-center">
+                          <a
+                            @click="ethContributeModal = true"
+                            class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
+                            >Contribute
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <!-- END: TAB CONTENT ONGOING -->
 
               <!-- BEGIN: ETH ONGOING MODAL -->
@@ -1953,7 +1983,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -1994,10 +2023,15 @@
                           </div>
                         </div>
                       </td>
-                     <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="ethUpcomingModal = true" class="underline text-primary pt-4">View Details</a>
+                      <td class="text-center">
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="ethUpcomingModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -2234,7 +2268,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -2275,10 +2308,15 @@
                           </div>
                         </div>
                       </td>
-                     <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="ethCompletedModal = true" class="underline text-primary pt-4">View Details</a>
+                      <td class="text-center">
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="ethCompletedModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -2518,7 +2556,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -2559,10 +2596,15 @@
                           </div>
                         </div>
                       </td>
-                     <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="ethMydealsModal = true" class="underline text-primary pt-4">View Details</a>
+                      <td class="text-center">
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="ethMydealsModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -2797,7 +2839,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -2823,19 +2864,30 @@
                 </div>
 
                 <ModalBody class="p-6">
-                  
                   <div class="grid grid-cols-12 gap-4 mb-6">
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">ID</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalId }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalId }}
+                      </p>
                     </div>
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">Name</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalName }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalName }}
+                      </p>
                     </div>
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalSymbol }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalSymbol }}
+                      </p>
                     </div>
                   </div>
                   <div class="flex justify-between gap-6">
@@ -2851,7 +2903,7 @@
                           alt=""
                         />
                         <span class="text-black font-bold text-2xl"
-                          >5 USDT</span
+                          >{{amountIncludeFee}}</span
                         >
                       </div>
                       <p class="text-base">Include Fees</p>
@@ -3054,111 +3106,112 @@
             <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
             <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
               <!-- BEGIN: TAB CONTENT ONGOING -->
-                <div v-show="tab === 1">
-                  <table class="table table-report">
-                    <thead>
-                      <tr>
-                        <th class="whitespace-nowrap">PRODUCT</th>
-                        <th class="text-center whitespace-nowrap">POOL ID</th>
-                        <th class="whitespace-nowrap w-72">NAME</th>
-                        <th class="text-center whitespace-nowrap">SYMBOL</th>
+              <div v-show="tab === 1">
+                <table class="table table-report">
+                  <thead>
+                    <tr>
+                      <th class="whitespace-nowrap">PRODUCT</th>
+                      <th class="text-center whitespace-nowrap">POOL ID</th>
+                      <th class="whitespace-nowrap w-72">NAME</th>
+                      <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                        <th class="text-center whitespace-nowrap">
-                          PERCENTAGE
-                        </th>
-                        <th class="text-center whitespace-nowrap">ENDTIME</th>
-                        <th class="text-center whitespace-nowrap">
-                          ENTER YOUR CONTRIBUTION
-                        </th>
-                        <th class="text-center whitespace-nowrap">
-                          CONTRIBUTION
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        v-for="user in poolsOngoing"
-                        :key="user.id"
-                        class="intro-x zoom-in"
+                      <th class="text-center whitespace-nowrap">PERCENTAGE</th>
+                      <th class="text-center whitespace-nowrap">ENDTIME</th>
+                      <th class="text-center whitespace-nowrap">
+                        ENTER YOUR CONTRIBUTION
+                      </th>
+                      <th class="text-center whitespace-nowrap">
+                        CONTRIBUTION
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="user in poolsOngoing"
+                      :key="user.id"
+                      class="intro-x zoom-in"
+                    >
+                      <td
+                        class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
-                        <td
-                          class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        <div class="flex">
+                          <div class="w-16 h-16 image-fit zoom-in">
+                            <Tippy
+                              tag="img"
+                              alt="Midone Tailwind HTML Admin Template"
+                              class="rounded-md"
+                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                              content=""
+                            />
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="polygonOngoingModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
                         >
-                          <div class="flex">
-                            <div class="w-16 h-16 image-fit zoom-in">
-                              <Tippy
-                                tag="img"
-                                alt="Midone Tailwind HTML Admin Template"
-                                class="rounded-md"
-                                src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                                content=""
-                              />
+                        <div class="mt-2"></div>
+                      </td>
+                      <td>
+                        <a
+                          href=""
+                          class="text-lg font-semibold capitalize whitespace-nowrap"
+                          >{{ user.name }}</a
+                        >
+                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                          <div class="flex gap-4 text-slate-500 text-xs">
+                            <div class="mr-auto font-semibold">
+                              Total contribution
+                            </div>
+                            <div>
+                              {{ user.currentlyStaked }} /
+                              {{ user.poolStakableAmount }}
                             </div>
                           </div>
-                        </td>
-                        <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a> 
-                          <br>
-                          <a href="#" @click="polygonOngoingModal = true" class="underline text-primary pt-4">View Details</a>
-                          <div class="mt-2"></div>
-                        </td>
-                        <td>
-                          <a
-                            href=""
-                            class="text-lg font-semibold capitalize whitespace-nowrap"
-                            >{{ user.name }}</a
-                          >
-                          <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                            <div class="flex gap-4 text-slate-500 text-xs">
-                              <div class="mr-auto font-semibold">
-                                Total contribution
-                              </div>
-                              <div>
-                                {{ user.currentlyStaked }} /
-                                {{ user.poolStakableAmount }}
-                              </div>
-                            </div>
-                            <div class="progress h-1 mt-2">
-                              <div
-                                class="progress-bar bg-primary"
-                                role="progressbar"
-                                aria-valuenow="0"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                                :style="`width:${user.currentPercentage}%`"
-                              ></div>
-                            </div>
+                          <div class="progress h-1 mt-2">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              :style="`width:${user.currentPercentage}%`"
+                            ></div>
                           </div>
-                        </td>
+                        </div>
+                      </td>
 
-                        <td class="text-center">{{ user.symbol }}</td>
-                        <td class="text-center">
-                          {{ user.currentPercentage }}%
-                        </td>
-                        <td class="text-center">{{ user.humanEndTime }}</td>
-                        <td class="text-center">
-                          <input
-                            @input="handleInput(user.id, $event)"
-                            :value="payload[user.id]"
-                            type="number"
-                            class="form-control w-56 rounded-md input--rounded box pr-10"
-                            placeholder="Enter Amount..."
-                            :min="1"
-                          />
-                        </td>
-                        <td class="table-report__action w-40">
-                          <div class="flex justify-center gap-4 items-center">
-                            <a
-                              @click="polygonContributeModal = true"
-                              class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                              >Contribute
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                      <td class="text-center">{{ user.symbol }}</td>
+                      <td class="text-center">{{ user.currentPercentage }}%</td>
+                      <td class="text-center">{{ user.humanEndTime }}</td>
+                      <td class="text-center">
+                        <input
+                          @input="handleInput(user.id, $event)"
+                          :value="payload[user.id]"
+                          type="number"
+                          class="form-control w-56 rounded-md input--rounded box pr-10"
+                          placeholder="Enter Amount..."
+                          :min="1"
+                        />
+                      </td>
+                      <td class="table-report__action w-40">
+                        <div class="flex justify-center gap-4 items-center">
+                          <a
+                            @click="polygonContributeModal = true"
+                            class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
+                            >Contribute
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <!-- END: TAB CONTENT ONGOING -->
 
               <!-- BEGIN: POLYGON ONGOING MODAL -->
@@ -3355,7 +3408,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -3397,11 +3449,16 @@
                         </div>
                       </td>
                       <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a> 
-                          <br>
-                          <a href="#" @click="polygonUpcomingModal = true" class="underline text-primary pt-4">View Details</a>
-                          <div class="mt-2"></div>
-                        </td>
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="polygonUpcomingModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
+                        <div class="mt-2"></div>
+                      </td>
                       <td>
                         <a
                           href=""
@@ -3636,7 +3693,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -3678,12 +3734,17 @@
                         </div>
                       </td>
                       <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a> 
-                          <br>
-                          <a href="#" @click="polygonCompletedModal = true" class="underline text-primary pt-4">View Details</a>
-                          <div class="mt-2"></div>
-                        </td>
-                     
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="polygonCompletedModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
+                        <div class="mt-2"></div>
+                      </td>
+
                       <td>
                         <a
                           href=""
@@ -3736,7 +3797,9 @@
                 <div
                   class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
                 >
-                  <div class="text-xl font-semibold py-5">POLYGON COMPLETED</div>
+                  <div class="text-xl font-semibold py-5">
+                    POLYGON COMPLETED
+                  </div>
                   <a
                     @click="polygonCompletedModal = false"
                     class="absolute right-0 top-0 mt-5 mr-3"
@@ -3921,7 +3984,6 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
@@ -3963,9 +4025,14 @@
                         </div>
                       </td>
                       <td class="text-center">
-                       <a class="font-semibold text-lg">{{ user.id }}</a> 
-                        <br>
-                        <a href="#" @click="polygonMydealsModal = true" class="underline text-primary pt-4">View Details</a>
+                        <a class="font-semibold text-lg">{{ user.id }}</a>
+                        <br />
+                        <a
+                          href="#"
+                          @click="polygonMydealsModal = true"
+                          class="underline text-primary pt-4"
+                          >View Details</a
+                        >
                         <div class="mt-2"></div>
                       </td>
                       <td>
@@ -4006,7 +4073,7 @@
               </div>
               <!-- END: TAB CONTENT MYDEALS -->
 
-               <!-- BEGIN: POLYGON COMPLETED MODAL -->
+              <!-- BEGIN: POLYGON COMPLETED MODAL -->
               <Modal
                 size="modal-xl"
                 :show="polygonMydealsModal"
@@ -4200,13 +4267,10 @@
                       </div>
                     </div>
                     <!-- END: Profile Info -->
-                    
                   </TabGroup>
                 </ModalBody>
               </Modal>
               <!-- END: POLYGON COMPLETED MODAL -->
-
-              
 
               <!-- BEGIN: POLYGON CONTRIBUTE MODAL -->
               <Modal
@@ -4229,30 +4293,41 @@
 
                 <ModalBody class="p-6">
                   <div class="grid grid-cols-12 gap-4 mb-6">
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">ID</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalId }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalId }}
+                      </p>
                     </div>
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">Name</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalName }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalName }}
+                      </p>
                     </div>
-                    <div  class="col-span-12 md:col-span-4">
+                    <div class="col-span-12 md:col-span-4">
                       <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
-                      <p class="font-bold text-sm md:text-base 2xl:text-lg text-black">{{ currentModalSymbol }}</p>
+                      <p
+                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
+                      >
+                        {{ currentModalSymbol }}
+                      </p>
                     </div>
                   </div>
-                    <!-- <div class="flex justify-between mb-6">
+                  <!-- <div class="flex justify-between mb-6">
                      <p class="text-black">ID {{ currentModalId }}<span class="font-semibold"></span></p>
                       <p class="text-black"><span class="font-semibold">Name</span>{{ currentModalName }}</p>
                       <p class="text-black"><span class="font-semibold">Symbol</span>{{ currentModalSymbol }}</p>
                   </div> -->
                   <!-- <div class="rounded-xl"> -->
                   <div class="flex justify-between gap-6">
-                
                     <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                       <p class="text-base">Pay</p>
-                     
+
                       <div class="flex items-center my-2 gap-4">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -4260,7 +4335,7 @@
                           alt=""
                         />
                         <span class="text-black font-bold text-2xl"
-                          >5 USDT</span
+                          >{{amountIncludeFee}}</span
                         >
                       </div>
                       <p class="text-base">Include Fees</p>
@@ -4343,18 +4418,12 @@
                 </ModalBody>
               </Modal>
               <!-- END: POLYGON CONTRIBUTE MODAL -->
-
-            
             </div>
             <!-- END: SINGLE NETWORK CONTENT TAB -->
           </div>
           <!-- END: SINGLE NETWORK TAB SECTION -->
         </div>
         <!-- END: TAB CONTENT POLYGON -->
-
-       
-
-       
       </div>
       <!-- END: NETWORK TAB CONTENT -->
     </div>
@@ -4415,10 +4484,16 @@ export default {
       polygonCompletedModal: false,
       polygonMydealsModal: false,
       currentModalId: "",
-      currentModalAmount: "",
+      currentModalAmount: 0,
       currentModalName: "",
       currentModalSymbol: "",
+      currentModalFee: 0,
+      currentModalFeeAmount: 0,
+      amountIncludeFee :0,
       inSufficientButtonStatus: false,
+      currentTokenBalance: "",
+      inSufficientcurrentTokenBalance: "",
+      insufficientFund: "",
     };
   },
 
@@ -4472,9 +4547,31 @@ export default {
       console.log(id, this.payload);
       this.currentModalId = id;
       this.currentModalAmount = this.payload[id];
+      this.currentModalFee = 2;
+      let acurrentModalFeeAmount = await ((this.currentModalAmount *
+        this.currentModalFee) /
+        100);
+      this.currentModalFeeAmount = acurrentModalFeeAmount;
+      console.log(this.currentModalFeeAmount);
+      this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
+      this.amountIncludeFee =(this.totalCurrentModalAmount + this.currentModalFeeAmount)
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.bscContributeModal = true;
+      let approveToken = approveContract();
+      let from = localStorage.getItem("address");
+      console.log(typeof from);
+      let getTokenBalnce = await approveToken.methods
+        .balanceOf(localStorage.getItem("address"))
+        .call()
+        .then((receipt) => {
+          this.currentTokenBalance = receipt / 10 ** 18;
+          if (this.amountIncludeFee < this.currentModalAmount) {
+            this.insufficientFund = "insufficient Fund";
+          } else {
+            this.insufficientFund = "";
+          }
+        });
     },
 
     async finalContribute() {
@@ -4483,10 +4580,16 @@ export default {
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
-      let token = "0x5E19B6469ea1FD6870EB19FB9911D8ceb7D9CCc2"
+      let token = "0x5E19B6469ea1FD6870EB19FB9911D8ceb7D9CCc2";
       console.log(token);
       let approveNow = await approveToken.methods
-        .approve(token, BigInt(this.currentModalAmount * 10 ** 18))
+        .approve(
+          token,
+          BigInt(
+            (this.totalCurrentModalAmount + this.currentModalFeeAmount) *
+              10 ** 18
+          )
+        )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
@@ -4494,11 +4597,17 @@ export default {
       let callContract = await contract.methods
         .stakeTokens(
           this.currentModalId - 1,
-          BigInt(this.currentModalAmount * 10 ** 18)
+         BigInt(this.totalCurrentModalAmount + this.currentModalFeeAmount) *
+              10 ** 18
         )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
+        })
+        .catch((err) => {
+          alert("Please check MetaMask Connection");
+          console.error("Please check MetaMask Connection", err);
+          return err;
         });
     },
 

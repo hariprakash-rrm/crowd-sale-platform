@@ -528,6 +528,36 @@
                                 >Product Url</label
                               >
                             </div>
+                              <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="image-url"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :v-model="addPoolData._name"
+                                @input="handleInput('_name', $event)"
+                              />
+                              <label
+                                for="image-url"
+                                class="input__label--accordion"
+                                >_name</label
+                              >
+                            </div>
+                              <div class="relative mb-6">
+                              <input
+                                type="url"
+                                id="image-url"
+                                class="input__field--accordion peer"
+                                placeholder=""
+                                :v-model="addPoolData._symbol"
+                                @input="handleInput('_symbol', $event)"
+                              />
+                              <label
+                                for="image-url"
+                                class="input__label--accordion"
+                                >_symbol</label
+                              >
+                            </div>
                             <div class="relative mb-6">
                               <input
                                 type="text"
@@ -546,7 +576,8 @@
                             </div>
                             <div class="relative mb-6">
                               <Litepicker
-                                v-model="date"
+                                v-model="addPoolData._startTime"
+                                @input="handleInput('_startTime', $event)"
                                 :options="{
                                   autoApply: false,
                                   showWeekNumbers: true,
@@ -568,7 +599,8 @@
 
                             <div class="relative mb-6">
                               <Litepicker
-                                v-model="date"
+                                v-model="addPoolData._endTime"
+                                @input="handleInput('_endTime', $event)"
                                 :options="{
                                   autoApply: false,
                                   showWeekNumbers: true,
@@ -1029,13 +1061,7 @@ export default {
     return {
       addPoolData: {},
       tab: 2,
-      _lpToken: "0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",
-      _name: "Mani",
-      _symbol: "MNI",
-      _startTime: "1656850069",
-      _endTime: "1664798869",
-      _minimumcontributeAmount: "2000000000000000000",
-      _poolStakableAmount: "30000000000000000000000",
+      
     };
   },
 
@@ -1061,13 +1087,13 @@ export default {
       let contract = await contractABI();
       await contract.methods
         .addPool(
-          this._lpToken,
-          this._name,
-          this._symbol,
-          this._startTime,
-          this._endTime,
-          this._minimumcontributeAmount,
-          this._poolStakableAmount
+          this.addPoolData._lpToken,
+          this.addPoolData._name,
+          this.addPoolData._symbol,
+          this.addPoolData._startTime = Math.floor(new Date(this.addPoolData._startTime).getTime() / 1000),
+          this.addPoolData._endTime=Math.floor(new Date(this.addPoolData._endTime).getTime() / 1000),
+          BigInt(this.addPoolData._minimumcontributeAmount *10**18),
+          BigInt(this.addPoolData._poolStakableAmount *10**18)
         )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
