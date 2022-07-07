@@ -175,6 +175,7 @@
           >
             {{ account.address }}
           </p>
+          <p class="text-white text-center">Network - {{ account.network }}</p>
         </DropdownToggle>
         <DropdownMenu v-if="connected" class="w-56">
           <DropdownContent
@@ -267,14 +268,13 @@ export default {
       connector: "",
       ethereum: "",
       account: {},
-      
+
       storageService: StorageService,
       contractService: ContractService,
     };
   },
 
   async mounted() {
-    
     this.account =
       this.storageService.getItem("account") === null
         ? { address: "", network: "", chainId: "", provider: "" }
@@ -285,6 +285,7 @@ export default {
       this.account.chainId,
       this.account.provider
     );
+    this.connect();
   },
 
   methods: {
@@ -308,16 +309,16 @@ export default {
 
     metamastListener() {
       // Listener
-      this.ethereum.on("accountsChanged", (accounts:any) => {
+      this.ethereum.on("accountsChanged", (accounts: any) => {
         this.setAccount(accounts[0], this.ethereum.chainId, "metamask");
       });
-      this.ethereum.on("chainChanged", (chainId:any) => {
+      this.ethereum.on("chainChanged", (chainId: any) => {
         this.setAccount(this.account.address, chainId, "metamask");
       });
       this.storageService.setItem("walletconnect", "");
     },
-    async setAccount(address:any, chainId:any, provider) {
-      let account:any;
+    async setAccount(address: any, chainId: any, provider) {
+      let account: any;
       if (address != "" && address != undefined) {
         const { network, key } = await this.setNetwork(chainId);
         account = {
@@ -342,9 +343,9 @@ export default {
       this.storageService.setItem("address", this.account.address);
     },
 
-    setNetwork(chainId:any) {
-      let network:any;
-      let key:any;
+    setNetwork(chainId: any) {
+      let network: any;
+      let key: any;
       switch (chainId) {
         case "0x1":
         case 1:
