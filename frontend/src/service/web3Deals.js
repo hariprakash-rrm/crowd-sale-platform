@@ -8,4 +8,7 @@ export const web3Deals = {
   createPoolsDetails: () => {
     return axios.post(`${BASE_URL}/pools/1`);
   },
+  createPool: (payload) => {
+    return axios.post(`${BASE_URL}/pools`, payload);
+  }
 };
