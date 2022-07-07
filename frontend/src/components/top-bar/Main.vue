@@ -173,7 +173,7 @@
             @click="connect"
             class="text-white text-center bg-primary p-1 rounded-full truncate"
           >
-            {{ title }}
+            {{ account.address }}
           </p>
         </DropdownToggle>
         <DropdownMenu v-if="connected" class="w-56">
@@ -194,10 +194,7 @@
           role="button"
           class="w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
         >
-          <img
-            alt="unreal-capital"
-            :src="$f()[9].photos[0]"
-          />
+          <img alt="unreal-capital" :src="$f()[9].photos[0]" />
         </DropdownToggle>
         <DropdownMenu class="w-56">
           <DropdownContent
@@ -247,6 +244,11 @@ import { ref } from "vue";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { useAuthUserStore } from "@/stores/auth.js";
 import { mapActions } from "pinia";
+import Web3 from "web3";
+import WalletConnect from "@walletconnect/client";
+import QRCodeModal from "@walletconnect/qrcode-modal";
+import { StorageService } from "../../service/storage.services";
+import { ContractService } from "../../service/contract.service";
 
 declare global {
   interface Window {
@@ -262,31 +264,118 @@ export default {
       connected: false,
       contractResult: "",
       title: "connect Wallet",
+      connector: "",
+      ethereum: "",
+      account: {},
+      
+      storageService: StorageService,
+      contractService: ContractService,
     };
+  },
+
+  async mounted() {
+    
+    this.account =
+      this.storageService.getItem("account") === null
+        ? { address: "", network: "", chainId: "", provider: "" }
+        : JSON.parse(this.storageService.getItem("account") || "{}");
+    this.account.address = "ConnectWallet";
+    this.setAccount(
+      this.account.address,
+      this.account.chainId,
+      this.account.provider
+    );
   },
 
   methods: {
     ...mapActions(useAuthUserStore, ["logout"]),
-    connect: function () {
+    connect() {
       // this connects to the wallet
+      this.openMetamask();
+    },
 
-      if (window.ethereum) {
-        // first we check if metamask is installed
-        window.ethereum.request({ method: "eth_requestAccounts" }).then(() => {
-          this.connected = true; // If users successfully connected their wallet
-          window.ethereum
-            .request({ method: "eth_accounts" })
-            .then((account) => {
-              localStorage.setItem("address", account);
-              let address = localStorage.getItem("address") + "";
-              this.title = address.slice(0, 12) + "..." + address.slice(37, 41);
-              console.log(address);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        });
+    async openMetamask() {
+      this.ethereum = window["ethereum"];
+      if (typeof this.ethereum !== "undefined") {
       }
+      const accounts = await this.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      this.setAccount(accounts[0], this.ethereum.chainId, "metamask");
+      this.metamastListener();
+      // window.location.reload();
+    },
+
+    metamastListener() {
+      // Listener
+      this.ethereum.on("accountsChanged", (accounts:any) => {
+        this.setAccount(accounts[0], this.ethereum.chainId, "metamask");
+      });
+      this.ethereum.on("chainChanged", (chainId:any) => {
+        this.setAccount(this.account.address, chainId, "metamask");
+      });
+      this.storageService.setItem("walletconnect", "");
+    },
+    async setAccount(address:any, chainId:any, provider) {
+      let account:any;
+      if (address != "" && address != undefined) {
+        const { network, key } = await this.setNetwork(chainId);
+        account = {
+          address: address,
+          chainId: chainId,
+          network,
+          key,
+          provider: provider,
+        };
+      } else {
+        account = {
+          address: "",
+          network: "",
+          chainId: "",
+          provider: "",
+          key: "",
+        };
+      }
+      this.contractService.setAccount(account);
+      this.account = Object.assign({}, account);
+      this.storageService.setItem("account", JSON.stringify(this.account));
+      this.storageService.setItem("address", this.account.address);
+    },
+
+    setNetwork(chainId:any) {
+      let network:any;
+      let key:any;
+      switch (chainId) {
+        case "0x1":
+        case 1:
+          network = "Mainnet";
+          key = "ETH";
+          break;
+        case "0x3":
+        case 3:
+          network = "Ropsten";
+          key = "ETH";
+          break;
+        case "0x4":
+        case 4:
+          network = "Rinkeby";
+          key = "ETH";
+          break;
+        case "0x38":
+        case 56:
+          network = "BSC Mainnet";
+          key = "BSC";
+          break;
+        case "0x61":
+        case 97:
+          network = "BSC Testnet";
+          key = "BSC";
+          break;
+        default:
+          network = "Unknown";
+          break;
+      }
+      return { network, key };
     },
   },
 };
