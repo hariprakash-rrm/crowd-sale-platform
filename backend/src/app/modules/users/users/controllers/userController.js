@@ -27,11 +27,11 @@ export const userSignup = async (req, res, next) => {
     email: req.body.email,
     otp: otp,
     password: password,
-    role: "User"
+    role: "User",
   });
   try {
     await user.save(async (error, result) => {
-      console.log("error", error)
+      console.log("error", error);
       if (error) {
         if (error.name == "ValidationError" || "MongoServerError") {
           return res.status(400).json({
@@ -105,27 +105,27 @@ export const loginUser = async (req, res, next) => {
           });
         }
         if (result === true) {
-          let userProfile = await UserProfile.findOne({ user: user._id })
+          let userProfile = await UserProfile.findOne({ user: user._id });
 
           const token = jwt.sign(
             {
               email: user.email,
               userId: user._id,
               profileId: userProfile._id,
-              role: "User"
+              role: "User",
             },
             config.JWT_KEY,
             {
               expiresIn: "7h",
             }
           );
-          user.password = ""
+          user.password = "";
           return responseModule.successResponse(res, {
             success: 1,
             message: "User Login successful",
             data: user,
             token: token,
-            profile: userProfile
+            profile: userProfile,
           });
         }
         if (result === false) {
@@ -369,7 +369,7 @@ export const sendWelcomeMail = async (userName, email, otp) => {
 
     let subject = "Your account created successfully";
     let send = await sendMail(email, subject, html);
-  } catch (error) { }
+  } catch (error) {}
 };
 
 export const updateProfile = async (req, res) => {
@@ -380,7 +380,7 @@ export const updateProfile = async (req, res) => {
       bio: req.body.bio,
       location: req.body.location,
       mobile: req.body.mobile,
-    }
+    };
     if (req.file) {
       const profileImage = req.file.path;
       updates.profileImage = profileImage;
@@ -427,28 +427,92 @@ export const updateProfile = async (req, res) => {
         });
       }
     });
-
   } catch (error) {
     console.log(err);
     return next(err);
   }
-}
-
+};
 
 export const getUserData = async (req, res) => {
   try {
-    let user = await User.findOne({ _id: req.userData.userId }).select('-password')
-    let profile = await UserProfile.findOne({ _id: req.userData.profileId })
-    let walletAddress = await WalletAddress.findOne({ profile: profile._id })
+    let user = await User.findOne({ _id: req.userData.userId }).select(
+      "-password"
+    );
+    let profile = await UserProfile.findOne({ _id: req.userData.profileId });
+    let walletAddress = await WalletAddress.findOne({ profile: profile._id });
 
     return responseModule.successResponse(res, {
       success: 1,
       message: "User Details fetched successfully",
-      user, profile, walletAddress
+      user,
+      profile,
+      walletAddress,
     });
-
   } catch (error) {
     console.log(err);
     return next(err);
   }
-}
+};
+
+export const resetOldPassword = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      _id: req.userData.userId,
+    }).exec();
+
+    if (user) {
+      bcrypt.compare(
+        req.body.oldPassword,
+        user.password,
+        async (err, result) => {
+          console.log("err",err)
+          console.log("err",result)
+          if (err) {
+            return responseModule.errorResponse(res, {
+              success: 0,
+              message: err.message,
+              data: {},
+            });
+          }
+          if (result === true) {
+            let updateData = {
+              password: bcrypt.hashSync(req.body.newPassword, 10),
+            };
+            const user = await User.findOneAndUpdate(
+              {
+                _id: req.userData.userId,
+              },
+              {
+                $set: updateData,
+              },
+              {
+                new: true,
+              }
+            ).exec((error, response) => {
+              if (response) {
+                return responseModule.successResponse(res, {
+                  success: 1,
+                  message: "Password reset successfully",
+                  data: {},
+                });
+              }
+            });
+          }else{
+            console.log()
+            return responseModule.errorResponse(res, {
+              success: 0,
+              message: "Old Password is incorrect",
+              data: {},
+            });
+          }
+        }
+      );
+    } 
+  } catch (error) {
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: error.message,
+      data: {},
+    });
+  }
+};
