@@ -1,4 +1,4 @@
-import { userSignup,loginUser ,updateUser, emailVerification,getUserData,updateProfile, resetOldPassword} from "../../controllers/userController";
+import { userSignup,loginUser ,updateUser, emailVerification,getUserData,updateProfile, resetOldPassword, updateSocialLink, createORupdateNotifificationSettings} from "../../controllers/userController";
 import { upload } from "../../helpers/multer"; 
 const checkAuth = require('../../../users/helpers/check-auth');
 
@@ -38,5 +38,15 @@ export const routes = (app, version) => {
         version + '/password-reset',
         checkAuth,
         resetOldPassword,
+    );
+    app.put(
+        version + '/update-social-link',
+        checkAuth,
+        updateSocialLink,
+    );
+    app.put(
+        version + '/update-notification-settings',
+        checkAuth,
+        createORupdateNotifificationSettings,
     );
 };

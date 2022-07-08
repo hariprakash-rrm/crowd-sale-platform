@@ -18,6 +18,12 @@ const userProfileSchema = Schema({
     telegramUrl: {
         type: String,
     },
+    socialTelegramUrl: {
+        type: String,
+    },
+    socialTwitterUrl: {
+        type: String,
+    },
     mobile: {
         type: String,
     },

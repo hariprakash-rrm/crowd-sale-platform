@@ -1,5 +1,6 @@
 import User from "../models/user.model";
 import WalletAddress from "../models/wallet-address.model";
+import NotificationSettings from "../models/notification-settings.model";
 import UserProfile from "../models/user-profile.model";
 import jwt from "jsonwebtoken";
 import otpGenerator from "otp-generator";
@@ -157,10 +158,8 @@ export const updateUser = async (req, res, next) => {
     const updates = {
       userName: req.body.userName,
       name: req.body.name,
-      walletAddress: req.body.walletAddress,
       email: req.body.email,
       status: req.body.status,
-      walletAddress: req.body.walletAddress,
     };
     if (req.file) {
       const profileImage = req.file.path;
@@ -198,6 +197,50 @@ export const updateUser = async (req, res, next) => {
         return responseModule.successResponse(res, {
           success: 1,
           message: "User Details updated successfully",
+          data: response,
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    return next(err);
+  }
+};
+export const updateSocialLink = async (req, res, next) => {
+  try {
+    const updates = {
+      socialTelegramUrl: req.body.socialTelegramUrl,
+      socialTwitterUrl: req.body.socialTwitterUrl,
+    };
+
+    const user = await UserProfile.findOneAndUpdate(
+      {
+        _id: req.userData.profileId,
+      },
+      {
+        $set: updates,
+      },
+      {
+        new: true,
+      }
+    ).exec((error, response) => {
+      if (error) {
+        if (error.name == "ValidationError" || "MongoServerError") {
+          return res.status(400).json({
+            success: 0,
+            message: error.message,
+            response: 400,
+            data: {},
+          });
+        }
+        return responseModule.errorResponse(res, {
+          success: 0,
+          message: "Could not update User's social links",
+        });
+      } else {
+        return responseModule.successResponse(res, {
+          success: 1,
+          message: "User's social links updated successfully",
           data: response,
         });
       }
@@ -440,6 +483,7 @@ export const getUserData = async (req, res) => {
     );
     let profile = await UserProfile.findOne({ _id: req.userData.profileId });
     let walletAddress = await WalletAddress.findOne({ profile: profile._id });
+    let notificationSettings = await NotificationSettings.findOne({ profile: profile._id });
 
     return responseModule.successResponse(res, {
       success: 1,
@@ -447,6 +491,7 @@ export const getUserData = async (req, res) => {
       user,
       profile,
       walletAddress,
+      notificationSettings,
     });
   } catch (error) {
     console.log(err);
@@ -465,8 +510,8 @@ export const resetOldPassword = async (req, res) => {
         req.body.oldPassword,
         user.password,
         async (err, result) => {
-          console.log("err",err)
-          console.log("err",result)
+          console.log("err", err);
+          console.log("err", result);
           if (err) {
             return responseModule.errorResponse(res, {
               success: 0,
@@ -497,8 +542,8 @@ export const resetOldPassword = async (req, res) => {
                 });
               }
             });
-          }else{
-            console.log()
+          } else {
+            console.log();
             return responseModule.errorResponse(res, {
               success: 0,
               message: "Old Password is incorrect",
@@ -507,11 +552,69 @@ export const resetOldPassword = async (req, res) => {
           }
         }
       );
-    } 
+    }
   } catch (error) {
     return responseModule.errorResponse(res, {
       success: 0,
       message: error.message,
+      data: {},
+    });
+  }
+};
+
+export const createORupdateNotifificationSettings = async (req, res) => {
+  try {
+    let data = {
+      isDeal: req.body.isDeal || false,
+      isPledge: req.body.isPledge || false,
+      isEvent: req.body.isEvent || false,
+      isNewsLetter: req.body.isNewsLetter || false,
+      profile: req.userData.profileId
+    };
+
+    let find = await NotificationSettings.findOne({profile :  req.userData.profileId}).exec();
+    if(find){
+      const notificationSettings = await NotificationSettings.findOneAndUpdate(
+        {
+          profile: req.userData.profileId,
+        },
+        {
+          $set: data,
+        },
+        {
+          new: true,
+        }
+      ).exec((error, response) => {
+        console.log("error -1",error)
+        if (response) {
+          return responseModule.successResponse(res, {
+            success: 1,
+            message: "Notification settings updated successfully",
+            data: response,
+          });
+        }else{
+          return responseModule.errorResponse(res, {
+            success: 0,
+            message: 'Could not update notification settings',
+            data: {},
+          });
+        }
+      });
+    }else{
+      let notification = new NotificationSettings(data);
+      notification.save();
+        return responseModule.successResponse(res, {
+            success: 1,
+            message: "Notification settings updated successfully",
+            data: notification,
+          });
+    }
+
+  } catch (error) {
+    console.log("error",error)
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: 'Could not update notification settings',
       data: {},
     });
   }
