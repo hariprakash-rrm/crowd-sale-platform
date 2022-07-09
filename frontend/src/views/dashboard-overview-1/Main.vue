@@ -258,9 +258,9 @@
 
                       <th class="text-center whitespace-nowrap">PERCENTAGE</th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
+                      <!-- <th class="text-center whitespace-nowrap">
                         ENTER YOUR CONTRIBUTION
-                      </th>
+                      </th> -->
                       <th class="text-center whitespace-nowrap">
                         CONTRIBUTION
                       </th>
@@ -277,10 +277,10 @@
                         class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div  @click="bscOngoingModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="https://media.istockphoto.com/photos/tree-picture-id543052538?k=20&m=543052538&s=612x612&w=0&h=X3m-COQRykkX19_LAJRVEZ902bA4M_qbkMtWCO3IHRw="
                               content=""
@@ -331,7 +331,7 @@
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
-                      <td class="text-center">
+                      <!-- <td class="text-center">
                         <input
                           @input="handleInput(user.id, $event)"
                           :value="payload[user.id]"
@@ -340,7 +340,7 @@
                           placeholder="Enter Amount..."
                           :min="1"
                         />
-                      </td>
+                      </td> -->
                       <td class="table-report__action w-40">
                         <div class="flex justify-center gap-4 items-center">
                           <a
@@ -393,7 +393,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -579,10 +579,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="bscUpcomingModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -678,7 +678,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -866,10 +866,10 @@
                         class="w-20 border-l-[3px] border-primary dark:border-primary pl-4"
                       >
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div  @click="bscCompletedModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -968,7 +968,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -1154,10 +1154,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div  @click="bscMydealsModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -1251,7 +1251,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -1433,48 +1433,6 @@
                 </div>
 
                 <ModalBody class="p-6">
-                  <!-- <div class="grid grid-cols-12 gap-4 mb-6">
-                    <div class="col-span-12 md:col-span-4">
-                      <h6 class="font-semibold text-xs md:text-sm">ID</h6>
-                      <p
-                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
-                      >
-                        {{ currentModalId }}
-                      </p>
-                    </div>
-                    <div class="col-span-12 md:col-span-4">
-                      <h6 class="font-semibold text-xs md:text-sm">Name</h6>
-                      <p
-                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
-                      >
-                        {{ currentModalName }}
-                      </p>
-                    </div>
-                    <div class="col-span-12 md:col-span-4">
-                      <h6 class="font-semibold text-xs md:text-sm">Symbol</h6>
-                      <p
-                        class="font-bold text-sm md:text-base 2xl:text-lg text-black"
-                      >
-                        {{ currentModalSymbol }}
-                      </p>
-                    </div>
-                    <div class="col-span-12 md:col-span-7">
-                       <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
-                      <p class="text-base">Pay</p>
-                      <div class="flex items-center my-2 gap-4">
-                        <img
-                          src="@/assets/images/uc/tether.png"
-                          class="w-10 h-10"
-                          alt=""
-                        />
-                        <span class="text-black font-bold text-2xl">{{
-                          amountIncludeFee
-                        }}</span>
-                      </div>
-                      <p class="text-base">Include Fees</p>
-                    </div>
-                    </div>
-                  </div> -->
                     <div class="grid grid-cols-12 gap-4 lg:gap-8">
                         <div class="col-span-12 md:col-span-5">
                           <div class="p-6 rounded-xl w-full bg-[#d1a5651c] min-h-[9.5rem] flex flex-col justify-between">
@@ -1506,28 +1464,36 @@
                         </div>
                         <div class="col-span-12 md:col-span-7">
                            <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
-                            <p class="text-base">Pay</p>
-                            <div class="flex items-center my-2 gap-4">
-                              <img
+                            <p class="text-base pb-1">Pay</p>
+                            <!-- <div class="flex items-center my-2 gap-4"> -->
+                              <!-- <img
                                 src="@/assets/images/uc/tether.png"
                                 class="w-10 h-10"
                                 alt=""
                               />
                               <span class="text-black font-bold text-2xl">{{
                                 amountIncludeFee
-                              }}</span>
-                            </div>
-                            <p class="text-base">Include Fees</p>
+                              }}</span> -->
+                              <div>
+                                <input
+                                type="number"
+                                class="form-control mb-1 w-full rounded-sm font-bold box focus:border-primary focus:border-solid "
+                                placeholder="Amount with fee..."
+                                value="100"
+                                :min="1"
+                              />
+                              </div>
+                            <!-- </div> -->
+                            <p class="text-base mt-1">Minimum Amonut : <strong>50</strong></p>
                           </div>
                         </div>
                     </div>
 
-                 
-                  <div class="my-6 bg-[#f8f8f8]">
-                    <div
-                      class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
-                    >
-                      <p class="text-sm">Amount</p>
+                     <div class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border   border-solid">
+                      <p class="text-sm text-slate-500 font-bold">Your Balance</p>
+                      <p class="text-red-600 font-bold text-sm">
+                        {{ insufficientFund }}
+                      </p>
                       <div class="flex items-center gap-2">
                         <img
                           src="@/assets/images/uc/tether.png"
@@ -1535,12 +1501,31 @@
                           alt=""
                         />
                         <p class="text-black font-bold text-sm">
-                          {{ currentModalAmount }} {{ currentModalSymbol }}
+                          <span
+                            >{{ currentTokenBalance }} 499 USDT</span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                 
+                  <div class="mb-6 bg-[#f8f8f8]">
+                    <div
+                      class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                    >
+                      <p class="text-sm">Amount With Fee</p>
+                      <div class="flex items-center gap-2">
+                        <img
+                          src="@/assets/images/uc/tether.png"
+                          class="w-5 h-5"
+                          alt=""
+                        />
+                        <p class="text-black font-bold text-sm">
+                         102 {{ currentModalAmount }} USDT
                         </p>
                       </div>
                     </div>
                     <div
-                      class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                      class="px-6 py-3 flex justify-between"
                     >
                       <p class="text-sm">FEE</p>
                       <div class="flex items-center gap-2">
@@ -1551,7 +1536,7 @@
                         />
                         <p class="text-black font-bold text-sm">
                           <span class="text-yellow-600"
-                            >{{ currentModalFeeAmount }} USDT</span
+                            > 2 USDT</span
                           >
                           or
                           <span class="text-yellow-600"
@@ -1581,26 +1566,9 @@
                       class="btn btn-primary w-full"
                       :disabled="inSufficientButtonStatus"
                     >
-                      Final Contribute
+                     Contribute
                     </button>
-                    <div class="mt-2 py-3 flex items-center justify-between">
-                      <p class="text-sm">Your Balance</p>
-                      <p class="text-red-600 font-bold text-sm">
-                        {{ insufficientFund }}
-                      </p>
-                      <div class="flex items-center gap-2">
-                        <img
-                          src="@/assets/images/uc/tether.png"
-                          class="w-5 h-5"
-                          alt=""
-                        />
-                        <p class="text-black font-bold text-sm">
-                          <span class="text-red-600"
-                            >{{ currentTokenBalance }} USDT</span
-                          >
-                        </p>
-                      </div>
-                    </div>
+                   
                   </div>
                 </ModalBody>
               </Modal>
@@ -1737,9 +1705,9 @@
 
                       <th class="text-center whitespace-nowrap">PERCENTAGE</th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
+                      <!-- <th class="text-center whitespace-nowrap">
                         ENTER YOUR CONTRIBUTION
-                      </th>
+                      </th> -->
                       <th class="text-center whitespace-nowrap">
                         CONTRIBUTION
                       </th>
@@ -1755,10 +1723,10 @@
                         class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div  @click="ethOngoingModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -1809,7 +1777,7 @@
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
-                      <td class="text-center">
+                      <!-- <td class="text-center">
                         <input
                           @input="handleInput(user.id, $event)"
                           :value="payload[user.id]"
@@ -1818,7 +1786,7 @@
                           placeholder="Enter Amount..."
                           :min="1"
                         />
-                      </td>
+                      </td> -->
                       <td class="table-report__action w-40">
                         <div class="flex justify-center gap-4 items-center">
                           <a
@@ -1871,7 +1839,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -2057,10 +2025,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="ethUpcomingModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -2156,7 +2124,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -2342,10 +2310,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div  @click="ethCompletedModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -2444,7 +2412,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -2630,10 +2598,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="ethMydealsModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -2727,7 +2695,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -3009,7 +2977,7 @@
                       class="btn btn-primary w-full"
                       :disabled="inSufficientButtonStatus"
                     >
-                      Final Contribute
+                     Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>
@@ -3162,9 +3130,9 @@
 
                       <th class="text-center whitespace-nowrap">PERCENTAGE</th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
+                      <!-- <th class="text-center whitespace-nowrap">
                         ENTER YOUR CONTRIBUTION
-                      </th>
+                      </th> -->
                       <th class="text-center whitespace-nowrap">
                         CONTRIBUTION
                       </th>
@@ -3180,10 +3148,10 @@
                         class="w-20 border-l-4 border-primary dark:border-primary pl-4"
                       >
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="polygonOngoingModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -3234,7 +3202,7 @@
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
-                      <td class="text-center">
+                      <!-- <td class="text-center">
                         <input
                           @input="handleInput(user.id, $event)"
                           :value="payload[user.id]"
@@ -3243,7 +3211,7 @@
                           placeholder="Enter Amount..."
                           :min="1"
                         />
-                      </td>
+                      </td> -->
                       <td class="table-report__action w-40">
                         <div class="flex justify-center gap-4 items-center">
                           <a
@@ -3296,7 +3264,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -3482,10 +3450,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="polygonUpcomingModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -3581,7 +3549,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -3767,10 +3735,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="polygonCompletedModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -3872,7 +3840,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -4058,10 +4026,10 @@
                     >
                       <td class="w-20">
                         <div class="flex">
-                          <div class="w-16 h-16 image-fit zoom-in">
-                            <Tippy
+                          <div @click="polygonMydealsModal = true" class="w-16 h-16 image-fit zoom-in">
+                            <img
                               tag="img"
-                              alt="Midone Tailwind HTML Admin Template"
+                              alt="unreal-capital"
                               class="rounded-md"
                               src="http://enigma.left4code.com/dist/images/preview-10.jpg"
                               content=""
@@ -4155,7 +4123,7 @@
                                   class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                                 >
                                   <img
-                                    alt="Midone Tailwind HTML Admin Template"
+                                    alt="unreal-capital"
                                     class="rounded-md w-40 h-40 shadow-xl object-cover"
                                     src="@/assets/images/uc/gt-protocol.jpg"
                                   />
@@ -4441,7 +4409,7 @@
                       class="btn btn-primary w-full"
                       :disabled="inSufficientButtonStatus"
                     >
-                      Final Contribute
+                      Contribute
                     </button>
                     <div class="mt-2 py-3 flex items-center justify-between">
                       <p class="text-sm">Your Balance</p>

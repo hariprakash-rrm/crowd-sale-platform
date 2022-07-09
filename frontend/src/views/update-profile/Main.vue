@@ -30,7 +30,7 @@
               </div>
               <div class="text-slate-500">{{ $f()[0].jobs[0] }}</div>
             </div>
-            <Dropdown>
+            <!-- <Dropdown>
               <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
                 <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
               </DropdownToggle>
@@ -79,7 +79,7 @@
                   </DropdownFooter>
                 </DropdownContent>
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> -->
           </div>
           <div
             class="p-5 border-t border-slate-200/60 dark:border-darkmode-400"
@@ -161,7 +161,7 @@
                       />
                       <label for="email" class="input__label">Email</label>
                     </div>
-                    <div class="relative mb-6">
+                    <!-- <div class="relative mb-6">
                       <input
                         type="text"
                         id="telegram"
@@ -171,8 +171,8 @@
                       <label for="telegram" class="input__label"
                         >Telegram</label
                       >
-                    </div>
-                    <div class="relative mb-6">
+                    </div> -->
+                    <!-- <div class="relative mb-6">
                       <input
                         type="number"
                         id="phone-no"
@@ -182,7 +182,7 @@
                       <label for="phone-no" class="input__label"
                         >Mobile Number</label
                       >
-                    </div>
+                    </div> -->
                     <div class="relative mb-6">
                       <textarea
                         id="update-profile-form-5"
@@ -192,7 +192,7 @@
                       <label for="phone-no" class="input__label">Bio</label>
                     </div>
 
-                    <div
+                    <!-- <div
                       class="
                         relative
                         px-0
@@ -231,7 +231,7 @@
                         <option value="4">Bartley</option>
                         <option value="5">Beauty World</option>
                       </TomSelect>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="did-floating-label-content">
                     <select class="did-floating-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
@@ -257,7 +257,7 @@
                     py-2
                     px-8
                     rounded-md
-                    mt-12
+                   
                   "
                 >
                   Save
@@ -814,7 +814,7 @@
               </div>
             </div>
 
-            <div class="flex items-center w-full gap-4 mb-6">
+            <!-- <div class="flex items-center w-full gap-4 mb-6">
               <div class="relative w-full">
                 <input
                   type="text"
@@ -841,7 +841,7 @@
                   class="w-6 h-6 m-auto text-slate-400 hover:text-primary"
                 />
               </div>
-            </div>
+            </div> -->
             <!-- <div class="relative mb-6">
               <input type="text" id="discord" class="input__field peer" placeholder=" " />
               <label for="discord" class="input__label">Discord</label>
