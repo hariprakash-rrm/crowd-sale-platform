@@ -421,8 +421,8 @@ export const updateProfile = async (req, res) => {
       userName: req.body.userName,
       telegramUrl: req.body.telegramUrl,
       bio: req.body.bio,
-      location: req.body.location,
-      mobile: req.body.mobile,
+     //// location: req.body.location,
+   //   mobile: req.body.mobile,
     };
     if (req.file) {
       const profileImage = req.file.path;
