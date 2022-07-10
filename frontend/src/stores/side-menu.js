@@ -136,7 +136,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
       {
         icon: "HomeIcon",
         pageName: "side-menu-update-profile",
-        title: "Portfolio",
+        title: "Profile",
       },
       // {
       //   icon: "TrelloIcon",

@@ -171,11 +171,11 @@
         >
           <p
             @click="connect"
-            class="text-white text-center bg-primary p-1 rounded-full truncate"
+            class="text-white text-center bg-primary p-1 px-5 rounded-full truncate"
           >
             {{ account.address }}
           </p>
-          <p class="text-white text-center">Network - {{ account.network }}</p>
+          <p class="text-white text-xs text-center">Network - {{ account.network }}</p>
         </DropdownToggle>
         <DropdownMenu v-if="connected" class="w-56">
           <DropdownContent

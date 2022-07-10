@@ -28,7 +28,7 @@
               <div class="font-semibold text-base">
                 {{ $f()[0].users[0].name }}
               </div>
-              <div class="text-slate-500">{{ $f()[0].jobs[0] }}</div>
+              <!-- <div class="text-slate-500">{{ $f()[0].jobs[0] }}</div> -->
             </div>
             <!-- <Dropdown>
               <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
@@ -84,22 +84,31 @@
           <div
             class="p-5 border-t border-slate-200/60 dark:border-darkmode-400"
           >
-            <a
-              class="flex items-center text-primary font-medium"
-              href="#personalInformation"
+            <a @click="activeTabOne"
+              class="flex items-center font-medium"
+              href="#"
+              v-bind:class="{'':true, 'text-primary': tab == 1}"
             >
               <UserIcon class="w-4 h-4 mr-2" /> Personal Information
             </a>
-            <a class="flex items-center mt-5" href="#changePassword">
+            <a @click="activeTabTwo" class="flex items-center mt-5"
+              v-bind:class="{'':true, 'text-primary': tab == 2}" href="#">
               <LockIcon class="w-4 h-4 mr-2" /> Reset Password
             </a>
-            <a class="flex items-center mt-5" href="#changePassword">
+            <a @click="activeTabThree" class="flex items-center mt-5" 
+              v-bind:class="{'':true, 'text-primary': tab == 3}" href="#">
               <UnlockIcon class="w-4 h-4 mr-2" /> Enable 2FA
             </a>
-            <a class="flex items-center mt-5" href="">
+             <a @click="activeTabFour" class="flex items-center mt-5" 
+              v-bind:class="{'':true, 'text-primary': tab == 4}" href="#">
+              <CreditCardIcon class="w-4 h-4 mr-2" /> Wallet
+            </a>
+            <a @click="activeTabFive" class="flex items-center mt-5" 
+              v-bind:class="{'':true, 'text-primary': tab == 5}" href="#">
               <ActivityIcon class="w-4 h-4 mr-2" /> Notifications
             </a>
-            <a class="flex items-center mt-5" href="">
+            <a @click="activeTabSix" class="flex items-center mt-5" 
+              v-bind:class="{'':true, 'text-primary': tab == 6}" href="#">
               <SettingsIcon class="w-4 h-4 mr-2" /> Social Networks
             </a>
           </div>
@@ -122,7 +131,7 @@
       <!-- END: Profile Menu -->
       <div class="col-span-12 lg:col-span-8 2xl:col-span-9">
         <!-- BEGIN: Personal Settings -->
-        <div class="intro-y box mt-5" id="personalInformation">
+        <div v-show="tab === 1" class="intro-y box mt-5" id="personalInformation">
           <div
             class="
               flex
@@ -328,7 +337,7 @@
         <!-- END: Personal Settings -->
 
         <!-- BEGIN: Change Password -->
-        <div class="intro-y box mt-5" id="changePassword">
+        <div v-show="tab === 2" class="intro-y box mt-5" id="changePassword">
           <div
             class="
               flex
@@ -396,7 +405,7 @@
         <!-- END: Change Password -->
 
         <!-- BEGIN: Enable 2 factor Authentication -->
-        <div class="intro-y box mt-5" id="enableTw0FactorAuth">
+        <div v-show="tab === 3" class="intro-y box mt-5" id="enableTwoFactorAuth">
           <div
             class="
               flex
@@ -425,8 +434,8 @@
         </div>
         <!-- END: Enable 2 factor Authentication -->
 
-         <!-- BEGIN: Change Password -->
-        <div class="intro-y box mt-5" id="changePassword">
+         <!-- BEGIN: Add Wallet -->
+        <div  v-show="tab === 4" class="intro-y box mt-5" id="addWallet">
           <div
             class="
               flex
@@ -471,10 +480,10 @@
             </button>
           </div>
         </div>
-        <!-- END: Change Password -->
+        <!-- END: Add Wallet -->
 
         <!-- BEGIN: Notification -->
-        <div class="intro-y box mt-5">
+        <div v-show="tab === 5" class="intro-y box mt-5" id="Notification">
           <div
             class="
               flex
@@ -505,7 +514,7 @@
                   type="checkbox"
                 />
                 <!-- BEGIN: Notifications -->
-                <Dropdown class="intro-x border-white/[0.08]">
+                 <Dropdown class="intro-x border-white/[0.08]">
                   <DropdownToggle
                     tag="div"
                     role="button"
@@ -513,7 +522,7 @@
                   >
                     <BellIcon class="notification__icon dark:text-slate-500" />
                   </DropdownToggle>
-                  <DropdownMenu class="w-56">
+                  <!-- <DropdownMenu class="w-56">
                     <DropdownContent
                       class="
                         bg-primary/80
@@ -551,8 +560,8 @@
                         Offers</DropdownItem
                       >
                     </DropdownContent>
-                  </DropdownMenu>
-                </Dropdown>
+                  </DropdownMenu> -->
+                </Dropdown> 
                 <!-- END: Notifications -->
               </div>
             </div>
@@ -583,7 +592,7 @@
                   >
                     <BellIcon class="notification__icon dark:text-slate-500" />
                   </DropdownToggle>
-                  <DropdownMenu class="w-56">
+                  <!-- <DropdownMenu class="w-56">
                     <DropdownContent
                       class="
                         bg-primary/80
@@ -621,8 +630,8 @@
                         Offers</DropdownItem
                       >
                     </DropdownContent>
-                  </DropdownMenu>
-                </Dropdown>
+                  </DropdownMenu> -->
+                </Dropdown> 
                 <!-- END: Notifications -->
               </div>
             </div>
@@ -652,7 +661,7 @@
                   >
                     <BellIcon class="notification__icon dark:text-slate-500" />
                   </DropdownToggle>
-                  <DropdownMenu class="w-56">
+                  <!-- <DropdownMenu class="w-56">
                     <DropdownContent
                       class="
                         bg-primary/80
@@ -690,7 +699,7 @@
                         Offers</DropdownItem
                       >
                     </DropdownContent>
-                  </DropdownMenu>
+                  </DropdownMenu> -->
                 </Dropdown>
                 <!-- END: Notifications -->
               </div>
@@ -721,7 +730,7 @@
                   >
                     <BellIcon class="notification__icon dark:text-slate-500" />
                   </DropdownToggle>
-                  <DropdownMenu class="w-56">
+                  <!-- <DropdownMenu class="w-56">
                     <DropdownContent
                       class="
                         bg-primary/80
@@ -759,8 +768,8 @@
                         Offers</DropdownItem
                       >
                     </DropdownContent>
-                  </DropdownMenu>
-                </Dropdown>
+                  </DropdownMenu> -->
+                </Dropdown> 
                 <!-- END: Notifications -->
               </div>
             </div>
@@ -769,7 +778,7 @@
         <!-- END: Notification -->
 
         <!-- BEGIN: Social Network -->
-        <div class="intro-y box mt-5" id="changePassword">
+        <div v-show="tab === 6" class="intro-y box mt-5" id="socialNetworks">
           <div
             class="
               flex
@@ -859,10 +868,38 @@
   box-shadow: none !important;
 }
 </style>
-<script setup>
+<script>
 import { ref } from "vue";
 
 const select = ref("1");
+
+export default {
+  data() {
+    return {
+       tab: 1,
+    }
+  },
+  methods: {
+    activeTabOne() {
+      this.tab = 1;
+    },
+    activeTabTwo() {
+      this.tab = 2;
+    },
+    activeTabThree() {
+      this.tab = 3;
+    },
+    activeTabFour() {
+      this.tab = 4;
+    },
+    activeTabFive() {
+      this.tab = 5;
+    },
+     activeTabSix() {
+      this.tab = 6;
+    }
+  }
+}
 </script>
 <style scoped>
 .px-0 {
