@@ -4512,7 +4512,7 @@ export default {
 
   async mounted() {
     await this.fetchDeals();
-    this.reversePool();
+    await this.reversePool();
   },
   computed: {
     ...mapGetters(useWeb3DealsStore, ["getDealsData"]),
