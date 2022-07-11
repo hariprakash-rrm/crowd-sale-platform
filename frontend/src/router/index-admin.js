@@ -6,7 +6,7 @@ import EnterOtp from "../pages/OTPVerification.vue";
 import ResetPassword from "../views/reset-password/Main.vue";
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
-import SideMenu from "../layouts/side-menu/Main.vue";
+import SideMenuAdmin from "../layouts/side-menu-admin/Main.vue";
 import UpdateProfile from "../views/update-profile/Main.vue";
 import UserLayout from "../views/users-layout-1/Main.vue";
 import SingleDeal from "../views/profile-overview-2/Main.vue";
@@ -51,33 +51,33 @@ const routes = [
   
     {
         path: "/",
-        component: SideMenu,
+        component: SideMenuAdmin,
         children: [
-            {
-                path: "dashboard",
-                name: "side-menu-dashboard-overview-1",
-                component: DashboardOverview1,
-            },
-            {
-                path: "/profile",
-                name: "side-menu-update-profile",
-                component: UpdateProfile,
-            },
-            {
-                path: "/notification",
-                name: "side-menu-users-layout-1",
-                component: UserLayout,
-            },
-            {
-                path: "/single-deal",
-                name: "side-menu-profile-overview-2",
-                component: SingleDeal,
-            },
             // {
-            //     path: "/admin",
-            //     name: "accordion",
-            //     component: Admin,
+            //     path: "dashboard",
+            //     name: "side-menu-dashboard-overview-1",
+            //     component: DashboardOverview1,
             // },
+            // {
+            //     path: "/profile",
+            //     name: "side-menu-update-profile",
+            //     component: UpdateProfile,
+            // },
+            // {
+            //     path: "/notification",
+            //     name: "side-menu-users-layout-1",
+            //     component: UserLayout,
+            // },
+            // {
+            //     path: "/single-deal",
+            //     name: "side-menu-profile-overview-2",
+            //     component: SingleDeal,
+            // },
+            {
+                path: "/admin",
+                name: "accordion",
+                component: Admin,
+            },
             {
                 path: "/notification",
                 name: "profile-overview-1",
