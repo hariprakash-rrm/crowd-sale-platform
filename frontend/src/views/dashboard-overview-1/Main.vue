@@ -379,7 +379,7 @@
                     <!-- BEGIN: Profile Info -->
                     <div class="intro-y mt-5">
                       <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-8 box">
+                        <div class="col-span-12 md:col-span-7 box">
                           <div class="intro-y px-5 mt-5">
                             <div class="flex flex-col justify-between mx-auto">
                               <div
@@ -466,8 +466,8 @@
                             </TabList>
                           </div>
                         </div>
-                        <div class="col-span-4">
-                          <div class="intro-y box col-span-12 lg:col-span-6">
+                        <div class="col-span-12 md:col-span-5">
+                          <!-- <div class="intro-y box">
                             <div
                               class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
                             >
@@ -545,7 +545,103 @@
                                 </div>
                               </div>
                             </div>
+                          </div> -->
+                          <div class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]">
+                            <p class="text-base pb-1 text-left">Pay</p>
+                           
+                              <div>
+                                <input
+                                type="number"
+                                class="form-control mb-1 w-full  font-bold rounded-md h-12 focus:border-primary focus:border-solid "
+                                placeholder="Amount with fee..."
+                                value="100"
+                                :min="1"
+                              />
+                              </div>
+                            <!-- </div> -->
+                            <p class="text-base mt-1 text-left">Minimum Amonut : <strong>50</strong></p>
                           </div>
+                          <div class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border   border-solid">
+                            <p class="text-sm text-slate-500 font-bold">Your Balance</p>
+                            <p class="text-red-600 font-bold text-sm">
+                              {{ insufficientFund }}
+                            </p>
+                            <div class="flex items-center gap-2">
+                              <img
+                                src="@/assets/images/uc/tether.png"
+                                class="w-5 h-5"
+                                alt=""
+                              />
+                              <p class="text-black font-bold text-sm">
+                                <span
+                                  >{{ currentTokenBalance }} 499 USDT</span
+                                >
+                              </p>
+                            </div>
+                          </div>
+                          
+                          
+                            <div class="mb-6 bg-[#f8f8f8]">
+                              <div
+                                class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                              >
+                                <p class="text-sm">Amount With Fee</p>
+                                <div class="flex items-center gap-2">
+                                  <img
+                                    src="@/assets/images/uc/tether.png"
+                                    class="w-5 h-5"
+                                    alt=""
+                                  />
+                                  <p class="text-black font-bold text-sm">
+                                  102 {{ currentModalAmount }} USDT
+                                  </p>
+                                </div>
+                              </div>
+                              <div
+                                class="px-6 py-3 flex justify-between"
+                              >
+                                <p class="text-sm">FEE</p>
+                                <div class="flex items-center gap-2">
+                                  <img
+                                    src="@/assets/images/uc/tether.png"
+                                    class="w-5 h-5"
+                                    alt=""
+                                  />
+                                  <p class="text-black font-bold text-sm">
+                                    <span class="text-yellow-600"
+                                      > 2 USDT</span
+                                    >
+                                    or
+                                    <span class="text-yellow-600"
+                                      >{{ currentModalFee }}%</span
+                                    >
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-check mt-5">
+                              <input
+                                id="vertical-form-3"
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                              />
+                              <label class="form-check-label" for="vertical-form-3"
+                                >I AGREE with all statements.</label
+                              >
+                            </div>
+
+                            <div class="pt-8 text-center">
+                              <button
+                                type="button"
+                                @click="finalContribute()"
+                                class="btn btn-primary w-full"
+                                :disabled="inSufficientButtonStatus"
+                              >
+                              Contribute
+                              </button>
+                            
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -1489,7 +1585,7 @@
                         </div>
                     </div>
 
-                     <div class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border   border-solid">
+                    <div class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border   border-solid">
                       <p class="text-sm text-slate-500 font-bold">Your Balance</p>
                       <p class="text-red-600 font-bold text-sm">
                         {{ insufficientFund }}
