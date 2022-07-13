@@ -6,7 +6,8 @@ import { parseJwt, Role } from "@/helpers/helper.js";
 export const useAuthUserStore = defineStore("authUserStore", {
     state: () => ({
         userData: JSON.parse(localStorage.getItem("token")) || {},
-        user: []
+        user: {},
+        userFullName: "",
     }),
     getters: {
         colorScheme(state) {
@@ -41,24 +42,27 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     if (role == Role.user) {
                         router.push("/dashboard");
                     }
+                    this.fetchUser()
                     return res
                 })
                 .catch((err) => {
                     console.error("error in login", err);
-                    // commit("LOGINERROR", err);
                     return err
                 })
         },
         logout() {
             localStorage.removeItem("token");
             this.userData = {}
+            this.user = {}
+            this.userFullName = ""
             setTimeout(() => {
                 router.push("/login");
             }, 0);
         },
-        fetchUser({ }) {
+        fetchUser() {
             return auth.fetchUser().then(res => {
-
+                this.user = res.data;
+                this.userFullName = res.data['profile'].name;
             })
         },
         userRegistration(payload) {

@@ -14,8 +14,8 @@ export const useSideMenuAdminStore = defineStore("sideMenuAdmin", {
         title: "Profile",
       },
       {
-        icon: "",
-        pageName: "side-menu-accordion",
+        icon: "HomeIcon",
+        pageName: "accordion",
         title: "Accordion",
         },
     ],
