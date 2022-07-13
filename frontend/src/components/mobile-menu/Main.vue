@@ -131,6 +131,7 @@ import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { helper as $h } from "@/utils/helper";
 import { useSideMenuStore } from "@/stores/side-menu";
+import { useSideMenuAdminStore } from "@/stores/side-menu-admin";
 import {
   activeMobileMenu,
   toggleMobileMenu,
@@ -141,11 +142,17 @@ import {
 import { nestedMenu } from "@/layouts/side-menu";
 import dom from "@left4code/tw-starter/dist/js/dom";
 import SimpleBar from "simplebar";
+import { Role, getScope } from "@/helpers/helper.js"
 
 const route = useRoute();
 const router = useRouter();
 const formattedMenu = ref([]);
-const sideMenuStore = useSideMenuStore();
+let sideMenuStore;
+if(getScope() === Role.Admin) {
+  sideMenuStore = useSideMenuAdminStore();
+} else {
+  sideMenuStore = useSideMenuStore();
+}
 const mobileMenu = computed(() => nestedMenu(sideMenuStore.menu, route));
 
 watch(
