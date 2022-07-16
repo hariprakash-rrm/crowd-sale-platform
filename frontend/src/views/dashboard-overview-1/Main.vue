@@ -499,10 +499,10 @@
                             <div class="my-6" v-show="singlePooldetailTab === 1">
                                <div class="grid grid-cols-12 gap-4 lg:gap-8">
                                   <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl" src="@/assets/images/uc/1.jpg">
+                                      <img class="rounded-xl" src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg">
                                   </div>
                                   <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl" src="@/assets/images/uc/1.jpg">
+                                      <img class="rounded-xl" src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg">
                                   </div>
                                </div>
                             </div>
