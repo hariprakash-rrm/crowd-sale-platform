@@ -66,9 +66,9 @@
       <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
       <p class="text-lg text-slate-500 mt-2">Available Deals</p>
     </div>
-    <div class="intro-y box col-span-12">
+    <div class="intro-y col-span-12">
       <!-- BEGIN: NETWORK TAB -->
-      <div
+      <!-- <div
         class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 items-center justify-between mb-4 lg:mb-8"
       >
         <ul
@@ -128,16 +128,15 @@
             </button>
           </li>
         </ul>
-      </div>
+      </div> -->
       <!-- END: NETWORK TAB -->
 
       <!-- BEGIN: NETWORK TAB CONTENT -->
       <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
         <!-- BEGIN: TAB CONTENT BSC -->
 
-        <div v-show="networkTab === 1">
-          <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
-          <div class="mx-8 pb-8">
+         <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
+          <div class="pb-8">
             <!-- BEGIN: SINGLE NETWORK TAB -->
             <div
               class="flex flex-col lg:flex-row items-center justify-between mb-4 lg:mb-8"
@@ -258,9 +257,9 @@
 
                       <th class="text-center whitespace-nowrap">PERCENTAGE</th>
                       <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <!-- <th class="text-center whitespace-nowrap">
-                        ENTER YOUR CONTRIBUTION
-                      </th> -->
+                      <th class="text-center whitespace-nowrap">
+                        NETWORK
+                      </th>
                       <th class="text-center whitespace-nowrap">
                         CONTRIBUTION
                       </th>
@@ -341,6 +340,7 @@
                           :min="1"
                         />
                       </td> -->
+                         <td class="text-center text-base font-bold text-blue-600">ETH</td>
                       <td class="table-report__action w-40">
                         <div class="flex justify-center gap-4 items-center">
                           <a
@@ -379,7 +379,7 @@
                     <!-- BEGIN: Profile Info -->
                     <div class="intro-y mt-5">
                       <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-12 md:col-span-7 box">
+                        <div class="col-span-12 md:col-span-8 box">
                           <div class="intro-y px-5 mt-5">
                             <div class="flex flex-col justify-between mx-auto">
                               <div
@@ -441,7 +441,87 @@
                                 </div>
                               </div>
                             </div>
-                            <TabList
+                            <ul  class="nav nav-link-tabs w-full lg:w-2/4 rounded-md "
+                              role="tablist">
+                              <li
+                                @click="activeSinglePoolTabOne"
+                                id="active-bsc-tab"
+                                class="nav-item flex-1"
+                                role="presentation"
+                              >
+                                <button
+                                  class="nav-link cursor-pointer flex items-center justify-center text-sm lg:text-base w-full py-5 px-2 active"
+                                  data-tw-toggle="pill"
+                                  data-tw-target="#active-network"
+                                  type="button"
+                                  role="tab"
+                                  aria-controls="active-network"
+                                  aria-selected="true"
+                                >
+                                  <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                                </button>
+                              </li>
+                              <li
+                                @click="activeSinglePoolTabTwo"
+                                id="inactive-eth-tab"
+                                class="nav-item flex-1"
+                                role="presentation"
+                              >
+                                <button
+                                  class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                  data-tw-toggle="pill"
+                                  data-tw-target="#inactive-network"
+                                  type="button"
+                                  role="tab"
+                                  aria-selected="false"
+                                >
+                                  <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                                </button>
+                              </li>
+                              <li
+                                @click="activeSinglePoolTabThree"
+                                id="inactive-polygon-tab"
+                                class="nav-item flex-1"
+                                role="presentation"
+                              >
+                                <button
+                                  class="nav-link flex items-center justify-center   text-sm lg:text-base w-full py-5 px-2"
+                                  data-tw-toggle="pill"
+                                  data-tw-target="#inactive-network"
+                                  type="button"
+                                  role="tab"
+                                  aria-selected="false"
+                                >
+                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                                </button>
+                              </li>
+                            </ul>
+                            <div class="my-6" v-show="singlePooldetailTab === 1">
+                               <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                                  <div class="col-span-12 lg:col-span-6">
+                                      <img class="rounded-xl" src="@/assets/images/uc/1.jpg">
+                                  </div>
+                                  <div class="col-span-12 lg:col-span-6">
+                                      <img class="rounded-xl" src="@/assets/images/uc/1.jpg">
+                                  </div>
+                               </div>
+                            </div>
+                             <div class="my-6" v-show="singlePooldetailTab === 2">
+                                kjdfg
+                            </div>
+                             <div class="my-6" v-show="singlePooldetailTab === 3">
+                                <div class="grid grid-cols-12">
+                                  <div class="col-span-12 lg:col-span-6">
+
+                                  </div>
+                                  <div class="col-span-12 lg:col-span-6">
+
+                                  </div>
+                               </div>
+                            </div>
+
+                            
+                            <!-- <TabList
                               class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
                             >
                               <Tab
@@ -463,89 +543,10 @@
                               >
                                 <SettingsIcon class="w-4 h-4 mr-2" /> VCs
                               </Tab>
-                            </TabList>
+                            </TabList> -->
                           </div>
                         </div>
-                        <div class="col-span-12 md:col-span-5">
-                          <!-- <div class="intro-y box">
-                            <div
-                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                            >
-                              <h2
-                                class="font-semibold text-base py-2 px-5 mr-auto"
-                              >
-                                Details
-                              </h2>
-
-                              <button
-                                class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
-                              >
-                                Closed
-                              </button>
-                            </div>
-                            <div class="p-5">
-                              <div class="flex items-center">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Tier Access
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    Public Offering
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Price Per
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    1 GTP = 0.15 USDC
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Total Offering
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    733,333 GTP
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Global Cap
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    110,000 USDC
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div> -->
+                        <div class="col-span-12 md:col-span-4">
                           <div class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]">
                             <p class="text-base pb-1 text-left">Pay</p>
                            
@@ -1673,6 +1674,9 @@
             <!-- END: SINGLE NETWORK CONTENT TAB -->
           </div>
           <!-- END: SINGLE NETWORK TAB SECTION -->
+
+        <div v-show="networkTab === 1">
+         
         </div>
 
         <!-- END: TAB CONTENT BSC -->
@@ -4576,6 +4580,7 @@ export default {
       payload: {},
       tab: 1,
       networkTab: 1,
+      singlePooldetailTab:1,
       largeModalSizePreview: false,
       bscContributeModal: false,
       ethContributeModal: false,
@@ -4637,6 +4642,15 @@ export default {
     },
     activeNetworkTabThree() {
       this.networkTab = 3;
+    },
+    activeSinglePoolTabOne() {
+      this.singlePooldetailTab = 1;
+    },
+    activeSinglePoolTabTwo() {
+      this.singlePooldetailTab = 2;
+    },
+    activeSinglePoolTabThree() {
+      this.singlePooldetailTab = 3;
     },
 
     activeTabOne() {

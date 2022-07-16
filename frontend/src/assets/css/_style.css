@@ -67,6 +67,7 @@ background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
 .accordion.accordion-boxed .accordion-item {
   padding: 1.5rem;
   border-radius: 0.5rem;
+  margin-top: 1.5rem !important;
 }
 .modal-content {
   border-radius: .75rem;
