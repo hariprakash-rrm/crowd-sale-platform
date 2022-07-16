@@ -92,3 +92,6 @@ background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
     width: 1280px;
 }
 }
+.table-report img {
+  box-shadow: none !important;
+}

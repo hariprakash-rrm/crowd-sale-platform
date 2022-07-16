@@ -135,10 +135,10 @@
                             <input
                               type="text"
                               id="p-id"
-                              class="input__field peer"
+                              class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label">Pid</label>
+                            <label for="p-id" class="input__label--accordion">Pid</label>
                           </div>
 
                           <a
@@ -193,7 +193,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            5.Get Total Stake In Pool
+                            5. Get Total Stake In Pool
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -219,7 +219,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            6.Get User Staked Token In Pool
+                            6. Get User Staked Token In Pool
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -229,19 +229,19 @@
                             <input
                               type="text"
                               id="p-id"
-                              class="input__field peer"
+                              class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label">Pid</label>
+                            <label for="p-id" class="input__label--accordion">Pid</label>
                           </div>
                           <div class="relative mb-6">
                             <input
                               type="text"
                               id="address"
-                              class="input__field peer"
+                              class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="address" class="input__label"
+                            <label for="address" class="input__label--accordion"
                               >Address</label
                             >
                           </div>
@@ -256,7 +256,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            4. Name
+                            7. Name
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -283,39 +283,34 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Pause Contract
+                            8. Owner
                           </p>
                         </Accordion>
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <a
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Write
-                          </a>
+                        <a href="#" class="text-base text-blue-500">0x92ea94e6880a93810a5e15e171d03dc57f9514ed</a>
+                          
                         </AccordionPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                     <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Renounce Ownership
+                            9. Paused
                           </p>
                         </Accordion>
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <a
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Write
-                          </a>
+                          <div class="relative mb-6">
+                            <p class="text-black text-base">False</p>
+                          </div>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Set Pool Staking End Time
+                            10. Pool Info
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -328,30 +323,48 @@
                               class="input__field peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label">Pid</label>
+                            <label for="p-id" class="input__label">uint256</label>
                           </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="end-time"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="end-time" class="input__label"
-                              >End Time</label
-                            >
-                          </div>
+                    
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
-                            Write
+                            Query
                           </a>
+                        </AccordionPanel>
+                      </AccordionItem>
+                       <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">
+                            11. Pool Length
+                          </p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                          <div class="relative mb-6">
+                            <p class="text-black text-base">0 <em class="text-slate-400">uint256</em></p>
+                          </div>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Stake Tokens
+                            12. ProxiableUUid
+                          </p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                          <div class="relative mb-6">
+                         <em class="text-slate-400"> bytes 32</em>
+                          </div>
+                        </AccordionPanel>
+                      </AccordionItem>
+                      <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">
+                            13. Total contributed  Amount in Pool
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -364,32 +377,20 @@
                               class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label--accordion"
-                              >Pid</label
-                            >
+                            <label for="p-id" class="input__label--accordion">uint256</label>
                           </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="number"
-                              id="amount"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label for="amount" class="input__label--accordion"
-                              >End Time</label
-                            >
-                          </div>
+                    
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
-                            Write
+                            Query
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Transfer Ownership
+                            14. User Info
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -398,35 +399,27 @@
                           <div class="relative mb-6">
                             <input
                               type="text"
-                              id="new-owner"
+                              id="uint256"
                               class="input__field peer"
                               placeholder=""
                             />
-                            <label for="new-owner" class="input__label"
-                              >New Owner</label
-                            >
+                            <label for="uint256" class="input__label">uint256</label>
                           </div>
+                           <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="address"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="address" class="input__label">Address</label>
+                          </div>
+                    
 
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
-                            Write
-                          </a>
-                        </AccordionPanel>
-                      </AccordionItem>
-                      <AccordionItem>
-                        <Accordion>
-                          <p class="text-black font-semibold text-base">
-                            Un Pause Contract
-                          </p>
-                        </Accordion>
-                        <AccordionPanel
-                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
-                        >
-                          <a
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Write
+                            Query
                           </a>
                         </AccordionPanel>
                       </AccordionItem>

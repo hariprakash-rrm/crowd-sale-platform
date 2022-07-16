@@ -331,6 +331,37 @@
                   </div>
                 </div>
               </div>
+              <div class="w-52 mx-auto xl:mr-0 xl:ml-6">
+                <div
+                  class="
+                    border-2 border-dashed
+                    shadow-sm
+                    border-slate-200/60
+                    dark:border-darkmode-400
+                    rounded-md
+                    p-5
+                  "
+                >
+                  <div
+                    class="
+                      h-40
+                      relative
+                      image-fit
+                      cursor-pointer
+                      zoom-in
+                      mx-auto
+                    "
+                  >
+                    <img
+                      class="rounded-md"
+                      alt="Midone Tailwind HTML Admin Template"
+                      src="@/assets/images/uc/profile-avatar.png"
+                    />
+                   
+                  </div>
+                 
+                </div>
+              </div>
             </div>
           </div>
         </div>
