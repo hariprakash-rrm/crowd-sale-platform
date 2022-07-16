@@ -552,11 +552,7 @@
                            
                               <div>
                                 <input
-                                type="number"
-                                class="form-control mb-1 w-full  font-bold rounded-md h-12 focus:border-primary focus:border-solid "
-                                placeholder="Amount with fee..."
-                                value="100"
-                                :min="1"
+                              
                               />
                               </div>
                             <!-- </div> -->
@@ -1571,15 +1567,16 @@
                               <span class="text-black font-bold text-2xl">{{
                                 amountIncludeFee
                               }}</span> -->
-                              <div>
-                                <input
-                                type="number"
-                                class="form-control mb-1 w-full rounded-sm font-bold box focus:border-primary focus:border-solid "
-                                placeholder="Amount with fee..."
-                                value="100"
-                                :min="1"
-                              />
-                              </div>
+                                <td class="text-center">
+                        <input
+                          @input="handleInput(currentModalId, $event)"
+                          :value="payload[currentModalId]"
+                          type="number"
+                          class="form-control w-56 rounded-md input--rounded box pr-10"
+                          placeholder="Enter Amount..."
+                          :min="1"
+                        />
+                      </td>
                             <!-- </div> -->
                             <p class="text-base mt-1">Minimum Amonut : <strong>50</strong></p>
                           </div>
@@ -4669,16 +4666,16 @@ export default {
     async contribute(id, name, symbol) {
       console.log(id, this.payload);
       this.currentModalId = id;
-      this.currentModalAmount = this.payload[id];
-      this.currentModalFee = 2;
-      let acurrentModalFeeAmount = await ((this.currentModalAmount *
-        this.currentModalFee) /
-        100);
-      this.currentModalFeeAmount = acurrentModalFeeAmount;
-      console.log(this.currentModalFeeAmount);
-      this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
-      this.amountIncludeFee =
-        this.totalCurrentModalAmount + this.currentModalFeeAmount;
+      // this.currentModalAmount = this.payload[id];
+      // this.currentModalFee = 2;
+      // let acurrentModalFeeAmount = await ((this.currentModalAmount *
+      //   this.currentModalFee) /
+      //   100);
+      // this.currentModalFeeAmount = acurrentModalFeeAmount;
+      // console.log(this.currentModalFeeAmount);
+      // this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
+      // this.amountIncludeFee =
+      //   this.totalCurrentModalAmount + this.currentModalFeeAmount;
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.bscContributeModal = true;
@@ -4699,6 +4696,17 @@ export default {
     },
 
     async finalContribute() {
+      //  this.currentModalId = id;
+      this.currentModalAmount = this.payload[this.currentModalId];
+      this.currentModalFee = 2;
+      let acurrentModalFeeAmount = await ((this.currentModalAmount *
+        this.currentModalFee) /
+        100);
+      this.currentModalFeeAmount = acurrentModalFeeAmount;
+      console.log(this.currentModalFeeAmount);
+      this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
+      this.amountIncludeFee =
+        this.totalCurrentModalAmount + this.currentModalFeeAmount;
       this.insufficientFund = "Approving Please wait(D)";
       let contract = contractABI();
       let approveToken = approveContract();

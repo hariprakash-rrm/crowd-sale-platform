@@ -528,7 +528,7 @@
                                 >Product Url</label
                               >
                             </div>
-                              <div class="relative mb-6">
+                            <div class="relative mb-6">
                               <input
                                 type="text"
                                 id="image-url"
@@ -543,7 +543,7 @@
                                 >_name</label
                               >
                             </div>
-                              <div class="relative mb-6">
+                            <div class="relative mb-6">
                               <input
                                 type="text"
                                 id="image-url"
@@ -750,7 +750,7 @@
                               type="submit"
                               class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                             >
-                              {{Write}}
+                              {{ Write }}
                             </button>
                           </form>
                         </AccordionPanel>
@@ -1061,8 +1061,7 @@ export default {
     return {
       addPoolData: {},
       tab: 2,
-      Write:'Write'
-      
+      Write: "Write",
     };
   },
 
@@ -1070,7 +1069,7 @@ export default {
     ...mapActions("useWeb3DealsStore", ["createPool"]),
     handleInput(name, e) {
       this.addPoolData[name] = e.target.value;
-      console.log(this.addPoolData)
+      console.log(this.addPoolData);
     },
     activeTabOne() {
       this.tab = 1;
@@ -1085,23 +1084,116 @@ export default {
       this.tab = 4;
     },
     async addPool() {
+      
       let contract = await contractABI();
       await contract.methods
         .addPool(
           this.addPoolData._lpToken,
           this.addPoolData._name,
           this.addPoolData._symbol,
-          this.addPoolData._startTime = Math.floor(new Date(this.addPoolData._startTime).getTime() / 1000),
-          this.addPoolData._endTime=Math.floor(new Date(this.addPoolData._endTime).getTime() / 1000),
-          BigInt(this.addPoolData._minimumcontributeAmount *10**18),
-          BigInt(this.addPoolData._poolStakableAmount *10**18)
+          (this.addPoolData._startTime = Math.floor(
+            new Date(this.addPoolData._startTime).getTime() / 1000
+          )),
+          (this.addPoolData._endTime = Math.floor(
+            new Date(this.addPoolData._endTime).getTime() / 1000
+          )),
+          BigInt(this.addPoolData._minimumcontributeAmount * 10 ** 18),
+          BigInt(this.addPoolData._poolStakableAmount * 10 ** 18)
         )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
-          this.Write ="Write Successful"
+          this.Write = "Write Successful";
         });
     },
+    async airDropToken([addresses],[amounts]) {
+      let contract = await contractABI();
+      await contract.methods
+        .airDropToken([], [])
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+    async excludeAllFromauthorizedUser([addresses]) {
+      let contract = await contractABI();
+      await contract.methods
+        .excludeAllFromauthorizedUser([])
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+
+    async excludeAllFromblacklist([addresses]) {
+      let contract = await contractABI();
+      await contract.methods
+        .excludeAllFromblacklist([])
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+
+    async excludeAllInauthorizedUser([addresses]) {
+      let contract = await contractABI();
+      await contract.methods
+        .excludeAllInauthorizedUser([])
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+
+    async includeAllInblacklist([addresses]) {
+      let contract = await contractABI();
+      await contract.methods
+        .includeAllInblacklist([])
+        .send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+
+    async pauseContract(){
+      let contract = await contractABI();
+      await contract.methods.pauseContract().send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+
+    async setPoolStakingEndTime(_pid,_time){
+       let contract = await contractABI();
+       await contract.methods.setPoolStakingEndTime("_pid","_time").send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+  
+    async transferOwnership(_address){
+      let contract = await contractABI();
+       await contract.methods.transferOwnership(_address).send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    },
+    async unPauseContract(){
+      let contract = await contractABI();
+       await contract.methods.unPauseContract().send({ from: localStorage.getItem("address") })
+        .then((receipt) => {
+          console.log(receipt);
+          this.Write = "Write Successful";
+        });
+    }
   },
 };
 </script>
