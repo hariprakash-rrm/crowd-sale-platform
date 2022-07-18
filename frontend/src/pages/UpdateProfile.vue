@@ -114,6 +114,7 @@
                         name="email"
                         :value="profile.email"
                         @input="handleInput"
+                        :disabled="true"
                       />
                     </div>
                     <div class="relative mb-6">
@@ -129,6 +130,7 @@
                 <button
                   type="button"
                   class="btn btn-primary text-sm 2xl:text-base w-full xl:w-40 py-2 px-8 rounded-md"
+                  @click="updateProfile()"
                 >
                   Save
                 </button>
@@ -474,7 +476,7 @@ export default {
     ...mapState(useAuthUserStore, ["user"]),
     fetchUserData() {
       if (this.user?.profile) {
-        this.profile = this.user.profile;
+        this.profile = { ...this.user.profile, ...this.user.user };
       }
       return true;
     },
@@ -483,7 +485,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useAuthUserStore, ["resetPassword"]),
+    ...mapActions(useAuthUserStore, ["updateUser", "resetPassword"]),
     handleInput(name, value) {
       this.profile[name] = value;
       this.payload[name] = value;
@@ -494,6 +496,13 @@ export default {
         newPassword: this.payload.newPassword,
       };
       this.resetPassword(finalPayload);
+    },
+    updateProfile() {
+      let finalPayload = {
+        name: this.profile?.name,
+        bio: this.profile?.bio,
+      };
+      this.updateUser(finalPayload);
     },
     updateTabURL(tab_id) {
       this.$router.push({

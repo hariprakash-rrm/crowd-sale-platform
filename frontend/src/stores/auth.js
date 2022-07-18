@@ -80,6 +80,15 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     return err;
                 });
         },
+        updateUser(payload) {
+            return auth.updateUser(payload).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while update", err)
+                return err
+            })
+        },
         otpVerification({ user_id, otp }) {
             return auth.otpVerification(user_id, { otp: otp }).then(res => {
                 router.push("/login");

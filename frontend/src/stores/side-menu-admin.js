@@ -17,7 +17,7 @@ export const useSideMenuAdminStore = defineStore("sideMenuAdmin", {
         icon: "HomeIcon",
         pageName: "accordion",
         title: "Accordion",
-        },
+      },
     ],
   }),
 });

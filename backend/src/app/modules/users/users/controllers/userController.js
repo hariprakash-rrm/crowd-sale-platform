@@ -55,6 +55,7 @@ export const userSignup = async (req, res, next) => {
         name: req.body.name,
         user: result._id,
         userName: req.body.userName,
+        bio: req.body.bio || "",
       };
       if (req.file) {
         const profileImage = req.file.path;
@@ -418,6 +419,7 @@ export const sendWelcomeMail = async (userName, email, otp) => {
 export const updateProfile = async (req, res) => {
   try {
     let updates = {
+      name: req.body.name,
       userName: req.body.userName,
       telegramUrl: req.body.telegramUrl,
       bio: req.body.bio,

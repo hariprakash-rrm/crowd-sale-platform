@@ -154,7 +154,7 @@ const route = useRoute();
 const router = useRouter();
 const formattedMenu = ref([]);
 let sideMenuStore;
-if(getScope() === Role.Admin) {
+if(getScope() == Role.admin) {
   sideMenuStore = useSideMenuAdminStore();
 } else {
   sideMenuStore = useSideMenuStore();
