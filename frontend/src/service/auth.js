@@ -14,6 +14,8 @@ export const auth = {
   fetchUser: () => {
     return axios.get(`${BASE_URL}/user-profile`);
   },
- 
+  resetPassword: (payload) => {
+    return axios.put(`${BASE_URL}/password-reset`, payload)
+  }
 };
 

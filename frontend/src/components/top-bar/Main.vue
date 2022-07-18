@@ -175,7 +175,9 @@
           >
             {{ account.address }}
           </p>
-          <p class="text-white text-xs text-center">Network - {{ account.network }}</p>
+          <p class="text-white text-xs text-center">
+            Network - {{ account.network }}
+          </p>
         </DropdownToggle>
         <DropdownMenu v-if="connected" class="w-56">
           <DropdownContent
@@ -203,14 +205,14 @@
           >
             <DropdownHeader tag="div" class="!font-normal">
               <div class="font-medium">
-                {{ $f()[0].users[0].name }}
+                {{ getUserName }}
               </div>
               <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
                 {{ $f()[0].jobs[0] }}
               </div>
             </DropdownHeader>
             <DropdownDivider class="border-white/[0.08]" />
-            <router-link to="/profile">
+            <router-link to="/profile?tab_id=1">
               <DropdownItem class="dropdown-item hover:bg-white/5">
                 <UserIcon class="w-4 h-4 mr-2" /> Profile
               </DropdownItem>
@@ -218,9 +220,13 @@
             <DropdownItem class="dropdown-item hover:bg-white/5">
               <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
             >
-            <DropdownItem class="dropdown-item hover:bg-white/5">
+            <router-link to="/profile?tab_id=2">
+            <DropdownItem
+              class="dropdown-item hover:bg-white/5"
+            >
               <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
             >
+            </router-link>
             <DropdownItem class="dropdown-item hover:bg-white/5">
               <HelpCircleIcon class="w-4 h-4 mr-2" /> Help</DropdownItem
             >
@@ -243,11 +249,8 @@
 <script lang="ts">
 import { ref } from "vue";
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { useAuthUserStore } from "@/stores/auth.js";
-import { mapActions } from "pinia";
-import Web3 from "web3";
-import WalletConnect from "@walletconnect/client";
-import QRCodeModal from "@walletconnect/qrcode-modal";
+import { useAuthUserStore } from "../../stores/auth";
+import { mapState, mapActions } from "pinia";
 import { StorageService } from "../../service/storage.services";
 import { ContractService } from "../../service/contract.service";
 
@@ -257,7 +260,6 @@ declare global {
   }
 }
 
-// import Web3 from "web3";
 export default {
   name: "web3wallet",
   data() {
@@ -273,7 +275,12 @@ export default {
       contractService: ContractService,
     };
   },
-
+  computed: {
+    ...mapState(useAuthUserStore, ["user"]),
+    getUserName() {
+      return this.user?.profile?.name || "";
+    },
+  },
   async mounted() {
     this.account =
       this.storageService.getItem("account") === null
@@ -286,10 +293,11 @@ export default {
       this.account.provider
     );
     this.connect();
+    this.fetchUser();
   },
 
   methods: {
-    ...mapActions(useAuthUserStore, ["logout"]),
+    ...mapActions(useAuthUserStore, ["logout", "fetchUser"]),
     connect() {
       // this connects to the wallet
       this.openMetamask();
@@ -297,9 +305,9 @@ export default {
 
     async openMetamask() {
       this.ethereum = window["ethereum"];
-      if (typeof this.ethereum !== "undefined") {
-      }
-      const accounts = await this.ethereum.request({
+      // if (typeof this.ethereum !== "undefined") {
+      // }
+      const accounts = await this.ethereum?.request({
         method: "eth_requestAccounts",
       });
       this.setAccount(accounts[0], this.ethereum.chainId, "metamask");

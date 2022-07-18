@@ -113,7 +113,7 @@ export const loginUser = async (req, res, next) => {
               email: user.email,
               userId: user._id,
               profileId: userProfile._id,
-              role: "User",
+              role: user.role,
             },
             config.JWT_KEY,
             {

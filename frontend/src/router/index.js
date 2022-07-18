@@ -59,14 +59,19 @@ const routes = [
                 component: DashboardOverview1,
                 meta: {
                     authorize: [
-                      Role.user,
+                        Role.user,
                     ],
-                  },
+                },
             },
             {
                 path: "/admin",
                 name: "accordion",
                 component: Admin,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
             },
             {
                 path: "/profile",
@@ -83,20 +88,15 @@ const routes = [
                 name: "side-menu-profile-overview-2",
                 component: SingleDeal,
             },
-            // {
-            //     path: "/admin",
-            //     name: "accordion",
-            //     component: Admin,
-            // },
             {
                 path: "/notification",
                 name: "profile-overview-1",
                 component: Notification,
             },
-            
+
         ]
     },
-    
+
 ];
 
 const router = createRouter({
@@ -112,11 +112,11 @@ router.beforeEach((to, from, next) => {
     if (authorize && authorize.length) {
         const currentUserRole = getScope();
         if (!authorize.includes(currentUserRole)) {
-          return next("/login");
+            return next("/login");
         } else {
-          return next();
+            return next();
         }
-      }
+    }
     if (to.path == "" || to.path == "/") {
         next("/login");
     } else {

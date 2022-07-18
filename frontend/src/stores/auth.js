@@ -39,10 +39,12 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     localStorage.setItem("token", JSON.stringify({ token }));
                     this.userData = token;
                     const { role } = parseJwt(token);
-                    if (role == Role.user) {
+                    if (role == Role.admin) {
+                        router.push("/admin");
+                    }
+                    else {
                         router.push("/dashboard");
                     }
-                    this.fetchUser()
                     return res
                 })
                 .catch((err) => {
@@ -86,7 +88,16 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 console.error("error in otpVerification", err);
                 return err;
             })
+        },
+        resetPassword(payload) {
+            return auth.resetPassword(payload).then(res => {
+                router.push("/login");
+                return res;
+            }).catch(err => {
+                console.error("error in resetting password", err);
+                return err;
+            })
         }
     },
-    
+
 });
