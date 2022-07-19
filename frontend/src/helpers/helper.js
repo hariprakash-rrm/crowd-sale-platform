@@ -35,3 +35,13 @@ export const Role = Object.freeze({
   user: "User",
   admin: "Admin",
 });
+
+export const getScope = () => {
+  let userData = JSON.parse(localStorage.getItem("token")) || {};
+  if (userData && userData.token) {
+    let userDetails = parseJwt(userData.token || "")
+    return userDetails && userDetails.role.length ? userDetails.role : "";
+  } else {
+    return ""
+  }
+}

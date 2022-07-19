@@ -3,15 +3,16 @@ import Login from "../pages/LoginPage.vue";
 import Register from "../pages/RegisterPage.vue";
 import ForgotPassword from "../views/forgot-password/Main.vue";
 import EnterOtp from "../pages/OTPVerification.vue";
+import UpdateProfile from "../pages/UpdateProfile.vue";
 import ResetPassword from "../views/reset-password/Main.vue";
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
-import UpdateProfile from "../views/update-profile/Main.vue";
 import UserLayout from "../views/users-layout-1/Main.vue";
 import SingleDeal from "../views/profile-overview-2/Main.vue";
 import Admin from "../views/accordion/Main.vue"
 import Notification from "../views/profile-overview-2/Main.vue"
+import { Role, getScope } from "@/helpers/helper.js";
 
 const routes = [
     {
@@ -48,7 +49,6 @@ const routes = [
         path: "/:pathMatch(.*)*",
         component: ErrorPage,
     },
-  
     {
         path: "/",
         component: SideMenu,
@@ -57,6 +57,21 @@ const routes = [
                 path: "dashboard",
                 name: "side-menu-dashboard-overview-1",
                 component: DashboardOverview1,
+                meta: {
+                    authorize: [
+                        Role.user,
+                    ],
+                },
+            },
+            {
+                path: "/admin",
+                name: "accordion",
+                component: Admin,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
             },
             {
                 path: "/profile",
@@ -74,19 +89,14 @@ const routes = [
                 component: SingleDeal,
             },
             {
-                path: "/admin",
-                name: "accordion",
-                component: Admin,
-            },
-            {
                 path: "/notification",
                 name: "profile-overview-1",
                 component: Notification,
             },
-            
+
         ]
-    }
-    
+    },
+
 ];
 
 const router = createRouter({
@@ -98,15 +108,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    // if (!localStorage.getItem("token")) {
-    //     if (to.path.includes("/login")) {
-    //         next();
-    //     } else {
-    //         next("/login");
-    //     }
-    // } else {
-    //     next();
-    // }
+    const { authorize } = to.meta;
+    if (authorize && authorize.length) {
+        const currentUserRole = getScope();
+        if (!authorize.includes(currentUserRole)) {
+            return next("/login");
+        } else {
+            return next();
+        }
+    }
     if (to.path == "" || to.path == "/") {
         next("/login");
     } else {

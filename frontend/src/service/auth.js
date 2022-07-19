@@ -14,6 +14,17 @@ export const auth = {
   fetchUser: () => {
     return axios.get(`${BASE_URL}/user-profile`);
   },
- 
+  updateUser: (payload) => {
+    return axios.put(`${BASE_URL}/user-update`, payload);
+  },
+  updateSocialLink: (payload) => {
+    return axios.put(`${BASE_URL}/update-social-link`, payload);
+  },
+  updateNotificationSettings: (payload) => {
+    return axios.put(`${BASE_URL}/update-notification-settings`, payload);
+  },
+  resetPassword: (payload) => {
+    return axios.put(`${BASE_URL}/password-reset`, payload)
+  }
 };
 

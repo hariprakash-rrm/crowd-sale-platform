@@ -6,7 +6,8 @@ import { parseJwt, Role } from "@/helpers/helper.js";
 export const useAuthUserStore = defineStore("authUserStore", {
     state: () => ({
         userData: JSON.parse(localStorage.getItem("token")) || {},
-        user: []
+        user: {},
+        userFullName: "",
     }),
     getters: {
         colorScheme(state) {
@@ -38,27 +39,32 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     localStorage.setItem("token", JSON.stringify({ token }));
                     this.userData = token;
                     const { role } = parseJwt(token);
-                    if (role == Role.user) {
+                    if (role == Role.admin) {
+                        router.push("/admin");
+                    }
+                    else {
                         router.push("/dashboard");
                     }
                     return res
                 })
                 .catch((err) => {
                     console.error("error in login", err);
-                    // commit("LOGINERROR", err);
                     return err
                 })
         },
         logout() {
             localStorage.removeItem("token");
             this.userData = {}
+            this.user = {}
+            this.userFullName = ""
             setTimeout(() => {
                 router.push("/login");
             }, 0);
         },
-        fetchUser({ }) {
+        fetchUser() {
             return auth.fetchUser().then(res => {
-
+                this.user = res.data;
+                this.userFullName = res.data['profile'].name;
             })
         },
         userRegistration(payload) {
@@ -74,6 +80,33 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     return err;
                 });
         },
+        updateUser(payload) {
+            return auth.updateUser(payload).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while updating user details", err)
+                return err
+            })
+        },
+        updateSocialLink(payload) {
+            return auth.updateSocialLink(payload).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while updating social link", err)
+                return err
+            })
+        },
+        updateNotificationSettings(payload) {
+            return auth.updateNotificationSettings(payload).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while updating notification settings", err)
+                return err
+            })
+        },
         otpVerification({ user_id, otp }) {
             return auth.otpVerification(user_id, { otp: otp }).then(res => {
                 router.push("/login");
@@ -82,7 +115,16 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 console.error("error in otpVerification", err);
                 return err;
             })
+        },
+        resetPassword(payload) {
+            return auth.resetPassword(payload).then(res => {
+                router.push("/login");
+                return res;
+            }).catch(err => {
+                console.error("error in resetting password", err);
+                return err;
+            })
         }
     },
-    
+
 });

@@ -140,6 +140,7 @@ import { computed, onMounted, provide, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { helper as $h } from "@/utils/helper";
 import { useSideMenuStore } from "@/stores/side-menu";
+import { useSideMenuAdminStore } from "@/stores/side-menu-admin";
 import TopBar from "@/components/top-bar/Main.vue";
 import MobileMenu from "@/components/mobile-menu/Main.vue";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
@@ -147,11 +148,17 @@ import MainColorSwitcher from "@/components/main-color-switcher/Main.vue";
 import SideMenuTooltip from "@/components/side-menu-tooltip/Main.vue";
 import { linkTo, nestedMenu, enter, leave } from "./index";
 import dom from "@left4code/tw-starter/dist/js/dom";
+import { Role, getScope } from "@/helpers/helper.js"
 
 const route = useRoute();
 const router = useRouter();
 const formattedMenu = ref([]);
-const sideMenuStore = useSideMenuStore();
+let sideMenuStore;
+if(getScope() == Role.admin) {
+  sideMenuStore = useSideMenuAdminStore();
+} else {
+  sideMenuStore = useSideMenuStore();
+}
 const sideMenu = computed(() => nestedMenu(sideMenuStore.menu, route));
 
 provide("forceActiveMenu", (pageName) => {
