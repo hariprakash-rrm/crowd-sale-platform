@@ -1,14 +1,16 @@
-import Tier from "./../models/tier.model";
+import TransferOwnership from "./../models/transfer-ownership.model";
 const responseModule = require("../../../../../config/response");
 
-export const createTier = async(req, res)=>{
+
+export const createTransferOwnership = async(req, res)=>{
     try {
-        let tier = new Tier(req.body);
-        tier.save();
+        req.body.profile =   req.userData.profileId;
+        let transferOwnership = new TransferOwnership(req.body);
+        transferOwnership.save();
         return responseModule.successResponse(res, {
             success: 1,
-            message: "Tier created successfully",
-            data: tier,
+            message: "Transfer Ownership created successfully",
+            data: transferOwnership,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
@@ -19,11 +21,11 @@ export const createTier = async(req, res)=>{
     }
 }
 
-export const updateTier = async(req, res)=>{
+export const updateTransferOwnership = async(req, res)=>{
     try {
-        const tier = await Tier.findOneAndUpdate(
+        const transferOwnership = await TransferOwnership.findOneAndUpdate(
             {
-              id: req.params.id,
+              _id: req.params.id,
             },
             {
               $set: req.body,
@@ -34,8 +36,8 @@ export const updateTier = async(req, res)=>{
           ).exec();
         return responseModule.successResponse(res, {
             success: 1,
-            message: "Tier updated successfully",
-            data: tier,
+            message: "Transfer Ownership updated successfully",
+            data: transferOwnership,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
@@ -46,12 +48,12 @@ export const updateTier = async(req, res)=>{
     }
 }
 
-export const getTiers = async(req, res)=>{
+export const getTransferOwnerships = async(req, res)=>{
     try {
-        let tier = await Tier.find({});
+        let transferOwnership = await TransferOwnership.find({});
         return responseModule.successResponse(res, {
             success: 1,
-            data: tier,
+            data: transferOwnership,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {

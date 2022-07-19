@@ -24,15 +24,9 @@ const userProfileSchema = Schema({
     socialTwitterUrl: {
         type: String,
     },
-    // mobile: {
-    //     type: String,
-    // },
     bio: {
         type: String,
     },
-    // location: {
-    //     type: String,
-    // },
     profileImage: {
         type: String,
     },
