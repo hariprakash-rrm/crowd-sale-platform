@@ -118,12 +118,12 @@
                       />
                     </div>
                     <div class="relative mb-6">
-                      <textarea
-                        id="update-profile-form-5"
-                        placeholder=" "
-                        class="input__field peer"
-                      ></textarea>
-                      <label for="phone-no" class="input__label">Bio</label>
+                      <TextAreaInput
+                        label="bio"
+                        name="bio"
+                        :value="profile.bio"
+                        @input="handleInput"
+                      />
                     </div>
                   </div>
                 </div>
@@ -146,6 +146,9 @@
                       class="rounded-md"
                       alt="Midone Tailwind HTML Admin Template"
                       :src="$f()[0].photos[0]"
+                      @error="
+                        $event.src = '@/assets/images/uc/profile-avatar.png'
+                      "
                     />
                     <Tippy
                       tag="div"
@@ -162,21 +165,6 @@
                     <input
                       type="file"
                       class="w-full h-full top-0 left-0 absolute opacity-0"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="w-52 mx-auto xl:mr-0 xl:ml-6">
-                <div
-                  class="border-2 border-dashed shadow-sm border-slate-200/60 dark:border-darkmode-400 rounded-md p-5"
-                >
-                  <div
-                    class="h-40 relative image-fit cursor-pointer zoom-in mx-auto"
-                  >
-                    <img
-                      class="rounded-md"
-                      alt="Midone Tailwind HTML Admin Template"
-                      src="@/assets/images/uc/profile-avatar.png"
                     />
                   </div>
                 </div>
@@ -310,8 +298,14 @@
               </div>
               <div class="flex gap-4 gap-x-6">
                 <input
-                  id="checkbox-switch-7"
+                  id="isDeal"
+                  name="isDeal"
                   class="form-check-input"
+                  :value="notificationSettings.isDeal || false"
+                  :checked="notificationSettings.isDeal || false"
+                  @change="
+                    handleNotificationSettings('isDeal', $event.target.checked)
+                  "
                   type="checkbox"
                 />
                 <!-- BEGIN: Notifications -->
@@ -341,8 +335,17 @@
 
               <div class="flex gap-4 gap-x-6">
                 <input
-                  id="checkbox-switch-7"
+                  id="isPledge"
+                  name="isPledge"
                   class="form-check-input"
+                  :value="notificationSettings.isPledge || false"
+                  :checked="notificationSettings.isPledge || false"
+                  @change="
+                    handleNotificationSettings(
+                      'isPledge',
+                      $event.target.checked
+                    )
+                  "
                   type="checkbox"
                 />
                 <!-- BEGIN: Notifications -->
@@ -371,8 +374,14 @@
               </div>
               <div class="flex gap-4 gap-x-6">
                 <input
-                  id="checkbox-switch-7"
+                  id="isEvent"
+                  name="isEvent"
                   class="form-check-input"
+                  :value="notificationSettings.isEvent || false"
+                  :checked="notificationSettings.isEvent || false"
+                  @change="
+                    handleNotificationSettings('isEvent', $event.target.checked)
+                  "
                   type="checkbox"
                 />
                 <!-- BEGIN: Notifications -->
@@ -401,8 +410,17 @@
               </div>
               <div class="flex gap-4 gap-x-6">
                 <input
-                  id="checkbox-switch-7"
+                  id="isNewsLetter"
+                  name="isNewsLetter"
                   class="form-check-input"
+                  :value="notificationSettings.isNewsLetter || false"
+                  :checked="notificationSettings.isNewsLetter || false"
+                  @change="
+                    handleNotificationSettings(
+                      'isNewsLetter',
+                      $event.target.checked
+                    )
+                  "
                   type="checkbox"
                 />
                 <!-- BEGIN: Notifications -->
@@ -435,9 +453,9 @@
             <div class="flex items-center w-full gap-4 mb-6">
               <div class="relative w-full">
                 <TextInput
-                  name="twitter"
+                  name="socialTwitterUrl"
                   label="Twitter"
-                  :value="profile.twitter"
+                  :value="profile.socialTwitterUrl"
                   @input="handleInput"
                 />
               </div>
@@ -445,6 +463,7 @@
                 class="intro-x border hover:border-primary border-solid flex items-center justify-center rounded-md h-14 w-14"
               >
                 <TwitterIcon
+                  @click="updateTwitterLink()"
                   class="w-6 h-6 m-auto text-slate-400 hover:text-primary"
                 />
               </div>
@@ -460,23 +479,28 @@
 import { useAuthUserStore } from "../stores/auth";
 import { mapState, mapActions } from "pinia";
 import TextInput from "@/components/reusable/TextInput.vue";
+import TextAreaInput from "@/components/reusable/TextAreaInput.vue";
+import CheckBox from "@/components/reusable/CheckBox.vue";
 
 export default {
   components: {
     TextInput,
+    TextAreaInput,
+    CheckBox,
   },
   data() {
     return {
       tab: 1,
       profile: {},
       payload: {},
+      notificationSettings: {},
     };
   },
   computed: {
     ...mapState(useAuthUserStore, ["user"]),
     fetchUserData() {
-      if (this.user?.profile) {
-        this.profile = { ...this.user.profile, ...this.user.user };
+      if (Object.keys(this.user)?.length) {
+        this.setProfileData(this.user);
       }
       return true;
     },
@@ -485,10 +509,30 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useAuthUserStore, ["updateUser", "resetPassword"]),
+    ...mapActions(useAuthUserStore, [
+      "updateUser",
+      "resetPassword",
+      "updateSocialLink",
+      "updateNotificationSettings",
+    ]),
+    setProfileData(data) {
+      this.profile = { ...data.profile, ...data.user };
+      this.notificationSettings = { ...data.notificationSettings } || {};
+      return this.profile;
+    },
     handleInput(name, value) {
       this.profile[name] = value;
       this.payload[name] = value;
+    },
+    handleNotificationSettings(name, value) {
+      this.notificationSettings[name] = value;
+      let finalPayload = {
+        isDeal: this.notificationSettings.isDeal,
+        isPledge: this.notificationSettings.isPledge,
+        isEvent: this.notificationSettings.isEvent,
+        isNewsLetter: this.notificationSettings.isNewsLetter,
+      };
+      this.updateNotificationSettings(finalPayload);
     },
     updatePassword() {
       let finalPayload = {
@@ -504,7 +548,18 @@ export default {
       };
       this.updateUser(finalPayload);
     },
+    updateTwitterLink() {
+      let finalPayload = {
+        socialTwitterUrl: this.profile?.socialTwitterUrl,
+      };
+      this.updateSocialLink(finalPayload);
+    },
+    resetForm() {
+      this.payload = {};
+      this.setProfileData(this.user);
+    },
     updateTabURL(tab_id) {
+      this.resetForm();
       this.$router.push({
         query: {
           tab_id: tab_id,

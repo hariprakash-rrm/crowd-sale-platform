@@ -175,7 +175,7 @@
           >
             {{ account.address }}
           </p>
-          <p class="text-white text-xs text-center">
+          <p class="text-white text-xs text-center" v-if="account.network != 'Unknown'">
             Network - {{ account.network }}
           </p>
         </DropdownToggle>
@@ -206,9 +206,6 @@
             <DropdownHeader tag="div" class="!font-normal">
               <div class="font-medium">
                 {{ getUserName }}
-              </div>
-              <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
-                {{ $f()[0].jobs[0] }}
               </div>
             </DropdownHeader>
             <DropdownDivider class="border-white/[0.08]" />

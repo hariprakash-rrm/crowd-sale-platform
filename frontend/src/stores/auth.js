@@ -85,7 +85,25 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 this.fetchUser()
                 return res
             }).catch(err => {
-                console.log("error while update", err)
+                console.log("error while updating user details", err)
+                return err
+            })
+        },
+        updateSocialLink(payload) {
+            return auth.updateSocialLink(payload).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while updating social link", err)
+                return err
+            })
+        },
+        updateNotificationSettings(payload) {
+            return auth.updateNotificationSettings(payload).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while updating notification settings", err)
                 return err
             })
         },
