@@ -103,15 +103,15 @@
                     <div class="relative mb-6">
                       <TextInput
                         name="name"
-                        label="name"
+                        label="Name"
                         :value="profile.name"
                         @input="handleInput"
                       />
                     </div>
                     <div class="relative mb-6">
                       <TextInput
-                        label="email"
-                        name="email"
+                        label="Email"
+                        name="mail"
                         :value="profile.email"
                         @input="handleInput"
                         :disabled="true"
@@ -119,7 +119,7 @@
                     </div>
                     <div class="relative mb-6">
                       <TextAreaInput
-                        label="bio"
+                        label="Bio"
                         name="bio"
                         :value="profile.bio"
                         @input="handleInput"

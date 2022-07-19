@@ -273,7 +273,7 @@
                       class="intro-x zoom-in"
                     >
                       <td
-                        class="w-20 border-l-4 border-primary dark:border-primary pl-4"
+                        class=""
                       >
                         <div class="flex">
                           <div  @click="bscOngoingModal = true" class="w-16 h-16 image-fit">
@@ -341,7 +341,8 @@
                         />
                       </td> -->
                          <td class="text-center text-base font-bold">
-                            <img src="@/assets/images/uc/bnb.png" class="mx-auto w-12 h-12">
+                            <div class="bnb"></div>
+                            <!-- <img src="@/assets/images/uc/bnb.png" class="mx-auto w-12 h-12"> -->
                          </td>
                       <td class="table-report__action w-40">
                         <div class="flex justify-center gap-4 items-center">
@@ -376,12 +377,12 @@
                     <XIcon class="w-6 h-6 text-slate-400" />
                   </a>
                 </div>
-                <ModalBody class="p-10 text-center">
+                <ModalBody class="text-center">
                   <TabGroup>
                     <!-- BEGIN: Profile Info -->
                     <div class="intro-y mt-5">
                       <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-12 md:col-span-8 box h-[35rem] overflow-y-scroll">
+                        <div class="col-span-12 md:col-span-8 box h-[35rem] overflow-y-scroll relative">
                           <div class="intro-y px-5 mt-5">
                             <div class="flex flex-col justify-between mx-auto">
                               <div
@@ -509,7 +510,14 @@
                                </div>
                             </div>
                              <div class="my-6" v-show="singlePooldetailTab === 2">
-                                
+                              <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                                 <div class="col-span-12 lg:col-span-6">
+                                      <img class="rounded-xl h-60 object-cover w-full" src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg">
+                                  </div>
+                                  <div class="col-span-12 lg:col-span-6">
+                                      <img class="rounded-xl h-60 object-cover w-full" src="@/assets/images/uc/profile-avatar.png" >
+                                  </div>
+                               </div>
                             </div>
                              <div class="my-6" v-show="singlePooldetailTab === 3">
                                 <div class="grid grid-cols-12 gap-4 lg:gap-8">
@@ -522,6 +530,12 @@
                                </div>
                             </div>
                           </div>
+                          
+                          <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12">
+                            <div class="text-center"> <ArrowDownIcon class="text-white" /> </div>
+                          </div>
+                          
+                       
                         </div>
                         <div class="col-span-12 md:col-span-4">
                           <div class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]">
@@ -706,7 +720,8 @@
                         {{ user.poolStakableAmount }} {{ user.symbol }}
                       </td>
                       <td class="text-center text-base font-bold">
-                            <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12">
+                         <div class="eth"></div>
+                            <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
                          </td>
                       <td class="text-center">{{ user.humanEndTime }}</td>
                     </tr>
@@ -940,7 +955,7 @@
                       class="intro-x zoom-in"
                     >
                       <td
-                        class="w-20 border-l-[3px] border-primary dark:border-primary pl-4"
+                        class=""
                       >
                         <div class="flex">
                           <div  @click="bscCompletedModal = true" class="w-16 h-16 image-fit zoom-in">
@@ -997,7 +1012,8 @@
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
                        <td class="text-center text-base font-bold">
-                            <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12">
+                        <div class="eth"></div>
+                            <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
                          </td>
                       <td class="text-center">
                         <span
@@ -1291,7 +1307,8 @@
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">{{ user.currentPercentage }}%</td>
                       <td class="text-center text-base font-bold">
-                            <img src="@/assets/images/uc/polygon.png" class="mx-auto w-12 h-12">
+                          <div class="pgn"></div>
+                            <!-- <img src="@/assets/images/uc/polygon.png" class="mx-auto w-12 h-12"> -->
                          </td>
                       <td class="text-center">{{ user.poolsStatus }}</td>
                     </tr>
@@ -1938,6 +1955,9 @@ const nextImportantNotes = () => {
     rgba(251, 211, 233, 0.6) 100%
   );
 }
+.bg__icon-4 {
+    background: linear-gradient( 45.57deg, #d1a565bf 2.44%, #d1a5654f 100% );
+}
 .table td {
   padding-top: 1.25rem !important;
   padding-bottom: 1.25rem !important;
@@ -1948,4 +1968,109 @@ const nextImportantNotes = () => {
 .table th {
   font-weight: 600 !important;
 }
+.bnb::before, .bnb::after, .bnb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bnb {
+  width: 40px;
+  height: 40px;
+  margin: auto 14.25rem auto auto;
+  background: url("@/assets/images/uc/bnb.png") no-repeat 50%/80%;
+  color: #F3BA2F;
+  box-shadow: inset 0 0 0 1px rgba(243, 186, 47, 0.5);
+}
+.bnb::before, .bnb::after {
+  content: "";
+  z-index: 1;
+  margin: -9.9999%;
+  box-shadow: inset 0 0 0 2px;
+  animation: clipMe 8s linear infinite;
+}
+.bnb::before {
+  animation-delay: -4s;
+}
+/* .bnb:hover::after, .bnb:hover::before {
+  background-color: rgba(255, 0, 0, 0.3);
+} */
+/* ETH */
+.eth::before, .eth::after, .eth {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.eth {
+  width: 40px;
+  height: 40px;
+  margin: auto 19.5rem auto auto;
+  background: url("@/assets/images/uc/eth.png") no-repeat 50%/80%;
+  color: #3c3c3d;
+  box-shadow: inset 0 0 0 1px rgba(60, 60, 61, 0.5);
+}
+.eth::before, .eth::after {
+  content: "";
+  z-index: 1;
+  margin: -9.9999%;
+  box-shadow: inset 0 0 0 2px;
+  animation: clipMe 8s linear infinite;
+}
+.eth::before {
+  animation-delay: -4s;
+}
+/* .eth:hover::after, .eth:hover::before {
+  background-color: rgba(255, 0, 0, 0.3);
+} */
+/* Polygon */
+.pgn::before, .pgn::after, .pgn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.pgn {
+  width: 40px;
+  height: 40px;
+  margin: auto 17.25rem auto auto;
+  background: url("@/assets/images/uc/polygon.png") no-repeat 50%/80%;
+  color: rgb(130, 71, 229);
+  box-shadow: inset 0 0 0 1px rgba(130, 71, 229, 0.5);
+}
+.pgn::before, .pgn::after {
+  content: "";
+  z-index: 1;
+  margin: -9.9999%;
+  box-shadow: inset 0 0 0 2px;
+  animation: clipMe 8s linear infinite;
+}
+.pgn::before {
+  animation-delay: -4s;
+}
+/* .eth:hover::after, .eth:hover::before {
+  background-color: rgba(255, 0, 0, 0.3);
+} */
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(0px, 47.99992px, 2px, 0px);
+  }
+  25% {
+    clip: rect(0px, 2px, 47.99992px, 0px);
+  }
+  50% {
+    clip: rect(45.99992px, 47.99992px, 47.99992px, 0px);
+  }
+  75% {
+    clip: rect(0px, 47.99992px, 47.99992px, 45.99992px);
+  }
+}
+
 </style>

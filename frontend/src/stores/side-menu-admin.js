@@ -5,11 +5,6 @@ export const useSideMenuAdminStore = defineStore("sideMenuAdmin", {
     menu: [
       {
         icon: "HomeIcon",
-        pageName: "side-menu-dashboard-overview-1",
-        title: "Deals",
-      },
-      {
-        icon: "HomeIcon",
         pageName: "side-menu-update-profile",
         title: "Profile",
       },
