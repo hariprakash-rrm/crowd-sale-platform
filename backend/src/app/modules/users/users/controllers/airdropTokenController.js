@@ -1,14 +1,16 @@
-import Tier from "./../models/tier.model";
+import AirdropToken from "./../models/airdrop-token.model";
 const responseModule = require("../../../../../config/response");
 
-export const createTier = async(req, res)=>{
+
+export const createAirdropToken = async(req, res)=>{
     try {
-        let tier = new Tier(req.body);
-        tier.save();
+        req.body.profile =   req.userData.profileId;
+        let airdropToken = new AirdropToken(req.body);
+        airdropToken.save();
         return responseModule.successResponse(res, {
             success: 1,
-            message: "Tier created successfully",
-            data: tier,
+            message: "Airdrop Token created successfully",
+            data: airdropToken,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
@@ -19,11 +21,11 @@ export const createTier = async(req, res)=>{
     }
 }
 
-export const updateTier = async(req, res)=>{
+export const updateAirdropToken = async(req, res)=>{
     try {
-        const tier = await Tier.findOneAndUpdate(
+        const airdropToken = await AirdropToken.findOneAndUpdate(
             {
-              id: req.params.id,
+              _id: req.params.id,
             },
             {
               $set: req.body,
@@ -34,8 +36,8 @@ export const updateTier = async(req, res)=>{
           ).exec();
         return responseModule.successResponse(res, {
             success: 1,
-            message: "Tier updated successfully",
-            data: tier,
+            message: "Airdrop Token updated successfully",
+            data: airdropToken,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
@@ -46,12 +48,12 @@ export const updateTier = async(req, res)=>{
     }
 }
 
-export const getTiers = async(req, res)=>{
+export const getAirdropTokens = async(req, res)=>{
     try {
-        let tier = await Tier.find({});
+        let airdropToken = await AirdropToken.find({});
         return responseModule.successResponse(res, {
             success: 1,
-            data: tier,
+            data: airdropToken,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {

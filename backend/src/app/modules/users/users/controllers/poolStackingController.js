@@ -1,14 +1,18 @@
-import Tier from "./../models/tier.model";
+import PoolStacking from "./../models/pool-stacking.model";
+import Pools from "./../models/pools.model";
 const responseModule = require("../../../../../config/response");
 
-export const createTier = async(req, res)=>{
+export const createPoolStacking = async(req, res)=>{
     try {
-        let tier = new Tier(req.body);
-        tier.save();
+        req.body.profile =   req.userData.profileId;
+        let pool = await Pools.findOne({ id: req.body.poolId });
+        req.body.pool = pool._id;
+        let poolStacking = new PoolStacking(req.body);
+        poolStacking.save();
         return responseModule.successResponse(res, {
             success: 1,
-            message: "Tier created successfully",
-            data: tier,
+            message: "Pool Stacking created successfully",
+            data: poolStacking,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
@@ -19,11 +23,11 @@ export const createTier = async(req, res)=>{
     }
 }
 
-export const updateTier = async(req, res)=>{
+export const updatePoolStacking = async(req, res)=>{
     try {
-        const tier = await Tier.findOneAndUpdate(
+        const poolStacking = await PoolStacking.findOneAndUpdate(
             {
-              id: req.params.id,
+              _id: req.params.id,
             },
             {
               $set: req.body,
@@ -34,8 +38,8 @@ export const updateTier = async(req, res)=>{
           ).exec();
         return responseModule.successResponse(res, {
             success: 1,
-            message: "Tier updated successfully",
-            data: tier,
+            message: "Pool Stacking updated successfully",
+            data: poolStacking,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
@@ -46,12 +50,12 @@ export const updateTier = async(req, res)=>{
     }
 }
 
-export const getTiers = async(req, res)=>{
+export const getPoolStackings = async(req, res)=>{
     try {
-        let tier = await Tier.find({});
+        let poolStacking = await PoolStacking.find({});
         return responseModule.successResponse(res, {
             success: 1,
-            data: tier,
+            data: poolStacking,
           });
     } catch (error) {
         return responseModule.errorResponse(res, {
