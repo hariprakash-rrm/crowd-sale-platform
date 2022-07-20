@@ -1894,6 +1894,7 @@ export default {
           alert("Please check MetaMask Connection");
           console.error("Please check MetaMask Connection", err);
           return err;
+          
         });
     },
 
