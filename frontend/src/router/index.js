@@ -12,6 +12,7 @@ import UserLayout from "../views/users-layout-1/Main.vue";
 import SingleDeal from "../views/profile-overview-2/Main.vue";
 import Admin from "../views/accordion/Main.vue"
 import Notification from "../views/profile-overview-2/Main.vue"
+import ReadContract from "../views/read-contract/Main.vue";
 import { Role, getScope } from "@/helpers/helper.js";
 
 const routes = [
@@ -67,6 +68,16 @@ const routes = [
                 path: "/admin",
                 name: "accordion",
                 component: Admin,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
+            },
+            {
+                path: "/read-contract",
+                name: "read-contract",
+                component: ReadContract,
                 meta: {
                     authorize: [
                         Role.admin,

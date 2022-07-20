@@ -24,7 +24,7 @@
         <!-- END: Login Info -->
         <!-- BEGIN: Login Form -->
         <div
-          class="h-screen xl:h-auto flex flex-col py-5 xl:py-0 my-10 xl:my-0"
+          class="h-screen xl:h-auto flex flex-col py-5 xl:py-0 my-4 xl:my-0"
         >
           <a href="" class="logo -intro-x lg:hidden">
             <img
@@ -34,7 +34,7 @@
             />
           </a>
           <div
-            class="my-12 lg:my-auto mx-auto bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 md:w-2/4 xl:w-8/12 2xl:w-9/12"
+            class="overflow-y-scroll lg:overflow-hidden my-12 lg:my-auto mx-auto bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 md:w-2/4 xl:w-8/12 2xl:w-9/12"
           >
             <h2
               class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left pb-4"

@@ -4,85 +4,11 @@
       <!-- <h2 class="text-lg font-medium mr-auto">Accordion</h2> -->
     </div>
     <div class="intro-y grid grid-cols-12 gap-6 mt-5">
-      <!-- BEGIN: General Report -->
-    <div class="col-span-12 mb-8">
-      <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Read Contract
-                  </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-1">
-                  <LayersIcon class="report-box__icon text-cyan-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                   Write Contract
-                  </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-2">
-                  <DollarSignIcon class="report-box__icon text-pink-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Read User Data
-                  </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-3">
-                  <FolderIcon class="report-box__icon text-violet-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-         <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Write User Data
-                  </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-4">
-                  <FolderIcon class="report-box__icon text-yellow-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END: General Report -->
       <!-- BEGIN: Basic Accordion -->
       <div class="col-span-12 lg:col-span-12">
         <div class="flex items-center justify-cenetr mb-8">
           <ul
-            class="nav nav-pills w-3/4 lg:w-3/5 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
+            class="nav nav-pills w-3/4 lg:w-2/5 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
             role="tablist"
           >
             <li
@@ -152,24 +78,6 @@
                 aria-selected="true"
               >
                 Write User Data
-              </button>
-            </li>
-            <li
-              @click="activeTabFive"
-              id="inactive-write-user-tab"
-              class="nav-item flex-1"
-              role="presentation"
-            >
-              <button
-                class="nav-link w-full py-1.5 px-2"
-                data-tw-toggle="pill"
-                data-tw-target="#active-users"
-                type="button"
-                role="tab"
-                aria-controls="active-users"
-                aria-selected="true"
-              >
-                Edit Pool
               </button>
             </li>
           </ul>
@@ -1129,98 +1037,6 @@
         <!-- BEGIN: TAB WRITE USER DATA -->
         <div v-show="tab === 4"></div>
         <!-- END: TAB WRITE USER DATA -->
-
-          <!-- BEGIN: TAB EDIT POOL -->
-        <div v-show="tab === 5">
-          <div class="grid grid-cols-12 gap-4">
-            <div class="col-span-12 lg:col-span-6">
-              <PreviewComponent class="intro-y box mt-5">
-                <div
-                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
-                >
-                  <!-- <div class="p-5"> -->
-                  <Preview>
-                    <AccordionGroup class="accordion-boxed">
-                      <AccordionItem>
-                        <Accordion>
-                          <p class="text-black font-semibold text-base">
-                            1. 
-                          </p>
-                        </Accordion>
-                        <AccordionPanel
-                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
-                        >
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-
-                          <a
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Edit Pool
-                          </a>
-                        </AccordionPanel>
-                      </AccordionItem>
-                   
-                    </AccordionGroup>
-                  </Preview>
-                </div>
-              </PreviewComponent>
-            </div>
-            <div class="col-span-12 lg:col-span-6">
-              <PreviewComponent class="intro-y box mt-5">
-                <div
-                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
-                >
-                  <!-- <div class="p-5"> -->
-                  <Preview>
-                    <AccordionGroup class="accordion-boxed">
-                    <AccordionItem>
-                        <Accordion>
-                          <p class="text-black font-semibold text-base">
-                            2. 
-                          </p>
-                        </Accordion>
-                        <AccordionPanel
-                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
-                        >
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-
-                          <a
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Edit Pool
-                          </a>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </AccordionGroup>
-                  </Preview>
-
-                  <!-- </div> -->
-                </div>
-              </PreviewComponent>
-            </div>
-          </div>
-        </div>
-        <!-- END: TAB EDIT POOL -->
       </div>
       <!-- END: Basic Accordion -->
     </div>
@@ -1259,9 +1075,6 @@ export default {
     },
     activeTabFour() {
       this.tab = 4;
-    },
-    activeTabFive() {
-      this.tab = 5;
     },
     async addPool() {
       

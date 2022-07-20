@@ -77,7 +77,7 @@
             >
               Login
             </h2>
-            <div class="intro-x text-slate-400">Login your Account</div>
+            <div class="intro-x text-center md:text-left text-slate-400">Login your Account</div>
 
             <form @submit.prevent="onSubmit" class="validate-form pt-4">
               <div

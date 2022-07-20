@@ -101,3 +101,15 @@
         }
     }
 }
+
+@media (max-width: 1279px) {
+    .login {
+        --tw-bg-opacity: 1;
+        background-color: rgb(var(--color-slate-600) / var(--tw-bg-opacity)) !important;
+    }
+    .dark .login {
+        --tw-bg-opacity: 1;
+        background-color: rgb(var(--color-darkmode-800) / var(--tw-bg-opacity)) !important;
+    }
+    
+}
