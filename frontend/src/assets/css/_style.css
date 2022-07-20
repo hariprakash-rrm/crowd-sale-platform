@@ -95,3 +95,12 @@ background: rgb(var(--color-darkmode-600) / var(--tw-bg-opacity)) !important;
 .table-report img {
   box-shadow: none !important;
 }
+.scroll-to-down {
+  z-index: 1000;
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  filter: progid: dximagetransform.microsoft.basicimage(rotation=3);
+  text-decoration: none;
+}

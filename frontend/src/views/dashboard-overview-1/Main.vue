@@ -531,7 +531,8 @@
                             </div>
                           </div>
                           
-                          <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12">
+                          <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
+                            <div class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down">
                             <div class="text-center"> <ArrowDownIcon class="text-white" /> </div>
                           </div>
                           
