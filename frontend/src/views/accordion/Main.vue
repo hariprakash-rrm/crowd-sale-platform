@@ -1271,10 +1271,10 @@ export default {
           this.addPoolData._lpToken,
           this.addPoolData._name,
           this.addPoolData._symbol,
-          (this.addPoolData._startTime = Math.floor(
+          (this.addPoolData._startTime =await Math.floor(
             new Date(this.addPoolData._startTime).getTime() / 1000
           )),
-          (this.addPoolData._endTime = Math.floor(
+          (this.addPoolData._endTime =await Math.floor(
             new Date(this.addPoolData._endTime).getTime() / 1000
           )),
           BigInt(this.addPoolData._minimumcontributeAmount * 10 ** 18),

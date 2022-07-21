@@ -135,202 +135,199 @@
       <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
         <!-- BEGIN: TAB CONTENT BSC -->
 
-         <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
-          <div class="pb-8">
-            <!-- BEGIN: SINGLE NETWORK TAB -->
-            <div
-              class="flex flex-col lg:flex-row items-center justify-between mb-4 lg:mb-8"
+        <!-- BEGIN: SINGLE NETWORK TAB SECTION -->
+        <div class="pb-8">
+          <!-- BEGIN: SINGLE NETWORK TAB -->
+          <div
+            class="flex flex-col lg:flex-row items-center justify-between mb-4 lg:mb-8"
+          >
+            <ul
+              class="nav nav-pills w-full lg:w-2/6 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
+              role="tablist"
             >
-              <ul
-                class="nav nav-pills w-full lg:w-2/6 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
-                role="tablist"
+              <li
+                @click="activeTabOne"
+                id="active-ongoing-tab"
+                class="nav-item flex-1"
+                role="presentation"
               >
-                <li
-                  @click="activeTabOne"
-                  id="active-ongoing-tab"
-                  class="nav-item flex-1"
-                  role="presentation"
+                <button
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 active"
+                  data-tw-toggle="pill"
+                  data-tw-target="#active-users"
+                  type="button"
+                  role="tab"
+                  aria-controls="active-users"
+                  aria-selected="true"
                 >
-                  <button
-                    class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 active"
-                    data-tw-toggle="pill"
-                    data-tw-target="#active-users"
-                    type="button"
-                    role="tab"
-                    aria-controls="active-users"
-                    aria-selected="true"
-                  >
-                    Ongoing
-                  </button>
-                </li>
-                <li
-                  @click="activeTabTwo"
-                  id="inactive-upcoming-tab"
-                  class="nav-item flex-1"
-                  role="presentation"
+                  Ongoing
+                </button>
+              </li>
+              <li
+                @click="activeTabTwo"
+                id="inactive-upcoming-tab"
+                class="nav-item flex-1"
+                role="presentation"
+              >
+                <button
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
+                  data-tw-toggle="pill"
+                  data-tw-target="#inactive-users"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
                 >
-                  <button
-                    class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
-                    data-tw-toggle="pill"
-                    data-tw-target="#inactive-users"
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                  >
-                    Upcoming
-                  </button>
-                </li>
-                <li
-                  @click="activeTabThree"
-                  id="inactive-completed-tab"
-                  class="nav-item flex-1"
-                  role="presentation"
+                  Upcoming
+                </button>
+              </li>
+              <li
+                @click="activeTabThree"
+                id="inactive-completed-tab"
+                class="nav-item flex-1"
+                role="presentation"
+              >
+                <button
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
+                  data-tw-toggle="pill"
+                  data-tw-target="#inactive-users"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
                 >
-                  <button
-                    class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
-                    data-tw-toggle="pill"
-                    data-tw-target="#inactive-users"
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                  >
-                    Completed
-                  </button>
-                </li>
-                <li
-                  @click="activeTabFour"
-                  id="inactive-mydeals-tab"
-                  class="nav-item flex-1"
-                  role="presentation"
+                  Completed
+                </button>
+              </li>
+              <li
+                @click="activeTabFour"
+                id="inactive-mydeals-tab"
+                class="nav-item flex-1"
+                role="presentation"
+              >
+                <button
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
+                  data-tw-toggle="pill"
+                  data-tw-target="#inactive-users"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
                 >
-                  <button
-                    class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
-                    data-tw-toggle="pill"
-                    data-tw-target="#inactive-users"
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                  >
-                    My Deals
-                  </button>
-                </li>
-              </ul>
-              <div class="w-full sm:w-auto mt-6 sm:mt-0 sm:ml-auto md:ml-0">
-                <div class="ml-auto w-56 lg:w-64 relative text-slate-500">
-                  <input
-                    type="text"
-                    class="form-control w-64 rounded-md input--rounded box pr-10"
-                    placeholder="Search..."
-                  />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    icon-name="search"
-                    class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"
-                    data-lucide="search"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
+                  My Deals
+                </button>
+              </li>
+            </ul>
+            <div class="w-full sm:w-auto mt-6 sm:mt-0 sm:ml-auto md:ml-0">
+              <div class="ml-auto w-56 lg:w-64 relative text-slate-500">
+                <input
+                  type="text"
+                  class="form-control w-64 rounded-md input--rounded box pr-10"
+                  placeholder="Search..."
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  icon-name="search"
+                  class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"
+                  data-lucide="search"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
               </div>
             </div>
-            <!-- END: SINGLE NETWORK TAB -->
-            <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
-            <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
-              <!-- BEGIN: TAB CONTENT ONGOING -->
-              <div v-show="tab === 1">
-                <table class="table table-report" v-if="getDeals">
-                  <thead>
-                    <tr>
-                      <th class="whitespace-nowrap">PRODUCT</th>
-                      <th class="text-center whitespace-nowrap">POOL ID</th>
-                      <th class="whitespace-nowrap w-72">NAME</th>
-                      <th class="text-center whitespace-nowrap">SYMBOL</th>
+          </div>
+          <!-- END: SINGLE NETWORK TAB -->
+          <!-- BEGIN: SINGLE NETWORK CONTENT TAB -->
+          <div class="intro-y rounded-xl overflow-auto lg:overflow-visible">
+            <!-- BEGIN: TAB CONTENT ONGOING -->
+            <div v-show="tab === 1">
+              <table class="table table-report" v-if="getDeals">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap">POOL ID</th>
+                    <th class="whitespace-nowrap w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                      <th class="text-center whitespace-nowrap">PERCENTAGE</th>
-                      <th class="text-center whitespace-nowrap">ENDTIME</th>
-                      <th class="text-center whitespace-nowrap">
-                        NETWORK
-                      </th>
-                      <th class="text-center whitespace-nowrap">
-                        CONTRIBUTION
-                      </th>
-                    </tr>
-                  </thead>
+                    <th class="text-center whitespace-nowrap">PERCENTAGE</th>
+                    <th class="text-center whitespace-nowrap">ENDTIME</th>
+                    <th class="text-center whitespace-nowrap">NETWORK</th>
+                    <th class="text-center whitespace-nowrap">CONTRIBUTION</th>
+                  </tr>
+                </thead>
 
-                  <tbody>
-                    <tr
-                      v-for="user in poolsOngoing"
-                      :key="user.id"
-                      class="intro-x zoom-in"
-                    >
-                      <td
-                        class=""
-                      >
-                        <div class="flex">
-                          <div  @click="bscOngoingModal = true" class="w-16 h-16 image-fit">
-                            <img
-                              tag="img"
-                              alt="unreal-capital"
-                              class="rounded-md"
-                              src="https://media.istockphoto.com/photos/tree-picture-id543052538?k=20&m=543052538&s=612x612&w=0&h=X3m-COQRykkX19_LAJRVEZ902bA4M_qbkMtWCO3IHRw="
-                              content=""
-                            />
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a>
-                        <br />
-                        <a
-                          href="#"
+                <tbody>
+                  <tr
+                    v-for="user in poolsOngoing"
+                    :key="user.id"
+                    class="intro-x zoom-in"
+                  >
+                    <td class="">
+                      <div class="flex">
+                        <div
                           @click="bscOngoingModal = true"
-                          class="underline text-primary pt-4"
-                          >View Details</a
+                          class="w-16 h-16 image-fit"
                         >
-                        <div class="mt-2"></div>
-                      </td>
-                      <td>
-                        <a
-                          href=""
-                          class="text-lg font-semibold capitalize whitespace-nowrap"
-                          >{{ user.name }}</a
-                        >
-                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                          <div class="flex gap-4 text-slate-500 text-xs">
-                            <div class="mr-auto font-semibold">
-                              Total contribution
-                            </div>
-                            <div>
-                              {{ user.currentlyStaked }} /
-                              {{ user.poolStakableAmount }}
-                            </div>
+                          <img
+                            tag="img"
+                            alt="unreal-capital"
+                            class="rounded-md"
+                            src="https://media.istockphoto.com/photos/tree-picture-id543052538?k=20&m=543052538&s=612x612&w=0&h=X3m-COQRykkX19_LAJRVEZ902bA4M_qbkMtWCO3IHRw="
+                            content=""
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                      <br />
+                      <a
+                        href="#"
+                        @click="bscOngoingModal = true"
+                        class="underline text-primary pt-4"
+                        >View Details</a
+                      >
+                      <div class="mt-2"></div>
+                    </td>
+                    <td>
+                      <a
+                        href=""
+                        class="text-lg font-semibold capitalize whitespace-nowrap"
+                        >{{ user.name }}</a
+                      >
+                      <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                        <div class="flex gap-4 text-slate-500 text-xs">
+                          <div class="mr-auto font-semibold">
+                            Total contribution
                           </div>
-                          <div class="progress h-1 mt-2">
-                            <div
-                              class="progress-bar bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              :style="`width:${user.currentPercentage}%`"
-                            ></div>
+                          <div>
+                            {{ user.currentlyStaked }} /
+                            {{ user.poolStakableAmount }}
                           </div>
                         </div>
-                      </td>
+                        <div class="progress h-1 mt-2">
+                          <div
+                            class="progress-bar bg-primary"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            :style="`width:${user.currentPercentage}%`"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
 
-                      <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center">{{ user.humanEndTime }}</td>
-                      <!-- <td class="text-center">
+                    <td class="text-center">{{ user.symbol }}</td>
+                    <td class="text-center">{{ user.currentPercentage }}%</td>
+                    <td class="text-center">{{ user.humanEndTime }}</td>
+                    <!-- <td class="text-center">
                         <input
                           @input="handleInput(user.id, $event)"
                           :value="payload[user.id]"
@@ -340,219 +337,273 @@
                           :min="1"
                         />
                       </td> -->
-                         <td class="text-center text-base font-bold">
-                            <div class="bnb"></div>
-                            <!-- <img src="@/assets/images/uc/bnb.png" class="mx-auto w-12 h-12"> -->
-                         </td>
-                      <td class="table-report__action w-40">
-                        <div class="flex justify-center gap-4 items-center">
-                          <a
-                            @click="contribute(user.id, user.name, user.symbol)"
-                            class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
-                            >Contribute
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- END: TAB CONTENT ONGOING -->
+                    <td class="text-center text-base font-bold">
+                      <div class="bnb"></div>
+                      <!-- <img src="@/assets/images/uc/bnb.png" class="mx-auto w-12 h-12"> -->
+                    </td>
+                    <td class="table-report__action w-40">
+                      <div class="flex justify-center gap-4 items-center">
+                        <a
+                          @click="contribute(user.id, user.name, user.symbol)"
+                          class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >Contribute
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- END: TAB CONTENT ONGOING -->
 
-              <!-- BEGIN: BSC ONGOING MODAL -->
-              <Modal
-                size="modal-xl"
-                :show="bscOngoingModal"
-                @hidden="bscOngoingModal = false"
+            <!-- BEGIN: BSC ONGOING MODAL -->
+            <Modal
+              size="modal-xl"
+              :show="bscOngoingModal"
+              @hidden="bscOngoingModal = false"
+            >
+              <div
+                class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div
-                  class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
+                <div class="text-xl font-semibold py-5">Bsc Ongoing</div>
+                <a
+                  @click="bscOngoingModal = false"
+                  class="absolute right-0 top-0 mt-5 mr-3"
+                  href="javascript:;"
                 >
-                  <div class="text-xl font-semibold py-5">Bsc Ongoing</div>
-                  <a
-                    @click="bscOngoingModal = false"
-                    class="absolute right-0 top-0 mt-5 mr-3"
-                    href="javascript:;"
-                  >
-                    <XIcon class="w-6 h-6 text-slate-400" />
-                  </a>
-                </div>
-                <ModalBody class="text-center">
-                  <TabGroup>
-                    <!-- BEGIN: Profile Info -->
-                    <div class="intro-y mt-5">
-                      <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-12 md:col-span-8 box h-[35rem] overflow-y-scroll relative">
-                          <div class="intro-y px-5 mt-5">
-                            <div class="flex flex-col justify-between mx-auto">
+                  <XIcon class="w-6 h-6 text-slate-400" />
+                </a>
+              </div>
+              <ModalBody class="text-center">
+                <TabGroup>
+                  <!-- BEGIN: Profile Info -->
+                  <div class="intro-y mt-5">
+                    <div class="grid grid-cols-12 gap-4">
+                      <div
+                        class="col-span-12 md:col-span-8 box h-[35rem] overflow-y-scroll relative"
+                      >
+                        <div class="intro-y px-5 mt-5">
+                          <div class="flex flex-col justify-between mx-auto">
+                            <div
+                              style="
+                                background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
+                              "
+                              class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
+                            ></div>
+                            <div class="flex items-center justify-between">
                               <div
-                                style="
-                                  background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
-                                "
-                                class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
-                              ></div>
-                              <div class="flex items-center justify-between">
-                                <div
-                                  class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
+                                class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
+                              >
+                                <img
+                                  alt="unreal-capital"
+                                  class="rounded-md w-40 h-40 shadow-xl object-cover"
+                                  src="@/assets/images/uc/gt-protocol.jpg"
+                                />
+                              </div>
+                              <div
+                                class="flex flex-wrap items-center gap-4 my-8 float-right"
+                              >
+                                <button
+                                  class="btn btn-facebook p-3 rounded-full"
                                 >
-                                  <img
-                                    alt="unreal-capital"
-                                    class="rounded-md w-40 h-40 shadow-xl object-cover"
-                                    src="@/assets/images/uc/gt-protocol.jpg"
-                                  />
-                                </div>
-                                <div
-                                  class="flex flex-wrap items-center gap-4 my-8 float-right"
+                                  <FacebookIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-twitter p-3 rounded-full"
                                 >
-                                  <button
-                                    class="btn btn-facebook p-3 rounded-full"
-                                  >
-                                    <FacebookIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-twitter p-3 rounded-full"
-                                  >
-                                    <TwitterIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-instagram p-3 rounded-full"
-                                  >
-                                    <InstagramIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-linkedin p-3 rounded-full"
-                                  >
-                                    <LinkedinIcon class="w-5 h-5" />
-                                  </button>
+                                  <TwitterIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-instagram p-3 rounded-full"
+                                >
+                                  <InstagramIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-linkedin p-3 rounded-full"
+                                >
+                                  <LinkedinIcon class="w-5 h-5" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="grid grid-cols-12">
+                            <div class="col-span-12">
+                              <div
+                                class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
+                              >
+                                <div>
+                                  <h2 class="font-semibold text-xl pt-6">
+                                    GT- Protocol
+                                    <span
+                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
+                                      >GTP</span
+                                    >
+                                  </h2>
                                 </div>
                               </div>
                             </div>
-                            <div class="grid grid-cols-12">
-                              <div class="col-span-12">
-                                <div
-                                  class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
-                                >
-                                  <div>
-                                    <h2 class="font-semibold text-xl pt-6">
-                                      GT- Protocol
-                                      <span
-                                        class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                        >GTP</span
-                                      >
-                                    </h2>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <ul  class="nav nav-link-tabs w-full lg:w-2/4 rounded-md "
-                              role="tablist">
-                              <li
-                                @click="activeSinglePoolTabOne"
-                                id="active-bsc-tab"
-                                class="nav-item flex-1"
-                                role="presentation"
+                          </div>
+                          <ul
+                            class="nav nav-link-tabs w-full lg:w-2/4 rounded-md"
+                            role="tablist"
+                          >
+                            <li
+                              @click="activeSinglePoolTabOne"
+                              id="active-bsc-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link cursor-pointer flex items-center justify-center text-sm lg:text-base w-full py-5 px-2 active"
+                                data-tw-toggle="pill"
+                                data-tw-target="#active-network"
+                                type="button"
+                                role="tab"
+                                aria-controls="active-network"
+                                aria-selected="true"
                               >
-                                <button
-                                  class="nav-link cursor-pointer flex items-center justify-center text-sm lg:text-base w-full py-5 px-2 active"
-                                  data-tw-toggle="pill"
-                                  data-tw-target="#active-network"
-                                  type="button"
-                                  role="tab"
-                                  aria-controls="active-network"
-                                  aria-selected="true"
-                                >
-                                  <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                                </button>
-                              </li>
-                              <li
-                                @click="activeSinglePoolTabTwo"
-                                id="inactive-eth-tab"
-                                class="nav-item flex-1"
-                                role="presentation"
+                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabTwo"
+                              id="inactive-eth-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
                               >
-                                <button
-                                  class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
-                                  data-tw-toggle="pill"
-                                  data-tw-target="#inactive-network"
-                                  type="button"
-                                  role="tab"
-                                  aria-selected="false"
-                                >
-                                  <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                                </button>
-                              </li>
-                              <li
-                                @click="activeSinglePoolTabThree"
-                                id="inactive-polygon-tab"
-                                class="nav-item flex-1"
-                                role="presentation"
+                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabThree"
+                              id="inactive-polygon-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
                               >
-                                <button
-                                  class="nav-link flex items-center justify-center   text-sm lg:text-base w-full py-5 px-2"
-                                  data-tw-toggle="pill"
-                                  data-tw-target="#inactive-network"
-                                  type="button"
-                                  role="tab"
-                                  aria-selected="false"
-                                >
                                 <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                                </button>
-                              </li>
-                            </ul>
-                            <div class="my-6" v-show="singlePooldetailTab === 1">
-                               <div class="grid grid-cols-12 gap-4 lg:gap-8">
-                                 <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl h-60 object-cover w-full" src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg">
-                                  </div>
-                                  <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl h-60 object-cover w-full" src="@/assets/images/uc/profile-avatar.png" >
-                                  </div>
-                               </div>
-                            </div>
-                             <div class="my-6" v-show="singlePooldetailTab === 2">
-                              <div class="grid grid-cols-12 gap-4 lg:gap-8">
-                                 <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl h-60 object-cover w-full" src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg">
-                                  </div>
-                                  <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl h-60 object-cover w-full" src="@/assets/images/uc/profile-avatar.png" >
-                                  </div>
-                               </div>
-                            </div>
-                             <div class="my-6" v-show="singlePooldetailTab === 3">
-                                <div class="grid grid-cols-12 gap-4 lg:gap-8">
-                                  <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl h-60 object-cover w-full" src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg">
-                                  </div>
-                                  <div class="col-span-12 lg:col-span-6">
-                                      <img class="rounded-xl h-60 object-cover w-full" src="@/assets/images/uc/profile-avatar.png" >
-                                  </div>
-                               </div>
-                            </div>
-                          </div>
-                          
-                          <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
-                            <div class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down">
-                            <div class="text-center"> <ArrowDownIcon class="text-white" /> </div>
-                          </div>
-                          
-                       
-                        </div>
-                        <div class="col-span-12 md:col-span-4">
-                          <div class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]">
-                            <p class="text-base pb-1 text-left">Pay</p>
-                           
-                              <div class="text-left">
-                               <input type="number" class="form-control w-full rounded-md input--rounded box pr-10" placeholder="Enter Amount..." min="1">
+                              </button>
+                            </li>
+                          </ul>
+                          <div class="my-6" v-show="singlePooldetailTab === 1">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
                               </div>
-                            <!-- </div> -->
-                            <p class="text-base mt-1 text-left">Minimum Amonut : <strong>50</strong></p>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
                           </div>
-                          <div class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border   border-solid">
-                            <p class="text-sm text-slate-500 font-bold">Your Balance</p>
-                            <p class="text-red-600 font-bold text-sm">
-                              {{ insufficientFund }}
+                          <div class="my-6" v-show="singlePooldetailTab === 2">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="my-6" v-show="singlePooldetailTab === 3">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
+                        <div
+                          class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
+                        >
+                          <div class="text-center">
+                            <ArrowDownIcon class="text-white" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-span-12 md:col-span-4">
+                        <div
+                          class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]"
+                        >
+                          <p class="text-base pb-1 text-left">Pay</p>
+
+                          <div class="text-left">
+                            <input
+                              type="number"
+                              class="form-control w-full rounded-md input--rounded box pr-10"
+                              placeholder="Enter Amount..."
+                              min="1"
+                            />
+                          </div>
+                          <!-- </div> -->
+                          <p class="text-base mt-1 text-left">
+                            Minimum Amonut : <strong>50</strong>
+                          </p>
+                        </div>
+                        <div
+                          class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border border-solid"
+                        >
+                          <p class="text-sm text-slate-500 font-bold">
+                            Your Balance
+                          </p>
+                          <p class="text-red-600 font-bold text-sm">
+                            {{ insufficientFund }}
+                          </p>
+                          <div class="flex items-center gap-2">
+                            <img
+                              src="@/assets/images/uc/tether.png"
+                              class="w-5 h-5"
+                              alt=""
+                            />
+                            <p class="text-black font-bold text-sm">
+                              <span>{{ currentTokenBalance }} 499 USDT</span>
                             </p>
+                          </div>
+                        </div>
+
+                        <div class="mb-6 bg-[#f8f8f8]">
+                          <div
+                            class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                          >
+                            <p class="text-sm">Amount With Fee</p>
                             <div class="flex items-center gap-2">
                               <img
                                 src="@/assets/images/uc/tether.png"
@@ -560,660 +611,634 @@
                                 alt=""
                               />
                               <p class="text-black font-bold text-sm">
-                                <span
-                                  >{{ currentTokenBalance }} 499 USDT</span
+                                <!-- {{ this.amountIncludeFee }} USDT -->
+                              </p>
+                            </div>
+                          </div>
+                          <div class="px-6 py-3 flex justify-between">
+                            <p class="text-sm">FEE</p>
+                            <div class="flex items-center gap-2">
+                              <img
+                                src="@/assets/images/uc/tether.png"
+                                class="w-5 h-5"
+                                alt=""
+                              />
+                              <p class="text-black font-bold text-sm">
+                                <span class="text-yellow-600"> 2 USDT</span>
+                                or
+                                <span class="text-yellow-600"
+                                  >{{ currentModalFee }}%</span
                                 >
                               </p>
                             </div>
                           </div>
-                          
-                          
-                            <div class="mb-6 bg-[#f8f8f8]">
-                              <div
-                                class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
-                              >
-                                <p class="text-sm">Amount With Fee</p>
-                                <div class="flex items-center gap-2">
-                                  <img
-                                    src="@/assets/images/uc/tether.png"
-                                    class="w-5 h-5"
-                                    alt=""
-                                  />
-                                  <p class="text-black font-bold text-sm">
-                                  102 {{ currentModalAmount }} USDT
-                                  </p>
-                                </div>
-                              </div>
-                              <div
-                                class="px-6 py-3 flex justify-between"
-                              >
-                                <p class="text-sm">FEE</p>
-                                <div class="flex items-center gap-2">
-                                  <img
-                                    src="@/assets/images/uc/tether.png"
-                                    class="w-5 h-5"
-                                    alt=""
-                                  />
-                                  <p class="text-black font-bold text-sm">
-                                    <span class="text-yellow-600"
-                                      > 2 USDT</span
-                                    >
-                                    or
-                                    <span class="text-yellow-600"
-                                      >{{ currentModalFee }}%</span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-check mt-5">
-                              <input
-                                id="vertical-form-3"
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                              />
-                              <label class="form-check-label" for="vertical-form-3"
-                                >I AGREE with all statements.</label
-                              >
-                            </div>
+                        </div>
+                        <div class="form-check mt-5">
+                          <input
+                            id="vertical-form-3"
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                          />
+                          <label class="form-check-label" for="vertical-form-3"
+                            >I AGREE with all statements.</label
+                          >
+                        </div>
 
-                            <div class="pt-8 text-center">
-                              <button
-                                type="button"
-                                @click="finalContribute()"
-                                class="btn btn-primary w-full"
-                                :disabled="inSufficientButtonStatus"
-                              >
-                              Contribute
-                              </button>
-                            
-                            </div>
+                        <div class="pt-8 text-center">
+                          <button
+                            type="button"
+                            @click="finalContribute()"
+                            class="btn btn-primary w-full"
+                            :disabled="inSufficientButtonStatus"
+                          >
+                            Contribute
+                          </button>
                         </div>
                       </div>
                     </div>
-                    <!-- END: Profile Info -->
-                  </TabGroup>
-                </ModalBody>
-              </Modal>
-              <!-- END: BSC ONGOING MODAL -->
+                  </div>
+                  <!-- END: Profile Info -->
+                </TabGroup>
+              </ModalBody>
+            </Modal>
+            <!-- END: BSC ONGOING MODAL -->
 
-              <!-- BEGIN: TAB CONTENT UPCOMING -->
-              <div v-show="tab === 2">
-                <table class="table table-report">
-                  <thead>
-                    <tr>
-                      <th class="whitespace-nowrap">PRODUCT</th>
-                      <th class="text-center whitespace-nowrap">POOL ID</th>
-                      <th class="whitespace-nowrap w-72">NAME</th>
-                      <th class="text-center whitespace-nowrap">SYMBOL</th>
+            <!-- BEGIN: TAB CONTENT UPCOMING -->
+            <div v-show="tab === 2">
+              <table class="table table-report">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap">POOL ID</th>
+                    <th class="whitespace-nowrap w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                      <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
-                      </th>
-                      <th class="text-center whitespace-nowrap">
-                        NETWORK
-                      </th>
-                      <th class="text-center whitespace-nowrap">START TIME</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr
-                      v-for="user in poolsUpcoming"
-                      :key="user.id"
-                      class="intro-x zoom-in"
-                    >
-                      <td class="w-20">
-                        <div class="flex">
-                          <div @click="bscUpcomingModal = true" class="w-16 h-16 image-fit zoom-in">
-                            <img
-                              tag="img"
-                              alt="unreal-capital"
-                              class="rounded-md"
-                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                              content=""
-                            />
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a>
-                        <br />
-                        <a
-                          href="#"
+                    <th class="text-center whitespace-nowrap">
+                      MAXIMUM CONTRIBUTION
+                    </th>
+                    <th class="text-center whitespace-nowrap">NETWORK</th>
+                    <th class="text-center whitespace-nowrap">START TIME</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="user in poolsUpcoming"
+                    :key="user.id"
+                    class="intro-x zoom-in"
+                  >
+                    <td class="w-20">
+                      <div class="flex">
+                        <div
                           @click="bscUpcomingModal = true"
-                          class="underline text-primary pt-4"
-                          >View Details</a
+                          class="w-16 h-16 image-fit zoom-in"
                         >
-                        <div class="mt-2"></div>
-                      </td>
-                      <td>
-                        <a
-                          href=""
-                          class="text-lg font-semibold whitespace-nowrap"
-                          >{{ user.name }}</a
-                        >
-                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                          <div class="flex text-slate-500 text-xs">
-                            <div class="mr-auto font-semibold">
-                              Total contribution
-                            </div>
-                            <div>
-                              {{ user.currentlyStaked }} /
-                              {{ user.poolStakableAmount }}
-                            </div>
-                          </div>
-                          <div class="progress h-1 mt-2">
-                            <div
-                              class="progress-bar bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              :style="`width:${user.currentPercentage}%`"
-                            ></div>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">
-                        {{ user.poolStakableAmount }} 
-                      </td>
-                      <td class="text-center text-base font-bold">
-                         <div class="eth"></div>
-                            <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
-                         </td>
-                      <td class="text-center">{{ user.humanEndTime }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- END: TAB CONTENT UPCOMING -->
-
-              <!-- BEGIN: BSC UPCOMING MODAL -->
-              <Modal
-                size="modal-xl"
-                :show="bscUpcomingModal"
-                @hidden="bscUpcomingModal = false"
-              >
-                <div
-                  class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
-                >
-                  <div class="text-xl font-semibold py-5">BSC Upcoming</div>
-                  <a
-                    @click="bscUpcomingModal = false"
-                    class="absolute right-0 top-0 mt-5 mr-3"
-                    href="javascript:;"
-                  >
-                    <XIcon class="w-6 h-6 text-slate-400" />
-                  </a>
-                </div>
-                <ModalBody class="p-10 text-center">
-                  <TabGroup>
-                    <!-- BEGIN: Profile Info -->
-                    <div class="intro-y mt-5">
-                      <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-8 box">
-                          <div class="intro-y px-5 mt-5">
-                            <div class="flex flex-col justify-between mx-auto">
-                              <div
-                                style="
-                                  background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
-                                "
-                                class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
-                              ></div>
-                              <div class="flex items-center justify-between">
-                                <div
-                                  class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
-                                >
-                                  <img
-                                    alt="unreal-capital"
-                                    class="rounded-md w-40 h-40 shadow-xl object-cover"
-                                    src="@/assets/images/uc/gt-protocol.jpg"
-                                  />
-                                </div>
-                                <div
-                                  class="flex flex-wrap items-center gap-4 my-8 float-right"
-                                >
-                                  <button
-                                    class="btn btn-facebook p-3 rounded-full"
-                                  >
-                                    <FacebookIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-twitter p-3 rounded-full"
-                                  >
-                                    <TwitterIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-instagram p-3 rounded-full"
-                                  >
-                                    <InstagramIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-linkedin p-3 rounded-full"
-                                  >
-                                    <LinkedinIcon class="w-5 h-5" />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="grid grid-cols-12">
-                              <div class="col-span-12">
-                                <div
-                                  class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
-                                >
-                                  <div>
-                                    <h2 class="font-semibold text-xl pt-6">
-                                      GT- Protocol
-                                      <span
-                                        class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                        >GTP</span
-                                      >
-                                    </h2>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <TabList
-                              class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
-                            >
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                              </Tab>
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                              </Tab>
-
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                              </Tab>
-                            </TabList>
-                          </div>
-                        </div>
-                        <div class="col-span-4">
-                          <div class="intro-y box col-span-12 lg:col-span-6">
-                            <div
-                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                            >
-                              <h2
-                                class="font-semibold text-base py-2 px-5 mr-auto"
-                              >
-                                Details
-                              </h2>
-
-                              <button
-                                class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
-                              >
-                                Closed
-                              </button>
-                            </div>
-                            <div class="p-5">
-                              <div class="flex items-center">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Tier Access
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    Public Offering
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Price Per
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    1 GTP = 0.15 USDC
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Total Offering
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    733,333 GTP
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Global Cap
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    110,000 USDC
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <img
+                            tag="img"
+                            alt="unreal-capital"
+                            class="rounded-md"
+                            src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                            content=""
+                          />
                         </div>
                       </div>
-                    </div>
-                    <!-- END: Profile Info -->
-                  </TabGroup>
-                </ModalBody>
-              </Modal>
-              <!-- END: BSC UPCOMING MODAL -->
-
-              <!-- BEGIN: TAB CONTENT COMPLETED -->
-              <div v-show="tab === 3">
-                <table class="table table-report">
-                  <thead>
-                    <tr>
-                      <th class="whitespace-nowrap">PRODUCT</th>
-                      <th class="text-center whitespace-nowrap">POOL ID</th>
-                      <th class="whitespace-nowrap w-72">NAME</th>
-                      <th class="text-center whitespace-nowrap">SYMBOL</th>
-
-                      <th class="text-center whitespace-nowrap">
-                        TOTAL CONTRIBUTION
-                      </th>
-                      <th class="text-center whitespace-nowrap">
-                     NETWORK
-                      </th>
-                      <th class="text-center whitespace-nowrap">STATUS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr
-                      v-for="user in poolsCompleted"
-                      :key="user.id"
-                      class="intro-x zoom-in"
-                    >
-                      <td
-                        class=""
+                    </td>
+                    <td class="text-center">
+                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                      <br />
+                      <a
+                        href="#"
+                        @click="bscUpcomingModal = true"
+                        class="underline text-primary pt-4"
+                        >View Details</a
                       >
-                        <div class="flex">
-                          <div  @click="bscCompletedModal = true" class="w-16 h-16 image-fit zoom-in">
-                            <img
-                              tag="img"
-                              alt="unreal-capital"
-                              class="rounded-md"
-                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                              content=""
-                            />
+                      <div class="mt-2"></div>
+                    </td>
+                    <td>
+                      <a
+                        href=""
+                        class="text-lg font-semibold whitespace-nowrap"
+                        >{{ user.name }}</a
+                      >
+                      <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                        <div class="flex text-slate-500 text-xs">
+                          <div class="mr-auto font-semibold">
+                            Total contribution
+                          </div>
+                          <div>
+                            {{ user.currentlyStaked }} /
+                            {{ user.poolStakableAmount }}
                           </div>
                         </div>
-                      </td>
-                      <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a>
-                        <br />
-                        <a
-                          href="#"
+                        <div class="progress h-1 mt-2">
+                          <div
+                            class="progress-bar bg-primary"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            :style="`width:${user.currentPercentage}%`"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="text-center">{{ user.symbol }}</td>
+                    <td class="text-center">
+                      {{ user.poolStakableAmount }}
+                    </td>
+                    <td class="text-center text-base font-bold">
+                      <div class="eth"></div>
+                      <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
+                    </td>
+                    <td class="text-center">{{ user.humanEndTime }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- END: TAB CONTENT UPCOMING -->
+
+            <!-- BEGIN: BSC UPCOMING MODAL -->
+            <Modal
+              size="modal-xl"
+              :show="bscUpcomingModal"
+              @hidden="bscUpcomingModal = false"
+            >
+              <div
+                class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
+              >
+                <div class="text-xl font-semibold py-5">BSC Upcoming</div>
+                <a
+                  @click="bscUpcomingModal = false"
+                  class="absolute right-0 top-0 mt-5 mr-3"
+                  href="javascript:;"
+                >
+                  <XIcon class="w-6 h-6 text-slate-400" />
+                </a>
+              </div>
+              <ModalBody class="p-10 text-center">
+                <TabGroup>
+                  <!-- BEGIN: Profile Info -->
+                  <div class="intro-y mt-5">
+                    <div class="grid grid-cols-12 gap-4">
+                      <div class="col-span-8 box">
+                        <div class="intro-y px-5 mt-5">
+                          <div class="flex flex-col justify-between mx-auto">
+                            <div
+                              style="
+                                background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
+                              "
+                              class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
+                            ></div>
+                            <div class="flex items-center justify-between">
+                              <div
+                                class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
+                              >
+                                <img
+                                  alt="unreal-capital"
+                                  class="rounded-md w-40 h-40 shadow-xl object-cover"
+                                  src="@/assets/images/uc/gt-protocol.jpg"
+                                />
+                              </div>
+                              <div
+                                class="flex flex-wrap items-center gap-4 my-8 float-right"
+                              >
+                                <button
+                                  class="btn btn-facebook p-3 rounded-full"
+                                >
+                                  <FacebookIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-twitter p-3 rounded-full"
+                                >
+                                  <TwitterIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-instagram p-3 rounded-full"
+                                >
+                                  <InstagramIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-linkedin p-3 rounded-full"
+                                >
+                                  <LinkedinIcon class="w-5 h-5" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="grid grid-cols-12">
+                            <div class="col-span-12">
+                              <div
+                                class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
+                              >
+                                <div>
+                                  <h2 class="font-semibold text-xl pt-6">
+                                    GT- Protocol
+                                    <span
+                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
+                                      >GTP</span
+                                    >
+                                  </h2>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <TabList
+                            class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
+                          >
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                            </Tab>
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                            </Tab>
+
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                            </Tab>
+                          </TabList>
+                        </div>
+                      </div>
+                      <div class="col-span-4">
+                        <div class="intro-y box col-span-12 lg:col-span-6">
+                          <div
+                            class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+                          >
+                            <h2
+                              class="font-semibold text-base py-2 px-5 mr-auto"
+                            >
+                              Details
+                            </h2>
+
+                            <button
+                              class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
+                            >
+                              Closed
+                            </button>
+                          </div>
+                          <div class="p-5">
+                            <div class="flex items-center">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Tier Access
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  Public Offering
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Price Per
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  1 GTP = 0.15 USDC
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Total Offering
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  733,333 GTP
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Global Cap
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  110,000 USDC
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END: Profile Info -->
+                </TabGroup>
+              </ModalBody>
+            </Modal>
+            <!-- END: BSC UPCOMING MODAL -->
+
+            <!-- BEGIN: TAB CONTENT COMPLETED -->
+            <div v-show="tab === 3">
+              <table class="table table-report">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap">POOL ID</th>
+                    <th class="whitespace-nowrap w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap">SYMBOL</th>
+
+                    <th class="text-center whitespace-nowrap">
+                      TOTAL CONTRIBUTION
+                    </th>
+                    <th class="text-center whitespace-nowrap">NETWORK</th>
+                    <th class="text-center whitespace-nowrap">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="user in poolsCompleted"
+                    :key="user.id"
+                    class="intro-x zoom-in"
+                  >
+                    <td class="">
+                      <div class="flex">
+                        <div
                           @click="bscCompletedModal = true"
-                          class="underline text-primary pt-4"
-                          >View Details</a
+                          class="w-16 h-16 image-fit zoom-in"
                         >
-                        <div class="mt-2"></div>
-                      </td>
-                      <td>
-                        <a
-                          href=""
-                          class="text-lg font-semibold whitespace-nowrap"
-                          >{{ user.name }}</a
-                        >
-                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                          <div class="flex text-slate-500 text-xs">
-                            <div class="mr-auto font-semibold">
-                              Total contribution
-                            </div>
-                            <div>
-                              {{ user.currentlyStaked }} /
-                              {{ user.poolStakableAmount }}
-                            </div>
+                          <img
+                            tag="img"
+                            alt="unreal-capital"
+                            class="rounded-md"
+                            src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                            content=""
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                      <br />
+                      <a
+                        href="#"
+                        @click="bscCompletedModal = true"
+                        class="underline text-primary pt-4"
+                        >View Details</a
+                      >
+                      <div class="mt-2"></div>
+                    </td>
+                    <td>
+                      <a
+                        href=""
+                        class="text-lg font-semibold whitespace-nowrap"
+                        >{{ user.name }}</a
+                      >
+                      <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                        <div class="flex text-slate-500 text-xs">
+                          <div class="mr-auto font-semibold">
+                            Total contribution
                           </div>
-                          <div class="progress h-1 mt-2">
-                            <div
-                              class="progress-bar bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              :style="`width:${user.currentPercentage}%`"
-                            ></div>
+                          <div>
+                            {{ user.currentlyStaked }} /
+                            {{ user.poolStakableAmount }}
                           </div>
                         </div>
-                      </td>
+                        <div class="progress h-1 mt-2">
+                          <div
+                            class="progress-bar bg-primary"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            :style="`width:${user.currentPercentage}%`"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
 
-                      <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
-                       <td class="text-center text-base font-bold">
-                        <div class="eth"></div>
-                            <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
-                         </td>
-                      <td class="text-center">
-                        <span
-                          class="bg-gray-400/20 text-gray-600 text-sm m-2 px-2 py-1 rounded z-10"
-                          >Sale Ended</span
-                        >
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- END: TAB CONTENT COMPLETED -->
+                    <td class="text-center">{{ user.symbol }}</td>
+                    <td class="text-center">{{ user.currentPercentage }}%</td>
+                    <td class="text-center text-base font-bold">
+                      <div class="eth"></div>
+                      <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
+                    </td>
+                    <td class="text-center">
+                      <span
+                        class="bg-gray-400/20 text-gray-600 text-sm m-2 px-2 py-1 rounded z-10"
+                        >Sale Ended</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- END: TAB CONTENT COMPLETED -->
 
-              <!-- BEGIN: BSC COMPLETED MODAL -->
-              <Modal
-                size="modal-xl"
-                :show="bscCompletedModal"
-                @hidden="bscCompletedModal = false"
+            <!-- BEGIN: BSC COMPLETED MODAL -->
+            <Modal
+              size="modal-xl"
+              :show="bscCompletedModal"
+              @hidden="bscCompletedModal = false"
+            >
+              <div
+                class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div
-                  class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
+                <div class="text-xl font-semibold py-5">BSC Completed</div>
+                <a
+                  @click="bscCompletedModal = false"
+                  class="absolute right-0 top-0 mt-5 mr-3"
+                  href="javascript:;"
                 >
-                  <div class="text-xl font-semibold py-5">BSC Completed</div>
-                  <a
-                    @click="bscCompletedModal = false"
-                    class="absolute right-0 top-0 mt-5 mr-3"
-                    href="javascript:;"
-                  >
-                    <XIcon class="w-6 h-6 text-slate-400" />
-                  </a>
-                </div>
-                <ModalBody class="p-10 text-center">
-                  <TabGroup>
-                    <!-- BEGIN: Profile Info -->
-                    <div class="intro-y mt-5">
-                      <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-8 box">
-                          <div class="intro-y px-5 mt-5">
-                            <div class="flex flex-col justify-between mx-auto">
-                              <div
-                                style="
-                                  background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
-                                "
-                                class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
-                              ></div>
-                              <div class="flex items-center justify-between">
-                                <div
-                                  class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
-                                >
-                                  <img
-                                    alt="unreal-capital"
-                                    class="rounded-md w-40 h-40 shadow-xl object-cover"
-                                    src="@/assets/images/uc/gt-protocol.jpg"
-                                  />
-                                </div>
-                                <div
-                                  class="flex flex-wrap items-center gap-4 my-8 float-right"
-                                >
-                                  <button
-                                    class="btn btn-facebook p-3 rounded-full"
-                                  >
-                                    <FacebookIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-twitter p-3 rounded-full"
-                                  >
-                                    <TwitterIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-instagram p-3 rounded-full"
-                                  >
-                                    <InstagramIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-linkedin p-3 rounded-full"
-                                  >
-                                    <LinkedinIcon class="w-5 h-5" />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="grid grid-cols-12">
-                              <div class="col-span-12">
-                                <div
-                                  class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
-                                >
-                                  <div>
-                                    <h2 class="font-semibold text-xl pt-6">
-                                      GT- Protocol
-                                      <span
-                                        class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                        >GTP</span
-                                      >
-                                    </h2>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <TabList
-                              class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
-                            >
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                              </Tab>
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                              </Tab>
-
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                              </Tab>
-                            </TabList>
-                          </div>
-                        </div>
-                        <div class="col-span-4">
-                          <div class="intro-y box col-span-12 lg:col-span-6">
+                  <XIcon class="w-6 h-6 text-slate-400" />
+                </a>
+              </div>
+              <ModalBody class="p-10 text-center">
+                <TabGroup>
+                  <!-- BEGIN: Profile Info -->
+                  <div class="intro-y mt-5">
+                    <div class="grid grid-cols-12 gap-4">
+                      <div class="col-span-8 box">
+                        <div class="intro-y px-5 mt-5">
+                          <div class="flex flex-col justify-between mx-auto">
                             <div
-                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                            >
-                              <h2
-                                class="font-semibold text-base py-2 px-5 mr-auto"
+                              style="
+                                background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
+                              "
+                              class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
+                            ></div>
+                            <div class="flex items-center justify-between">
+                              <div
+                                class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                               >
-                                Details
-                              </h2>
-
-                              <button
-                                class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
+                                <img
+                                  alt="unreal-capital"
+                                  class="rounded-md w-40 h-40 shadow-xl object-cover"
+                                  src="@/assets/images/uc/gt-protocol.jpg"
+                                />
+                              </div>
+                              <div
+                                class="flex flex-wrap items-center gap-4 my-8 float-right"
                               >
-                                Closed
-                              </button>
+                                <button
+                                  class="btn btn-facebook p-3 rounded-full"
+                                >
+                                  <FacebookIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-twitter p-3 rounded-full"
+                                >
+                                  <TwitterIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-instagram p-3 rounded-full"
+                                >
+                                  <InstagramIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-linkedin p-3 rounded-full"
+                                >
+                                  <LinkedinIcon class="w-5 h-5" />
+                                </button>
+                              </div>
                             </div>
-                            <div class="p-5">
-                              <div class="flex items-center">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Tier Access
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    Public Offering
-                                  </div>
+                          </div>
+                          <div class="grid grid-cols-12">
+                            <div class="col-span-12">
+                              <div
+                                class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
+                              >
+                                <div>
+                                  <h2 class="font-semibold text-xl pt-6">
+                                    GT- Protocol
+                                    <span
+                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
+                                      >GTP</span
+                                    >
+                                  </h2>
                                 </div>
                               </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Price Per
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    1 GTP = 0.15 USDC
-                                  </div>
+                            </div>
+                          </div>
+                          <TabList
+                            class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
+                          >
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                            </Tab>
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                            </Tab>
+
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                            </Tab>
+                          </TabList>
+                        </div>
+                      </div>
+                      <div class="col-span-4">
+                        <div class="intro-y box col-span-12 lg:col-span-6">
+                          <div
+                            class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+                          >
+                            <h2
+                              class="font-semibold text-base py-2 px-5 mr-auto"
+                            >
+                              Details
+                            </h2>
+
+                            <button
+                              class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
+                            >
+                              Closed
+                            </button>
+                          </div>
+                          <div class="p-5">
+                            <div class="flex items-center">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Tier Access
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  Public Offering
                                 </div>
                               </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Total Offering
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    733,333 GTP
-                                  </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Price Per
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  1 GTP = 0.15 USDC
                                 </div>
                               </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Global Cap
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    110,000 USDC
-                                  </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Total Offering
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  733,333 GTP
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Global Cap
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  110,000 USDC
                                 </div>
                               </div>
                             </div>
@@ -1221,289 +1246,290 @@
                         </div>
                       </div>
                     </div>
-                    <!-- END: Profile Info -->
-                  </TabGroup>
-                </ModalBody>
-              </Modal>
-              <!-- END: BSC COMPLETED MODAL -->
+                  </div>
+                  <!-- END: Profile Info -->
+                </TabGroup>
+              </ModalBody>
+            </Modal>
+            <!-- END: BSC COMPLETED MODAL -->
 
-              <!-- BEGIN: TAB CONTENT MYDEALS -->
-              <div v-show="tab === 4">
-                <table class="table table-report">
-                  <thead>
-                    <tr>
-                      <th class="whitespace-nowrap">PRODUCT</th>
-                      <th class="text-center whitespace-nowrap">POOL ID</th>
-                      <th class="whitespace-nowrap w-72">NAME</th>
-                      <th class="text-center whitespace-nowrap">SYMBOL</th>
+            <!-- BEGIN: TAB CONTENT MYDEALS -->
+            <div v-show="tab === 4">
+              <table class="table table-report">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap">POOL ID</th>
+                    <th class="whitespace-nowrap w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap">SYMBOL</th>
 
-                      <th class="text-center whitespace-nowrap">
-                        MAXIMUM CONTRIBUTION
-                      </th>
-                      <th class="text-center whitespace-nowrap">
-                       NETWORK
-                      </th>
-                      <th class="text-center whitespace-nowrap">STATUS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr
-                      v-for="user in poolsMyDeal"
-                      :key="user.id"
-                      class="intro-x zoom-in"
-                    >
-                      <td class="w-20">
-                        <div class="flex">
-                          <div  @click="bscMydealsModal = true" class="w-16 h-16 image-fit zoom-in">
-                            <img
-                              tag="img"
-                              alt="unreal-capital"
-                              class="rounded-md"
-                              src="http://enigma.left4code.com/dist/images/preview-10.jpg"
-                              content=""
-                            />
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <a class="font-semibold text-lg">{{ user.id }}</a>
-                        <br />
-                        <a
-                          href="#"
+                    <th class="text-center whitespace-nowrap">
+                      MAXIMUM CONTRIBUTION
+                    </th>
+                    <th class="text-center whitespace-nowrap">NETWORK</th>
+                    <th class="text-center whitespace-nowrap">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="user in poolsMyDeal"
+                    :key="user.id"
+                    class="intro-x zoom-in"
+                  >
+                    <td class="w-20">
+                      <div class="flex">
+                        <div
                           @click="bscMydealsModal = true"
-                          class="underline text-primary pt-4"
-                          >View Details</a
+                          class="w-16 h-16 image-fit zoom-in"
                         >
-                        <div class="mt-2"></div>
-                      </td>
-                      <td>
-                        <a
-                          href=""
-                          class="text-lg font-semibold whitespace-nowrap"
-                          >{{ user.name }}</a
-                        >
-                        <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
-                          <div class="flex text-slate-500 text-xs">
-                            <div class="mr-auto font-semibold">
-                              Total contribution
-                            </div>
-                            <div>
-                              {{ user.currentlyStaked }} /
-                              {{ user.poolStakableAmount }}
-                            </div>
+                          <img
+                            tag="img"
+                            alt="unreal-capital"
+                            class="rounded-md"
+                            src="http://enigma.left4code.com/dist/images/preview-10.jpg"
+                            content=""
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                      <br />
+                      <a
+                        href="#"
+                        @click="bscMydealsModal = true"
+                        class="underline text-primary pt-4"
+                        >View Details</a
+                      >
+                      <div class="mt-2"></div>
+                    </td>
+                    <td>
+                      <a
+                        href=""
+                        class="text-lg font-semibold whitespace-nowrap"
+                        >{{ user.name }}</a
+                      >
+                      <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
+                        <div class="flex text-slate-500 text-xs">
+                          <div class="mr-auto font-semibold">
+                            Total contribution
                           </div>
-                          <div class="progress h-1 mt-2">
-                            <div
-                              class="progress-bar bg-primary"
-                              role="progressbar"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              :style="`width:${user.currentPercentage}%`"
-                            ></div>
+                          <div>
+                            {{ user.currentlyStaked }} /
+                            {{ user.poolStakableAmount }}
                           </div>
                         </div>
-                      </td>
+                        <div class="progress h-1 mt-2">
+                          <div
+                            class="progress-bar bg-primary"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            :style="`width:${user.currentPercentage}%`"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
 
-                      <td class="text-center">{{ user.symbol }}</td>
-                      <td class="text-center">{{ user.currentPercentage }}%</td>
-                      <td class="text-center text-base font-bold">
-                          <div class="pgn"></div>
-                            <!-- <img src="@/assets/images/uc/polygon.png" class="mx-auto w-12 h-12"> -->
-                         </td>
-                      <td class="text-center">{{ user.poolsStatus }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- END: TAB CONTENT MYDEALS -->
+                    <td class="text-center">{{ user.symbol }}</td>
+                    <td class="text-center">{{ user.currentPercentage }}%</td>
+                    <td class="text-center text-base font-bold">
+                      <div class="pgn"></div>
+                      <!-- <img src="@/assets/images/uc/polygon.png" class="mx-auto w-12 h-12"> -->
+                    </td>
+                    <td class="text-center">{{ user.poolsStatus }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- END: TAB CONTENT MYDEALS -->
 
-              <!-- BEGIN: BSC MY DEALS MODAL -->
-              <Modal
-                size="modal-xl"
-                :show="bscMydealsModal"
-                @hidden="bscMydealsModal = false"
+            <!-- BEGIN: BSC MY DEALS MODAL -->
+            <Modal
+              size="modal-xl"
+              :show="bscMydealsModal"
+              @hidden="bscMydealsModal = false"
+            >
+              <div
+                class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div
-                  class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
+                <div class="text-xl font-semibold py-5">BSC My Deals</div>
+                <a
+                  @click="bscMydealsModal = false"
+                  class="absolute right-0 top-0 mt-5 mr-3"
+                  href="javascript:;"
                 >
-                  <div class="text-xl font-semibold py-5">BSC My Deals</div>
-                  <a
-                    @click="bscMydealsModal = false"
-                    class="absolute right-0 top-0 mt-5 mr-3"
-                    href="javascript:;"
-                  >
-                    <XIcon class="w-6 h-6 text-slate-400" />
-                  </a>
-                </div>
-                <ModalBody class="p-10 text-center">
-                  <TabGroup>
-                    <!-- BEGIN: Profile Info -->
-                    <div class="intro-y mt-5">
-                      <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-8 box">
-                          <div class="intro-y px-5 mt-5">
-                            <div class="flex flex-col justify-between mx-auto">
-                              <div
-                                style="
-                                  background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
-                                "
-                                class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
-                              ></div>
-                              <div class="flex items-center justify-between">
-                                <div
-                                  class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
-                                >
-                                  <img
-                                    alt="unreal-capital"
-                                    class="rounded-md w-40 h-40 shadow-xl object-cover"
-                                    src="@/assets/images/uc/gt-protocol.jpg"
-                                  />
-                                </div>
-                                <div
-                                  class="flex flex-wrap items-center gap-4 my-8 float-right"
-                                >
-                                  <button
-                                    class="btn btn-facebook p-3 rounded-full"
-                                  >
-                                    <FacebookIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-twitter p-3 rounded-full"
-                                  >
-                                    <TwitterIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-instagram p-3 rounded-full"
-                                  >
-                                    <InstagramIcon class="w-5 h-5" />
-                                  </button>
-                                  <button
-                                    class="btn btn-linkedin p-3 rounded-full"
-                                  >
-                                    <LinkedinIcon class="w-5 h-5" />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="grid grid-cols-12">
-                              <div class="col-span-12">
-                                <div
-                                  class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
-                                >
-                                  <div>
-                                    <h2 class="font-semibold text-xl pt-6">
-                                      GT- Protocol
-                                      <span
-                                        class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                        >GTP</span
-                                      >
-                                    </h2>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <TabList
-                              class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
-                            >
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                              </Tab>
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                              </Tab>
-
-                              <Tab
-                                :fullWidth="false"
-                                class="py-4 flex items-center cursor-pointer"
-                              >
-                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                              </Tab>
-                            </TabList>
-                          </div>
-                        </div>
-                        <div class="col-span-4">
-                          <div class="intro-y box col-span-12 lg:col-span-6">
+                  <XIcon class="w-6 h-6 text-slate-400" />
+                </a>
+              </div>
+              <ModalBody class="p-10 text-center">
+                <TabGroup>
+                  <!-- BEGIN: Profile Info -->
+                  <div class="intro-y mt-5">
+                    <div class="grid grid-cols-12 gap-4">
+                      <div class="col-span-8 box">
+                        <div class="intro-y px-5 mt-5">
+                          <div class="flex flex-col justify-between mx-auto">
                             <div
-                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                            >
-                              <h2
-                                class="font-semibold text-base py-2 px-5 mr-auto"
+                              style="
+                                background-image: url(https://app.gains-associates.com/assets/images/baner/BANNER.png);
+                              "
+                              class="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
+                            ></div>
+                            <div class="flex items-center justify-between">
+                              <div
+                                class="w-56 md:w-40 h-32 mx-8 -mt-24 rounded-md"
                               >
-                                Details
-                              </h2>
-
-                              <button
-                                class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
+                                <img
+                                  alt="unreal-capital"
+                                  class="rounded-md w-40 h-40 shadow-xl object-cover"
+                                  src="@/assets/images/uc/gt-protocol.jpg"
+                                />
+                              </div>
+                              <div
+                                class="flex flex-wrap items-center gap-4 my-8 float-right"
                               >
-                                Closed
-                              </button>
+                                <button
+                                  class="btn btn-facebook p-3 rounded-full"
+                                >
+                                  <FacebookIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-twitter p-3 rounded-full"
+                                >
+                                  <TwitterIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-instagram p-3 rounded-full"
+                                >
+                                  <InstagramIcon class="w-5 h-5" />
+                                </button>
+                                <button
+                                  class="btn btn-linkedin p-3 rounded-full"
+                                >
+                                  <LinkedinIcon class="w-5 h-5" />
+                                </button>
+                              </div>
                             </div>
-                            <div class="p-5">
-                              <div class="flex items-center">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Tier Access
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    Public Offering
-                                  </div>
+                          </div>
+                          <div class="grid grid-cols-12">
+                            <div class="col-span-12">
+                              <div
+                                class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
+                              >
+                                <div>
+                                  <h2 class="font-semibold text-xl pt-6">
+                                    GT- Protocol
+                                    <span
+                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
+                                      >GTP</span
+                                    >
+                                  </h2>
                                 </div>
                               </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Price Per
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    1 GTP = 0.15 USDC
-                                  </div>
+                            </div>
+                          </div>
+                          <TabList
+                            class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
+                          >
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                            </Tab>
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                            </Tab>
+
+                            <Tab
+                              :fullWidth="false"
+                              class="py-4 flex items-center cursor-pointer"
+                            >
+                              <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                            </Tab>
+                          </TabList>
+                        </div>
+                      </div>
+                      <div class="col-span-4">
+                        <div class="intro-y box col-span-12 lg:col-span-6">
+                          <div
+                            class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
+                          >
+                            <h2
+                              class="font-semibold text-base py-2 px-5 mr-auto"
+                            >
+                              Details
+                            </h2>
+
+                            <button
+                              class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
+                            >
+                              Closed
+                            </button>
+                          </div>
+                          <div class="p-5">
+                            <div class="flex items-center">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Tier Access
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  Public Offering
                                 </div>
                               </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Total Offering
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    733,333 GTP
-                                  </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Price Per
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  1 GTP = 0.15 USDC
                                 </div>
                               </div>
-                              <div class="flex items-center mt-5">
-                                <div class="ml-4">
-                                  <div
-                                    class="font-medium text-base text-left"
-                                    href=""
-                                  >
-                                    Global Cap
-                                  </div>
-                                  <div
-                                    class="text-slate-500 text-lg font-semibold mt-0.5"
-                                  >
-                                    110,000 USDC
-                                  </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Total Offering
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  733,333 GTP
+                                </div>
+                              </div>
+                            </div>
+                            <div class="flex items-center mt-5">
+                              <div class="ml-4">
+                                <div
+                                  class="font-medium text-base text-left"
+                                  href=""
+                                >
+                                  Global Cap
+                                </div>
+                                <div
+                                  class="text-slate-500 text-lg font-semibold mt-0.5"
+                                >
+                                  110,000 USDC
                                 </div>
                               </div>
                             </div>
@@ -1511,66 +1537,75 @@
                         </div>
                       </div>
                     </div>
-                    <!-- END: Profile Info -->
-                  </TabGroup>
-                </ModalBody>
-              </Modal>
-              <!-- END: BSC MY DEALS MODAL -->
+                  </div>
+                  <!-- END: Profile Info -->
+                </TabGroup>
+              </ModalBody>
+            </Modal>
+            <!-- END: BSC MY DEALS MODAL -->
 
-              <!-- BEGIN: CONTRIBUTE MODAL -->
-              <Modal
-                size="modal-lg"
-                :show="bscContributeModal"
-                @hidden="bscContributeModal = false"
+            <!-- BEGIN: CONTRIBUTE MODAL -->
+            <Modal
+              size="modal-lg"
+              :show="bscContributeModal"
+              @hidden="bscContributeModal = false"
+            >
+              <div
+                class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div
-                  class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
+                <div class="text-xl font-semibold py-5">Contribution</div>
+                <a
+                  @click="bscContributeModal = false"
+                  class="absolute right-0 top-0 mt-5 mr-3"
+                  href="javascript:;"
                 >
-                  <div class="text-xl font-semibold py-5">Contribution</div>
-                  <a
-                    @click="bscContributeModal = false"
-                    class="absolute right-0 top-0 mt-5 mr-3"
-                    href="javascript:;"
-                  >
-                    <XIcon class="w-6 h-6 text-slate-400" />
-                  </a>
-                </div>
+                  <XIcon class="w-6 h-6 text-slate-400" />
+                </a>
+              </div>
 
-                <ModalBody class="p-6">
-                    <div class="grid grid-cols-12 gap-4 lg:gap-8">
-                        <div class="col-span-12 md:col-span-5">
-                          <div class="p-6 rounded-xl w-full bg-[#d1a5651c] min-h-[9.5rem] flex flex-col justify-between">
-                              <div class="flex justfy-between items-center">
-                                  <h6 class="font-semibold text-xs md:text-sm w-2/4">ID</h6>
-                                  <p
-                                    class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
-                                  >
-                                    {{ currentModalId }}
-                                  </p>
-                                </div>
-                                <div class="flex justfy-between items-center">
-                                  <h6 class="font-semibold text-xs md:text-sm w-2/4">Name</h6>
-                                  <p
-                                    class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
-                                  >
-                                    {{ currentModalName }}
-                                  </p>
-                                </div>
-                                <div class="flex justfy-between items-center">
-                                  <h6 class="font-semibold text-xs md:text-sm w-2/4">Symbol</h6>
-                                  <p
-                                    class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
-                                  >
-                                    {{ currentModalSymbol }}
-                                  </p>
-                                </div>
-                          </div>
-                        </div>
-                        <div class="col-span-12 md:col-span-7">
-                           <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
-                            <p class="text-base pb-1">Pay</p>
-                            <!-- <div class="flex items-center my-2 gap-4"> -->
-                              <!-- <img
+              <ModalBody class="p-6">
+                <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                  <div class="col-span-12 md:col-span-5">
+                    <div
+                      class="p-6 rounded-xl w-full bg-[#d1a5651c] min-h-[9.5rem] flex flex-col justify-between"
+                    >
+                      <div class="flex justfy-between items-center">
+                        <h6 class="font-semibold text-xs md:text-sm w-2/4">
+                          ID
+                        </h6>
+                        <p
+                          class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                        >
+                          {{ currentModalId }}
+                        </p>
+                      </div>
+                      <div class="flex justfy-between items-center">
+                        <h6 class="font-semibold text-xs md:text-sm w-2/4">
+                          Name
+                        </h6>
+                        <p
+                          class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                        >
+                          {{ currentModalName }}
+                        </p>
+                      </div>
+                      <div class="flex justfy-between items-center">
+                        <h6 class="font-semibold text-xs md:text-sm w-2/4">
+                          Symbol
+                        </h6>
+                        <p
+                          class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                        >
+                          {{ currentModalSymbol }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-span-12 md:col-span-7">
+                    <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                      <p class="text-base pb-1">Pay</p>
+                      <!-- <div class="flex items-center my-2 gap-4"> -->
+                      <!-- <img
                                 src="@/assets/images/uc/tether.png"
                                 class="w-10 h-10"
                                 alt=""
@@ -1578,7 +1613,7 @@
                               <span class="text-black font-bold text-2xl">{{
                                 amountIncludeFee
                               }}</span> -->
-                                <td class="text-center">
+                      <td class="text-center">
                         <input
                           @input="handleInput(currentModalId, $event)"
                           :value="payload[currentModalId]"
@@ -1588,101 +1623,97 @@
                           :min="1"
                         />
                       </td>
-                            <!-- </div> -->
-                            <p class="text-base mt-1">Minimum Amonut : <strong>50</strong></p>
-                          </div>
-                        </div>
-                    </div>
-
-                    <div class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border   border-solid">
-                      <p class="text-sm text-slate-500 font-bold">Your Balance</p>
-                      <p class="text-red-600 font-bold text-sm">
-                        {{ insufficientFund }}
+                      <!-- </div> -->
+                      <p class="text-base mt-1">
+                        Minimum Amonut : <strong>50</strong>
                       </p>
-                      <div class="flex items-center gap-2">
-                        <img
-                          src="@/assets/images/uc/tether.png"
-                          class="w-5 h-5"
-                          alt=""
-                        />
-                        <p class="text-black font-bold text-sm">
-                          <span
-                            >{{ currentTokenBalance }} 499 USDT</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                 
-                  <div class="mb-6 bg-[#f8f8f8]">
-                    <div
-                      class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
-                    >
-                      <p class="text-sm">Amount With Fee</p>
-                      <div class="flex items-center gap-2">
-                        <img
-                          src="@/assets/images/uc/tether.png"
-                          class="w-5 h-5"
-                          alt=""
-                        />
-                        <p class="text-black font-bold text-sm">
-                         102 {{ currentModalAmount }} USDT
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      class="px-6 py-3 flex justify-between"
-                    >
-                      <p class="text-sm">FEE</p>
-                      <div class="flex items-center gap-2">
-                        <img
-                          src="@/assets/images/uc/tether.png"
-                          class="w-5 h-5"
-                          alt=""
-                        />
-                        <p class="text-black font-bold text-sm">
-                          <span class="text-yellow-600"
-                            > 2 USDT</span
-                          >
-                          or
-                          <span class="text-yellow-600"
-                            >{{ currentModalFee }}%</span
-                          >
-                        </p>
-                      </div>
                     </div>
                   </div>
+                </div>
 
-                  <div class="form-check mt-5">
-                    <input
-                      id="vertical-form-3"
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
+                <div
+                  class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border border-solid"
+                >
+                  <p class="text-sm text-slate-500 font-bold">Your Balance</p>
+                  <p class="text-red-600 font-bold text-sm">
+                    {{ insufficientFund }}
+                  </p>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="@/assets/images/uc/tether.png"
+                      class="w-5 h-5"
+                      alt=""
                     />
-                    <label class="form-check-label" for="vertical-form-3"
-                      >I AGREE with all statements.</label
-                    >
+                    <p class="text-black font-bold text-sm">
+                      <span>{{ currentTokenBalance }} 499 USDT</span>
+                    </p>
                   </div>
+                </div>
 
-                  <div class="pt-8 text-center">
-                    <button
-                      type="button"
-                      @click="finalContribute()"
-                      class="btn btn-primary w-full"
-                      :disabled="inSufficientButtonStatus"
-                    >
-                     Contribute
-                    </button>
-                   
+                <div class="mb-6 bg-[#f8f8f8]">
+                  <div
+                    class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                  >
+                    <p class="text-sm">Amount With Fee</p>
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="@/assets/images/uc/tether.png"
+                        class="w-5 h-5"
+                        alt=""
+                      />
+                      <p class="text-black font-bold text-sm">
+                        {{ this.amountIncludeFee }} USDT
+                      </p>
+                    </div>
                   </div>
-                </ModalBody>
-              </Modal>
-              <!-- END: CONTRIBUTE MODAL -->
-            </div>
-            <!-- END: SINGLE NETWORK CONTENT TAB -->
+                  <div class="px-6 py-3 flex justify-between">
+                    <p class="text-sm">FEE</p>
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="@/assets/images/uc/tether.png"
+                        class="w-5 h-5"
+                        alt=""
+                      />
+                      <p class="text-black font-bold text-sm">
+                        <span class="text-yellow-600"> 2 USDT</span>
+                        or
+                        <span class="text-yellow-600"
+                          >{{ currentModalFee }}%</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-check mt-5">
+                  <input
+                    id="vertical-form-3"
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label class="form-check-label" for="vertical-form-3"
+                    >I AGREE with all statements.</label
+                  >
+                </div>
+
+                <div class="pt-8 text-center">
+                  <button
+                    type="button"
+                    @click="finalContribute()"
+                    class="btn btn-primary w-full"
+                    :disabled="inSufficientButtonStatus"
+                  >
+                    Contribute
+                  </button>
+                </div>
+              </ModalBody>
+            </Modal>
+            <!-- END: CONTRIBUTE MODAL -->
           </div>
-          <!-- END: SINGLE NETWORK TAB SECTION -->
-
+          <!-- END: SINGLE NETWORK CONTENT TAB -->
+        </div>
+        <!-- END: SINGLE NETWORK TAB SECTION -->
       </div>
       <!-- END: NETWORK TAB CONTENT -->
     </div>
@@ -1726,7 +1757,7 @@ export default {
       payload: {},
       tab: 1,
       networkTab: 1,
-      singlePooldetailTab:1,
+      singlePooldetailTab: 1,
       largeModalSizePreview: false,
       bscContributeModal: false,
       ethContributeModal: false,
@@ -1779,6 +1810,12 @@ export default {
       let value = event.target.value;
       this.payload[id] = value;
       console.log(this.payload);
+      this.currentModalAmount = value;
+      console.log(this.currentModalAmount);
+      this.amountIncludeFee =
+        parseInt(this.currentModalAmount) +
+        (value * this.currentModalFee) / 100 +
+        0;
     },
     activeNetworkTabOne() {
       this.networkTab = 1;
@@ -1816,7 +1853,7 @@ export default {
       console.log(id, this.payload);
       this.currentModalId = id;
       // this.currentModalAmount = this.payload[id];
-      // this.currentModalFee = 2;
+      this.currentModalFee = 2;
       // let acurrentModalFeeAmount = await ((this.currentModalAmount *
       //   this.currentModalFee) /
       //   100);
@@ -1957,7 +1994,7 @@ const nextImportantNotes = () => {
   );
 }
 .bg__icon-4 {
-    background: linear-gradient( 45.57deg, #d1a565bf 2.44%, #d1a5654f 100% );
+  background: linear-gradient(45.57deg, #d1a565bf 2.44%, #d1a5654f 100%);
 }
 .table td {
   padding-top: 1.25rem !important;
@@ -1969,7 +2006,9 @@ const nextImportantNotes = () => {
 .table th {
   font-weight: 600 !important;
 }
-.bnb::before, .bnb::after, .bnb {
+.bnb::before,
+.bnb::after,
+.bnb {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1982,10 +2021,11 @@ const nextImportantNotes = () => {
   height: 40px;
   margin: auto 14.25rem auto auto;
   background: url("@/assets/images/uc/bnb.png") no-repeat 50%/80%;
-  color: #F3BA2F;
+  color: #f3ba2f;
   box-shadow: inset 0 0 0 1px rgba(243, 186, 47, 0.5);
 }
-.bnb::before, .bnb::after {
+.bnb::before,
+.bnb::after {
   content: "";
   z-index: 1;
   margin: -9.9999%;
@@ -1999,7 +2039,9 @@ const nextImportantNotes = () => {
   background-color: rgba(255, 0, 0, 0.3);
 } */
 /* ETH */
-.eth::before, .eth::after, .eth {
+.eth::before,
+.eth::after,
+.eth {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2015,7 +2057,8 @@ const nextImportantNotes = () => {
   color: #3c3c3d;
   box-shadow: inset 0 0 0 1px rgba(60, 60, 61, 0.5);
 }
-.eth::before, .eth::after {
+.eth::before,
+.eth::after {
   content: "";
   z-index: 1;
   margin: -9.9999%;
@@ -2029,7 +2072,9 @@ const nextImportantNotes = () => {
   background-color: rgba(255, 0, 0, 0.3);
 } */
 /* Polygon */
-.pgn::before, .pgn::after, .pgn {
+.pgn::before,
+.pgn::after,
+.pgn {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2045,7 +2090,8 @@ const nextImportantNotes = () => {
   color: rgb(130, 71, 229);
   box-shadow: inset 0 0 0 1px rgba(130, 71, 229, 0.5);
 }
-.pgn::before, .pgn::after {
+.pgn::before,
+.pgn::after {
   content: "";
   z-index: 1;
   margin: -9.9999%;
@@ -2060,7 +2106,8 @@ const nextImportantNotes = () => {
 } */
 
 @keyframes clipMe {
-  0%, 100% {
+  0%,
+  100% {
     clip: rect(0px, 47.99992px, 2px, 0px);
   }
   25% {
@@ -2073,5 +2120,4 @@ const nextImportantNotes = () => {
     clip: rect(0px, 47.99992px, 47.99992px, 45.99992px);
   }
 }
-
 </style>
