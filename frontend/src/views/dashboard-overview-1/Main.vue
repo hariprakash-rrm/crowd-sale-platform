@@ -718,7 +718,7 @@
 
                       <td class="text-center">{{ user.symbol }}</td>
                       <td class="text-center">
-                        {{ user.poolStakableAmount }} {{ user.symbol }}
+                        {{ user.poolStakableAmount }} 
                       </td>
                       <td class="text-center text-base font-bold">
                          <div class="eth"></div>
