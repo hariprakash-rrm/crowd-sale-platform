@@ -1785,6 +1785,7 @@ export default {
       currentTokenBalance: "",
       inSufficientcurrentTokenBalance: "",
       insufficientFund: "",
+      lpToken:''
     };
   },
 
@@ -1899,11 +1900,12 @@ export default {
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
-      let token = "0x5B52F975F72FaF873B287ae9d5f152aFb1090337";
+      this.lpToken = getTokenAddres.lpToken
+      let token = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";
       console.log(token);
       let approveNow = await approveToken.methods
         .approve(
-          token,
+          this.lpToken,
           BigInt(
             (this.totalCurrentModalAmount + this.currentModalFeeAmount) *
               10 ** 18
