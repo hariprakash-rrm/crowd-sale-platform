@@ -791,7 +791,9 @@
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
                     <div class="grid grid-cols-12 gap-4">
-                      <div class="col-span-8 box">
+                     <div
+                        class="col-span-12 box h-[35rem] overflow-y-scroll relative"
+                      >
                         <div class="intro-y px-5 mt-5">
                           <div class="flex flex-col justify-between mx-auto">
                             <div
@@ -843,119 +845,133 @@
                               >
                                 <div>
                                   <h2 class="font-semibold text-xl pt-6">
-                                    GT- Protocol
+                                    Name - {{this.currentModalName}}
                                     <span
                                       class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >GTP</span
+                                      >SymBol - {{this.currentModalSymbol}}</span
+                                    >
+                                     <span
+                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
+                                      >Project Id - {{this.currentModalId}}</span
                                     >
                                   </h2>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <TabList
-                            class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
+                          <ul
+                            class="nav nav-link-tabs w-full lg:w-2/4 rounded-md"
+                            role="tablist"
                           >
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
+                            <li
+                              @click="activeSinglePoolTabOne"
+                              id="active-bsc-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
                             >
-                              <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                            </Tab>
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
+                              <button
+                                class="nav-link cursor-pointer flex items-center justify-center text-sm lg:text-base w-full py-5 px-2 active"
+                                data-tw-toggle="pill"
+                                data-tw-target="#active-network"
+                                type="button"
+                                role="tab"
+                                aria-controls="active-network"
+                                aria-selected="true"
+                              >
+                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabTwo"
+                              id="inactive-eth-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
                             >
-                              <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                            </Tab>
-
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
+                              >
+                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabThree"
+                              id="inactive-polygon-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
                             >
-                              <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                            </Tab>
-                          </TabList>
-                        </div>
-                      </div>
-                      <div class="col-span-4">
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                          <div
-                            class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                          >
-                            <h2
-                              class="font-semibold text-base py-2 px-5 mr-auto"
-                            >
-                              Details
-                            </h2>
-
-                            <button
-                              class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
-                            >
-                              Closed
-                            </button>
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
+                              >
+                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                              </button>
+                            </li>
+                          </ul>
+                          <div class="my-6" v-show="singlePooldetailTab === 1">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
                           </div>
-                          <div class="p-5">
-                            <div class="flex items-center">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Tier Access
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  Public Offering
-                                </div>
+                          <div class="my-6" v-show="singlePooldetailTab === 2">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
                               </div>
                             </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Price Per
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  1 GTP = 0.15 USDC
-                                </div>
+                          </div>
+                          <div class="my-6" v-show="singlePooldetailTab === 3">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
                               </div>
                             </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Total Offering
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  733,333 GTP
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Global Cap
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  110,000 USDC
-                                </div>
-                              </div>
-                            </div>
+                          </div>
+                        </div>
+
+                        <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
+                        <div
+                          class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
+                        >
+                          <div class="text-center">
+                            <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
                       </div>
@@ -1081,12 +1097,14 @@
                   <XIcon class="w-6 h-6 text-slate-400" />
                 </a>
               </div>
-              <ModalBody class="p-10 text-center">
+              <ModalBody class="p-10 pt-0 text-center">
                 <TabGroup>
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
                     <div class="grid grid-cols-12 gap-4">
-                      <div class="col-span-8 box">
+                     <div
+                        class="col-span-12 box h-[35rem] overflow-y-scroll relative"
+                      >
                         <div class="intro-y px-5 mt-5">
                           <div class="flex flex-col justify-between mx-auto">
                             <div
@@ -1131,126 +1149,120 @@
                               </div>
                             </div>
                           </div>
-                          <div class="grid grid-cols-12">
-                            <div class="col-span-12">
-                              <div
-                                class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
+                         
+                          <ul
+                            class="nav nav-link-tabs w-full lg:w-2/4 rounded-md"
+                            role="tablist"
+                          >
+                            <li
+                              @click="activeSinglePoolTabOne"
+                              id="active-bsc-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link cursor-pointer flex items-center justify-center text-sm lg:text-base w-full py-5 px-2 active"
+                                data-tw-toggle="pill"
+                                data-tw-target="#active-network"
+                                type="button"
+                                role="tab"
+                                aria-controls="active-network"
+                                aria-selected="true"
                               >
-                                <div>
-                                  <h2 class="font-semibold text-xl pt-6">
-                                    GT- Protocol
-                                    <span
-                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >GTP</span
-                                    >
-                                  </h2>
-                                </div>
+                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabTwo"
+                              id="inactive-eth-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
+                              >
+                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabThree"
+                              id="inactive-polygon-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
+                              >
+                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                              </button>
+                            </li>
+                          </ul>
+                          <div class="my-6" v-show="singlePooldetailTab === 1">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
                               </div>
                             </div>
                           </div>
-                          <TabList
-                            class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
-                          >
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
-                            >
-                              <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                            </Tab>
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
-                            >
-                              <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                            </Tab>
-
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
-                            >
-                              <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                            </Tab>
-                          </TabList>
+                          <div class="my-6" v-show="singlePooldetailTab === 2">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="my-6" v-show="singlePooldetailTab === 3">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-span-4">
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                          <div
-                            class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                          >
-                            <h2
-                              class="font-semibold text-base py-2 px-5 mr-auto"
-                            >
-                              Details
-                            </h2>
 
-                            <button
-                              class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
-                            >
-                              Closed
-                            </button>
-                          </div>
-                          <div class="p-5">
-                            <div class="flex items-center">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Tier Access
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  Public Offering
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Price Per
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  1 GTP = 0.15 USDC
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Total Offering
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  733,333 GTP
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Global Cap
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  110,000 USDC
-                                </div>
-                              </div>
-                            </div>
+                        <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
+                        <div
+                          class="flex items-center justify-center bottom-4 right-12 border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
+                        >
+                          <div class="text-center">
+                            <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
                       </div>
@@ -1371,12 +1383,14 @@
                   <XIcon class="w-6 h-6 text-slate-400" />
                 </a>
               </div>
-              <ModalBody class="p-10 text-center">
+              <ModalBody class="p-10 pt-0 text-center">
                 <TabGroup>
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
-                    <div class="grid grid-cols-12 gap-4">
-                      <div class="col-span-8 box">
+                   <div class="grid grid-cols-12 gap-4">
+                     <div
+                        class="col-span-12 box h-[35rem] overflow-y-scroll relative"
+                      >
                         <div class="intro-y px-5 mt-5">
                           <div class="flex flex-col justify-between mx-auto">
                             <div
@@ -1421,126 +1435,120 @@
                               </div>
                             </div>
                           </div>
-                          <div class="grid grid-cols-12">
-                            <div class="col-span-12">
-                              <div
-                                class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 p-5"
+                         
+                          <ul
+                            class="nav nav-link-tabs w-full lg:w-2/4 rounded-md"
+                            role="tablist"
+                          >
+                            <li
+                              @click="activeSinglePoolTabOne"
+                              id="active-bsc-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link cursor-pointer flex items-center justify-center text-sm lg:text-base w-full py-5 px-2 active"
+                                data-tw-toggle="pill"
+                                data-tw-target="#active-network"
+                                type="button"
+                                role="tab"
+                                aria-controls="active-network"
+                                aria-selected="true"
                               >
-                                <div>
-                                  <h2 class="font-semibold text-xl pt-6">
-                                    GT- Protocol
-                                    <span
-                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >GTP</span
-                                    >
-                                  </h2>
-                                </div>
+                                <UserIcon class="w-4 h-4 mr-2" /> Roadmap
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabTwo"
+                              id="inactive-eth-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
+                              >
+                                <ShieldIcon class="w-4 h-4 mr-2" /> Team
+                              </button>
+                            </li>
+                            <li
+                              @click="activeSinglePoolTabThree"
+                              id="inactive-polygon-tab"
+                              class="nav-item flex-1"
+                              role="presentation"
+                            >
+                              <button
+                                class="nav-link flex items-center justify-center text-sm lg:text-base w-full py-5 px-2"
+                                data-tw-toggle="pill"
+                                data-tw-target="#inactive-network"
+                                type="button"
+                                role="tab"
+                                aria-selected="false"
+                              >
+                                <SettingsIcon class="w-4 h-4 mr-2" /> VCs
+                              </button>
+                            </li>
+                          </ul>
+                          <div class="my-6" v-show="singlePooldetailTab === 1">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
                               </div>
                             </div>
                           </div>
-                          <TabList
-                            class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center"
-                          >
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
-                            >
-                              <UserIcon class="w-4 h-4 mr-2" /> Roadmap
-                            </Tab>
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
-                            >
-                              <ShieldIcon class="w-4 h-4 mr-2" /> Team
-                            </Tab>
-
-                            <Tab
-                              :fullWidth="false"
-                              class="py-4 flex items-center cursor-pointer"
-                            >
-                              <SettingsIcon class="w-4 h-4 mr-2" /> VCs
-                            </Tab>
-                          </TabList>
+                          <div class="my-6" v-show="singlePooldetailTab === 2">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="my-6" v-show="singlePooldetailTab === 3">
+                            <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="https://thumbs.dreamstime.com/b/upper-management-meeting-four-board-members-electronic-tablet-business-new-modern-office-conference-room-76284245.jpg"
+                                />
+                              </div>
+                              <div class="col-span-12 lg:col-span-6">
+                                <img
+                                  class="rounded-xl h-60 object-cover w-full"
+                                  src="@/assets/images/uc/profile-avatar.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-span-4">
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                          <div
-                            class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400"
-                          >
-                            <h2
-                              class="font-semibold text-base py-2 px-5 mr-auto"
-                            >
-                              Details
-                            </h2>
 
-                            <button
-                              class="bg-gray-400/20 text-gray-600 text-xs m-2 px-2 py-1 rounded z-10"
-                            >
-                              Closed
-                            </button>
-                          </div>
-                          <div class="p-5">
-                            <div class="flex items-center">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Tier Access
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  Public Offering
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Price Per
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  1 GTP = 0.15 USDC
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Total Offering
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  733,333 GTP
-                                </div>
-                              </div>
-                            </div>
-                            <div class="flex items-center mt-5">
-                              <div class="ml-4">
-                                <div
-                                  class="font-medium text-base text-left"
-                                  href=""
-                                >
-                                  Global Cap
-                                </div>
-                                <div
-                                  class="text-slate-500 text-lg font-semibold mt-0.5"
-                                >
-                                  110,000 USDC
-                                </div>
-                              </div>
-                            </div>
+                        <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
+                        <div
+                          class="flex items-center justify-center bottom-4 right-12 border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
+                        >
+                          <div class="text-center">
+                            <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
                       </div>
