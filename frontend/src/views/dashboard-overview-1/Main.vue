@@ -295,7 +295,9 @@
                       <br />
                       <a
                         href="#"
-                        @click="bscOngoingModal = true"
+                        @click="
+                          bscOngoingLargeModal1(user.id, user.name, user.symbol)
+                        "
                         class="underline text-primary pt-4"
                         >View Details</a
                       >
@@ -791,7 +793,7 @@
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
                     <div class="grid grid-cols-12 gap-4">
-                     <div
+                      <div
                         class="col-span-12 box h-[35rem] overflow-y-scroll relative"
                       >
                         <div class="intro-y px-5 mt-5">
@@ -845,14 +847,16 @@
                               >
                                 <div>
                                   <h2 class="font-semibold text-xl pt-6">
-                                    Name - {{this.currentModalName}}
+                                    Name - {{ this.currentModalName }}
                                     <span
                                       class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >SymBol - {{this.currentModalSymbol}}</span
+                                      >SymBol -
+                                      {{ this.currentModalSymbol }}</span
                                     >
-                                     <span
+                                    <span
                                       class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >Project Id - {{this.currentModalId}}</span
+                                      >Project Id -
+                                      {{ this.currentModalId }}</span
                                     >
                                   </h2>
                                 </div>
@@ -1102,7 +1106,7 @@
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
                     <div class="grid grid-cols-12 gap-4">
-                     <div
+                      <div
                         class="col-span-12 box h-[35rem] overflow-y-scroll relative"
                       >
                         <div class="intro-y px-5 mt-5">
@@ -1149,7 +1153,7 @@
                               </div>
                             </div>
                           </div>
-                         
+
                           <ul
                             class="nav nav-link-tabs w-full lg:w-2/4 rounded-md"
                             role="tablist"
@@ -1387,8 +1391,8 @@
                 <TabGroup>
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
-                   <div class="grid grid-cols-12 gap-4">
-                     <div
+                    <div class="grid grid-cols-12 gap-4">
+                      <div
                         class="col-span-12 box h-[35rem] overflow-y-scroll relative"
                       >
                         <div class="intro-y px-5 mt-5">
@@ -1435,7 +1439,7 @@
                               </div>
                             </div>
                           </div>
-                         
+
                           <ul
                             class="nav nav-link-tabs w-full lg:w-2/4 rounded-md"
                             role="tablist"
@@ -1861,6 +1865,12 @@ export default {
       this.tab = 4;
     },
     async bscOngoingLargeModal(id, name, symbol) {
+      await this.mainBscOngoingLargeModal(id, name, symbol);
+    },
+    async bscOngoingLargeModal1(id, name, symbol) {
+      await this.mainBscOngoingLargeModal(id, name, symbol);
+    },
+    async mainBscOngoingLargeModal(id, name, symbol) {
       console.log(id);
       this.currentModalId = id;
       this.currentModalFee = 2;
