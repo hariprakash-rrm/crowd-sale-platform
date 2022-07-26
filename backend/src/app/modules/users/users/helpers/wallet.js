@@ -23,7 +23,7 @@ export const loadFromContract = async (req, res) => {
     var currentlyStaked = await contract.methods.getTotalStakedInPool(i).call();
     var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
     set.humanEndTime = newDate;
-    set.poolStakableAmount = set.poolStakableAmount / 10 ** 18;
+    set.poolStakableAmount = Math.round(set.poolStakableAmount / 10 ** 18);
     set.currentlyStaked = currentlyStaked / 10 ** 18;
     set["source"] = "bsc";
     set["roadMap"] = "";
@@ -35,7 +35,7 @@ export const loadFromContract = async (req, res) => {
     set["image"] = "";
     var currentPercentage =
       (set.currentlyStaked * 100) / set.poolStakableAmount;
-    set.currentPercentage = currentPercentage;
+    set.currentPercentage = Math.round(currentPercentage);
     var stakedAmount = await contract.methods
       .getUserStakedTokenInPool(i, FROM_ADDRESS)
       .call();
