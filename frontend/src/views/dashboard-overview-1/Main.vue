@@ -256,7 +256,7 @@
                     <th class="text-center whitespace-nowrap">SYMBOL</th>
 
                     <th class="text-center whitespace-nowrap">PERCENTAGE</th>
-                    <th class="text-center whitespace-nowrap">ENDTIME</th>
+                    <th class="text-center whitespace-nowrap">END TIME</th>
                     <th class="text-center whitespace-nowrap">NETWORK</th>
                     <th class="text-center whitespace-nowrap">CONTRIBUTION</th>
                   </tr>
@@ -271,7 +271,13 @@
                     <td class="">
                       <div class="flex">
                         <div
-                          @click="bscOngoingLargeModal(user.id,user.name,user.symbol)"
+                          @click="
+                            bscOngoingLargeModal(
+                              user.id,
+                              user.name,
+                              user.symbol
+                            )
+                          "
                           class="w-16 h-16 image-fit"
                         >
                           <img
@@ -327,19 +333,8 @@
                     <td class="text-center">{{ user.symbol }}</td>
                     <td class="text-center">{{ user.currentPercentage }}%</td>
                     <td class="text-center">{{ user.humanEndTime }}</td>
-                    <!-- <td class="text-center">
-                        <input
-                          @input="handleInput(user.id, $event)"
-                          :value="payload[user.id]"
-                          type="number"
-                          class="form-control w-56 rounded-md input--rounded box pr-10"
-                          placeholder="Enter Amount..."
-                          :min="1"
-                        />
-                      </td> -->
                     <td class="text-center text-base font-bold">
                       <div class="bnb"></div>
-                      <!-- <img src="@/assets/images/uc/bnb.png" class="mx-auto w-12 h-12"> -->
                     </td>
                     <td class="table-report__action w-40">
                       <div class="flex justify-center gap-4 items-center">
@@ -433,14 +428,16 @@
                               >
                                 <div>
                                   <h2 class="font-semibold text-xl pt-6">
-                                    Name - {{this.currentModalName}}
+                                    Name - {{ this.currentModalName }}
                                     <span
                                       class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >SymBol - {{this.currentModalSymbol}}</span
+                                      >SymBol -
+                                      {{ this.currentModalSymbol }}</span
                                     >
-                                     <span
+                                    <span
                                       class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >Project Id - {{this.currentModalId}}</span
+                                      >Project Id -
+                                      {{ this.currentModalId }}</span
                                     >
                                   </h2>
                                 </div>
@@ -554,7 +551,6 @@
                           </div>
                         </div>
 
-                        <!-- <div class="flex items-center justify-center absolute bottom-4 right-4 border bg-primary animate-bounce rounded-md w-12 h-12"> -->
                         <div
                           class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
                         >
@@ -564,52 +560,39 @@
                         </div>
                       </div>
                       <div class="col-span-12 md:col-span-4">
-                        <div
-                          class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]"
+                        <form
+                          id="contribute-form-logo"
+                          @submit.prevent="finalContribute()"
                         >
-                          <p class="text-base pb-1 text-left">Pay</p>
+                          <div
+                            class="p-6 mb-8 shadow-lg rounded-xl w-full bg-[#d1a5651c]"
+                          >
+                            <p class="text-base pb-1 text-left">Pay</p>
 
-                          <div class="text-left">
-                             <input
-                          @input="handleInput(currentModalId, $event)"
-                          :value="payload[currentModalId]"
-                          type="number"
-                          class="form-control w-56 rounded-md input--rounded box pr-10"
-                          placeholder="Enter Amount..."
-                          :min="1"
-                        />
-                          </div>
-                          <!-- </div> -->
-                          <p class="text-base mt-1 text-left">
-                            Minimum Amonut : <strong>50</strong>
-                          </p>
-                        </div>
-                        <div
-                          class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border border-solid"
-                        >
-                          <p class="text-sm text-slate-500 font-bold">
-                            Your Balance
-                          </p>
-                          <p class="text-red-600 font-bold text-sm">
-                            {{ insufficientFund }}
-                          </p>
-                          <div class="flex items-center gap-2">
-                            <img
-                              src="@/assets/images/uc/tether.png"
-                              class="w-5 h-5"
-                              alt=""
-                            />
-                            <p class="text-black font-bold text-sm">
-                              <span>{{ currentTokenBalance }}  USDT</span>
+                            <div class="text-left">
+                              <input
+                                @input="handleInput(currentModalId, $event)"
+                                :value="payload[currentModalId]"
+                                type="number"
+                                class="form-control w-56 rounded-md input--rounded box pr-10"
+                                placeholder="Enter Amount..."
+                                :min="1"
+                                required
+                              />
+                            </div>
+                            <p class="text-base mt-1 text-left">
+                              Minimum Amount : <strong>50</strong>
                             </p>
                           </div>
-                        </div>
-
-                        <div class="mb-6 bg-[#f8f8f8]">
                           <div
-                            class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                            class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border border-solid"
                           >
-                            <p class="text-sm">Amount With Fee</p>
+                            <p class="text-sm text-slate-500 font-bold">
+                              Your Balance
+                            </p>
+                            <p class="text-red-600 font-bold text-sm">
+                              {{ insufficientFund }}
+                            </p>
                             <div class="flex items-center gap-2">
                               <img
                                 src="@/assets/images/uc/tether.png"
@@ -617,50 +600,72 @@
                                 alt=""
                               />
                               <p class="text-black font-bold text-sm">
-                                {{ this.amountIncludeFee }} USDT
+                                <span>{{ currentTokenBalance }} USDT</span>
                               </p>
                             </div>
                           </div>
-                          <div class="px-6 py-3 flex justify-between">
-                            <p class="text-sm">FEE</p>
-                            <div class="flex items-center gap-2">
-                              <img
-                                src="@/assets/images/uc/tether.png"
-                                class="w-5 h-5"
-                                alt=""
-                              />
-                              <p class="text-black font-bold text-sm">
-                                <span class="text-yellow-600"> 2 USDT</span>
-                                or
-                                <span class="text-yellow-600"
-                                  >{{ currentModalFee }}%</span
-                                >
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-check mt-5">
-                          <input
-                            id="vertical-form-3"
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                          />
-                          <label class="form-check-label" for="vertical-form-3"
-                            >I AGREE with all statements.</label
-                          >
-                        </div>
 
-                        <div class="pt-8 text-center">
-                          <button
-                            type="button"
-                            @click="finalContribute()"
-                            class="btn btn-primary w-full"
-                            :disabled="inSufficientButtonStatus"
-                          >
-                            Contribute
-                          </button>
-                        </div>
+                          <div class="mb-6 bg-[#f8f8f8]">
+                            <div
+                              class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                            >
+                              <p class="text-sm">Amount With Fee</p>
+                              <div class="flex items-center gap-2">
+                                <img
+                                  src="@/assets/images/uc/tether.png"
+                                  class="w-5 h-5"
+                                  alt=""
+                                />
+                                <p class="text-black font-bold text-sm">
+                                  {{ this.amountIncludeFee }} USDT
+                                </p>
+                              </div>
+                            </div>
+                            <div class="px-6 py-3 flex justify-between">
+                              <p class="text-sm">FEE</p>
+                              <div class="flex items-center gap-2">
+                                <img
+                                  src="@/assets/images/uc/tether.png"
+                                  class="w-5 h-5"
+                                  alt=""
+                                />
+                                <p class="text-black font-bold text-sm">
+                                  <span class="text-yellow-600"> 2 USDT</span>
+                                  or
+                                  <span class="text-yellow-600"
+                                    >{{ currentModalFee }}%</span
+                                  >
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-check mt-5">
+                            <input
+                              id="vertical-form-3"
+                              class="form-check-input"
+                              type="checkbox"
+                              :value="isAgree"
+                              v-model="isAgree"
+                              :checked="isAgree"
+                              required
+                            />
+                            <label
+                              class="form-check-label"
+                              for="vertical-form-3"
+                              >I AGREE with all statements.</label
+                            >
+                          </div>
+
+                          <div class="pt-8 text-center">
+                            <button
+                              type="submit"
+                              class="btn btn-primary w-full"
+                              :disabled="inSufficientButtonStatus"
+                            >
+                              Contribute
+                            </button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -755,7 +760,6 @@
                     </td>
                     <td class="text-center text-base font-bold">
                       <div class="eth"></div>
-                      <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
                     </td>
                     <td class="text-center">{{ user.humanEndTime }}</td>
                   </tr>
@@ -1046,7 +1050,6 @@
                     <td class="text-center">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
                       <div class="eth"></div>
-                      <!-- <img src="@/assets/images/uc/eth.png" class="mx-auto w-12 h-12"> -->
                     </td>
                     <td class="text-center">
                       <span
@@ -1342,7 +1345,6 @@
                     <td class="text-center">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
                       <div class="pgn"></div>
-                      <!-- <img src="@/assets/images/uc/polygon.png" class="mx-auto w-12 h-12"> -->
                     </td>
                     <td class="text-center">{{ user.poolsStatus }}</td>
                   </tr>
@@ -1570,97 +1572,72 @@
               </div>
 
               <ModalBody class="p-6">
-                <div class="grid grid-cols-12 gap-4 lg:gap-8">
-                  <div class="col-span-12 md:col-span-5">
-                    <div
-                      class="p-6 rounded-xl w-full bg-[#d1a5651c] min-h-[9.5rem] flex flex-col justify-between"
-                    >
-                      <div class="flex justfy-between items-center">
-                        <h6 class="font-semibold text-xs md:text-sm w-2/4">
-                          ID
-                        </h6>
-                        <p
-                          class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
-                        >
-                          {{ currentModalId }}
-                        </p>
+                <form id="contribute-form" @submit.prevent="finalContribute()">
+                  <div class="grid grid-cols-12 gap-4 lg:gap-8">
+                    <div class="col-span-12 md:col-span-5">
+                      <div
+                        class="p-6 rounded-xl w-full bg-[#d1a5651c] min-h-[9.5rem] flex flex-col justify-between"
+                      >
+                        <div class="flex justfy-between items-center">
+                          <h6 class="font-semibold text-xs md:text-sm w-2/4">
+                            ID
+                          </h6>
+                          <p
+                            class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                          >
+                            {{ currentModalId }}
+                          </p>
+                        </div>
+                        <div class="flex justfy-between items-center">
+                          <h6 class="font-semibold text-xs md:text-sm w-2/4">
+                            Name
+                          </h6>
+                          <p
+                            class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                          >
+                            {{ currentModalName }}
+                          </p>
+                        </div>
+                        <div class="flex justfy-between items-center">
+                          <h6 class="font-semibold text-xs md:text-sm w-2/4">
+                            Symbol
+                          </h6>
+                          <p
+                            class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
+                          >
+                            {{ currentModalSymbol }}
+                          </p>
+                        </div>
                       </div>
-                      <div class="flex justfy-between items-center">
-                        <h6 class="font-semibold text-xs md:text-sm w-2/4">
-                          Name
-                        </h6>
-                        <p
-                          class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
-                        >
-                          {{ currentModalName }}
-                        </p>
-                      </div>
-                      <div class="flex justfy-between items-center">
-                        <h6 class="font-semibold text-xs md:text-sm w-2/4">
-                          Symbol
-                        </h6>
-                        <p
-                          class="font-bold text-xs md:text-sm lg:text-lg truncate text-black w-2/4 text-right"
-                        >
-                          {{ currentModalSymbol }}
+                    </div>
+                    <div class="col-span-12 md:col-span-7">
+                      <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
+                        <p class="text-base pb-1">Pay</p>
+                        <td class="text-center">
+                          <input
+                            @input="handleInput(currentModalId, $event)"
+                            :value="payload[currentModalId]"
+                            type="number"
+                            class="form-control w-56 rounded-md input--rounded box pr-10"
+                            placeholder="Enter Amount..."
+                            :min="1"
+                            required
+                          />
+                        </td>
+                        <p class="text-base mt-1">
+                          Minimum Amount : <strong>50</strong>
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-span-12 md:col-span-7">
-                    <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
-                      <p class="text-base pb-1">Pay</p>
-                      <!-- <div class="flex items-center my-2 gap-4"> -->
-                      <!-- <img
-                                src="@/assets/images/uc/tether.png"
-                                class="w-10 h-10"
-                                alt=""
-                              />
-                              <span class="text-black font-bold text-2xl">{{
-                                amountIncludeFee
-                              }}</span> -->
-                      <td class="text-center">
-                        <input
-                          @input="handleInput(currentModalId, $event)"
-                          :value="payload[currentModalId]"
-                          type="number"
-                          class="form-control w-56 rounded-md input--rounded box pr-10"
-                          placeholder="Enter Amount..."
-                          :min="1"
-                        />
-                      </td>
-                      <!-- </div> -->
-                      <p class="text-base mt-1">
-                        Minimum Amonut : <strong>50</strong>
-                      </p>
-                    </div>
-                  </div>
-                </div>
 
-                <div
-                  class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border border-solid"
-                >
-                  <p class="text-sm text-slate-500 font-bold">Your Balance</p>
-                  <p class="text-red-600 font-bold text-sm">
-                    {{ insufficientFund }}
-                  </p>
-                  <div class="flex items-center gap-2">
-                    <img
-                      src="@/assets/images/uc/tether.png"
-                      class="w-5 h-5"
-                      alt=""
-                    />
-                    <p class="text-black font-bold text-sm">
-                      <span>{{ currentTokenBalance }}  USDT</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="mb-6 bg-[#f8f8f8]">
                   <div
-                    class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                    class="my-6 p-3 rounded-md flex items-center justify-between border-[#d1a565] border border-solid"
                   >
-                    <p class="text-sm">Amount With Fee</p>
+                    <p class="text-sm text-slate-500 font-bold">Your Balance</p>
+                    <p class="text-red-600 font-bold text-sm">
+                      {{ insufficientFund }}
+                    </p>
                     <div class="flex items-center gap-2">
                       <img
                         src="@/assets/images/uc/tether.png"
@@ -1668,51 +1645,71 @@
                         alt=""
                       />
                       <p class="text-black font-bold text-sm">
-                        {{ this.amountIncludeFee }} USDT
+                        <span>{{ currentTokenBalance }} USDT</span>
                       </p>
                     </div>
                   </div>
-                  <div class="px-6 py-3 flex justify-between">
-                    <p class="text-sm">FEE</p>
-                    <div class="flex items-center gap-2">
-                      <img
-                        src="@/assets/images/uc/tether.png"
-                        class="w-5 h-5"
-                        alt=""
-                      />
-                      <p class="text-black font-bold text-sm">
-                        <span class="text-yellow-600"> 2 USDT</span>
-                        or
-                        <span class="text-yellow-600"
-                          >{{ currentModalFee }}%</span
-                        >
-                      </p>
+
+                  <div class="mb-6 bg-[#f8f8f8]">
+                    <div
+                      class="px-6 py-3 flex justify-between border-b border-[#E7E7E7] border-solid"
+                    >
+                      <p class="text-sm">Amount With Fee</p>
+                      <div class="flex items-center gap-2">
+                        <img
+                          src="@/assets/images/uc/tether.png"
+                          class="w-5 h-5"
+                          alt=""
+                        />
+                        <p class="text-black font-bold text-sm">
+                          {{ this.amountIncludeFee }} USDT
+                        </p>
+                      </div>
+                    </div>
+                    <div class="px-6 py-3 flex justify-between">
+                      <p class="text-sm">FEE</p>
+                      <div class="flex items-center gap-2">
+                        <img
+                          src="@/assets/images/uc/tether.png"
+                          class="w-5 h-5"
+                          alt=""
+                        />
+                        <p class="text-black font-bold text-sm">
+                          <span class="text-yellow-600"> 2 USDT</span>
+                          or
+                          <span class="text-yellow-600"
+                            >{{ currentModalFee }}%</span
+                          >
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="form-check mt-5">
-                  <input
-                    id="vertical-form-3"
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                  />
-                  <label class="form-check-label" for="vertical-form-3"
-                    >I AGREE with all statements.</label
-                  >
-                </div>
+                  <div class="form-check mt-5">
+                    <input
+                      id="vertical-form-3"
+                      class="form-check-input"
+                      type="checkbox"
+                      :value="isAgree"
+                      v-model="isAgree"
+                      :checked="isAgree"
+                      required
+                    />
+                    <label class="form-check-label" for="vertical-form-3"
+                      >I AGREE with all statements.</label
+                    >
+                  </div>
 
-                <div class="pt-8 text-center">
-                  <button
-                    type="button"
-                    @click="finalContribute()"
-                    class="btn btn-primary w-full"
-                    :disabled="inSufficientButtonStatus"
-                  >
-                    Contribute
-                  </button>
-                </div>
+                  <div class="pt-8 text-center">
+                    <button
+                      type="submit"
+                      class="btn btn-primary w-full"
+                      :disabled="inSufficientButtonStatus"
+                    >
+                      Contribute
+                    </button>
+                  </div>
+                </form>
               </ModalBody>
             </Modal>
             <!-- END: CONTRIBUTE MODAL -->
@@ -1730,8 +1727,8 @@
 <script>
 import { ref, provide } from "vue";
 import { useWeb3DealsStore } from "@/stores/web3Deals.js";
-import { mapActions, mapGetters } from "pinia";
-import Web3 from "web3";
+import { useContributionStore } from "@/stores/contribution.js";
+import { mapActions, mapState } from "pinia";
 import { contractABI, approveContract } from "@/helpers/helper.js";
 const largeModalSizePreview = ref(false);
 const bscOngoingModal = ref(false);
@@ -1791,7 +1788,8 @@ export default {
       currentTokenBalance: "",
       inSufficientcurrentTokenBalance: "",
       insufficientFund: "",
-      lpToken:''
+      lpToken: "",
+      isAgree: false,
     };
   },
 
@@ -1800,25 +1798,24 @@ export default {
     await this.reversePool();
   },
   computed: {
-    ...mapGetters(useWeb3DealsStore, ["getDealsData"]),
+    ...mapState(useWeb3DealsStore, ["dealsData"]),
     getDeals() {
-      this.poolsOngoing = this.getDealsData.poolsOngoing || [];
-      this.poolsUpcoming = this.getDealsData.poolsUpcoming || [];
-      this.poolsCompleted = this.getDealsData.poolsCompleted || [];
-      this.poolsMyDeal = this.getDealsData.poolsMyDeal || [];
-      console.log(this.getDealsData);
+      this.poolsOngoing = this.dealsData.poolsOngoing || [];
+      this.poolsUpcoming = this.dealsData.poolsUpcoming || [];
+      this.poolsCompleted = this.dealsData.poolsCompleted || [];
+      this.poolsMyDeal = this.dealsData.poolsMyDeal || [];
+      console.log(this.dealsData);
       return true;
     },
   },
 
   methods: {
     ...mapActions(useWeb3DealsStore, ["fetchDeals"]),
+    ...mapActions(useContributionStore, ["createContribution"]),
     handleInput(id, event) {
       let value = event.target.value;
       this.payload[id] = value;
-      console.log(this.payload);
       this.currentModalAmount = value;
-      console.log(this.currentModalAmount);
       this.amountIncludeFee =
         parseInt(this.currentModalAmount) +
         (value * this.currentModalFee) / 100 +
@@ -1855,16 +1852,16 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-    async bscOngoingLargeModal(id,name,symbol) {
-      console.log(id)
+    async bscOngoingLargeModal(id, name, symbol) {
+      console.log(id);
       this.currentModalId = id;
       this.currentModalFee = 2;
-       this.currentModalName = name;
+      this.currentModalName = name;
       this.currentModalSymbol = symbol;
       let approveToken = approveContract();
       let from = localStorage.getItem("address");
       console.log(typeof from);
-      let getTokenBalnce = await approveToken.methods
+      await approveToken.methods
         .balanceOf(localStorage.getItem("address"))
         .call()
         .then((receipt) => {
@@ -1877,20 +1874,18 @@ export default {
       }
       console.log(id, this.payload);
       this.bscOngoingModal = true;
-
     },
 
     async contribute(id, name, symbol) {
-      console.log(id, this.payload);
+      // Default setting agree checkbox to false
+      this.isAgree = false;
       this.currentModalId = id;
       this.currentModalFee = 2;
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.bscContributeModal = true;
       let approveToken = approveContract();
-      let from = localStorage.getItem("address");
-      console.log(typeof from);
-      let getTokenBalnce = await approveToken.methods
+      await approveToken.methods
         .balanceOf(localStorage.getItem("address"))
         .call()
         .then((receipt) => {
@@ -1901,16 +1896,14 @@ export default {
       } else {
         this.insufficientFund = "";
       }
-      
     },
-   
+
     async finalContribute() {
       this.currentModalAmount = this.payload[this.currentModalId];
       let acurrentModalFeeAmount = await ((this.currentModalAmount *
         this.currentModalFee) /
         100);
       this.currentModalFeeAmount = acurrentModalFeeAmount;
-      console.log(this.currentModalFeeAmount);
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
       this.amountIncludeFee =
         this.totalCurrentModalAmount + this.currentModalFeeAmount;
@@ -1920,10 +1913,9 @@ export default {
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
-        let Atoken = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628"
-      this.lpToken =await getTokenAddres.lpToken
-      console.log(this.lpToken)
-      let approveNow = await approveToken.methods
+      let Atoken = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";
+      this.lpToken = await getTokenAddres.lpToken;
+      await approveToken.methods
         .approve(
           Atoken,
           BigInt(
@@ -1933,10 +1925,9 @@ export default {
         )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
-          console.log(receipt);
           this.insufficientFund = "Approve Successful";
         });
-      let callContract = await contract.methods
+      await contract.methods
         .stakeTokens(
           this.currentModalId - 1,
           BigInt(
@@ -1946,8 +1937,9 @@ export default {
         )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
-          console.log(receipt);
-          this.insufficientFund = "Contribution Successfull";
+          console.log("receipt", receipt);
+          this.saveContribution(receipt);
+          this.insufficientFund = "Contribution Successful";
         })
         .catch((err) => {
           alert("Please check MetaMask Connection");
@@ -1961,6 +1953,22 @@ export default {
       this.poolsUpcoming = this.poolsUpcoming.reverse();
       this.poolsCompleted = this.poolsCompleted.reverse();
       this.poolsMyDeal = this.poolsMyDeal.reverse();
+    },
+    saveContribution(receipt) {
+      let { transactionHash, blockNumber, contractAddress, status } = receipt;
+      if (status) {
+        let contribute = {
+          transactionHash,
+          blockNumber,
+          contractAddress,
+          status,
+          poolId: this.currentModalId,
+          amount: this.totalCurrentModalAmount,
+          fee: this.amountIncludeFee,
+        };
+        console.log(contribute);
+        this.createContribution(contribute);
+      }
     },
   },
 };

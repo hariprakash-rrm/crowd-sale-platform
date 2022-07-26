@@ -98,42 +98,48 @@
           <div class="p-8">
             <div class="flex flex-col-reverse xl:flex-row flex-col">
               <div class="flex-1 mt-6 xl:mt-0">
-                <div class="grid grid-cols-12 gap-x-5">
-                  <div class="col-span-12 md:col-span-12">
-                    <div class="relative mb-6">
-                      <TextInput
-                        name="name"
-                        label="Name"
-                        :value="profile.name"
-                        @input="handleInput"
-                      />
-                    </div>
-                    <div class="relative mb-6">
-                      <TextInput
-                        label="Email"
-                        name="mail"
-                        :value="profile.email"
-                        @input="handleInput"
-                        :disabled="true"
-                      />
-                    </div>
-                    <div class="relative mb-6">
-                      <TextAreaInput
-                        label="Bio"
-                        name="bio"
-                        :value="profile.bio"
-                        @input="handleInput"
-                      />
+                <form
+                  id="profile-update-form"
+                  @submit.prevent="updateProfile()"
+                >
+                  <div class="grid grid-cols-12 gap-x-5">
+                    <div class="col-span-12 md:col-span-12">
+                      <div class="relative mb-6">
+                        <TextInput
+                          name="name"
+                          label="Name"
+                          :value="profile.name"
+                          @input="handleInput"
+                          :required="true"
+                        />
+                      </div>
+                      <div class="relative mb-6">
+                        <TextInput
+                          label="Email"
+                          name="mail"
+                          :value="profile.email"
+                          @input="handleInput"
+                          :disabled="true"
+                          :required="true"
+                        />
+                      </div>
+                      <div class="relative mb-6">
+                        <TextAreaInput
+                          label="Bio"
+                          name="bio"
+                          :value="profile.bio"
+                          @input="handleInput"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-primary text-sm 2xl:text-base w-full xl:w-40 py-2 px-8 rounded-md"
-                  @click="updateProfile()"
-                >
-                  Save
-                </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary text-sm 2xl:text-base w-full xl:w-40 py-2 px-8 rounded-md"
+                  >
+                    Save
+                  </button>
+                </form>
               </div>
               <div class="w-52 mx-auto xl:mr-0 xl:ml-6">
                 <div
@@ -189,43 +195,54 @@
           >
             <h2 class="font-semibold text-base mr-auto px-2">Reset Password</h2>
           </div>
-          <div class="p-8">
-            <div class="relative mb-6">
-              <TextInput
-                type="password"
-                name="oldPassword"
-                label="Old Password"
-                :value="profile.oldPassword"
-                @input="handleInput"
-              />
-            </div>
-            <div class="relative mb-6">
-              <TextInput
-                type="password"
-                name="newPassword"
-                label="New Password"
-                :value="profile.newPassword"
-                @input="handleInput"
-              />
-            </div>
-            <div class="relative mb-6">
-              <TextInput
-                type="password"
-                name="confirmPassword"
-                label="Confirm Password"
-                :value="profile.confirmPassword"
-                @input="handleInput"
-              />
-            </div>
+          <form
+            id="reset-password-form"
+            @submit.prevent="updatePassword()"
+            class="validate-form"
+          >
+            <div class="p-8">
+              <div class="relative mb-6">
+                <TextInput
+                  type="password"
+                  name="oldPassword"
+                  label="Old Password"
+                  :value="profile.oldPassword"
+                  @input="handleInput"
+                  :required="true"
+                  :minlength="8"
+                />
+              </div>
+              <div class="relative mb-6">
+                <TextInput
+                  type="password"
+                  name="newPassword"
+                  label="New Password"
+                  :value="profile.newPassword"
+                  @input="handleInput"
+                  :required="true"
+                  :minlength="8"
+                />
+              </div>
+              <div class="relative mb-6">
+                <TextInput
+                  type="password"
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  :value="profile.confirmPassword"
+                  @input="handleInput"
+                  :required="true"
+                  :minlength="8"
+                />
+              </div>
 
-            <button
-              type="button"
-              class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
-              @click="updatePassword"
-            >
-              Reset Password
-            </button>
-          </div>
+              <button
+                type="submit"
+                class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
+              >
+                Reset Password
+              </button>
+            </div>
+          </form>
         </div>
         <!-- END: Change Password -->
 

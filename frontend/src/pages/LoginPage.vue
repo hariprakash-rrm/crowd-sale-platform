@@ -165,7 +165,7 @@
                   "
                   type="password"
                   placeholder="Password"
-                  minlength="6"
+                  minlength="8"
                   required
                   v-model="password"
                 />

@@ -130,7 +130,9 @@ export const useAuthUserStore = defineStore("authUserStore", {
         },
         resetPassword(payload) {
             return auth.resetPassword(payload).then(res => {
-                router.push("/login");
+                let { success } = res["data"]
+                if (success)
+                    router.push("/login");
                 return res;
             }).catch(err => {
                 console.error("error in resetting password", err);

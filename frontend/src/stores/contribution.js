@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { contribution } from "../service/contribution";
-import router from "@/router";
 
 export const useContributionStore = defineStore("contributionStore", {
     state: () => ({}),
