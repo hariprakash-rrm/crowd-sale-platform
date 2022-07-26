@@ -271,7 +271,7 @@
                     <td class="">
                       <div class="flex">
                         <div
-                          @click="bscOngoingModal = true"
+                          @click="bscOngoingLargeModal()"
                           class="w-16 h-16 image-fit"
                         >
                           <img
@@ -1848,6 +1848,10 @@ export default {
     },
     activeTabFour() {
       this.tab = 4;
+    },
+    bscOngoingLargeModal() {
+      this.bscOngoingModal = true;
+      contribute(id, name, symbol);
     },
 
     async contribute(id, name, symbol) {
