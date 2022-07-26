@@ -1900,12 +1900,12 @@ export default {
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
-      this.lpToken = getTokenAddres.lpToken
-      let token = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";
-      console.log(token);
+        let Atoken = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628"
+      this.lpToken =await getTokenAddres.lpToken
+      console.log(this.lpToken)
       let approveNow = await approveToken.methods
         .approve(
-          this.lpToken,
+          Atoken,
           BigInt(
             (this.totalCurrentModalAmount + this.currentModalFeeAmount) *
               10 ** 18
