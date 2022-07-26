@@ -1877,7 +1877,7 @@ export default {
       }
       console.log(id, this.payload);
       this.bscOngoingModal = true;
-      
+
     },
 
     async contribute(id, name, symbol) {
