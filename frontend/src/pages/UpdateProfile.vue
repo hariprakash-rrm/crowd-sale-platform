@@ -159,12 +159,20 @@
                     </Tippy>
                   </div>
                   <div class="mx-auto cursor-pointer relative mt-5">
-                    <button type="button" class="btn btn-primary w-full">
+                    <button
+                      type="button"
+                      class="btn btn-primary w-full"
+                      style="cursor: pointer"
+                    >
                       Change Photo
                     </button>
                     <input
                       type="file"
                       class="w-full h-full top-0 left-0 absolute opacity-0"
+                      ref="fileref"
+                      name="profileImage"
+                      accept="image/*"
+                      @change="selectedFile"
                     />
                   </div>
                 </div>
@@ -494,6 +502,8 @@ export default {
       profile: {},
       payload: {},
       notificationSettings: {},
+      fileData: null,
+      isFileError: false,
     };
   },
   computed: {
@@ -511,6 +521,7 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, [
       "updateUser",
+      "uploadPhoto",
       "resetPassword",
       "updateSocialLink",
       "updateNotificationSettings",
@@ -572,6 +583,18 @@ export default {
       } = this.$route;
       if (!tab_id) tab_id = 1;
       this.tab = parseInt(tab_id);
+    },
+    selectedFile(event) {
+      const size = event.target.files[0].size;
+      if (Math.round(size / (1024 * 1024)) <= 2) {
+        this.isFileError = false;
+        const file = event.target.files[0];
+        this.fileData = file;
+        this.uploadPhoto(file);
+      } else {
+        this.$refs.fileref.value = "";
+        this.isFileError = true;
+      }
     },
   },
   watch: {
