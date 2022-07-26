@@ -271,7 +271,7 @@
                     <td class="">
                       <div class="flex">
                         <div
-                          @click="bscOngoingLargeModal()"
+                          @click="bscOngoingLargeModal(user.id,user.name,user.symbol)"
                           class="w-16 h-16 image-fit"
                         >
                           <img
@@ -433,10 +433,14 @@
                               >
                                 <div>
                                   <h2 class="font-semibold text-xl pt-6">
-                                    GT- Protocol
+                                    Name - {{this.currentModalName}}
                                     <span
                                       class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
-                                      >GTP</span
+                                      >SymBol - {{this.currentModalSymbol}}</span
+                                    >
+                                     <span
+                                      class="p-2 px-4 font-semibold text-sm btn-secondary rounded text-slate-500 ml-2"
+                                      >Project Id - {{this.currentModalId}}</span
                                     >
                                   </h2>
                                 </div>
@@ -566,12 +570,14 @@
                           <p class="text-base pb-1 text-left">Pay</p>
 
                           <div class="text-left">
-                            <input
-                              type="number"
-                              class="form-control w-full rounded-md input--rounded box pr-10"
-                              placeholder="Enter Amount..."
-                              min="1"
-                            />
+                             <input
+                          @input="handleInput(currentModalId, $event)"
+                          :value="payload[currentModalId]"
+                          type="number"
+                          class="form-control w-56 rounded-md input--rounded box pr-10"
+                          placeholder="Enter Amount..."
+                          :min="1"
+                        />
                           </div>
                           <!-- </div> -->
                           <p class="text-base mt-1 text-left">
@@ -594,7 +600,7 @@
                               alt=""
                             />
                             <p class="text-black font-bold text-sm">
-                              <span>{{ currentTokenBalance }} 499 USDT</span>
+                              <span>{{ currentTokenBalance }}  USDT</span>
                             </p>
                           </div>
                         </div>
@@ -611,7 +617,7 @@
                                 alt=""
                               />
                               <p class="text-black font-bold text-sm">
-                                <!-- {{ this.amountIncludeFee }} USDT -->
+                                {{ this.amountIncludeFee }} USDT
                               </p>
                             </div>
                           </div>
@@ -1645,7 +1651,7 @@
                       alt=""
                     />
                     <p class="text-black font-bold text-sm">
-                      <span>{{ currentTokenBalance }} 499 USDT</span>
+                      <span>{{ currentTokenBalance }}  USDT</span>
                     </p>
                   </div>
                 </div>
@@ -1849,23 +1855,35 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-    bscOngoingLargeModal() {
+    async bscOngoingLargeModal(id,name,symbol) {
+      console.log(id)
+      this.currentModalId = id;
+      this.currentModalFee = 2;
+       this.currentModalName = name;
+      this.currentModalSymbol = symbol;
+      let approveToken = approveContract();
+      let from = localStorage.getItem("address");
+      console.log(typeof from);
+      let getTokenBalnce = await approveToken.methods
+        .balanceOf(localStorage.getItem("address"))
+        .call()
+        .then((receipt) => {
+          this.currentTokenBalance = receipt / 10 ** 18;
+        });
+      if (this.amountIncludeFee > this.currentTokenBalance) {
+        this.insufficientFund = "insufficient Fund";
+      } else {
+        this.insufficientFund = "";
+      }
+      console.log(id, this.payload);
       this.bscOngoingModal = true;
+
     },
 
     async contribute(id, name, symbol) {
       console.log(id, this.payload);
       this.currentModalId = id;
-      // this.currentModalAmount = this.payload[id];
       this.currentModalFee = 2;
-      // let acurrentModalFeeAmount = await ((this.currentModalAmount *
-      //   this.currentModalFee) /
-      //   100);
-      // this.currentModalFeeAmount = acurrentModalFeeAmount;
-      // console.log(this.currentModalFeeAmount);
-      // this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
-      // this.amountIncludeFee =
-      //   this.totalCurrentModalAmount + this.currentModalFeeAmount;
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
       this.bscContributeModal = true;
@@ -1883,12 +1901,11 @@ export default {
       } else {
         this.insufficientFund = "";
       }
+      
     },
-
+   
     async finalContribute() {
-      //  this.currentModalId = id;
       this.currentModalAmount = this.payload[this.currentModalId];
-      this.currentModalFee = 2;
       let acurrentModalFeeAmount = await ((this.currentModalAmount *
         this.currentModalFee) /
         100);
