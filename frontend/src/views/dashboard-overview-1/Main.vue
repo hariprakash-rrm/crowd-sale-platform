@@ -1851,7 +1851,6 @@ export default {
     },
     bscOngoingLargeModal() {
       this.bscOngoingModal = true;
-      contribute(id, name, symbol);
     },
 
     async contribute(id, name, symbol) {
