@@ -643,7 +643,7 @@
                                 >_symbol</label
                               >
                             </div>
-                            <div class="relative mb-6">
+                            <!-- <div class="relative mb-6">
                               <input
                                 type="text"
                                 id="ip-token"
@@ -658,7 +658,68 @@
                                 class="input__label--accordion"
                                 >lp Token</label
                               >
+                            </div> -->
+
+                            <div class="relative px-0 input__field--accordion dark:border-darkmode-600  border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary">
+                              <label
+                                for="update-profile-form-2"
+                                class="
+                                  absolute
+                                  input__label--accordion
+                                  form-label
+                                  z-10
+                                  left-2.5
+                                  -top-3
+                                  mb-0
+                                  pb-0
+                                  px-2
+                                  bg-[#131c25]
+                                "
+                                >lp Token</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">Admiralty</option>
+                                <option value="2">Aljunied</option>
+                                <option value="3">Ang Mo Kio</option>
+                                <option value="4">Bartley</option>
+                                <option value="5">Beauty World</option>
+                              </TomSelect>
                             </div>
+
+
+                            <div class="relative px-0 input__field--accordion dark:border-darkmode-600  border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary">
+                              <label
+                                for="update-profile-form-2"
+                                class="
+                                  absolute
+                                  input__label--accordion
+                                  form-label
+                                  
+                                  left-2.5
+                                  -top-3
+                                  mb-0
+                                  pb-0
+                                  px-2
+                                  bg-[#131c25]
+                                "
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Plygon</option>
+                              </TomSelect>
+                            </div>
+
+
                             <div class="relative mb-6">
                               <Litepicker
                                 v-model="addPoolData._startTime"
@@ -923,35 +984,7 @@
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
-                      <AccordionItem>
-                        <Accordion>
-                          <p class="text-black font-semibold text-base">
-                            6. Include All in Blacklist
-                          </p>
-                        </Accordion>
-                        <AccordionPanel
-                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
-                        >
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="accounts"
-                              class="input__field--accordion peer"
-                              placeholder=""
-                            />
-                            <label
-                              for="accounts"
-                              class="input__label--accordion"
-                              >Accounts</label
-                            >
-                          </div>
-                          <a
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Write
-                          </a>
-                        </AccordionPanel>
-                      </AccordionItem>
+                     
                     </AccordionGroup>
                   </Preview>
                 </div>
@@ -965,6 +998,35 @@
                   <!-- <div class="p-5"> -->
                   <Preview>
                     <AccordionGroup class="accordion-boxed">
+                       <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">
+                            6. Include All in Blacklist
+                          </p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="accounts"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label
+                              for="accounts"
+                              class="input__label"
+                              >Accounts</label
+                            >
+                          </div>
+                          <a
+                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Write
+                          </a>
+                        </AccordionPanel>
+                      </AccordionItem>
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
@@ -1033,7 +1095,7 @@
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <!-- <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
                             10. Stake Tokens
@@ -1070,11 +1132,11 @@
                             Write
                           </a>
                         </AccordionPanel>
-                      </AccordionItem>
+                      </AccordionItem> -->
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            11. Transfer Ownership
+                            10. Transfer Ownership
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -1102,7 +1164,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            12. Un Pause Contract
+                            11. Un Pause Contract
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -1381,4 +1443,26 @@ export default {
 .accordion-item:nth-child(even) {
   background: #ebf0f5;
 }
+.items.ts-input.full.has-items {
+   background-color: transparent !important;
+   border-width: 0px !important;
+  padding: 7.5px 0px 7.5px 0px !important;
+   z-index: 99999 !important;
+} 
+.tom-select .ts-dropdown {
+      background: #ebf0f5!important;
+      z-index: 99999 !important;
+}
+.tom-select .ts-input {
+  background-position: center right 0.2rem !important;
+   z-index: 99999 !important;
+}
+
+.ts-control.tom-select.w-full.absolute.top-2.pl-2.single.plugin-dropdown_input {
+  padding-left: 0 !important;
+}
+/* .tom-select .ts-input {
+  background: transparent !important;
+  box-shadow: none !important;
+} */
 </style>
