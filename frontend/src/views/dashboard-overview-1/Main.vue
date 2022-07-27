@@ -1918,41 +1918,30 @@ export default {
 
     async finalContribute() {
       this.currentModalAmount = this.payload[this.currentModalId];
-      let acurrentModalFeeAmount = await ((this.currentModalAmount *
+      this.currentModalFeeAmount = await ((this.currentModalAmount *
         this.currentModalFee) /
         100);
-      this.currentModalFeeAmount = acurrentModalFeeAmount;
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
       this.amountIncludeFee =
         this.totalCurrentModalAmount + this.currentModalFeeAmount;
       this.insufficientFund = "Approving Please wait(D)";
       let contract = contractABI();
       let approveToken = approveContract();
+      let totalAmountToContribute = BigInt(
+        (this.totalCurrentModalAmount + this.currentModalFeeAmount) * 10 ** 18
+      );
       let getTokenAddres = await contract.methods
         .poolInfo(this.currentModalId - 1)
         .call();
       let Atoken = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";
-      this.lpToken = await getTokenAddres.lpToken;
       await approveToken.methods
-        .approve(
-          Atoken,
-          BigInt(
-            (this.totalCurrentModalAmount + this.currentModalFeeAmount) *
-              10 ** 18
-          )
-        )
+        .approve(Atoken, totalAmountToContribute)
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.insufficientFund = "Approve Successful";
         });
       await contract.methods
-        .stakeTokens(
-          this.currentModalId - 1,
-          BigInt(
-            (this.totalCurrentModalAmount + this.currentModalFeeAmount) *
-              10 ** 18
-          )
-        )
+        .stakeTokens(this.currentModalId - 1, totalAmountToContribute)
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log("receipt", receipt);
@@ -1960,8 +1949,8 @@ export default {
           this.insufficientFund = "Contribution Successful";
         })
         .catch((err) => {
-          alert("Please check MetaMask Connection");
-          console.error("Please check MetaMask Connection", err);
+          console.log(err.message);
+          console.log(err.transactionHash)
           return err;
         });
     },
