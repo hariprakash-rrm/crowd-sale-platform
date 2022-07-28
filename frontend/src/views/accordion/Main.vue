@@ -198,7 +198,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="isAuthoroziedUser"
+                              v-model="isAuthoroziedUserAddress"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -214,7 +214,7 @@
                             <label for="input" class="input__label"
                               >Input</label
                             >
-                            <span>{{ this.isAuthoroziedUser }}</span>
+                            <span> {{ this._isAuthoroziedUser }}</span>
                           </div>
 
                           <button
@@ -236,22 +236,25 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.balanceStakableTokenPid"
                               type="text"
-                              id="p-id"
-                              class="input__field--accordion peer"
+                              id="input"
+                              class="input__field peer"
                               placeholder=""
                             />
                             <label for="p-id" class="input__label--accordion"
                               >Pid</label
                             >
                           </div>
-                          <span>{{ this.balanceStakableToken }}</span>
+                          <span>{{ this._balanceStakableToken }}</span>
 
-                          <a
+                          <button
+                            @click="balanceStakableToken()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -265,6 +268,8 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.blacklistedAddress"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -274,12 +279,14 @@
                               >Input</label
                             >
                           </div>
+                          <span>{{ this._blacklisted }}</span>
 
-                          <a
+                          <button
+                            @click="blacklisted()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -307,15 +314,19 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.getTotalStakedInPoolPid"
                               type="text"
-                              id="p-id"
+                              id="input"
                               class="input__field peer"
                               placeholder=""
                             />
                             <label for="p-id" class="input__label">Pid</label>
                           </div>
+                          <span>{{ this._getTotalStakedInPool }}</span>
 
                           <a
+                            @click="getTotalStakedInPool()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
@@ -333,28 +344,34 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.getUserStakedTokenInPoolPid"
                               type="text"
-                              id="p-id"
-                              class="input__field--accordion peer"
+                              id="input"
+                              class="input__field peer"
                               placeholder=""
                             />
                             <label for="p-id" class="input__label--accordion"
                               >Pid</label
                             >
                           </div>
+
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.getUserStakedTokenInPoolAddress"
                               type="text"
-                              id="address"
-                              class="input__field--accordion peer"
+                              id="input"
+                              class="input__field peer"
                               placeholder=""
                             />
                             <label for="address" class="input__label--accordion"
                               >Address</label
                             >
                           </div>
-
+                          <span>{{ this._getUserStakedTokenInPool }}</span>
                           <a
+                            @click="getUserStakedTokenInPool()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
@@ -427,8 +444,10 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.poolInfoPid"
                               type="text"
-                              id="p-id"
+                              id="input"
                               class="input__field peer"
                               placeholder=""
                             />
@@ -436,8 +455,9 @@
                               >uint256</label
                             >
                           </div>
-
+                          <span>{{ this._poolInfo }}</span>
                           <a
+                            @click="poolInfo()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
@@ -1300,14 +1320,18 @@ export default {
       tab: 2,
       Write: "Write",
       contract: "",
-      isAuthoroziedUser: "",
+      _isAuthoroziedUser: "",
+      _balanceStakableToken: "",
+      _blacklisted: "",
+      _getTotalStakedInPool: "",
+      _getUserStakedTokenInPool: "",
+      _poolInfo: "",
     };
   },
   async mounted() {
     this.contract = await contractABI();
   },
   methods: {
-     
     ...mapActions("useWeb3DealsStore", ["createPool"]),
     handleInput(name, e) {
       this.addPoolData[name] = e.target.value;
@@ -1439,16 +1463,85 @@ export default {
     // <---- Write Contract web3 function ---->End
 
     // <---- Read Contract web3 function ---->Start
-  async authorizedUser() {
+    async authorizedUser() {
       await this.contract.methods
-        .authorizedUser(this.isAuthoroziedUser)
+        .authorizedUser(this.isAuthoroziedUserAddress)
         .call()
         .then((receipt) => {
           console.log(receipt);
-          this.isAuthoroziedUser = receipt;
+          this._isAuthoroziedUser = "Bool" + " : " + receipt;
         });
     },
-   
+    async balanceStakableToken() {
+      await this.contract.methods
+        .balanceStakableToken(this.balanceStakableTokenPid)
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._balanceStakableToken = "Amount" + " : " + receipt / 10 ** 18;
+        })
+        .catch((err) => {
+          this._balanceStakableToken = "Please check the Pid Number";
+          console.log(err);
+        });
+    },
+    async blacklisted() {
+      await this.contract.methods
+        .blacklisted(this.blacklistedAddress)
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._blacklisted = "Bool" + " : " + receipt;
+        })
+        .catch((err) => {
+          this._blacklisted = "Please check the address";
+          console.log(err);
+        });
+    },
+    async getTotalStakedInPool() {
+      await this.contract.methods
+        .getTotalStakedInPool(this.getTotalStakedInPoolPid)
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._getTotalStakedInPool = "Amount" + " : " + receipt / 10 ** 18;
+        })
+        .catch((err) => {
+          this._getTotalStakedInPool = "Please check the Pid Number";
+          console.log(err);
+        });
+    },
+    async getUserStakedTokenInPool() {
+      await this.contract.methods
+        .getUserStakedTokenInPool(
+          this.getUserStakedTokenInPoolPid,
+          this.getUserStakedTokenInPoolAddress
+        )
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._getUserStakedTokenInPool =
+            "Amount" + " : " + receipt / 10 ** 18;
+        })
+        .catch((err) => {
+          this._getUserStakedTokenInPool = "Please check the Pid Number";
+          console.log(err);
+        });
+    },
+    // async poolInfo() {
+    //   await this.contract.methods
+    //     .poolInfo(this.poolInfoPid)
+    //     .call()
+    //     .then((receipt) => {
+    //       console.log(receipt);
+    //       this._poolInfo = "name" + " : " + receipt.name + "symbol" + " : "+receipt.symbol
+
+    //     })
+    //     .catch((err) => {
+    //       this._poolInfo = "Please check the Pid Number";
+    //       console.log(err);
+    //     });
+    // },
   },
 };
 </script>
