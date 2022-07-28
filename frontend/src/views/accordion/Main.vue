@@ -5,79 +5,79 @@
     </div>
     <div class="intro-y grid grid-cols-12 gap-6 mt-5">
       <!-- BEGIN: General Report -->
-    <div class="col-span-12 mb-8">
-      <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Read Contract
+      <div class="col-span-12 mb-8">
+        <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
+          <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="report-box report-box__right zoom-in">
+              <div class="box bg-[#ffffff] p-8">
+                <div class="flex items-center">
+                  <div>
+                    <div class="text-3xl font-semibold leading-9">4.710</div>
+                    <div class="text-base text-slate-500 mt-1">
+                      Read Contract
+                    </div>
                   </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-1">
-                  <LayersIcon class="report-box__icon text-cyan-600" />
+                  <div class="ml-auto p-6 rounded-xl bg__icon-1">
+                    <LayersIcon class="report-box__icon text-cyan-600" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                   Write Contract
+          <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="report-box report-box__right zoom-in">
+              <div class="box bg-[#ffffff] p-8">
+                <div class="flex items-center">
+                  <div>
+                    <div class="text-3xl font-semibold leading-9">4.710</div>
+                    <div class="text-base text-slate-500 mt-1">
+                      Write Contract
+                    </div>
                   </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-2">
-                  <DollarSignIcon class="report-box__icon text-pink-600" />
+                  <div class="ml-auto p-6 rounded-xl bg__icon-2">
+                    <DollarSignIcon class="report-box__icon text-pink-600" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Read User Data
+          <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="report-box report-box__right zoom-in">
+              <div class="box bg-[#ffffff] p-8">
+                <div class="flex items-center">
+                  <div>
+                    <div class="text-3xl font-semibold leading-9">4.710</div>
+                    <div class="text-base text-slate-500 mt-1">
+                      Read User Data
+                    </div>
                   </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-3">
-                  <FolderIcon class="report-box__icon text-violet-600" />
+                  <div class="ml-auto p-6 rounded-xl bg__icon-3">
+                    <FolderIcon class="report-box__icon text-violet-600" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-         <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-          <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
-              <div class="flex items-center">
-                <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
-                  <div class="text-base text-slate-500 mt-1">
-                    Write User Data
+          <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="report-box report-box__right zoom-in">
+              <div class="box bg-[#ffffff] p-8">
+                <div class="flex items-center">
+                  <div>
+                    <div class="text-3xl font-semibold leading-9">4.710</div>
+                    <div class="text-base text-slate-500 mt-1">
+                      Write User Data
+                    </div>
                   </div>
-                </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-4">
-                  <FolderIcon class="report-box__icon text-yellow-600" />
+                  <div class="ml-auto p-6 rounded-xl bg__icon-4">
+                    <FolderIcon class="report-box__icon text-yellow-600" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- END: General Report -->
+      <!-- END: General Report -->
       <!-- BEGIN: Basic Accordion -->
       <div class="col-span-12 lg:col-span-12">
         <div class="flex items-center justify-cenetr mb-8">
@@ -197,21 +197,32 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="isAuthoroziedUser"
                               type="text"
                               id="input"
                               class="input__field peer"
                               placeholder=""
                             />
+                            <!-- @input="handleInput(currentModalId, $event)"
+                                :value="payload[currentModalId]"
+                                type="number"
+                                class="form-control w-56 rounded-md input--rounded box pr-10"
+                                placeholder="Enter Amount..."
+                                :min="1"
+                                required -->
                             <label for="input" class="input__label"
                               >Input</label
                             >
+                            <span>{{ this.isAuthoroziedUser }}</span>
                           </div>
 
-                          <a
+                          <button
+                            @click="authorizedUser()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -230,8 +241,11 @@
                               class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label--accordion">Pid</label>
+                            <label for="p-id" class="input__label--accordion"
+                              >Pid</label
+                            >
                           </div>
+                          <span>{{ this.balanceStakableToken }}</span>
 
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
@@ -324,7 +338,9 @@
                               class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label--accordion">Pid</label>
+                            <label for="p-id" class="input__label--accordion"
+                              >Pid</label
+                            >
                           </div>
                           <div class="relative mb-6">
                             <input
@@ -381,11 +397,12 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                        <a href="#" class="text-base text-blue-500">0x92ea94e6880a93810a5e15e171d03dc57f9514ed</a>
-                          
+                          <a href="#" class="text-base text-blue-500"
+                            >0x92ea94e6880a93810a5e15e171d03dc57f9514ed</a
+                          >
                         </AccordionPanel>
                       </AccordionItem>
-                     <AccordionItem>
+                      <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
                             9. Paused
@@ -415,9 +432,11 @@
                               class="input__field peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label">uint256</label>
+                            <label for="p-id" class="input__label"
+                              >uint256</label
+                            >
                           </div>
-                    
+
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -425,7 +444,7 @@
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
-                       <AccordionItem>
+                      <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
                             11. Pool Length
@@ -435,7 +454,9 @@
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
                           <div class="relative mb-6">
-                            <p class="text-black text-base">0 <em class="text-slate-400">uint256</em></p>
+                            <p class="text-black text-base">
+                              0 <em class="text-slate-400">uint256</em>
+                            </p>
                           </div>
                         </AccordionPanel>
                       </AccordionItem>
@@ -449,14 +470,14 @@
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
                           <div class="relative mb-6">
-                         <em class="text-slate-400"> bytes 32</em>
+                            <em class="text-slate-400"> bytes 32</em>
                           </div>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            13. Total contributed  Amount in Pool
+                            13. Total contributed Amount in Pool
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -469,9 +490,11 @@
                               class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label--accordion">uint256</label>
+                            <label for="p-id" class="input__label--accordion"
+                              >uint256</label
+                            >
                           </div>
-                    
+
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -495,18 +518,21 @@
                               class="input__field peer"
                               placeholder=""
                             />
-                            <label for="uint256" class="input__label">uint256</label>
+                            <label for="uint256" class="input__label"
+                              >uint256</label
+                            >
                           </div>
-                           <div class="relative mb-6">
+                          <div class="relative mb-6">
                             <input
                               type="text"
                               id="address"
                               class="input__field peer"
                               placeholder=""
                             />
-                            <label for="address" class="input__label">Address</label>
+                            <label for="address" class="input__label"
+                              >Address</label
+                            >
                           </div>
-                    
 
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
@@ -660,21 +686,12 @@
                               >
                             </div> -->
 
-                            <div class="relative px-0 input__field--accordion dark:border-darkmode-600  border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary">
+                            <div
+                              class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
                               <label
                                 for="update-profile-form-2"
-                                class="
-                                  absolute
-                                  input__label--accordion
-                                  form-label
-                                  z-10
-                                  left-2.5
-                                  -top-3
-                                  mb-0
-                                  pb-0
-                                  px-2
-                                  bg-[#131c25]
-                                "
+                                class="absolute input__label--accordion form-label z-10 left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
                                 >lp Token</label
                               >
                               <TomSelect
@@ -690,22 +707,12 @@
                               </TomSelect>
                             </div>
 
-
-                            <div class="relative px-0 input__field--accordion dark:border-darkmode-600  border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary">
+                            <div
+                              class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
                               <label
                                 for="update-profile-form-2"
-                                class="
-                                  absolute
-                                  input__label--accordion
-                                  form-label
-                                  
-                                  left-2.5
-                                  -top-3
-                                  mb-0
-                                  pb-0
-                                  px-2
-                                  bg-[#131c25]
-                                "
+                                class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
                                 >Network</label
                               >
                               <TomSelect
@@ -718,7 +725,6 @@
                                 <option value="3">Plygon</option>
                               </TomSelect>
                             </div>
-
 
                             <div class="relative mb-6">
                               <Litepicker
@@ -984,7 +990,6 @@
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
-                     
                     </AccordionGroup>
                   </Preview>
                 </div>
@@ -998,7 +1003,7 @@
                   <!-- <div class="p-5"> -->
                   <Preview>
                     <AccordionGroup class="accordion-boxed">
-                       <AccordionItem>
+                      <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
                             6. Include All in Blacklist
@@ -1014,9 +1019,7 @@
                               class="input__field peer"
                               placeholder=""
                             />
-                            <label
-                              for="accounts"
-                              class="input__label"
+                            <label for="accounts" class="input__label"
                               >Accounts</label
                             >
                           </div>
@@ -1192,7 +1195,7 @@
         <div v-show="tab === 4"></div>
         <!-- END: TAB WRITE USER DATA -->
 
-          <!-- BEGIN: TAB EDIT POOL -->
+        <!-- BEGIN: TAB EDIT POOL -->
         <div v-show="tab === 5">
           <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 lg:col-span-6">
@@ -1205,9 +1208,7 @@
                     <AccordionGroup class="accordion-boxed">
                       <AccordionItem>
                         <Accordion>
-                          <p class="text-black font-semibold text-base">
-                            1. 
-                          </p>
+                          <p class="text-black font-semibold text-base">1.</p>
                         </Accordion>
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
@@ -1231,7 +1232,6 @@
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
-                   
                     </AccordionGroup>
                   </Preview>
                 </div>
@@ -1245,11 +1245,9 @@
                   <!-- <div class="p-5"> -->
                   <Preview>
                     <AccordionGroup class="accordion-boxed">
-                    <AccordionItem>
+                      <AccordionItem>
                         <Accordion>
-                          <p class="text-black font-semibold text-base">
-                            2. 
-                          </p>
+                          <p class="text-black font-semibold text-base">2.</p>
                         </Accordion>
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
@@ -1301,10 +1299,15 @@ export default {
       addPoolData: {},
       tab: 2,
       Write: "Write",
+      contract: "",
+      isAuthoroziedUser: "",
     };
   },
-
+  async mounted() {
+    this.contract = await contractABI();
+  },
   methods: {
+     
     ...mapActions("useWeb3DealsStore", ["createPool"]),
     handleInput(name, e) {
       this.addPoolData[name] = e.target.value;
@@ -1326,17 +1329,15 @@ export default {
       this.tab = 5;
     },
     async addPool() {
-      
-      let contract = await contractABI();
-      await contract.methods
+      await this.contract.methods
         .addPool(
           this.addPoolData._lpToken,
           this.addPoolData._name,
           this.addPoolData._symbol,
-          (this.addPoolData._startTime =await Math.floor(
+          (this.addPoolData._startTime = await Math.floor(
             new Date(this.addPoolData._startTime).getTime() / 1000
           )),
-          (this.addPoolData._endTime =await Math.floor(
+          (this.addPoolData._endTime = await Math.floor(
             new Date(this.addPoolData._endTime).getTime() / 1000
           )),
           BigInt(this.addPoolData._minimumcontributeAmount * 10 ** 18),
@@ -1348,9 +1349,8 @@ export default {
           this.Write = "Write Successful";
         });
     },
-    async airDropToken([addresses],[amounts]) {
-      let contract = await contractABI();
-      await contract.methods
+    async airDropToken([addresses], [amounts]) {
+      await this.contract.methods
         .airDropToken([], [])
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
@@ -1359,8 +1359,7 @@ export default {
         });
     },
     async excludeAllFromauthorizedUser([addresses]) {
-      let contract = await contractABI();
-      await contract.methods
+      await this.contract.methods
         .excludeAllFromauthorizedUser([])
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
@@ -1370,8 +1369,7 @@ export default {
     },
 
     async excludeAllFromblacklist([addresses]) {
-      let contract = await contractABI();
-      await contract.methods
+      await this.contract.methods
         .excludeAllFromblacklist([])
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
@@ -1381,8 +1379,7 @@ export default {
     },
 
     async excludeAllInauthorizedUser([addresses]) {
-      let contract = await contractABI();
-      await contract.methods
+      await this.contract.methods
         .excludeAllInauthorizedUser([])
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
@@ -1392,8 +1389,7 @@ export default {
     },
 
     async includeAllInblacklist([addresses]) {
-      let contract = await contractABI();
-      await contract.methods
+      await this.contract.methods
         .includeAllInblacklist([])
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
@@ -1402,40 +1398,57 @@ export default {
         });
     },
 
-    async pauseContract(){
-      let contract = await contractABI();
-      await contract.methods.pauseContract().send({ from: localStorage.getItem("address") })
+    async pauseContract() {
+      await this.contract.methods
+        .pauseContract()
+        .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
           this.Write = "Write Successful";
         });
     },
 
-    async setPoolStakingEndTime(_pid,_time){
-       let contract = await contractABI();
-       await contract.methods.setPoolStakingEndTime("_pid","_time").send({ from: localStorage.getItem("address") })
+    async setPoolStakingEndTime(_pid, _time) {
+      await this.contract.methods
+        .setPoolStakingEndTime("_pid", "_time")
+        .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
           this.Write = "Write Successful";
         });
     },
-  
-    async transferOwnership(_address){
-      let contract = await contractABI();
-       await contract.methods.transferOwnership(_address).send({ from: localStorage.getItem("address") })
+
+    async transferOwnership(_address) {
+      await this.contract.methods
+        .transferOwnership(_address)
+        .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
           this.Write = "Write Successful";
         });
     },
-    async unPauseContract(){
-      let contract = await contractABI();
-       await contract.methods.unPauseContract().send({ from: localStorage.getItem("address") })
+    async unPauseContract() {
+      await this.contract.methods
+        .unPauseContract()
+        .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
           this.Write = "Write Successful";
         });
-    }
+    },
+    // <---- Write Contract web3 function ---->End
+
+    // <---- Read Contract web3 function ---->Start
+  async authorizedUser() {
+      await this.contract.methods
+        .authorizedUser(this.isAuthoroziedUser)
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this.isAuthoroziedUser = receipt;
+        });
+    },
+   
   },
 };
 </script>
@@ -1444,18 +1457,18 @@ export default {
   background: #ebf0f5;
 }
 .items.ts-input.full.has-items {
-   background-color: transparent !important;
-   border-width: 0px !important;
+  background-color: transparent !important;
+  border-width: 0px !important;
   padding: 7.5px 0px 7.5px 0px !important;
-   z-index: 99999 !important;
-} 
+  z-index: 99999 !important;
+}
 .tom-select .ts-dropdown {
-      background: #ebf0f5!important;
-      z-index: 99999 !important;
+  background: #ebf0f5 !important;
+  z-index: 99999 !important;
 }
 .tom-select .ts-input {
   background-position: center right 0.2rem !important;
-   z-index: 99999 !important;
+  z-index: 99999 !important;
 }
 
 .ts-control.tom-select.w-full.absolute.top-2.pl-2.single.plugin-dropdown_input {
