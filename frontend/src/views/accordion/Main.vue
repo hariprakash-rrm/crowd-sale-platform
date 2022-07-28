@@ -624,6 +624,24 @@
                               >Amount</label
                             >
                           </div>
+                            <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -742,7 +760,7 @@
                               >
                                 <option value="1">BSC</option>
                                 <option value="2">Ethereum</option>
-                                <option value="3">Plygon</option>
+                                <option value="3">Polygon</option>
                               </TomSelect>
                             </div>
 
@@ -947,6 +965,25 @@
                               >Accounts</label
                             >
                           </div>
+                          
+                            <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -976,6 +1013,25 @@
                               >Accounts</label
                             >
                           </div>
+                          
+                            <div
+                              class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -1003,6 +1059,25 @@
                               >Accounts</label
                             >
                           </div>
+                          
+                            <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -1043,6 +1118,26 @@
                               >Accounts</label
                             >
                           </div>
+                          
+                            <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
+                            
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -1095,22 +1190,40 @@
                             <input
                               type="text"
                               id="p-id"
-                              class="input__field peer"
+                              class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="p-id" class="input__label">Pid</label>
+                            <label for="p-id" class="input__label--accordion">Pid</label>
                           </div>
                           <div class="relative mb-6">
                             <input
                               type="text"
                               id="end-time"
-                              class="input__field peer"
+                              class="input__field--accordion peer"
                               placeholder=""
                             />
-                            <label for="end-time" class="input__label"
+                            <label for="end-time" class="input__label--accordion"
                               >End Time</label
                             >
                           </div>
+                             <div
+                              class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -1176,7 +1289,24 @@
                               >New Owner</label
                             >
                           </div>
-
+                          <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                           <a
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
@@ -1562,10 +1692,14 @@ export default {
 .tom-select .ts-input {
   background-position: center right 0.2rem !important;
   z-index: 99999 !important;
+  box-shadow: none !important;
 }
 
 .ts-control.tom-select.w-full.absolute.top-2.pl-2.single.plugin-dropdown_input {
   padding-left: 0 !important;
+}
+.ts-dropdown.single.tom-select.w-full.absolute.top-2.plugin-dropdown_input {
+  z-index: 999999 !important;
 }
 /* .tom-select .ts-input {
   background: transparent !important;
