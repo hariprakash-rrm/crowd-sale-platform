@@ -13,11 +13,12 @@
                 <div>
                   <div class="text-3xl font-semibold leading-9">4.710</div>
                   <div class="text-base text-slate-500 mt-1">
-                    Project Invested
+                    BSC
                   </div>
                 </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-1">
-                  <LayersIcon class="report-box__icon text-cyan-600" />
+                <div class="ml-auto p-4 rounded-xl bg__icon-1">
+                  <!-- <LayersIcon class="report-box__icon text-cyan-600" /> -->
+                  <img src="@/assets/images/uc/bnb.png" class="w-12 h-12" alt="">
                 </div>
               </div>
             </div>
@@ -30,11 +31,11 @@
                 <div>
                   <div class="text-3xl font-semibold leading-9">4.710</div>
                   <div class="text-base text-slate-500 mt-1">
-                    Amount Contributed
+                    Ethereum
                   </div>
                 </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-2">
-                  <DollarSignIcon class="report-box__icon text-pink-600" />
+                <div class="ml-auto p-4 rounded-xl bg__icon-2">
+                 <img src="@/assets/images/uc/eth.png" class="w-12 h-12" alt="">
                 </div>
               </div>
             </div>
@@ -47,11 +48,11 @@
                 <div>
                   <div class="text-3xl font-semibold leading-9">4.710</div>
                   <div class="text-base text-slate-500 mt-1">
-                    UC Wallet Balance
+                    Polygon
                   </div>
                 </div>
-                <div class="ml-auto p-6 rounded-xl bg__icon-3">
-                  <FolderIcon class="report-box__icon text-violet-600" />
+                <div class="ml-auto p-4 rounded-xl bg__icon-3">
+                  <img src="@/assets/images/uc/polygon.png" class="w-12 h-12" alt="">
                 </div>
               </div>
             </div>
@@ -2012,22 +2013,22 @@ const nextImportantNotes = () => {
 .bg__icon-1 {
   background: linear-gradient(
     50.1deg,
-    rgb(69 145 178 / 53%) 0%,
-    rgba(211, 220, 251, 0.6) 124.36%
+    #f3ba2f5e 0%,
+    #f3ba2f29 124.36%
   );
 }
 .bg__icon-2 {
   background: linear-gradient(
     45.57deg,
-    rgb(178 69 121 / 53%) 2.44%,
-    rgba(251, 211, 233, 0.6) 99.99%
+    #ecf0f1 2.44%,
+    #ecf0f1 99.99%
   );
 }
 .bg__icon-3 {
   background: linear-gradient(
     45.57deg,
-    rgb(101 78 163 / 47%) 2.44%,
-    rgba(251, 211, 233, 0.6) 100%
+    #7b3fe447 2.44%,
+    #7b3fe424 100%
   );
 }
 .bg__icon-4 {

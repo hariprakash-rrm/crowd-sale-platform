@@ -510,7 +510,16 @@
                   class="w-6 h-6 m-auto text-slate-400 hover:text-primary"
                 />
               </div>
+
+             
             </div>
+
+              <button
+              type="button"
+              class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
+            >
+              Update
+            </button>
           </div>
         </div>
         <!-- END: Social Network -->
