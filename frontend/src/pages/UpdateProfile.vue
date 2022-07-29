@@ -282,7 +282,7 @@
             <h2 class="font-semibold text-base mr-auto px-2">Wallet</h2>
           </div>
           <div class="p-8">
-            <div class="relative mb-6">
+            <!-- <div class="relative mb-6">
               <input
                 type="text"
                 id="add-wallet"
@@ -290,7 +290,25 @@
                 placeholder=" "
               />
               <label for="add-wallet" class="input__label">Add Wallet</label>
-            </div>
+            </div> -->
+              <div
+                class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+              >
+                <label
+                  for="update-profile-form-2"
+                  class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                  >My Wallets</label
+                >
+                <TomSelect
+                  id="update-profile-form-2"
+                  v-model="select"
+                  class="w-full absolute top-2"
+                >
+                  <option value="1">BSC</option>
+                  <option value="2">Ethereum</option>
+                  <option value="3">Polygon</option>
+                </TomSelect>
+              </div>
 
             <button
               type="button"
@@ -624,10 +642,19 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .px-0 {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+ /* .items.ts-input.full.has-items {
+  background-color: transparent !important;
+  border-width: 0px !important;
+  padding: 7.5px 26px 7.5px 22px !important;
+  z-index: 99999 !important;
+}  */
+.ts-control.tom-select.w-full.absolute.top-2.single.plugin-dropdown_input {
+  padding: 0 1rem;
 }
 .dark .dropdown-item {
   background-color: rgb(
