@@ -20,7 +20,7 @@ export const loadFromContract = async (req, res) => {
     let set = await contract.methods.poolInfo(i).call({ from: FROM_ADDRESS });
     var myJSON = JSON.stringify(set);
     console.log("myJSON", myJSON);
-    var currentlyStaked = await contract.methods.getTotalStakedInPool(i).call();
+    var currentlyStaked = await Math.round(contract.methods.getTotalStakedInPool(i).call());
     var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
     set.humanEndTime = newDate;
     set.poolStakableAmount = Math.round(set.poolStakableAmount / 10 ** 18);
