@@ -1,4 +1,4 @@
-import { createAuthorizedAccount, getAuthorizedAccounts } from '../../controllers/authorizedUserController copy';
+import { createAuthorizedAccount, getAuthorizedAccounts } from '../../controllers/authorizedUserController';
 const checkAuth = require('../../../users/helpers/check-auth');
 
 export const routes = (app, version) => {
