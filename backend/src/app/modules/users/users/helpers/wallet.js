@@ -26,13 +26,7 @@ export const loadFromContract = async (req, res) => {
     set.poolStakableAmount = set.poolStakableAmount / 10 ** 18;
     set.currentlyStaked = currentlyStaked / 10 ** 18;
     set["source"] = "bsc";
-    set["roadMap"] = "";
-    set["team"] = "";
-    set["vcs"] = "";
-    set["fackBookUrl"] = "";
-    set["instagramUrl"] = "";
-    set["linkedInUrl"] = "";
-    set["image"] = "";
+   
     var currentPercentage =
       (set.currentlyStaked * 100) / set.poolStakableAmount;
     set.currentPercentage = currentPercentage;

@@ -1,6 +1,6 @@
 // loadFromContract
 
-import { createPool, getPoolsList, updatePools } from "../../controllers/poolsController";
+import { createPool, getPoolsById, getPoolsList, updatePools } from "../../controllers/poolsController";
 import { loadFromContract } from "../../helpers/wallet";
 
 
@@ -21,5 +21,9 @@ export const routes = (app, version) => {
     app.put(
         version + '/pools/:id',
         updatePools,
+    );
+    app.get(
+        version + '/pools/:id',
+        getPoolsById,
     );
 }

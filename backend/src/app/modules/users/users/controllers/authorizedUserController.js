@@ -1,4 +1,4 @@
-import AuthorizedAccount from "./../models/authorized-user.model";
+import AuthorizedAccount from "../models/authorized-user.model";
 const responseModule = require("../../../../../config/response");
 
 export const createAuthorizedAccount = async (req, res) => {

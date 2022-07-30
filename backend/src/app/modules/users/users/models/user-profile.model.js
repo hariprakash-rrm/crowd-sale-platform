@@ -8,6 +8,9 @@ const userProfileSchema = Schema({
     user: {
         type: ObjectId, ref: 'user' 
     },
+    tier: {
+        type: ObjectId, ref: 'tier' 
+    },
     userName: {
         type: String,
     },

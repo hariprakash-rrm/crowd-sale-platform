@@ -98,6 +98,7 @@ export const loginUser = async (req, res, next) => {
     }).exec();
 
     if (user) {
+     
       bcrypt.compare(req.body.password, user.password, async (err, result) => {
         if (err) {
           return responseModule.errorResponse(res, {
@@ -107,6 +108,15 @@ export const loginUser = async (req, res, next) => {
           });
         }
         if (result === true) {
+
+          if(user.isBlocked){
+            return responseModule.errorResponse(res, {
+              success: 0,
+              message: "Your account has been blocked, Contact Admin",
+              data: {},
+            });
+          }
+
           let userProfile = await UserProfile.findOne({ user: user._id });
 
           const token = jwt.sign(
@@ -122,12 +132,22 @@ export const loginUser = async (req, res, next) => {
             }
           );
           user.password = "";
+          if(user.is2StepVerificationOn){
+            const otp = otpGenerator.generate(5, {
+              upperCaseAlphabets: false,
+              specialChars: false,
+              lowerCaseAlphabets: false,
+            });
+            await send2StepVerificationMail(userProfile.userName,user.email, otp)
+          }
+
           return responseModule.successResponse(res, {
             success: 1,
             message: "User Login successful",
             data: user,
             token: token,
             profile: userProfile,
+            isUserVerificationRequired: user.is2StepVerificationOn
           });
         }
         if (result === false) {
@@ -423,8 +443,8 @@ export const updateProfile = async (req, res) => {
       userName: req.body.userName,
       telegramUrl: req.body.telegramUrl,
       bio: req.body.bio,
-     //// location: req.body.location,
-   //   mobile: req.body.mobile,
+      //// location: req.body.location,
+      //   mobile: req.body.mobile,
     };
     if (req.file) {
       const profileImage = req.file.path;
@@ -485,7 +505,9 @@ export const getUserData = async (req, res) => {
     );
     let profile = await UserProfile.findOne({ _id: req.userData.profileId });
     let walletAddress = await WalletAddress.findOne({ profile: profile._id });
-    let notificationSettings = await NotificationSettings.findOne({ profile: profile._id });
+    let notificationSettings = await NotificationSettings.findOne({
+      profile: profile._id,
+    });
 
     return responseModule.successResponse(res, {
       success: 1,
@@ -571,11 +593,13 @@ export const createORupdateNotifificationSettings = async (req, res) => {
       isPledge: req.body.isPledge || false,
       isEvent: req.body.isEvent || false,
       isNewsLetter: req.body.isNewsLetter || false,
-      profile: req.userData.profileId
+      profile: req.userData.profileId,
     };
 
-    let find = await NotificationSettings.findOne({profile :  req.userData.profileId}).exec();
-    if(find){
+    let find = await NotificationSettings.findOne({
+      profile: req.userData.profileId,
+    }).exec();
+    if (find) {
       const notificationSettings = await NotificationSettings.findOneAndUpdate(
         {
           profile: req.userData.profileId,
@@ -587,37 +611,175 @@ export const createORupdateNotifificationSettings = async (req, res) => {
           new: true,
         }
       ).exec((error, response) => {
-        console.log("error -1",error)
+        console.log("error -1", error);
         if (response) {
           return responseModule.successResponse(res, {
             success: 1,
             message: "Notification settings updated successfully",
             data: response,
           });
-        }else{
+        } else {
           return responseModule.errorResponse(res, {
             success: 0,
-            message: 'Could not update notification settings',
+            message: "Could not update notification settings",
             data: {},
           });
         }
       });
-    }else{
+    } else {
       let notification = new NotificationSettings(data);
       notification.save();
-        return responseModule.successResponse(res, {
-            success: 1,
-            message: "Notification settings updated successfully",
-            data: notification,
-          });
+      return responseModule.successResponse(res, {
+        success: 1,
+        message: "Notification settings updated successfully",
+        data: notification,
+      });
     }
-
   } catch (error) {
-    console.log("error",error)
+    console.log("error", error);
     return responseModule.errorResponse(res, {
       success: 0,
-      message: 'Could not update notification settings',
+      message: "Could not update notification settings",
       data: {},
     });
+  }
+};
+
+export const update2StepVerification = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      {
+        _id: req.userData.userId,
+      },
+      {
+        $set: { is2StepVerificationOn: req.body.is2StepVerificationOn },
+      },
+      {
+        new: true,
+      }
+    ).exec((error, response) => {
+      if (error) {
+        if (error.name == "ValidationError" || "MongoServerError") {
+          return res.status(400).json({
+            success: 0,
+            message: error.message,
+            response: 400,
+            data: {},
+          });
+        }
+        return responseModule.errorResponse(res, {
+          success: 0,
+          message: "Could not update user details",
+        });
+      } else {
+        return responseModule.successResponse(res, {
+          success: 1,
+          message: `${
+            req.body.is2StepVerificationOn ? "Enabled" : "Disabled"
+          } 2-step verification for your unreal account`,
+        });
+      }
+    });
+  } catch (error) {
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: "Could not update user details",
+    });
+  }
+};
+export const updateUserStatus = async (req, res) => {
+  try {
+
+    const profile = await UserProfile.findOneAndUpdate(
+      {
+        _id: req.userData.profileId,
+      },
+      {
+        $set: { tier: req.body.tierId },
+      },
+      {
+        new: true,
+      }
+    )
+
+    const user = await User.findOneAndUpdate(
+      {
+        _id: req.userData.userId,
+      },
+      {
+        $set: { isBlocked: req.body.isBlocked },
+      },
+      {
+        new: true,
+      }
+    ).exec((error, response) => {
+      if (error) {
+        if (error.name == "ValidationError" || "MongoServerError") {
+          return res.status(400).json({
+            success: 0,
+            message: error.message,
+            response: 400,
+            data: {},
+          });
+        }
+        return responseModule.errorResponse(res, {
+          success: 0,
+          message: "Could not update user details",
+        });
+      } else {
+        return responseModule.successResponse(res, {
+          success: 1,
+          message: `User account details has been updated successfully`,
+        });
+      }
+    });
+  } catch (error) {
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: "Could not update user details",
+    });
+  }
+};
+
+export const send2StepVerificationMail = async (userName, email, otp) => {
+  try {
+    const tmpl = fs.readFileSync(
+      require.resolve("../../../../../templates/two-setp-verification.ejs"),
+      "utf8"
+    );
+    const html = ejs.render(tmpl, {
+      userName: userName,
+      email: email,
+      otp: otp,
+      year: new Date().getFullYear(),
+    });
+
+    let subject = "2 Step Verification Code - Unreal";
+    let send = await sendMail(email, subject, html);
+  } catch (error) {}
+};
+
+export const otpVerification = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id).exec();
+
+    if (user.verificationOtp == req.body.otp) {
+      return responseModule.successResponse(res, {
+        success: 1,
+        message: "Otp verified successfully",
+        data: response,
+      });
+    } else {
+      return res.status(400).json({
+        success: 0,
+        message: "Invalid Otp",
+        response: 401,
+        data: {},
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    return next(err);
   }
 };
