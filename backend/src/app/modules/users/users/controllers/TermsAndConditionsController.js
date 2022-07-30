@@ -72,7 +72,7 @@ export const removeTermsAndConditions = async (req, res) => {
     return responseModule.successResponse(res, {
       success: 1,
       data: {},
-      message: "Terms and Conditions removed successfully",
+      message: "Terms & Conditions removed successfully",
     });
   } catch (error) {
     return responseModule.errorResponse(res, {

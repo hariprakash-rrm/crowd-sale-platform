@@ -1,5 +1,5 @@
 
-import { createTermsAndConditions, getTermsAndConditionss, removeTermsAndConditions, updateTermsAndConditions } from "../../controllers/termsAndConditionsController";
+import { createTermsAndConditions, getTermsAndConditionss, removeTermsAndConditions, updateTermsAndConditions } from "../../controllers/TermsAndConditionsController";
 const checkAuth = require('../../../users/helpers/check-auth');
 
 export const routes = (app, version) => {
