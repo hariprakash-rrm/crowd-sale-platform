@@ -1,4 +1,4 @@
-import TermsAndConditions from "./../models/terms-conditions.model";
+import TermsAndConditions from "../models/terms-conditions.model";
 const responseModule = require("../../../../../config/response");
 
 export const createTermsAndConditions = async (req, res) => {
