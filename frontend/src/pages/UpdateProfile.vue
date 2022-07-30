@@ -98,42 +98,48 @@
           <div class="p-8">
             <div class="flex flex-col-reverse xl:flex-row flex-col">
               <div class="flex-1 mt-6 xl:mt-0">
-                <div class="grid grid-cols-12 gap-x-5">
-                  <div class="col-span-12 md:col-span-12">
-                    <div class="relative mb-6">
-                      <TextInput
-                        name="name"
-                        label="Name"
-                        :value="profile.name"
-                        @input="handleInput"
-                      />
-                    </div>
-                    <div class="relative mb-6">
-                      <TextInput
-                        label="Email"
-                        name="mail"
-                        :value="profile.email"
-                        @input="handleInput"
-                        :disabled="true"
-                      />
-                    </div>
-                    <div class="relative mb-6">
-                      <TextAreaInput
-                        label="Bio"
-                        name="bio"
-                        :value="profile.bio"
-                        @input="handleInput"
-                      />
+                <form
+                  id="profile-update-form"
+                  @submit.prevent="updateProfile()"
+                >
+                  <div class="grid grid-cols-12 gap-x-5">
+                    <div class="col-span-12 md:col-span-12">
+                      <div class="relative mb-6">
+                        <TextInput
+                          name="name"
+                          label="Name"
+                          :value="profile.name"
+                          @input="handleInput"
+                          :required="true"
+                        />
+                      </div>
+                      <div class="relative mb-6">
+                        <TextInput
+                          label="Email"
+                          name="mail"
+                          :value="profile.email"
+                          @input="handleInput"
+                          :disabled="true"
+                          :required="true"
+                        />
+                      </div>
+                      <div class="relative mb-6">
+                        <TextAreaInput
+                          label="Bio"
+                          name="bio"
+                          :value="profile.bio"
+                          @input="handleInput"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-primary text-sm 2xl:text-base w-full xl:w-40 py-2 px-8 rounded-md"
-                  @click="updateProfile()"
-                >
-                  Save
-                </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary text-sm 2xl:text-base w-full xl:w-40 py-2 px-8 rounded-md"
+                  >
+                    Save
+                  </button>
+                </form>
               </div>
               <div class="w-52 mx-auto xl:mr-0 xl:ml-6">
                 <div
@@ -159,12 +165,20 @@
                     </Tippy>
                   </div>
                   <div class="mx-auto cursor-pointer relative mt-5">
-                    <button type="button" class="btn btn-primary w-full">
+                    <button
+                      type="button"
+                      class="btn btn-primary w-full"
+                      style="cursor: pointer"
+                    >
                       Change Photo
                     </button>
                     <input
                       type="file"
                       class="w-full h-full top-0 left-0 absolute opacity-0"
+                      ref="fileref"
+                      name="profileImage"
+                      accept="image/*"
+                      @change="selectedFile"
                     />
                   </div>
                 </div>
@@ -181,43 +195,54 @@
           >
             <h2 class="font-semibold text-base mr-auto px-2">Reset Password</h2>
           </div>
-          <div class="p-8">
-            <div class="relative mb-6">
-              <TextInput
-                type="password"
-                name="oldPassword"
-                label="Old Password"
-                :value="profile.oldPassword"
-                @input="handleInput"
-              />
-            </div>
-            <div class="relative mb-6">
-              <TextInput
-                type="password"
-                name="newPassword"
-                label="New Password"
-                :value="profile.newPassword"
-                @input="handleInput"
-              />
-            </div>
-            <div class="relative mb-6">
-              <TextInput
-                type="password"
-                name="confirmPassword"
-                label="Confirm Password"
-                :value="profile.confirmPassword"
-                @input="handleInput"
-              />
-            </div>
+          <form
+            id="reset-password-form"
+            @submit.prevent="updatePassword()"
+            class="validate-form"
+          >
+            <div class="p-8">
+              <div class="relative mb-6">
+                <TextInput
+                  type="password"
+                  name="oldPassword"
+                  label="Old Password"
+                  :value="profile.oldPassword"
+                  @input="handleInput"
+                  :required="true"
+                  :minlength="8"
+                />
+              </div>
+              <div class="relative mb-6">
+                <TextInput
+                  type="password"
+                  name="newPassword"
+                  label="New Password"
+                  :value="profile.newPassword"
+                  @input="handleInput"
+                  :required="true"
+                  :minlength="8"
+                />
+              </div>
+              <div class="relative mb-6">
+                <TextInput
+                  type="password"
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  :value="profile.confirmPassword"
+                  @input="handleInput"
+                  :required="true"
+                  :minlength="8"
+                />
+              </div>
 
-            <button
-              type="button"
-              class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
-              @click="updatePassword"
-            >
-              Reset Password
-            </button>
-          </div>
+              <button
+                type="submit"
+                class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
+              >
+                Reset Password
+              </button>
+            </div>
+          </form>
         </div>
         <!-- END: Change Password -->
 
@@ -257,7 +282,7 @@
             <h2 class="font-semibold text-base mr-auto px-2">Wallet</h2>
           </div>
           <div class="p-8">
-            <div class="relative mb-6">
+            <!-- <div class="relative mb-6">
               <input
                 type="text"
                 id="add-wallet"
@@ -265,7 +290,25 @@
                 placeholder=" "
               />
               <label for="add-wallet" class="input__label">Add Wallet</label>
-            </div>
+            </div> -->
+              <div
+                class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+              >
+                <label
+                  for="update-profile-form-2"
+                  class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                  >My Wallets</label
+                >
+                <TomSelect
+                  id="update-profile-form-2"
+                  v-model="select"
+                  class="w-full absolute top-2"
+                >
+                  <option value="1">BSC</option>
+                  <option value="2">Ethereum</option>
+                  <option value="3">Polygon</option>
+                </TomSelect>
+              </div>
 
             <button
               type="button"
@@ -467,21 +510,54 @@
                   class="w-6 h-6 m-auto text-slate-400 hover:text-primary"
                 />
               </div>
+
+             
             </div>
+
+              <button
+              type="button"
+              class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
+            >
+              Update
+            </button>
           </div>
         </div>
         <!-- END: Social Network -->
       </div>
     </div>
   </div>
+   <Modal
+              :show="successModalPreview"
+              @hidden="successModalPreview = false"
+            >
+              <ModalBody class="p-0">
+                <div class="p-5 text-center">
+                  <CheckCircleIcon
+                    class="w-16 h-16 text-success mx-auto mt-3"
+                  />
+                  <div class="text-3xl mt-5">{{this.modalHeadMessage}}</div>
+                  <div class="text-slate-500 mt-2">{{this.modalSubMessage}}</div>
+                </div>
+                <div class="px-5 pb-8 text-center">
+                  <button
+                    type="button"
+                    @click="successModalPreview = false"
+                    class="btn btn-primary w-24"
+                  >
+                    Ok
+                  </button>
+                </div>
+              </ModalBody>
+            </Modal>
 </template>
 <script>
+import { ref, provide } from "vue";
 import { useAuthUserStore } from "../stores/auth";
 import { mapState, mapActions } from "pinia";
 import TextInput from "@/components/reusable/TextInput.vue";
 import TextAreaInput from "@/components/reusable/TextAreaInput.vue";
 import CheckBox from "@/components/reusable/CheckBox.vue";
-
+const successModalPreview = ref(false)
 export default {
   components: {
     TextInput,
@@ -494,6 +570,11 @@ export default {
       profile: {},
       payload: {},
       notificationSettings: {},
+      fileData: null,
+      isFileError: false,
+      successModalPreview:false,
+      modalHeadMessage:'',
+      modalSubMessage:''
     };
   },
   computed: {
@@ -511,6 +592,7 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, [
       "updateUser",
+      "uploadPhoto",
       "resetPassword",
       "updateSocialLink",
       "updateNotificationSettings",
@@ -540,6 +622,7 @@ export default {
         newPassword: this.payload.newPassword,
       };
       this.resetPassword(finalPayload);
+      
     },
     updateProfile() {
       let finalPayload = {
@@ -547,6 +630,9 @@ export default {
         bio: this.profile?.bio,
       };
       this.updateUser(finalPayload);
+      this.successModalPreview=true,
+      this.modalHeadMessage = "Personal Information"
+      this.modalSubMessage = "Updated successfully"
     },
     updateTwitterLink() {
       let finalPayload = {
@@ -573,6 +659,18 @@ export default {
       if (!tab_id) tab_id = 1;
       this.tab = parseInt(tab_id);
     },
+    selectedFile(event) {
+      const size = event.target.files[0].size;
+      if (Math.round(size / (1024 * 1024)) <= 2) {
+        this.isFileError = false;
+        const file = event.target.files[0];
+        this.fileData = file;
+        this.uploadPhoto(file);
+      } else {
+        this.$refs.fileref.value = "";
+        this.isFileError = true;
+      }
+    },
   },
   watch: {
     "$route.query": function () {
@@ -584,10 +682,19 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .px-0 {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+ /* .items.ts-input.full.has-items {
+  background-color: transparent !important;
+  border-width: 0px !important;
+  padding: 7.5px 26px 7.5px 22px !important;
+  z-index: 99999 !important;
+}  */
+.ts-control.tom-select.w-full.absolute.top-2.single.plugin-dropdown_input {
+  padding: 0 1rem;
 }
 .dark .dropdown-item {
   background-color: rgb(

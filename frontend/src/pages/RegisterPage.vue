@@ -23,9 +23,7 @@
         </div>
         <!-- END: Login Info -->
         <!-- BEGIN: Login Form -->
-        <div
-          class="h-screen xl:h-auto flex flex-col py-5 xl:py-0 my-4 xl:my-0"
-        >
+        <div class="h-screen xl:h-auto flex flex-col py-5 xl:py-0 my-4 xl:my-0">
           <a href="" class="logo -intro-x lg:hidden">
             <img
               alt="unreal-capital"
@@ -121,7 +119,7 @@
                       class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                       type="password"
                       placeholder="Password"
-                      minlength="6"
+                      minlength="8"
                       required
                       v-model="user.password"
                     />
@@ -148,7 +146,7 @@
                       id="confirmPassword"
                       type="password"
                       placeholder="Confirm Password"
-                      minlength="6"
+                      minlength="8"
                       required
                       v-model="user.confirmPassword"
                     />

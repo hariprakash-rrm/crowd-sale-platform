@@ -89,6 +89,18 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 return err
             })
         },
+        uploadPhoto(file) {
+            const document = new FormData();
+            console.log(file)
+            document.append("profileImage", file);
+            return auth.updateUser(document).then(res => {
+                this.fetchUser()
+                return res
+            }).catch(err => {
+                console.log("error while updating user details", err)
+                return err
+            })
+        },
         updateSocialLink(payload) {
             return auth.updateSocialLink(payload).then(res => {
                 this.fetchUser()
@@ -118,7 +130,9 @@ export const useAuthUserStore = defineStore("authUserStore", {
         },
         resetPassword(payload) {
             return auth.resetPassword(payload).then(res => {
-                router.push("/login");
+                let { success } = res["data"]
+                if (success)
+                    router.push("/login");
                 return res;
             }).catch(err => {
                 console.error("error in resetting password", err);

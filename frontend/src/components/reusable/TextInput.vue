@@ -3,8 +3,8 @@
     <input
       :id="name"
       :type="type"
-      :min="min"
-      :max="max"
+      :minlength="minlength"
+      :maxlength="maxlength"
       class="input__field peer"
       :value="value"
       :name="name"
@@ -17,6 +17,7 @@
       :style="CSS_Style"
       :onkeydown="onkeydown"
       :autocomplete="autocomplete"
+      :required="required"
     />
     <label :for="name" class="input__label">{{ label }}</label>
     <small class="has-error" v-if="error">{{ error }}</small>
@@ -37,6 +38,10 @@ export default {
     },
   },
   props: {
+    required: {
+      type: Boolean,
+      default: false,
+    },
     value: {
       type: [String, Number],
       default: "",
@@ -77,11 +82,11 @@ export default {
       type: String,
       default: "",
     },
-    min: {
+    minlength: {
       type: Number,
       default: null,
     },
-    max: {
+    maxlength: {
       type: Number,
       default: null,
     },

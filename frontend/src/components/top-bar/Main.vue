@@ -214,9 +214,6 @@
                 <UserIcon class="w-4 h-4 mr-2" /> Profile
               </DropdownItem>
             </router-link>
-            <DropdownItem class="dropdown-item hover:bg-white/5">
-              <EditIcon class="w-4 h-4 mr-2" /> Add Account</DropdownItem
-            >
             <router-link to="/profile?tab_id=2">
             <DropdownItem
               class="dropdown-item hover:bg-white/5"
