@@ -16,7 +16,7 @@
                     BSC
                   </div>
                 </div>
-                <div class="ml-auto p-4 rounded-xl bg__icon-1">
+                <div class="ml-auto p-4 rounded-xl bg__icon-bnb">
                   <!-- <LayersIcon class="report-box__icon text-cyan-600" /> -->
                   <img src="@/assets/images/uc/bnb.png" class="w-12 h-12" alt="">
                 </div>
@@ -34,7 +34,7 @@
                     Ethereum
                   </div>
                 </div>
-                <div class="ml-auto p-4 rounded-xl bg__icon-2">
+                <div class="ml-auto p-4 rounded-xl bg__icon-eth">
                  <img src="@/assets/images/uc/eth.png" class="w-12 h-12" alt="">
                 </div>
               </div>
@@ -51,7 +51,7 @@
                     Polygon
                   </div>
                 </div>
-                <div class="ml-auto p-4 rounded-xl bg__icon-3">
+                <div class="ml-auto p-4 rounded-xl bg__icon-polygon">
                   <img src="@/assets/images/uc/polygon.png" class="w-12 h-12" alt="">
                 </div>
               </div>
@@ -2010,21 +2010,21 @@ const nextImportantNotes = () => {
 /* .bg-report-box-1 {
     background: linear-gradient(50.1deg, rgba(69, 145, 178, 0.6) 0%, rgba(211, 220, 251, 0.6) 124.36%) !important;
   } */
-.bg__icon-1 {
+.bg__icon-bnb {
   background: linear-gradient(
     50.1deg,
     #f3ba2f5e 0%,
     #f3ba2f29 124.36%
   );
 }
-.bg__icon-2 {
+.bg__icon-eth {
   background: linear-gradient(
     45.57deg,
     #ecf0f1 2.44%,
     #ecf0f1 99.99%
   );
 }
-.bg__icon-3 {
+.bg__icon-polygon {
   background: linear-gradient(
     45.57deg,
     #7b3fe447 2.44%,
