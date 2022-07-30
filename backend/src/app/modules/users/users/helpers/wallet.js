@@ -15,7 +15,6 @@ export const loadFromContract = async (req, res) => {
   console.log("poolLength", poolLength);
 
   let i;
-
   for (i = 0; i < poolLength; i++) {
     let set = await contract.methods.poolInfo(i).call({ from: FROM_ADDRESS });
     var myJSON = JSON.stringify(set);
