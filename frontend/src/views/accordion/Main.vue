@@ -1610,7 +1610,88 @@
         <!-- END: TAB WRITE CONTRACT -->
         <!-- BEGIN: TAB READ USER DATA -->
         <div v-show="tab === 3">
+          <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-12 lg:col-span-6">
+              <PreviewComponent class="intro-y box mt-5">
+                <div
+                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
+                >
+                  <!-- <div class="p-5"> -->
+                  <Preview>
+                    <AccordionGroup class="accordion-boxed">
+                      <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">Read User Data</p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                           <a
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
+                          >
+                            Query
+                          </a>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          
 
+                          <a
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Update
+                          </a>
+                        </AccordionPanel>
+                      </AccordionItem>
+                     
+                    </AccordionGroup>
+                  </Preview>
+                </div>
+              </PreviewComponent>
+            </div>
+           
+          </div>
         </div>
         <!-- BEGIN: TAB WRITE USER DATA -->
         <div v-show="tab === 4">
@@ -1625,7 +1706,7 @@
                     <AccordionGroup class="accordion-boxed">
                       <AccordionItem>
                         <Accordion>
-                          <p class="text-black font-semibold text-base">1.</p>
+                          <p class="text-black font-semibold text-base">  Write User Data</p>
                         </Accordion>
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
@@ -1701,7 +1782,7 @@
 
         <!-- BEGIN: TAB EDIT POOL -->
         <div v-show="tab === 5">
-          <div class="grid grid-cols-12 gap-4">
+         <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 lg:col-span-6">
               <PreviewComponent class="intro-y box mt-5">
                 <div
@@ -1712,7 +1793,7 @@
                     <AccordionGroup class="accordion-boxed">
                       <AccordionItem>
                         <Accordion>
-                          <p class="text-black font-semibold text-base">1.</p>
+                          <p class="text-black font-semibold text-base">Edit Pool</p>
                         </Accordion>
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
@@ -1728,6 +1809,89 @@
                               >Input</label
                             >
                           </div>
+                           <a
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
+                          >
+                            Query
+                          </a>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          
 
                           <a
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
@@ -1736,52 +1900,13 @@
                           </a>
                         </AccordionPanel>
                       </AccordionItem>
+                     
                     </AccordionGroup>
                   </Preview>
                 </div>
               </PreviewComponent>
             </div>
-            <div class="col-span-12 lg:col-span-6">
-              <PreviewComponent class="intro-y box mt-5">
-                <div
-                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
-                >
-                  <!-- <div class="p-5"> -->
-                  <Preview>
-                    <AccordionGroup class="accordion-boxed">
-                      <AccordionItem>
-                        <Accordion>
-                          <p class="text-black font-semibold text-base">2.</p>
-                        </Accordion>
-                        <AccordionPanel
-                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
-                        >
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-
-                          <a
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Edit Pool
-                          </a>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </AccordionGroup>
-                  </Preview>
-
-                  <!-- </div> -->
-                </div>
-              </PreviewComponent>
-            </div>
+           
           </div>
         </div>
         <!-- END: TAB EDIT POOL -->
@@ -2054,6 +2179,31 @@ export default {
 }
 .ts-dropdown.single.tom-select.w-full.absolute.top-2.plugin-dropdown_input {
   z-index: 999999 !important;
+}
+.bg__icon-1 {
+  background: linear-gradient(
+    50.1deg,
+    rgb(69 145 178 / 53%) 0%,
+    rgba(211, 220, 251, 0.6) 124.36%
+  );
+}
+.bg__icon-2 {
+  background: linear-gradient(
+    45.57deg,
+    rgb(178 69 121 / 53%) 2.44%,
+    rgba(251, 211, 233, 0.6) 99.99%
+  );
+}
+.bg__icon-3 {
+  background: linear-gradient(
+    45.57deg,
+    rgb(101 78 163 / 47%) 2.44%,
+    rgba(251, 211, 233, 0.6) 100%
+  );
+}
+
+.bg__icon-4 {
+  background: linear-gradient(45.57deg, #d1a565bf 2.44%, #d1a5654f 100%);
 }
 /* .tom-select .ts-input {
   background: transparent !important;
