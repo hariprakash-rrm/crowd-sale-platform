@@ -526,14 +526,38 @@
       </div>
     </div>
   </div>
+   <Modal
+              :show="successModalPreview"
+              @hidden="successModalPreview = false"
+            >
+              <ModalBody class="p-0">
+                <div class="p-5 text-center">
+                  <CheckCircleIcon
+                    class="w-16 h-16 text-success mx-auto mt-3"
+                  />
+                  <div class="text-3xl mt-5">{{this.modalHeadMessage}}</div>
+                  <div class="text-slate-500 mt-2">{{this.modalSubMessage}}</div>
+                </div>
+                <div class="px-5 pb-8 text-center">
+                  <button
+                    type="button"
+                    @click="successModalPreview = false"
+                    class="btn btn-primary w-24"
+                  >
+                    Ok
+                  </button>
+                </div>
+              </ModalBody>
+            </Modal>
 </template>
 <script>
+import { ref, provide } from "vue";
 import { useAuthUserStore } from "../stores/auth";
 import { mapState, mapActions } from "pinia";
 import TextInput from "@/components/reusable/TextInput.vue";
 import TextAreaInput from "@/components/reusable/TextAreaInput.vue";
 import CheckBox from "@/components/reusable/CheckBox.vue";
-
+const successModalPreview = ref(false)
 export default {
   components: {
     TextInput,
@@ -548,6 +572,9 @@ export default {
       notificationSettings: {},
       fileData: null,
       isFileError: false,
+      successModalPreview:false,
+      modalHeadMessage:'',
+      modalSubMessage:''
     };
   },
   computed: {
@@ -595,6 +622,7 @@ export default {
         newPassword: this.payload.newPassword,
       };
       this.resetPassword(finalPayload);
+      
     },
     updateProfile() {
       let finalPayload = {
@@ -602,6 +630,9 @@ export default {
         bio: this.profile?.bio,
       };
       this.updateUser(finalPayload);
+      this.successModalPreview=true,
+      this.modalHeadMessage = "Personal Information"
+      this.modalSubMessage = "Updated successfully"
     },
     updateTwitterLink() {
       let finalPayload = {
