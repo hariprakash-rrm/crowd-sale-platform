@@ -1818,6 +1818,7 @@ export default {
       this.poolsCompleted = this.dealsData.poolsCompleted || [];
       this.poolsMyDeal = this.dealsData.poolsMyDeal || [];
       console.log(this.dealsData);
+      
       return true;
     },
   },
