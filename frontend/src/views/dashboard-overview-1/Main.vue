@@ -2083,7 +2083,6 @@ export default {
           amount: this.totalCurrentModalAmount,
           fee: this.amountIncludeFee,
         };
-        
         console.log(contribute);
         this.createContribution(contribute);
       }
