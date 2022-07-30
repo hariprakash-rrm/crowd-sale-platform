@@ -1,4 +1,4 @@
-import LpToken from "./../models/wallet-address.model";
+import LpToken from "./../models/lp-token.model";
 const responseModule = require("../../../../../config/response");
 
 export const createLpToken = async (req, res) => {

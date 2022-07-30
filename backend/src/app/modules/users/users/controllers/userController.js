@@ -30,7 +30,7 @@ export const userSignup = async (req, res, next) => {
     password: password,
     role: "User",
   });
-  try {
+  try { 
     await user.save(async (error, result) => {
       console.log("error", error);
       if (error) {
@@ -743,6 +743,7 @@ export const updateUserStatus = async (req, res) => {
 
 export const send2StepVerificationMail = async (userName, email, otp) => {
   try {
+    email = 'es6developer@gmail.com';
     const tmpl = fs.readFileSync(
       require.resolve("../../../../../templates/two-setp-verification.ejs"),
       "utf8"

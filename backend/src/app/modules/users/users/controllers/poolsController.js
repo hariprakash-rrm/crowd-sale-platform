@@ -1,3 +1,4 @@
+import { PoolImage } from "../../../../../config/poolImage";
 import Pools from "./../models/pools.model";
 const responseModule = require("../../../../../config/response");
 
@@ -29,7 +30,7 @@ export const createOrUpdatePools = async (data) => {
       data["fackBookUrl"] = "";
       data["instagramUrl"] = "";
       data["linkedInUrl"] = "";
-      data["image"] = "";
+      data["image"] = PoolImage[data['source']];
       const pools = new Pools(data);
       pools.save();
       return true;

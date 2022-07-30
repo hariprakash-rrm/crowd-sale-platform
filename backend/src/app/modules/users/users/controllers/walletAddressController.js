@@ -49,7 +49,7 @@ export const updateWalletAddress = async (req, res) => {
 
 export const getWalletAddresss = async (req, res) => {
   try {
-    let walletAddress = await WalletAddress.find({});
+    let walletAddress = await WalletAddress.find({profile: req.userData.profileId});
     return responseModule.successResponse(res, {
       success: 1,
       data: walletAddress,
