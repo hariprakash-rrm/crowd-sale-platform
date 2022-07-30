@@ -1772,7 +1772,7 @@
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>
-            Processing...
+            {{ this.processingStatus }}
           </button>
         </div>
       </div>
@@ -1791,7 +1791,7 @@
     <ModalBody class="p-0">
       <div class="p-5 text-center">
         <XCircleIcon class="w-16 h-16 text-warning mx-auto mt-3" />
-        <div class="text-3xl mt-5">Oops...</div>
+        <div class="text-3xl mt-5">{{ this.test }}...</div>
         <div class="text-slate-500 mt-2">Something went wrong!</div>
       </div>
       <div class="px-5 pb-8 text-center">
@@ -1883,12 +1883,17 @@ export default {
       successModalPreview: false,
       modalMessage: "",
       warningModalPreview: false,
+      warningModalPreview : false,
+      processingStatus:''
+
     };
   },
 
   async mounted() {
+
     await this.fetchDeals();
     await this.reversePool();
+
   },
   computed: {
     ...mapState(useWeb3DealsStore, ["dealsData"]),
@@ -1977,6 +1982,7 @@ export default {
     },
 
     async contribute(id, name, symbol) {
+      let approveStatus = false
       // Default setting agree checkbox to false
       this.isAgree = false;
       this.currentModalId = id;
@@ -2007,7 +2013,7 @@ export default {
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
       this.amountIncludeFee =
         this.totalCurrentModalAmount + this.currentModalFeeAmount;
-      this.insufficientFund = "Approving Please wait(D)";
+      // this.insufficientFund = "Approving Please wait(D)";
       let contract = contractABI();
       let approveToken = approveContract();
       let totalAmountToContribute = BigInt(
@@ -2024,7 +2030,16 @@ export default {
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
+          this.approveStatus = true
+        })
+          .catch((err) => {
+          console.log(err.message);
+          console.log(err.transactionHash)
+          this.processingStatus = err.message
+          return err;
+          
         });
+        if(this.approveStatus == true){
       await contract.methods
         .stakeTokens(this.currentModalId - 1, totalAmountToContribute)
         .send({ from: localStorage.getItem("address") })
@@ -2032,15 +2047,20 @@ export default {
           console.log("receipt", receipt);
           this.saveContribution(receipt);
           this.modalMessage = "Contribution Successfull";
+          this.processingStatus = "Page Reloading Please wait!"
           setTimeout(() => {
             this.reload();
           }, 5000);
         })
         .catch((err) => {
           console.log(err.message);
-          console.log(err.transactionHash);
+          console.log(err.transactionHash)
+          this.processingStatus = err.message
           return err;
+          
         });
+        }
+    
     },
     async reload() {
       window.location.reload();
