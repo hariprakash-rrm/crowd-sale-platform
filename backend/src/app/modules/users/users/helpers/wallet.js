@@ -24,7 +24,7 @@ export const loadFromContract = async (req, res) => {
     var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
     set.humanEndTime = newDate;
     set.poolStakableAmount = Math.round(set.poolStakableAmount / 10 ** 18);
-    set.currentlyStaked = math.round(currentlyStaked / 10 ** 18);
+    set.currentlyStaked = currentlyStaked / 10 ** 18;
     set["source"] = "bsc";
     set["roadMap"] = "";
     set["team"] = "";
