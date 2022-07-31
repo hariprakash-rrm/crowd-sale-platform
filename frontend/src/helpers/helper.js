@@ -1,4 +1,7 @@
 import Web3 from "web3";
+import { createToaster } from "@meforma/vue-toaster";
+export const toaster = createToaster({ /* options */ });
+
 export const contractABI = () => {
   let web3 = new Web3(window.ethereum);
   let contractAddress = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";

@@ -51,10 +51,10 @@
                   required
                   v-model="user.name"
                 />
-                <i
+                <em
                   data-lucide="user"
                   class="ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
-                ></i>
+                />
                 <label
                   name="name"
                   class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
@@ -74,10 +74,10 @@
                   required
                   v-model="user.userName"
                 />
-                <i
+                <em
                   data-lucide="user"
                   class="ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
-                ></i>
+                />
                 <label
                   name="name"
                   class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
@@ -97,10 +97,10 @@
                   required
                   v-model="user.email"
                 />
-                <i
+                <em
                   data-lucide="mail"
                   class="ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
-                ></i>
+                />
                 <label
                   name="email"
                   class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
@@ -115,19 +115,21 @@
                     class="input-form relative rounded-lg mt-5 mb-0 lg:my-5 h-16 appearance-none label-floating"
                   >
                     <input
-                      id="showPassword"
+                      id="password"
                       class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
                       type="password"
                       placeholder="Password"
                       minlength="8"
                       required
                       v-model="user.password"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                     />
-                    <i
+                    <em
                       data-lucide="eye"
                       id="toggler"
                       class="eye-show ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
-                    ></i>
+                    />
                     <label
                       name="password"
                       class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
@@ -143,18 +145,18 @@
                   >
                     <input
                       class="login__input bg-input h-14 form-control cursor-pointer w-full py-2 px-4 text-sm 2xl:text-xl font-sans leading-normal rounded-lg"
-                      id="confirmPassword"
+                      id="password_confirmation"
                       type="password"
                       placeholder="Confirm Password"
                       minlength="8"
                       required
                       v-model="user.confirmPassword"
                     />
-                    <i
+                    <em
                       data-lucide="eye"
                       id="confirmToggler"
                       class="eye-show ml-auto -mt-10 pt-1 mr-4 cursor-pointer"
-                    ></i>
+                    />
                     <label
                       name="password"
                       class="form-label absolute block text-green-darker font-semibold font-sans w-full px-4 py-2 leading-normal label-float"
@@ -171,7 +173,6 @@
                 <div
                   class="intro-x flex items-center text-slate-600 dark:text-slate-500 mt-4 text-xs sm:text-sm 2xl:text-base"
                 >
-                  <!-- <input id="remember-me" type="checkbox" class="form-check-input border mr-2"> -->
                   <p class="cursor-pointer select-none">Already a Member?</p>
                   <router-link
                     class="text-primary text-sm 2xl:text-base dark:text-slate-200 ml-1"
@@ -189,22 +190,6 @@
                   </button>
                 </div>
               </div>
-
-              <!-- END: Validation Form -->
-              <!-- BEGIN: Notification Content -->
-              <div
-                id="notification-content"
-                class="toastify-content hidden flex"
-              >
-                <i class="text-success" data-lucide="check-circle"></i>
-                <div class="ml-4 mr-4">
-                  <div class="font-medium">{{ toaster.title }}</div>
-                  <div class="text-slate-500 mt-1">
-                    {{ toaster.content }}
-                  </div>
-                </div>
-              </div>
-              <!-- END: Notification Content -->
             </form>
           </div>
         </div>
@@ -219,7 +204,6 @@ import { useAuthUserStore } from "../stores/auth";
 import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
-import Toastify from "toastify-js";
 export default {
   components: {
     DarkModeSwitcher,
@@ -241,7 +225,7 @@ export default {
     ...mapActions(useAuthUserStore, ["userRegistration"]),
     onRegister() {
       if (this.user.password !== this.user.confirmPassword) {
-        this.showToast("Error", "Passwords do not match");
+        this.showToast("error", "Passwords do not match");
         return;
       }
       let finalPayload = {
@@ -259,22 +243,8 @@ export default {
         }
       });
     },
-    showToast(title = "", content = "") {
-      this.toaster = {
-        title,
-        content,
-      };
-      setTimeout(() => {
-        Toastify({
-          node: dom("#notification-content").clone().removeClass("hidden")[0],
-          duration: 3000,
-          newWindow: true,
-          close: true,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-        }).showToast();
-      }, 500);
+    showToast(type = "", content = "") {
+      this.$toast.show(content, { type: type });
     },
   },
   mounted() {
