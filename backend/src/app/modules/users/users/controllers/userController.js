@@ -30,7 +30,7 @@ export const userSignup = async (req, res, next) => {
     password: password,
     role: "User",
   });
-  try { 
+  try {
     await user.save(async (error, result) => {
       console.log("error", error);
       if (error) {
@@ -98,7 +98,6 @@ export const loginUser = async (req, res, next) => {
     }).exec();
 
     if (user) {
-     
       bcrypt.compare(req.body.password, user.password, async (err, result) => {
         if (err) {
           return responseModule.errorResponse(res, {
@@ -108,8 +107,7 @@ export const loginUser = async (req, res, next) => {
           });
         }
         if (result === true) {
-
-          if(user.isBlocked){
+          if (user.isBlocked) {
             return responseModule.errorResponse(res, {
               success: 0,
               message: "Your account has been blocked, Contact Admin",
@@ -132,13 +130,17 @@ export const loginUser = async (req, res, next) => {
             }
           );
           user.password = "";
-          if(user.is2StepVerificationOn){
+          if (user.is2StepVerificationOn) {
             const otp = otpGenerator.generate(5, {
               upperCaseAlphabets: false,
               specialChars: false,
               lowerCaseAlphabets: false,
             });
-            await send2StepVerificationMail(userProfile.userName,user.email, otp)
+            await send2StepVerificationMail(
+              userProfile.userName,
+              user.email,
+              otp
+            );
           }
 
           return responseModule.successResponse(res, {
@@ -147,7 +149,7 @@ export const loginUser = async (req, res, next) => {
             data: user,
             token: token,
             profile: userProfile,
-            isUserVerificationRequired: user.is2StepVerificationOn
+            isUserVerificationRequired: user.is2StepVerificationOn,
           });
         }
         if (result === false) {
@@ -493,7 +495,6 @@ export const updateProfile = async (req, res) => {
       }
     });
   } catch (error) {
-    console.log(err);
     return next(err);
   }
 };
@@ -689,7 +690,6 @@ export const update2StepVerification = async (req, res) => {
 };
 export const updateUserStatus = async (req, res) => {
   try {
-
     const profile = await UserProfile.findOneAndUpdate(
       {
         _id: req.userData.profileId,
@@ -700,7 +700,7 @@ export const updateUserStatus = async (req, res) => {
       {
         new: true,
       }
-    )
+    );
 
     const user = await User.findOneAndUpdate(
       {
@@ -743,7 +743,6 @@ export const updateUserStatus = async (req, res) => {
 
 export const send2StepVerificationMail = async (userName, email, otp) => {
   try {
-    email = 'es6developer@gmail.com';
     const tmpl = fs.readFileSync(
       require.resolve("../../../../../templates/two-setp-verification.ejs"),
       "utf8"
@@ -784,3 +783,91 @@ export const otpVerification = async (req, res, next) => {
     return next(err);
   }
 };
+
+export const forgotPassword = async(req, res) => {
+  try {
+    let user = await User.findOne({email: req.body.email})
+    if(user){
+      let userProfile =  UserProfile.findOne({user: user._id})
+
+      const token = jwt.sign(
+        {
+          userId: user._id,
+        },
+        config.JWT_KEY,
+        {
+          expiresIn: 600,
+        }
+      );
+
+        let link = `https://159.89.192.6/reset-password?token=${token}`;
+      const tmpl = fs.readFileSync(
+        require.resolve("../../../../../templates/reset-password.ejs"),
+        "utf8"
+      );
+      const html = ejs.render(tmpl, {
+        userName: userProfile.userName,
+        email: user.email,
+        link: link,
+        year: new Date().getFullYear(),
+      });
+  
+      let subject = "Reset your password - Unreal";
+      let send = await sendMail(user.email, subject, html);
+      return responseModule.successResponse(res, {
+        success: 1,
+        message: "Password reset link sent, Check mail",
+        data: {},
+      });
+    }else{
+      return responseModule.errorResponse(res, {
+        success: 0,
+        message: "Email is not registered",
+      });
+    }
+   
+  } catch (error) {
+    console.log("error",error)
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: "Something went wrong",
+    });
+  }
+};
+
+export const resetNewPassword = async(req, res)=>{
+  try{
+    const decoded = jwt.verify(req.body.token,config.JWT_KEY)
+
+    let updateData = {
+      password: bcrypt.hashSync(req.body.newPassword, 10),
+    };
+    const user = await User.findOneAndUpdate(
+      {
+        _id: decoded.userId,
+      },
+      {
+        $set: updateData,
+      },
+      {
+        new: true,
+      }
+    ).exec((error, response) => {
+      if (response) {
+        return responseModule.successResponse(res, {
+          success: 1,
+          message: "Password reset successfully",
+          data: {},
+        });
+      }
+    });
+
+    
+  } catch (error) {
+    console.log("error",error)
+    return responseModule.errorResponse(res, {
+      success: 0,
+      message: "Invalid password reset link or link expired",
+    });
+  }
+}
