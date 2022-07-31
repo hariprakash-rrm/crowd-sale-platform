@@ -25,6 +25,9 @@ export const auth = {
   },
   resetPassword: (payload) => {
     return axios.put(`${BASE_URL}/password-reset`, payload)
+  },
+  forgotPassword: (payload) => {
+    return axios.post(`${BASE_URL}/forgot-password`, payload)
   }
 };
 

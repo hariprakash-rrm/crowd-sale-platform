@@ -133,10 +133,8 @@ export const useAuthUserStore = defineStore("authUserStore", {
         otpVerification({ user_id, otp }) {
             return auth.otpVerification(user_id, { otp: otp }).then(res => {
                 router.push("/login");
-                toaster.success("OTP Verified Successfully");
                 return res;
             }).catch(err => {
-                toaster.error("Error in verifying OTP");
                 console.error("error in otpVerification", err);
                 return err;
             })
@@ -151,6 +149,16 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 return res;
             }).catch(err => {
                 toaster.error("Error in resetting password");
+                console.error("error in resetting password", err);
+                return err;
+            })
+        },
+        forgotPassword(email) {
+            return auth.forgotPassword(email).then(res => {
+                toaster.success("Password Reset Link Sent Successfully");
+                router.push("/login");
+                return res;
+            }).catch(err => {
                 console.error("error in resetting password", err);
                 return err;
             })

@@ -216,10 +216,6 @@ export default {
       name: "",
       userName: "",
     },
-    toaster: {
-      title: "",
-      content: "",
-    },
   }),
   methods: {
     ...mapActions(useAuthUserStore, ["userRegistration"]),
@@ -243,7 +239,7 @@ export default {
         }
       });
     },
-    showToast(type = "", content = "") {
+    showToast(type = "success", content = "") {
       this.$toast.show(content, { type: type });
     },
   },

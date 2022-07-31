@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "../pages/LoginPage.vue";
 import Register from "../pages/RegisterPage.vue";
-import ForgotPassword from "../views/forgot-password/Main.vue";
+import ForgotPassword from "../pages/ForgotPassword.vue";
 import EnterOtp from "../pages/OTPVerification.vue";
 import UpdateProfile from "../pages/UpdateProfile.vue";
 import ResetPassword from "../views/reset-password/Main.vue";

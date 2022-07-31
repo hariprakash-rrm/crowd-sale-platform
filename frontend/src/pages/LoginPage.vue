@@ -157,7 +157,7 @@ export default {
         }
       });
     },
-    showToast(type = "", content = "") {
+    showToast(type = "success", content = "") {
       this.$toast.show(content, { type: type });
     },
   },
