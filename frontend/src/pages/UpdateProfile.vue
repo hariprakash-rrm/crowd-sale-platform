@@ -170,7 +170,7 @@
                       class="btn btn-primary w-full"
                       style="cursor: pointer"
                     >
-                      Change Photo
+                      Upload Photo
                     </button>
                     <input
                       type="file"
@@ -267,8 +267,12 @@
               your password and an authentication code that you will receive
               from your phone.
             </p>
-            <button type="button" class="btn btn-primary text-base px-6 mt-4">
-              Enable 2FA
+            <button
+              type="button"
+              @click="toggle2Step()"
+              class="btn btn-primary text-base px-6 mt-4"
+            >
+              {{ profile.is2StepVerificationOn ? "Disable 2FA" : "Enable 2FA" }}
             </button>
           </div>
         </div>
@@ -291,24 +295,24 @@
               />
               <label for="add-wallet" class="input__label">Add Wallet</label>
             </div> -->
-              <div
-                class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+            <div
+              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+            >
+              <label
+                for="update-profile-form-2"
+                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                >My Wallets</label
               >
-                <label
-                  for="update-profile-form-2"
-                  class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                  >My Wallets</label
-                >
-                <TomSelect
-                  id="update-profile-form-2"
-                  v-model="select"
-                  class="w-full absolute top-2"
-                >
-                  <option value="1">BSC</option>
-                  <option value="2">Ethereum</option>
-                  <option value="3">Polygon</option>
-                </TomSelect>
-              </div>
+              <!-- <TomSelect
+                id="update-profile-form-2"
+                v-model="select"
+                class="w-full absolute top-2"
+              >
+                <option value="1">BSC</option>
+                <option value="2">Ethereum</option>
+                <option value="3">Polygon</option>
+              </TomSelect> -->
+            </div>
 
             <button
               type="button"
@@ -510,45 +514,31 @@
                   class="w-6 h-6 m-auto text-slate-400 hover:text-primary"
                 />
               </div>
-
-             
             </div>
-
-              <button
-              type="button"
-              class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
-            >
-              Update
-            </button>
           </div>
         </div>
         <!-- END: Social Network -->
       </div>
     </div>
+    <Modal :show="successModalPreview" @hidden="successModalPreview = false">
+      <ModalBody class="p-0">
+        <div class="p-5 text-center">
+          <CheckCircleIcon class="w-16 h-16 text-success mx-auto mt-3" />
+          <div class="text-3xl mt-5">{{ this.modalHeadMessage }}</div>
+          <div class="text-slate-500 mt-2">{{ this.modalSubMessage }}</div>
+        </div>
+        <div class="px-5 pb-8 text-center">
+          <button
+            type="button"
+            @click="successModalPreview = false"
+            class="btn btn-primary w-24"
+          >
+            Ok
+          </button>
+        </div>
+      </ModalBody>
+    </Modal>
   </div>
-   <Modal
-              :show="successModalPreview"
-              @hidden="successModalPreview = false"
-            >
-              <ModalBody class="p-0">
-                <div class="p-5 text-center">
-                  <CheckCircleIcon
-                    class="w-16 h-16 text-success mx-auto mt-3"
-                  />
-                  <div class="text-3xl mt-5">{{this.modalHeadMessage}}</div>
-                  <div class="text-slate-500 mt-2">{{this.modalSubMessage}}</div>
-                </div>
-                <div class="px-5 pb-8 text-center">
-                  <button
-                    type="button"
-                    @click="successModalPreview = false"
-                    class="btn btn-primary w-24"
-                  >
-                    Ok
-                  </button>
-                </div>
-              </ModalBody>
-            </Modal>
 </template>
 <script>
 import { ref, provide } from "vue";
@@ -557,7 +547,7 @@ import { mapState, mapActions } from "pinia";
 import TextInput from "@/components/reusable/TextInput.vue";
 import TextAreaInput from "@/components/reusable/TextAreaInput.vue";
 import CheckBox from "@/components/reusable/CheckBox.vue";
-const successModalPreview = ref(false)
+const successModalPreview = ref(false);
 export default {
   components: {
     TextInput,
@@ -571,10 +561,9 @@ export default {
       payload: {},
       notificationSettings: {},
       fileData: null,
-      isFileError: false,
-      successModalPreview:false,
-      modalHeadMessage:'',
-      modalSubMessage:''
+      successModalPreview: false,
+      modalHeadMessage: "",
+      modalSubMessage: "",
     };
   },
   computed: {
@@ -596,6 +585,7 @@ export default {
       "resetPassword",
       "updateSocialLink",
       "updateNotificationSettings",
+      "toggle2StepVerification",
     ]),
     setProfileData(data) {
       this.profile = { ...data.profile, ...data.user };
@@ -622,7 +612,6 @@ export default {
         newPassword: this.payload.newPassword,
       };
       this.resetPassword(finalPayload);
-      
     },
     updateProfile() {
       let finalPayload = {
@@ -630,9 +619,9 @@ export default {
         bio: this.profile?.bio,
       };
       this.updateUser(finalPayload);
-      this.successModalPreview=true,
-      this.modalHeadMessage = "Personal Information"
-      this.modalSubMessage = "Updated successfully"
+      (this.successModalPreview = true),
+        (this.modalHeadMessage = "Personal Information");
+      this.modalSubMessage = "Updated successfully";
     },
     updateTwitterLink() {
       let finalPayload = {
@@ -662,14 +651,21 @@ export default {
     selectedFile(event) {
       const size = event.target.files[0].size;
       if (Math.round(size / (1024 * 1024)) <= 2) {
-        this.isFileError = false;
         const file = event.target.files[0];
         this.fileData = file;
         this.uploadPhoto(file);
       } else {
         this.$refs.fileref.value = "";
-        this.isFileError = true;
+        this.showToast("error", "File size should be less than 2 MB");
       }
+    },
+    showToast(type = "success", content = "") {
+      this.$toast.show(content, { type: type });
+    },
+    toggle2Step() {
+      this.toggle2StepVerification({
+        is2StepVerificationOn: !this.profile.is2StepVerificationOn,
+      });
     },
   },
   watch: {
@@ -687,7 +683,7 @@ export default {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
- /* .items.ts-input.full.has-items {
+/* .items.ts-input.full.has-items {
   background-color: transparent !important;
   border-width: 0px !important;
   padding: 7.5px 26px 7.5px 22px !important;

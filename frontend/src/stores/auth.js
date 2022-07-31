@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { auth } from "../service/auth";
 import router from "@/router";
-import { parseJwt, Role } from "@/helpers/helper.js";
+import { parseJwt, Role, toaster } from "@/helpers/helper.js";
 
 export const useAuthUserStore = defineStore("authUserStore", {
     state: () => ({
@@ -58,6 +58,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
             this.user = {}
             this.userFullName = ""
             setTimeout(() => {
+                toaster.success("Logout Successful");
                 router.push("/login");
             }, 0);
         },
@@ -72,10 +73,12 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 .userRegistration(payload)
                 .then((res) => {
                     const { data } = res["data"];
+                    toaster.success("Registration Successful");
                     router.push(`/enter-otp/${data?._id}`);
                     return res;
                 })
                 .catch((err) => {
+                    toaster.error("Error in registration");
                     console.error("error in registration", err);
                     return err;
                 });
@@ -83,8 +86,10 @@ export const useAuthUserStore = defineStore("authUserStore", {
         updateUser(payload) {
             return auth.updateUser(payload).then(res => {
                 this.fetchUser()
+                toaster.success("Profile Updated Successfully");
                 return res
             }).catch(err => {
+                toaster.error("Error in updating profile");
                 console.log("error while updating user details", err)
                 return err
             })
@@ -95,8 +100,10 @@ export const useAuthUserStore = defineStore("authUserStore", {
             document.append("profileImage", file);
             return auth.updateUser(document).then(res => {
                 this.fetchUser()
+                toaster.success("Profile Updated Successfully");
                 return res
             }).catch(err => {
+                toaster.error("Error in updating profile");
                 console.log("error while updating user details", err)
                 return err
             })
@@ -104,8 +111,10 @@ export const useAuthUserStore = defineStore("authUserStore", {
         updateSocialLink(payload) {
             return auth.updateSocialLink(payload).then(res => {
                 this.fetchUser()
+                toaster.success("Profile Updated Successfully");
                 return res
             }).catch(err => {
+                toaster.error("Error in updating profile");
                 console.log("error while updating social link", err)
                 return err
             })
@@ -113,8 +122,10 @@ export const useAuthUserStore = defineStore("authUserStore", {
         updateNotificationSettings(payload) {
             return auth.updateNotificationSettings(payload).then(res => {
                 this.fetchUser()
+                toaster.success("Profile Updated Successfully");
                 return res
             }).catch(err => {
+                toaster.error("Error in updating profile");
                 console.log("error while updating notification settings", err)
                 return err
             })
@@ -131,11 +142,57 @@ export const useAuthUserStore = defineStore("authUserStore", {
         resetPassword(payload) {
             return auth.resetPassword(payload).then(res => {
                 let { success } = res["data"]
-                if (success)
+                if (success) {
+                    toaster.success("Password Reset Successfully");
                     router.push("/login");
+                }
+                return res;
+            }).catch(err => {
+                toaster.error("Error in resetting password");
+                console.error("error in resetting password", err);
+                return err;
+            })
+        },
+        forgotPassword(email) {
+            return auth.forgotPassword(email).then(res => {
+                toaster.success("Password Reset Link Sent Successfully");
+                router.push("/login");
                 return res;
             }).catch(err => {
                 console.error("error in resetting password", err);
+                return err;
+            })
+        },
+        createWalletAddress(walletAddress) {
+            return auth.createWalletAddress(walletAddress).then(res => {
+                this.fetchUser()
+                toaster.success("Wallet Address Created Successfully");
+                return res;
+            }).catch(err => {
+                toaster.error("Error in creating wallet address");
+                console.error("error in creating wallet address", err);
+                return err;
+            })
+        },
+        deleteWalletAddress(walletId) {
+            return auth.deleteWalletAddress(walletId).then(res => {
+                this.fetchUser()
+                toaster.success("Wallet Address Deleted Successfully");
+                return res;
+            }).catch(err => {
+                toaster.error("Error in deleting wallet address");
+                console.error("error in deleting wallet address", err);
+                return err;
+            })
+        },
+        toggle2StepVerification(is2StepVerificationOn) {
+            return auth.toggle2StepVerification(is2StepVerificationOn).then(res => {
+                this.fetchUser()
+                toaster.success("2 Step Verification Updated Successfully");
+                return res;
+            }).catch(err => {
+                toaster.error("Error in updating 2 Step Verification");
+                console.error("error in updating 2 Step Verification", err);
                 return err;
             })
         }

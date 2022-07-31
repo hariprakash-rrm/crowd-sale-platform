@@ -2046,7 +2046,7 @@ export default {
         .then((receipt) => {
           console.log("receipt", receipt);
           this.saveContribution(receipt);
-          this.modalMessage = "Contribution Successfull";
+          this.modalMessage = "Contribution Successful";
           this.processingStatus = "Page Reloading Please wait!"
           setTimeout(() => {
             this.reload();
