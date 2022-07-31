@@ -221,6 +221,8 @@
                   @input="handleInput"
                   :required="true"
                   :minlength="8"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                 />
               </div>
               <div class="relative mb-6">
@@ -607,6 +609,10 @@ export default {
       this.updateNotificationSettings(finalPayload);
     },
     updatePassword() {
+      if (this.payload.newPassword != this.payload.confirmPassword) {
+        this.showToast("error", "Password does not match");
+        return;
+      }
       let finalPayload = {
         oldPassword: this.payload.oldPassword,
         newPassword: this.payload.newPassword,

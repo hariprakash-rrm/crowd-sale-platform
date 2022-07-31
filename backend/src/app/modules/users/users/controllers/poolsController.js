@@ -27,7 +27,7 @@ export const createOrUpdatePools = async (data) => {
       data["roadMap"] = "";
       data["team"] = "";
       data["vcs"] = "";
-      data["fackBookUrl"] = "";
+      data["faceBookUrl"] = "";
       data["instagramUrl"] = "";
       data["linkedInUrl"] = "";
       data["image"] = PoolImage[data['source']];
@@ -121,7 +121,7 @@ export const updatePools = async (req, res) => {
       roadMap: req.body?.roadMap,
       team: req.body?.team,
       vcs: req.body?.vcs,
-      fackBookUrl: req.body?.fackBookUrl,
+      faceBookUrl: req.body?.faceBookUrl,
       instagramUrl: req.body?.instagramUrl,
       linkedInUrl: req.body?.linkedInUrl,
       image: req.body?.image,

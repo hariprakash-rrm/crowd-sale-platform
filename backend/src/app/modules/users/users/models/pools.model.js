@@ -55,7 +55,7 @@ const poolsSchema = mongoose.Schema(
     vcs: {
       type: String,
     },
-    fackBookUrl: {
+    faceBookUrl: {
       type: String,
     },
     instagramUrl: {

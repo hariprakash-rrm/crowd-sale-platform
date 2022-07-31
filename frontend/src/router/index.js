@@ -4,15 +4,17 @@ import Register from "../pages/RegisterPage.vue";
 import ForgotPassword from "../pages/ForgotPassword.vue";
 import EnterOtp from "../pages/OTPVerification.vue";
 import UpdateProfile from "../pages/UpdateProfile.vue";
+import Admin from "../pages/AccordionPage.vue"
+import Chart from "../pages/ChartMenu.vue";
 import ResetPassword from "../views/reset-password/Main.vue";
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
 import UserLayout from "../views/users-layout-1/Main.vue";
 import SingleDeal from "../views/profile-overview-2/Main.vue";
-import Admin from "../views/accordion/Main.vue"
 import Notification from "../views/profile-overview-2/Main.vue"
 import ReadContract from "../views/read-contract/Main.vue";
+
 import { Role, getScope } from "@/helpers/helper.js";
 
 const routes = [
@@ -104,7 +106,11 @@ const routes = [
                 name: "profile-overview-1",
                 component: Notification,
             },
-
+            {
+                path: "chart",
+                name: "side-menu-chart",
+                component: Chart,
+              },
         ]
     },
 
