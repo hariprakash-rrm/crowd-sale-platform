@@ -1,9 +1,23 @@
 <template>
+  <PreviewComponent class="intro-y box">
+    <div
+      class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
+    >
+      <h2 class="font-medium text-base mr-auto">Vertical Bar Chart</h2>
+    </div>
+    <div class="p-5">
+      <Preview>
+        <VerticalBarChart :height="400" />
+      </Preview>
+    </div>
+  </PreviewComponent>
   <div class="grid grid-cols-12 gap-6">
     <!-- BEGIN: General Report -->
     <!-- END: General Report -->
 
     <!-- BEGIN: General Report -->
+    <!-- BEGIN: Vertical Bar Chart -->
+    <!-- END: Vertical Bar Chart -->
     <div class="col-span-12 mt-8">
       <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
@@ -1818,6 +1832,7 @@ import { useWeb3DealsStore } from "@/stores/web3Deals.js";
 import { useContributionStore } from "@/stores/contribution.js";
 import { mapActions, mapState } from "pinia";
 import { contractABI, approveContract } from "@/helpers/helper.js";
+import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
 const largeModalSizePreview = ref(false);
 const warningModalPreview = ref(false);
 const bscOngoingModal = ref(false);
@@ -1838,9 +1853,10 @@ const ethContributeModal = ref(false);
 const polygonContributeModal = ref(false);
 
 export default {
-  name: "",
   contractResult: "",
-
+  components: {
+    VerticalBarChart,
+  },
   data() {
     return {
       poolsOngoing: [],
@@ -1883,17 +1899,14 @@ export default {
       successModalPreview: false,
       modalMessage: "",
       warningModalPreview: false,
-      warningModalPreview : false,
-      processingStatus:''
-
+      warningModalPreview: false,
+      processingStatus: "",
     };
   },
 
   async mounted() {
-
     await this.fetchDeals();
     await this.reversePool();
-
   },
   computed: {
     ...mapState(useWeb3DealsStore, ["dealsData"]),
@@ -1982,7 +1995,7 @@ export default {
     },
 
     async contribute(id, name, symbol) {
-      let approveStatus = false
+      let approveStatus = false;
       // Default setting agree checkbox to false
       this.isAgree = false;
       this.currentModalId = id;
@@ -2030,37 +2043,34 @@ export default {
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
-          this.approveStatus = true
-        })
-          .catch((err) => {
-          console.log(err.message);
-          console.log(err.transactionHash)
-          this.processingStatus = err.message
-          return err;
-          
-        });
-        if(this.approveStatus == true){
-      await contract.methods
-        .stakeTokens(this.currentModalId - 1, totalAmountToContribute)
-        .send({ from: localStorage.getItem("address") })
-        .then((receipt) => {
-          console.log("receipt", receipt);
-          this.saveContribution(receipt);
-          this.modalMessage = "Contribution Successful";
-          this.processingStatus = "Page Reloading Please wait!"
-          setTimeout(() => {
-            this.reload();
-          }, 5000);
+          this.approveStatus = true;
         })
         .catch((err) => {
           console.log(err.message);
-          console.log(err.transactionHash)
-          this.processingStatus = err.message
+          console.log(err.transactionHash);
+          this.processingStatus = err.message;
           return err;
-          
         });
-        }
-    
+      if (this.approveStatus == true) {
+        await contract.methods
+          .stakeTokens(this.currentModalId - 1, totalAmountToContribute)
+          .send({ from: localStorage.getItem("address") })
+          .then((receipt) => {
+            console.log("receipt", receipt);
+            this.saveContribution(receipt);
+            this.modalMessage = "Contribution Successful";
+            this.processingStatus = "Page Reloading Please wait!";
+            setTimeout(() => {
+              this.reload();
+            }, 5000);
+          })
+          .catch((err) => {
+            console.log(err.message);
+            console.log(err.transactionHash);
+            this.processingStatus = err.message;
+            return err;
+          });
+      }
     },
     async reload() {
       window.location.reload();
