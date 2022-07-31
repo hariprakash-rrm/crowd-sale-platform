@@ -291,7 +291,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(useAuthUserStore, ["logout", "fetchUser"]),
+    ...mapActions(useAuthUserStore, ["logout", "fetchUser", "createWalletAddress"]),
     connect() {
       // this connects to the wallet
       this.openMetamask();
@@ -343,6 +343,7 @@ export default {
       this.account = Object.assign({}, account);
       this.storageService.setItem("account", JSON.stringify(this.account));
       this.storageService.setItem("address", this.account.address);
+      // this.createWalletAddress("ytyyt");
     },
 
     setNetwork(chainId: any) {

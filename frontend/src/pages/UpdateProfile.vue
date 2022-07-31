@@ -267,8 +267,12 @@
               your password and an authentication code that you will receive
               from your phone.
             </p>
-            <button type="button" class="btn btn-primary text-base px-6 mt-4">
-              Enable 2FA
+            <button
+              type="button"
+              @click="toggle2Step()"
+              class="btn btn-primary text-base px-6 mt-4"
+            >
+              {{ profile.is2StepVerificationOn ? "Disable 2FA" : "Enable 2FA" }}
             </button>
           </div>
         </div>
@@ -299,7 +303,7 @@
                 class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
                 >My Wallets</label
               >
-              <TomSelect
+              <!-- <TomSelect
                 id="update-profile-form-2"
                 v-model="select"
                 class="w-full absolute top-2"
@@ -307,7 +311,7 @@
                 <option value="1">BSC</option>
                 <option value="2">Ethereum</option>
                 <option value="3">Polygon</option>
-              </TomSelect>
+              </TomSelect> -->
             </div>
 
             <button
@@ -511,13 +515,6 @@
                 />
               </div>
             </div>
-
-            <button
-              type="button"
-              class="btn btn-primary text-sm 2xl:text-base w-full xl:w-auto py-2 px-8 rounded-md mt-4"
-            >
-              Update
-            </button>
           </div>
         </div>
         <!-- END: Social Network -->
@@ -588,6 +585,7 @@ export default {
       "resetPassword",
       "updateSocialLink",
       "updateNotificationSettings",
+      "toggle2StepVerification",
     ]),
     setProfileData(data) {
       this.profile = { ...data.profile, ...data.user };
@@ -663,6 +661,11 @@ export default {
     },
     showToast(type = "success", content = "") {
       this.$toast.show(content, { type: type });
+    },
+    toggle2Step() {
+      this.toggle2StepVerification({
+        is2StepVerificationOn: !this.profile.is2StepVerificationOn,
+      });
     },
   },
   watch: {

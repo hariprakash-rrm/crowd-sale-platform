@@ -28,6 +28,15 @@ export const auth = {
   },
   forgotPassword: (payload) => {
     return axios.post(`${BASE_URL}/forgot-password`, payload)
+  },
+  createWalletAddress: (walletAddress) => {
+    return axios.post(`${BASE_URL}/wallet-address`, walletAddress)
+  },
+  deleteWalletAddress: (walletId) => {
+    return axios.delete(`${BASE_URL}/wallet-address`, walletId)
+  },
+  toggle2StepVerification: (is2StepVerificationOn) => {
+    return axios.put(`${BASE_URL}/user-2-step-verification`, is2StepVerificationOn)
   }
 };
 
