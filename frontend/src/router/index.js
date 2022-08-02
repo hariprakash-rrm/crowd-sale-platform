@@ -14,6 +14,7 @@ import Admin from "../views/accordion/Main.vue"
 import Notification from "../views/profile-overview-2/Main.vue"
 import ReadContract from "../views/read-contract/Main.vue";
 import { Role, getScope } from "@/helpers/helper.js";
+import Calendar from "../views/calendar/Main.vue";
 
 const routes = [
     {
@@ -58,6 +59,16 @@ const routes = [
                 path: "dashboard",
                 name: "side-menu-dashboard-overview-1",
                 component: DashboardOverview1,
+                meta: {
+                    authorize: [
+                        Role.user,
+                    ],
+                },
+            },
+            {
+                path: "calendar",
+                name: "side-menu-calendar",
+                component: Calendar,
                 meta: {
                     authorize: [
                         Role.user,
@@ -118,21 +129,21 @@ const router = createRouter({
     },
 });
 
-router.beforeEach((to, from, next) => {
-    const { authorize } = to.meta;
-    if (authorize && authorize.length) {
-        const currentUserRole = getScope();
-        if (!authorize.includes(currentUserRole)) {
-            return next("/login");
-        } else {
-            return next();
-        }
-    }
-    if (to.path == "" || to.path == "/") {
-        next("/login");
-    } else {
-        next();
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     const { authorize } = to.meta;
+//     if (authorize && authorize.length) {
+//         const currentUserRole = getScope();
+//         if (!authorize.includes(currentUserRole)) {
+//             return next("/login");
+//         } else {
+//             return next();
+//         }
+//     }
+//     if (to.path == "" || to.path == "/") {
+//         next("/login");
+//     } else {
+//         next();
+//     }
+// });
 
 export default router;
