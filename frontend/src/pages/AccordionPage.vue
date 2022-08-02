@@ -6,7 +6,11 @@
     <div class="intro-y grid grid-cols-12 gap-6 mt-5">
       <!-- BEGIN: General Report -->
       <div class="col-span-12 mb-8">
+        <!-- BEGIN: Vertical Bar Chart -->
+          
+        <!-- END: Vertical Bar Chart -->
         <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
+       
           <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
             <div class="report-box report-box__right zoom-in">
               <div class="box bg-[#ffffff] p-8">
@@ -74,6 +78,21 @@
                 </div>
               </div>
             </div>
+          </div>
+
+             <div class="col-span-12">
+                <PreviewComponent class="intro-y box mt-6">
+                  <div
+                    class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
+                  >
+                    <h2 class="font-medium text-base mr-auto">Vertical Bar Chart</h2>
+                  </div>
+                  <div class="p-5">
+                    <Preview>
+                      <VerticalBarChart :height="400" />
+                    </Preview>
+                  </div>
+                </PreviewComponent>
           </div>
         </div>
       </div>
@@ -214,7 +233,7 @@
                             <label for="input" class="input__label"
                               >Input</label
                             >
-                            <span> {{ this._isAuthoroziedUser }}</span>
+                          
                           </div>
 
                           <div
@@ -242,6 +261,8 @@
                           >
                             Query
                           </button>
+
+                            <p class="text-black font-normal text-base pt-4">{{ this._isAuthoroziedUser }}</p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -266,7 +287,7 @@
                               >Pid</label
                             >
                           </div>
-                          <span>{{ this._balanceStakableToken }}</span>
+                         
 
                           <div
                             class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -293,6 +314,8 @@
                           >
                             Query
                           </button>
+
+                           <p class="text-black font-normal text-base pt-4">{{ this._balanceStakableToken }}</p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -317,7 +340,7 @@
                               >Input</label
                             >
                           </div>
-                          <span>{{ this._blacklisted }}</span>
+                         
 
                           <div
                             class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -344,6 +367,8 @@
                           >
                             Query
                           </button>
+
+                           <p class="text-black font-normal text-base pt-4">{{ this._blacklisted }}</p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -398,7 +423,7 @@
                             />
                             <label for="p-id" class="input__label">Pid</label>
                           </div>
-                          <span>{{ this._getTotalStakedInPool }}</span>
+                          
 
                           <div
                             class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -419,12 +444,13 @@
                             </TomSelect>
                           </div>
 
-                          <a
+                          <button type="button"
                             @click="getTotalStakedInPool()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
-                          </a>
+                          </button>
+                          <p class="text-black font-normal text-base pt-4">{{ this._getTotalStakedInPool }}</p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -463,7 +489,7 @@
                               >Address</label
                             >
                           </div>
-                          <span>{{ this._getUserStakedTokenInPool }}</span>
+                        
 
                           <div
                             class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -490,6 +516,8 @@
                           >
                             Query
                           </a>
+
+                            <p class="text-black font-normal text-base pt-4">{{ this._getUserStakedTokenInPool }}</p>
                         </AccordionPanel>
                       </AccordionItem>
                       <!-- <AccordionItem>
@@ -703,11 +731,11 @@
                             </TomSelect>
                           </div>
 
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <!-- <AccordionItem>
@@ -777,7 +805,7 @@
                           </p>
                         </Accordion>
                         <AccordionPanel
-                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8 mt-8"
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
                           <div class="relative mb-6">
                             <input
@@ -830,11 +858,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1126,11 +1154,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1174,11 +1202,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1220,11 +1248,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1280,11 +1308,11 @@
                             </TomSelect>
                           </div>
 
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1314,11 +1342,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1348,11 +1376,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1425,11 +1453,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <!-- <AccordionItem>
@@ -1508,11 +1536,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1542,11 +1570,11 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1590,11 +1618,11 @@
                               >Input</label
                             >
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                           >
                             Query
-                          </a>
+                          </button>
                           <div class="relative mb-6">
                             <input
                               type="text"
@@ -1629,11 +1657,11 @@
                             >
                           </div>
 
-                          <a
+                          <button type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Update
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1713,11 +1741,11 @@
                             >
                           </div>
 
-                          <a
+                          <button type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Update
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1760,11 +1788,11 @@
                               >Input</label
                             >
                           </div>
-                          <a
+                          <button type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                           >
                             Query
-                          </a>
+                          </button>
                           <div class="relative mb-6">
                             <input
                               type="text"
@@ -1843,11 +1871,11 @@
                             >
                           </div>
 
-                          <a
+                          <button type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Update
-                          </a>
+                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1870,9 +1898,10 @@ import { contractABI } from "@/helpers/helper.js";
 import { mapActions } from "pinia";
 import TextInput from "@/components/reusable/TextInput.vue";
 import { usePoolStore } from "@/stores/pool.js";
+import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
 
 export default {
-  components: { VueTimepicker, TextInput },
+  components: { VueTimepicker, TextInput, VerticalBarChart },
   data() {
     return {
       addPoolData: {},

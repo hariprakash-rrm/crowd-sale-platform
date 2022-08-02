@@ -5,13 +5,13 @@ export const useSideMenuAdminStore = defineStore("sideMenuAdmin", {
     menu: [
       {
         icon: "HomeIcon",
-        pageName: "side-menu-update-profile",
-        title: "Profile",
+        pageName: "accordion",
+        title: "Dashboard",
       },
       {
         icon: "HomeIcon",
-        pageName: "accordion",
-        title: "Accordion",
+        pageName: "side-menu-update-profile",
+        title: "Profile",
       },
     ],
   }),

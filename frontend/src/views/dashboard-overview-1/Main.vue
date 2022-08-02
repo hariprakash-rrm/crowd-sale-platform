@@ -1,25 +1,14 @@
 <template>
-  <PreviewComponent class="intro-y box">
-    <div
-      class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
-    >
-      <h2 class="font-medium text-base mr-auto">Vertical Bar Chart</h2>
-    </div>
-    <div class="p-5">
-      <Preview>
-        <VerticalBarChart :height="400" />
-      </Preview>
-    </div>
-  </PreviewComponent>
+ 
   <div class="grid grid-cols-12 gap-6">
     <!-- BEGIN: General Report -->
     <!-- END: General Report -->
 
     <!-- BEGIN: General Report -->
-    <!-- BEGIN: Vertical Bar Chart -->
-    <!-- END: Vertical Bar Chart -->
+
     <div class="col-span-12 mt-8">
       <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
+      
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">
             <div class="box bg-[#ffffff] p-8">
