@@ -1,4 +1,4 @@
-import { userSignup,loginUser ,updateUser, emailVerification,getUserData,updateProfile, resetOldPassword, updateSocialLink, createORupdateNotifificationSettings, update2StepVerification, otpVerification, updateUserStatus} from "../../controllers/userController";
+import { userSignup,loginUser ,updateUser, emailVerification,getUserData,updateProfile, resetOldPassword, updateSocialLink, createORupdateNotifificationSettings, update2StepVerification, otpVerification, updateUserStatus, forgotPassword, resetNewPassword} from "../../controllers/userController";
 import { upload } from "../../helpers/multer"; 
 const checkAuth = require('../../../users/helpers/check-auth');
 
@@ -62,5 +62,13 @@ export const routes = (app, version) => {
         version + '/update-user-status',
         checkAuth,
         updateUserStatus,
+    );
+    app.post(
+        version + '/forgot-password',
+        forgotPassword,
+    );
+    app.post(
+        version + '/reset-new-password',
+        resetNewPassword,
     );
 };

@@ -19,7 +19,7 @@
       :autocomplete="autocomplete"
       :required="required"
     />
-    <label :for="name" class="input__label">{{ label }}</label>
+    <label :for="name" class="input__label--accordion">{{ label }}</label>
     <small class="has-error" v-if="error">{{ error }}</small>
   </div>
 </template>

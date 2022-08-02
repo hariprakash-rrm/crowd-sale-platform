@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import http from 'http';
 import morganMiddleware from './morgan';
 import winston from './winston';
-
+const path = require("path");
 const app = express();
 import * as expressPort from './expressPort';
 import { routes } from "./routes";
@@ -19,6 +19,7 @@ app.use(express.json({ limit: '4mb' }));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, 'uploads/')));
 
 require('./config')((err) => {
     if (err) {

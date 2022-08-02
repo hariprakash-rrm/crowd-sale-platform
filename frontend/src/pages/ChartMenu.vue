@@ -1,7 +1,4 @@
 <template>
-  <div class="intro-y flex items-center mt-8">
-    <h2 class="text-lg font-medium mr-auto">Chart</h2>
-  </div>
   <div class="intro-y grid grid-cols-12 gap-6 mt-5">
     <div class="col-span-12 lg:col-span-6">
       <!-- BEGIN: Vertical Bar Chart -->
@@ -208,11 +205,23 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
 import StackedBarChart from "@/components/stacked-bar-chart/Main.vue";
 import HorizontalBarChart from "@/components/horizontal-bar-chart/Main.vue";
 import LineChart from "@/components/line-chart/Main.vue";
 import DonutChart from "@/components/donut-chart/Main.vue";
 import PieChart from "@/components/pie-chart/Main.vue";
+
+export default {
+  name: "ChartMenu",
+  components: {
+    VerticalBarChart,
+    StackedBarChart,
+    HorizontalBarChart,
+    LineChart,
+    DonutChart,
+    PieChart,
+  },
+};
 </script>

@@ -1,11 +1,11 @@
 import multer from 'multer'
-
+import path  from 'path'
 /**
  * File Path to store the CollectionImage
  */
  const storage = multer.diskStorage({ 
     destination: function(req, file, cb){
-        cb(null,'./upload/')
+        cb(null,path.resolve(__dirname, '../../../../../uploads/'))
     },
     filename: function(req, file, cb){
         cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
