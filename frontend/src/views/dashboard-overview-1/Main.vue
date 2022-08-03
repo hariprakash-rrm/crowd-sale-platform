@@ -283,7 +283,8 @@
                             bscOngoingLargeModal(
                               user.id,
                               user.name,
-                              user.symbol
+                              user.symbol,
+                              user.minimumContributeAmount
                             )
                           "
                           class="w-16 h-16 image-fit"
@@ -304,7 +305,7 @@
                       <a
                         href="#"
                         @click="
-                          bscOngoingLargeModal1(user.id, user.name, user.symbol)
+                          bscOngoingLargeModal1(user.id, user.name, user.symbol,user.minimumContributeAmount)
                         "
                         class="underline text-primary pt-4"
                         >View Details</a
@@ -351,7 +352,7 @@
                     <td class="table-report__action w-40">
                       <div class="flex justify-center gap-4 items-center">
                         <a
-                          @click="contribute(user.id, user.name, user.symbol)"
+                          @click="contribute(user.id, user.name, user.symbol,user.minimumContributeAmount)"
                           class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                           >Contribute
                         </a>
@@ -593,7 +594,7 @@
                               />
                             </div>
                             <p class="text-base mt-1 text-left">
-                              Minimum Amount : <strong>50</strong>
+                              Minimum Amount : <strong>{{this.currentModalMinimumAmount}}</strong>
                             </p>
                           </div>
                           <div
@@ -1647,7 +1648,7 @@
                           />
                         </td>
                         <p class="text-base mt-1">
-                          Minimum Amount : <strong>50</strong>
+                          Minimum Amount : <strong>{{this.currentModalMinimumAmount}}</strong>
                         </p>
                       </div>
                     </div>
@@ -1897,6 +1898,7 @@ export default {
       warningModalPreview: false,
       warningModalPreview: false,
       processingStatus: "",
+      currentModalMinimumAmount:0
     };
   },
 
@@ -1988,30 +1990,31 @@ export default {
       }
     },
 
-    async bscOngoingLargeModal(id, name, symbol) {
-      await this.mainBscOngoingLargeModal(id, name, symbol);
+    async bscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
+      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
     },
-    async bscOngoingLargeModal1(id, name, symbol) {
-      await this.mainBscOngoingLargeModal(id, name, symbol);
+    async bscOngoingLargeModal1(id, name, symbol,currentModalMinimumAmount) {
+      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
     },
-    async mainBscOngoingLargeModal(id, name, symbol) {
+    async mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
       this.callSwitch();
       let respectiveModal = 1;
-      await this.setModalDetails(id, name, symbol, respectiveModal);
+      await this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
     },
 
-    async contribute(id, name, symbol) {
+    async contribute(id, name, symbol,currentModalMinimumAmount) {
       this.callSwitch();
       let approveStatus = false;
       this.isAgree = false;
       let respectiveModal = 2;
-      this.setModalDetails(id, name, symbol, respectiveModal);
+      this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
     },
-    async setModalDetails(id, name, symbol, respectiveModal) {
+    async setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount) {
       this.currentModalId = id;
       this.currentModalFee = 2;
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
+      this.currentModalMinimumAmount = currentModalMinimumAmount / 10**18;
       let approveToken = approveContract();
       await approveToken.methods
         .balanceOf(localStorage.getItem("address"))

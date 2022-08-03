@@ -25,7 +25,7 @@ export const loadFromContract = async (req, res) => {
     set.poolStakableAmount = Math.round(set.poolStakableAmount / 10 ** 18);
     set.currentlyStaked = Math.round(currentlyStaked / 10 ** 18);
     set["source"] = "bsc";
-   
+    set.minimumContributeAmount = set.minimumContributeAmount / 
     var currentPercentage =
       (set.currentlyStaked * 100) / set.poolStakableAmount;
     set.currentPercentage = Math.round(currentPercentage);
@@ -35,8 +35,6 @@ export const loadFromContract = async (req, res) => {
     var currentTime = await Math.floor(Date.now() / 1000);
     console.log(currentTime);
     console.log(set.endTime);
-
-    
 
     if (currentTime > set.endTime && currentTime > set.startTime) {
       poolsCompleted.push(set);
