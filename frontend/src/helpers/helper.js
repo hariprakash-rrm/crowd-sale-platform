@@ -62,3 +62,38 @@ export function createUUID() {
   var uuid = s.join('');
   return uuid;
 }
+
+export function changeNetwork (chainId) {
+  // do not delete
+  //  await   window.ethereum
+  //       .request({
+  //         method: "wallet_addEthereumChain",
+  //         params: [
+  //           {
+  //             chainId: 5,
+  //             chainName: "Binance Smart Chain",
+  //             nativeCurrency: {
+  //               name: "Binance Coin",
+  //               symbol: "BNB",
+  //               decimals: 18,
+  //             },
+  //             rpcUrls: ["https://bsc-dataseed.binance.org/"],
+  //             blockExplorerUrls: ["https://bscscan.com"],
+  //           },
+  //         ],
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  
+  if (window.ethereum) {
+    try {
+       window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: Web3.utils.toHex(chainId) }],
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}

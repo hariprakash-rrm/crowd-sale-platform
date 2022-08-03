@@ -1821,9 +1821,13 @@ import { interval } from "rxjs";
 import { useWeb3DealsStore } from "@/stores/web3Deals.js";
 import { useContributionStore } from "@/stores/contribution.js";
 import { mapActions, mapState } from "pinia";
-import { contractABI, approveContract } from "@/helpers/helper.js";
+import {
+  contractABI,
+  approveContract,
+  changeNetwork,
+} from "@/helpers/helper.js";
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
-import Web3 from "web3";
+
 const largeModalSizePreview = ref(false);
 const warningModalPreview = ref(false);
 const bscOngoingModal = ref(false);
@@ -1991,40 +1995,23 @@ export default {
       await this.mainBscOngoingLargeModal(id, name, symbol);
     },
     async mainBscOngoingLargeModal(id, name, symbol) {
-      await this.changeNetwork();
-      console.log(id);
-      this.currentModalId = id;
-      this.currentModalFee = 2;
-      this.currentModalName = name;
-      this.currentModalSymbol = symbol;
-      let approveToken = approveContract();
-      let from = localStorage.getItem("address");
-      console.log(typeof from);
-      await approveToken.methods
-        .balanceOf(localStorage.getItem("address"))
-        .call()
-        .then((receipt) => {
-          this.currentTokenBalance = receipt / 10 ** 18;
-        });
-      if (this.amountIncludeFee > this.currentTokenBalance) {
-        this.insufficientFund = "insufficient Fund";
-      } else {
-        this.insufficientFund = "";
-      }
-      console.log(id, this.payload);
-      this.bscOngoingModal = true;
+      this.callSwitch();
+      let respectiveModal = 1;
+      await this.setModalDetails(id, name, symbol, respectiveModal);
     },
 
     async contribute(id, name, symbol) {
-      await this.changeNetwork();
+      this.callSwitch();
       let approveStatus = false;
-      // Default setting agree checkbox to false
       this.isAgree = false;
+      let respectiveModal = 2;
+      this.setModalDetails(id, name, symbol, respectiveModal);
+    },
+    async setModalDetails(id, name, symbol, respectiveModal) {
       this.currentModalId = id;
       this.currentModalFee = 2;
       this.currentModalName = name;
       this.currentModalSymbol = symbol;
-      this.bscContributeModal = true;
       let approveToken = approveContract();
       await approveToken.methods
         .balanceOf(localStorage.getItem("address"))
@@ -2037,10 +2024,14 @@ export default {
       } else {
         this.insufficientFund = "";
       }
+      if (respectiveModal == 1) {
+        this.bscOngoingModal = true;
+      } else {
+        this.bscContributeModal = true;
+      }
     },
-
     async finalContribute() {
-      await this.changeNetwork();
+      this.callSwitch();
       this.successModalPreview = true;
       this.currentModalAmount = this.payload[this.currentModalId];
       this.currentModalFeeAmount = await ((this.currentModalAmount *
@@ -2049,7 +2040,6 @@ export default {
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
       this.amountIncludeFee =
         this.totalCurrentModalAmount + this.currentModalFeeAmount;
-      // this.insufficientFund = "Approving Please wait(D)";
       let contract = contractABI();
       let approveToken = approveContract();
       let totalAmountToContribute = BigInt(
@@ -2095,39 +2085,16 @@ export default {
           });
       }
     },
-    async changeNetwork() {
-      // do not delete
-      //  await   window.ethereum
-      //       .request({
-      //         method: "wallet_addEthereumChain",
-      //         params: [
-      //           {
-      //             chainId: 5,
-      //             chainName: "Binance Smart Chain",
-      //             nativeCurrency: {
-      //               name: "Binance Coin",
-      //               symbol: "BNB",
-      //               decimals: 18,
-      //             },
-      //             rpcUrls: ["https://bsc-dataseed.binance.org/"],
-      //             blockExplorerUrls: ["https://bscscan.com"],
-      //           },
-      //         ],
-      //       })
-      //       .catch((error) => {
-      //         console.log(error);
-      //       });
-      const chainId = 5;
-      if (window.ethereum) {
-        try {
-          await window.ethereum.request({
-            method: "wallet_switchEthereumChain",
-            params: [{ chainId: Web3.utils.toHex(chainId) }],
-          });
-        } catch (error) {
-          console.error(error);
-        }
-      }
+    async callSwitch() {
+      let chainId = 5;
+      // await if(source == eth){
+      //   chainId == 1;
+      // }else if(source == bsc){
+      //   chainId == 5;
+      // }else{
+      //   chainId ==97
+      // }
+      await changeNetwork(chainId);
     },
     async reload() {
       window.location.reload();
