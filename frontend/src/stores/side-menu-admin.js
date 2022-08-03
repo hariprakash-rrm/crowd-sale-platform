@@ -14,9 +14,8 @@ export const useSideMenuAdminStore = defineStore("sideMenuAdmin", {
         title: "Profile",
       },
       {
-        icon: "UsersIcon",
-        pageName: "side-menu-users",
-        title: "Users",
+        icon: "EditIcon",
+        title: "Edit Pool Details",
         subMenu: [
           {
             icon: "",
