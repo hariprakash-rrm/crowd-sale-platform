@@ -33,8 +33,7 @@
               Forgot Password
             </h2>
             <div class="intro-x mt-2 text-slate-400">
-              Enter your email for the verification process. We will send 4
-              digit code to your email.
+              Enter your email for the verification process. We will send a reset link to your email.
             </div>
 
             <form
