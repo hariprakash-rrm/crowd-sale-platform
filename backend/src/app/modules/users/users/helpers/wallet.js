@@ -22,6 +22,7 @@ export const loadFromContract = async (req, res) => {
     var currentlyStaked = await contract.methods.getTotalStakedInPool(i).call();
     var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
     set.humanEndTime = newDate;
+    set.unixTime = set.endTime;
     set.poolStakableAmount = Math.round(set.poolStakableAmount / 10 ** 18);
     set.currentlyStaked = Math.round(currentlyStaked / 10 ** 18);
     set["source"] = "bsc";
@@ -35,6 +36,9 @@ export const loadFromContract = async (req, res) => {
     var currentTime = await Math.floor(Date.now() / 1000);
     console.log(currentTime);
     console.log(set.endTime);
+
+    
+
     if (currentTime > set.endTime && currentTime > set.startTime) {
       poolsCompleted.push(set);
       set["poolsStatus"] = "completed";

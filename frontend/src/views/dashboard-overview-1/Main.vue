@@ -1,5 +1,4 @@
 <template>
- 
   <div class="grid grid-cols-12 gap-6">
     <!-- BEGIN: General Report -->
     <!-- END: General Report -->
@@ -8,7 +7,6 @@
 
     <div class="col-span-12 mt-8">
       <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
-      
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">
             <div class="box bg-[#ffffff] p-8">
@@ -1895,6 +1893,9 @@ export default {
 
   async mounted() {
     await this.fetchDeals();
+
+    console.log(this.poolsOngoing.length);
+    await this.createPath();
     await this.reversePool();
   },
   computed: {
@@ -1905,7 +1906,6 @@ export default {
       this.poolsCompleted = this.dealsData.poolsCompleted || [];
       this.poolsMyDeal = this.dealsData.poolsMyDeal || [];
       console.log(this.dealsData);
-
       return true;
     },
   },
@@ -1953,6 +1953,45 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
+    async createPath(){
+    //   fot (let i = 0;i< this.poolsOngoing.length;i++){
+    //     var num = 2
+    //     var count = this.poolsOngoing[i].push(i)
+
+
+    //  for (let i = 0; i < this.poolsOngoing.length; i++) {
+      let v = this.poolsOngoing[0].
+      console.log(v)
+      // console.log(stakedAmount);
+      
+     
+  //     var currentTime = await Math.floor(Date.now() / 1000);
+  //     let future: any = new Date(userInfo.stakingEndTime * 1000);
+  //     let now: any = new Date();
+  //     let diff = future - now;
+
+  //     let days = Math.floor(diff / (1000  60  60 * 24));
+  //     let hours = Math.floor(diff / (1000  60  60));
+  //     let mins = Math.floor(diff / (1000 * 60));
+  //     let secs = Math.floor(diff / 1000);
+
+  //     let d = days;
+  //     let h = hours - days * 24;
+  //     let m = mins - hours * 60;
+  //     let s = secs - mins * 60;
+  //     // console.log(d + ":" + h + ":" + m + ":" + s);
+
+  //     var stakedAmount = await this.contract.methods
+  //       .getUserStakedTokenInPool(i)
+  //       .call({ from: localStorage.getItem("connecttedAddress") });
+  //     // console.log(stakedAmount);
+  //       console.log(stakedAmount,userInfo,currentTime,i,d,h,m,s)
+  //   }
+  // }
+
+
+    },
+
     async bscOngoingLargeModal(id, name, symbol) {
       await this.mainBscOngoingLargeModal(id, name, symbol);
     },
