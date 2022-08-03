@@ -342,7 +342,9 @@
 
                     <td class="text-center">{{ user.symbol }}</td>
                     <td class="text-center">{{ user.currentPercentage }}%</td>
-                    <td class="text-center font-semibold">{{ this.countDown[index] }}</td>
+                    <td class="text-center font-semibold">
+                      {{ this.countDown[index] }}
+                    </td>
                     <td class="text-center text-base font-bold">
                       <div class="bnb"></div>
                     </td>
@@ -1821,6 +1823,7 @@ import { useContributionStore } from "@/stores/contribution.js";
 import { mapActions, mapState } from "pinia";
 import { contractABI, approveContract } from "@/helpers/helper.js";
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
+import Web3 from "web3";
 const largeModalSizePreview = ref(false);
 const warningModalPreview = ref(false);
 const bscOngoingModal = ref(false);
@@ -1957,7 +1960,7 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-   
+
     async setCountDown() {
       for (let i = 0; i < this.poolsOngoing.length; i++) {
         let _endTime = this.poolsOngoing[i].endTime;
@@ -1975,10 +1978,9 @@ export default {
         let h = hours - days * 24;
         let m = mins - hours * 60;
         let s = secs - mins * 60;
-      
+
         this.countDown[i] =
           d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
-       
       }
     },
 
@@ -1989,6 +1991,7 @@ export default {
       await this.mainBscOngoingLargeModal(id, name, symbol);
     },
     async mainBscOngoingLargeModal(id, name, symbol) {
+      await this.changeNetwork();
       console.log(id);
       this.currentModalId = id;
       this.currentModalFee = 2;
@@ -2013,6 +2016,7 @@ export default {
     },
 
     async contribute(id, name, symbol) {
+      await this.changeNetwork();
       let approveStatus = false;
       // Default setting agree checkbox to false
       this.isAgree = false;
@@ -2036,6 +2040,7 @@ export default {
     },
 
     async finalContribute() {
+      await this.changeNetwork();
       this.successModalPreview = true;
       this.currentModalAmount = this.payload[this.currentModalId];
       this.currentModalFeeAmount = await ((this.currentModalAmount *
@@ -2088,6 +2093,40 @@ export default {
             this.processingStatus = err.message;
             return err;
           });
+      }
+    },
+    async changeNetwork() {
+      // do not delete
+      //  await   window.ethereum
+      //       .request({
+      //         method: "wallet_addEthereumChain",
+      //         params: [
+      //           {
+      //             chainId: 5,
+      //             chainName: "Binance Smart Chain",
+      //             nativeCurrency: {
+      //               name: "Binance Coin",
+      //               symbol: "BNB",
+      //               decimals: 18,
+      //             },
+      //             rpcUrls: ["https://bsc-dataseed.binance.org/"],
+      //             blockExplorerUrls: ["https://bscscan.com"],
+      //           },
+      //         ],
+      //       })
+      //       .catch((error) => {
+      //         console.log(error);
+      //       });
+      const chainId = 5;
+      if (window.ethereum) {
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: Web3.utils.toHex(chainId) }],
+          });
+        } catch (error) {
+          console.error(error);
+        }
       }
     },
     async reload() {
