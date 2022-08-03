@@ -5,8 +5,7 @@ import ForgotPassword from "../pages/ForgotPassword.vue";
 import EnterOtp from "../pages/OTPVerification.vue";
 import UpdateProfile from "../pages/UpdateProfile.vue";
 import Admin from "../pages/AccordionPage.vue"
-import Chart from "../pages/ChartMenu.vue";
-import ResetPassword from "../views/reset-password/Main.vue";
+import ResetPassword from "../pages/ResetPassword.vue";
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
@@ -101,6 +100,12 @@ const routes = [
                 path: "/profile",
                 name: "side-menu-update-profile",
                 component: UpdateProfile,
+                meta: {
+                    authorize: [
+                        Role.user,
+                        Role.admin
+                    ],
+                }
             },
             {
                 path: "/notification",
@@ -117,11 +122,6 @@ const routes = [
                 name: "profile-overview-1",
                 component: Notification,
             },
-            {
-                path: "chart",
-                name: "side-menu-chart",
-                component: Chart,
-              },
         ]
     },
 
@@ -135,21 +135,21 @@ const router = createRouter({
     },
 });
 
-// router.beforeEach((to, from, next) => {
-//     const { authorize } = to.meta;
-//     if (authorize && authorize.length) {
-//         const currentUserRole = getScope();
-//         if (!authorize.includes(currentUserRole)) {
-//             return next("/login");
-//         } else {
-//             return next();
-//         }
-//     }
-//     if (to.path == "" || to.path == "/") {
-//         next("/login");
-//     } else {
-//         next();
-//     }
-// });
+router.beforeEach((to, from, next) => {
+    const { authorize } = to.meta;
+    if (authorize && authorize.length) {
+        const currentUserRole = getScope();
+        if (!authorize.includes(currentUserRole)) {
+            return next("/login");
+        } else {
+            return next();
+        }
+    }
+    if (to.path == "" || to.path == "/") {
+        next("/login");
+    } else {
+        next();
+    }
+});
 
 export default router;

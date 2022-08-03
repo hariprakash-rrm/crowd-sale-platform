@@ -154,9 +154,14 @@ export const useAuthUserStore = defineStore("authUserStore", {
             })
         },
         forgotPassword(email) {
-            return auth.forgotPassword(email).then(res => {
-                toaster.success("Password Reset Link Sent Successfully");
-                router.push("/login");
+            return auth.forgotPassword({ email: email }).then(res => {
+                let { success } = res["data"]
+                if (success) {
+                    toaster.success("Password Reset Successfully");
+                    router.push("/login");
+                } else {
+                    toaster.error("Email not found");
+                }
                 return res;
             }).catch(err => {
                 console.error("error in resetting password", err);
@@ -193,6 +198,20 @@ export const useAuthUserStore = defineStore("authUserStore", {
             }).catch(err => {
                 toaster.error("Error in updating 2 Step Verification");
                 console.error("error in updating 2 Step Verification", err);
+                return err;
+            })
+        },
+        resetPasswordWithToken(payload) {
+            return auth.resetPasswordWithToken(payload).then(res => {
+                let { success } = res["data"]
+                if (success) {
+                    toaster.success("Password Reset Successfully");
+                    router.push("/login");
+                }
+                return res;
+            }).catch(err => {
+                toaster.error("Error in resetting password");
+                console.error("error in resetting password", err);
                 return err;
             })
         }

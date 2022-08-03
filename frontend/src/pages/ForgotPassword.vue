@@ -111,16 +111,7 @@ export default {
   methods: {
     ...mapActions(useAuthUserStore, ["forgotPassword"]),
     onSubmit() {
-      this.forgotPassword(email).then(
-        (res) => {
-          let { response, data } = res["data"] || res.response;
-          if (response == 200 || data?.response == 200) {
-            this.showToast("success", "OTP Verified Successfully");
-          } else {
-            this.showToast("error", "Please enter valid OTP");
-          }
-        }
-      );
+      this.forgotPassword(this.email);
     },
     showToast(type = "success", content = "") {
       this.$toast.show(content, { type: type });

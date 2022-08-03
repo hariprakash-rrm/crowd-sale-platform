@@ -587,7 +587,7 @@ export const resetOldPassword = async (req, res) => {
   }
 };
 
-export const createORupdateNotifificationSettings = async (req, res) => {
+export const createORupdateNotificationSettings = async (req, res) => {
   try {
     let data = {
       isDeal: req.body.isDeal || false,
