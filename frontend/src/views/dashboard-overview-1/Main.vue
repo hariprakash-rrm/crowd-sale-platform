@@ -1960,7 +1960,7 @@ export default {
 
 
     //  for (let i = 0; i < this.poolsOngoing.length; i++) {
-      let v = this.poolsOngoing[0].
+      let v = this.poolsOngoing[0].unixTime
       console.log(v)
       // console.log(stakedAmount);
       
