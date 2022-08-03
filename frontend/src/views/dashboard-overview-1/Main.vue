@@ -272,8 +272,8 @@
 
                 <tbody>
                   <tr
-                    v-for="user in poolsOngoing"
-                    :key="user.id"
+                    v-for="(user, index) in poolsOngoing"
+                    :key="index"
                     class="intro-x zoom-in"
                   >
                     <td class="">
@@ -342,7 +342,7 @@
 
                     <td class="text-center">{{ user.symbol }}</td>
                     <td class="text-center">{{ user.currentPercentage }}%</td>
-                    <td class="text-center">{{ user.humanEndTime }}</td>
+                    <td class="text-center font-semibold">{{ this.countDown[index] }}</td>
                     <td class="text-center text-base font-bold">
                       <div class="bnb"></div>
                     </td>
@@ -1815,6 +1815,7 @@
 
 <script>
 import { ref, provide } from "vue";
+import { interval } from "rxjs";
 import { useWeb3DealsStore } from "@/stores/web3Deals.js";
 import { useContributionStore } from "@/stores/contribution.js";
 import { mapActions, mapState } from "pinia";
@@ -1850,6 +1851,7 @@ export default {
       poolsUpcoming: [],
       poolsCompleted: [],
       poolsMyDeal: [],
+      countDown: [""],
       payload: {},
       tab: 1,
       networkTab: 1,
@@ -1893,10 +1895,12 @@ export default {
 
   async mounted() {
     await this.fetchDeals();
-
     console.log(this.poolsOngoing.length);
-    await this.createPath();
     await this.reversePool();
+    const obs$ = await interval(1000);
+    obs$.subscribe((d) => {
+      this.setCountDown();
+    });
   },
   computed: {
     ...mapState(useWeb3DealsStore, ["dealsData"]),
@@ -1953,43 +1957,29 @@ export default {
     activeTabFour() {
       this.tab = 4;
     },
-    async createPath(){
-    //   fot (let i = 0;i< this.poolsOngoing.length;i++){
-    //     var num = 2
-    //     var count = this.poolsOngoing[i].push(i)
+   
+    async setCountDown() {
+      for (let i = 0; i < this.poolsOngoing.length; i++) {
+        let _endTime = this.poolsOngoing[i].endTime;
+        var currentTime = await Math.floor(Date.now() / 1000);
+        let future = new Date(_endTime * 1000);
+        let now = new Date();
+        let diff = future - now;
 
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor(diff / (1000 * 60 * 60));
+        let mins = Math.floor(diff / (1000 * 60));
+        let secs = Math.floor(diff / 1000);
 
-    //  for (let i = 0; i < this.poolsOngoing.length; i++) {
-      let v = this.poolsOngoing[0].unixTime
-      console.log(v)
-      // console.log(stakedAmount);
+        let d = days;
+        let h = hours - days * 24;
+        let m = mins - hours * 60;
+        let s = secs - mins * 60;
       
-     
-  //     var currentTime = await Math.floor(Date.now() / 1000);
-  //     let future: any = new Date(userInfo.stakingEndTime * 1000);
-  //     let now: any = new Date();
-  //     let diff = future - now;
-
-  //     let days = Math.floor(diff / (1000  60  60 * 24));
-  //     let hours = Math.floor(diff / (1000  60  60));
-  //     let mins = Math.floor(diff / (1000 * 60));
-  //     let secs = Math.floor(diff / 1000);
-
-  //     let d = days;
-  //     let h = hours - days * 24;
-  //     let m = mins - hours * 60;
-  //     let s = secs - mins * 60;
-  //     // console.log(d + ":" + h + ":" + m + ":" + s);
-
-  //     var stakedAmount = await this.contract.methods
-  //       .getUserStakedTokenInPool(i)
-  //       .call({ from: localStorage.getItem("connecttedAddress") });
-  //     // console.log(stakedAmount);
-  //       console.log(stakedAmount,userInfo,currentTime,i,d,h,m,s)
-  //   }
-  // }
-
-
+        this.countDown[i] =
+          d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
+       
+      }
     },
 
     async bscOngoingLargeModal(id, name, symbol) {
@@ -2075,7 +2065,7 @@ export default {
         })
         .catch((err) => {
           console.log(err.message);
-          console.log(err.transactionHash);
+          console.log(JSON.parse(err.transactionHash));
           this.processingStatus = err.message;
           return err;
         });

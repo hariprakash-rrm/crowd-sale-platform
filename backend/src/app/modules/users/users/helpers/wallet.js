@@ -22,7 +22,6 @@ export const loadFromContract = async (req, res) => {
     var currentlyStaked = await contract.methods.getTotalStakedInPool(i).call();
     var newDate = new Date(parseInt(set.endTime * 1000)).toLocaleString();
     set.humanEndTime = newDate;
-    set.unixTime = parseInt(set.endTime);
     set.poolStakableAmount = Math.round(set.poolStakableAmount / 10 ** 18);
     set.currentlyStaked = Math.round(currentlyStaked / 10 ** 18);
     set["source"] = "bsc";
