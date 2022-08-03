@@ -3,11 +3,11 @@
     <div class="intro-y flex items-center mt-8">
       <!-- <h2 class="text-lg font-medium mr-auto">Accordion</h2> -->
     </div>
-    <div class="intro-y grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y grid grid-cols-12 gap-6">
       <!-- BEGIN: Basic Accordion -->
       <div class="col-span-12 lg:col-span-12">
-        <div class="flex items-center justify-cenetr mb-8">
-          <ul
+        <!-- <div class="flex items-center justify-cenetr mb-8">
+       <ul
             class="nav nav-pills w-3/4 lg:w-2/5 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
             role="tablist"
           >
@@ -80,11 +80,11 @@
                 Write User Data
               </button>
             </li>
-          </ul>
-        </div>
+          </ul> 
+        </div> -->
 
         <!-- BEGIN: TAB READ CONTRACT -->
-        <div v-show="tab === 1">
+        <!-- <div v-show="tab === 1"> -->
           <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 lg:col-span-6">
               <PreviewComponent class="intro-y box mt-5">
@@ -431,17 +431,17 @@
               </PreviewComponent>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
         <!-- END: TAB READ CONTRACT -->
         <!-- BEGIN: TAB WRITE CONTRACT -->
-        <div v-show="tab === 2">
+        <!-- <div v-show="tab === 2">
           <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 lg:col-span-6">
               <PreviewComponent class="intro-y box mt-5">
                 <div
                   class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
                 >
-                  <!-- <div class="p-5"> -->
+             
                   <Preview>
                     <AccordionGroup class="accordion-boxed">
                       <AccordionItem>
@@ -870,7 +870,7 @@
                 <div
                   class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
                 >
-                  <!-- <div class="p-5"> -->
+                 
                   <Preview>
                     <AccordionGroup class="accordion-boxed">
                       <AccordionItem>
@@ -1026,17 +1026,13 @@
                     </AccordionGroup>
                   </Preview>
 
-                  <!-- </div> -->
+               
                 </div>
               </PreviewComponent>
             </div>
           </div>
-        </div>
-        <!-- END: TAB WRITE CONTRACT -->
-        <div v-show="tab === 3"></div>
-        <!-- BEGIN: TAB WRITE USER DATA -->
-        <div v-show="tab === 4"></div>
-        <!-- END: TAB WRITE USER DATA -->
+        </div> -->
+      
       </div>
       <!-- END: Basic Accordion -->
     </div>
