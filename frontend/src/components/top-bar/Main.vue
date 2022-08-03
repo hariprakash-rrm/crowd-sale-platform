@@ -175,7 +175,10 @@
           >
             {{ account.address }}
           </p>
-          <p class="text-white text-xs text-center" v-if="account.network != 'Unknown'">
+          <p
+            class="text-white text-xs text-center"
+            v-if="account.network != 'Unknown'"
+          >
             Network - {{ account.network }}
           </p>
         </DropdownToggle>
@@ -215,11 +218,9 @@
               </DropdownItem>
             </router-link>
             <router-link to="/profile?tab_id=2">
-            <DropdownItem
-              class="dropdown-item hover:bg-white/5"
-            >
-              <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
-            >
+              <DropdownItem class="dropdown-item hover:bg-white/5">
+                <LockIcon class="w-4 h-4 mr-2" /> Reset Password</DropdownItem
+              >
             </router-link>
             <DropdownItem class="dropdown-item hover:bg-white/5">
               <HelpCircleIcon class="w-4 h-4 mr-2" /> Help</DropdownItem
@@ -247,7 +248,7 @@ import { useAuthUserStore } from "../../stores/auth";
 import { mapState, mapActions } from "pinia";
 import { StorageService } from "../../service/storage.services";
 import { ContractService } from "../../service/contract.service";
-
+import Web3 from "web3";
 declare global {
   interface Window {
     ethereum?: MetaMaskInpageProvider;
@@ -275,6 +276,7 @@ export default {
       return this.user?.profile?.name || "";
     },
   },
+
   async mounted() {
     this.account =
       this.storageService.getItem("account") === null
@@ -288,13 +290,53 @@ export default {
     );
     this.connect();
     this.fetchUser();
+    this.changeNetwork();
+    
   },
 
   methods: {
-    ...mapActions(useAuthUserStore, ["logout", "fetchUser", "createWalletAddress"]),
+    ...mapActions(useAuthUserStore, [
+      "logout",
+      "fetchUser",
+      "createWalletAddress",
+    ]),
     connect() {
       // this connects to the wallet
       this.openMetamask();
+    },
+    async changeNetwork() {
+      // do not delete
+  //  await   window.ethereum
+  //       .request({
+  //         method: "wallet_addEthereumChain",
+  //         params: [
+  //           {
+  //             chainId: 5,
+  //             chainName: "Binance Smart Chain",
+  //             nativeCurrency: {
+  //               name: "Binance Coin",
+  //               symbol: "BNB",
+  //               decimals: 18,
+  //             },
+  //             rpcUrls: ["https://bsc-dataseed.binance.org/"],
+  //             blockExplorerUrls: ["https://bscscan.com"],
+  //           },
+  //         ],
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+      const chainId = 5;
+      if (window.ethereum) {
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: Web3.utils.toHex(chainId) }],
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
     },
 
     async openMetamask() {
