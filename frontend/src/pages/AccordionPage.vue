@@ -7,10 +7,9 @@
       <!-- BEGIN: General Report -->
       <div class="col-span-12 mb-8">
         <!-- BEGIN: Vertical Bar Chart -->
-          
+
         <!-- END: Vertical Bar Chart -->
         <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
-       
           <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
             <div class="report-box report-box__right zoom-in">
               <div class="box bg-[#ffffff] p-8">
@@ -80,19 +79,21 @@
             </div>
           </div>
 
-             <div class="col-span-12">
-                <PreviewComponent class="intro-y box mt-6">
-                  <div
-                    class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
-                  >
-                    <h2 class="font-medium text-base mr-auto">Vertical Bar Chart</h2>
-                  </div>
-                  <div class="p-5">
-                    <Preview>
-                      <VerticalBarChart :height="400" />
-                    </Preview>
-                  </div>
-                </PreviewComponent>
+          <div class="col-span-12">
+            <PreviewComponent class="intro-y box mt-6">
+              <div
+                class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
+              >
+                <h2 class="font-medium text-base mr-auto">
+                  Vertical Bar Chart
+                </h2>
+              </div>
+              <div class="p-5">
+                <Preview>
+                  <VerticalBarChart :height="400" />
+                </Preview>
+              </div>
+            </PreviewComponent>
           </div>
         </div>
       </div>
@@ -233,7 +234,6 @@
                             <label for="input" class="input__label"
                               >Input</label
                             >
-                          
                           </div>
 
                           <div
@@ -262,7 +262,9 @@
                             Query
                           </button>
 
-                            <p class="text-black font-normal text-base pt-4">{{ this._isAuthoroziedUser }}</p>
+                          <p class="text-black font-normal text-base pt-4">
+                            {{ this._isAuthoroziedUser }}
+                          </p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -287,7 +289,6 @@
                               >Pid</label
                             >
                           </div>
-                         
 
                           <div
                             class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -315,7 +316,9 @@
                             Query
                           </button>
 
-                           <p class="text-black font-normal text-base pt-4">{{ this._balanceStakableToken }}</p>
+                          <p class="text-black font-normal text-base pt-4">
+                            {{ this._balanceStakableToken }}
+                          </p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -340,7 +343,6 @@
                               >Input</label
                             >
                           </div>
-                         
 
                           <div
                             class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -368,7 +370,9 @@
                             Query
                           </button>
 
-                           <p class="text-black font-normal text-base pt-4">{{ this._blacklisted }}</p>
+                          <p class="text-black font-normal text-base pt-4">
+                            {{ this._blacklisted }}
+                          </p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -423,7 +427,6 @@
                             />
                             <label for="p-id" class="input__label">Pid</label>
                           </div>
-                          
 
                           <div
                             class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -444,13 +447,16 @@
                             </TomSelect>
                           </div>
 
-                          <button type="button"
+                          <button
+                            type="button"
                             @click="getTotalStakedInPool()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
                           </button>
-                          <p class="text-black font-normal text-base pt-4">{{ this._getTotalStakedInPool }}</p>
+                          <p class="text-black font-normal text-base pt-4">
+                            {{ this._getTotalStakedInPool }}
+                          </p>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -489,7 +495,6 @@
                               >Address</label
                             >
                           </div>
-                        
 
                           <div
                             class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
@@ -517,7 +522,9 @@
                             Query
                           </a>
 
-                            <p class="text-black font-normal text-base pt-4">{{ this._getUserStakedTokenInPool }}</p>
+                          <p class="text-black font-normal text-base pt-4">
+                            {{ this._getUserStakedTokenInPool }}
+                          </p>
                         </AccordionPanel>
                       </AccordionItem>
                       <!-- <AccordionItem>
@@ -577,6 +584,17 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
+                          <button
+                            @click="isOwner()"
+                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Query
+                          </button>
+                          <div class="relative pl-2">
+                            <p class="text-black text-base">
+                              {{ this._owner }}
+                            </p>
+                          </div>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -606,9 +624,16 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-
+                          <button
+                            @click="isPaused()"
+                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Query
+                          </button>
                           <div class="relative pl-2">
-                            <p class="text-black text-base">False</p>
+                            <p class="text-black text-base">
+                              {{ this._paused }}
+                            </p>
                           </div>
                         </AccordionPanel>
                       </AccordionItem>
@@ -675,6 +700,17 @@
                               0 <em class="text-slate-400">uint256</em>
                             </p>
                           </div>
+                          <button
+                            @click="poolLength()"
+                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Query
+                          </button>
+                          <div class="relative pl-2">
+                            <p class="text-black text-base">
+                              {{ this._poolLength }}
+                            </p>
+                          </div>
                         </AccordionPanel>
                       </AccordionItem>
                       <!-- <AccordionItem>
@@ -702,9 +738,11 @@
                         >
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this.getTotalStakedAmountInPoolAddress"
                               type="text"
-                              id="p-id"
-                              class="input__field--accordion peer"
+                              id="input"
+                              class="input__field peer"
                               placeholder=""
                             />
                             <label for="p-id" class="input__label--accordion"
@@ -731,7 +769,8 @@
                             </TomSelect>
                           </div>
 
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Query
@@ -808,9 +847,11 @@
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
                           <div class="relative mb-6">
-                            <input
+                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this._airDropTokenToken"
                               type="text"
-                              id="reward-tokens"
+                              id="input"
                               class="input__field peer"
                               placeholder=""
                             />
@@ -819,9 +860,11 @@
                             >
                           </div>
                           <div class="relative mb-6">
-                            <input
+                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this._airDropTokenReceiver"
                               type="text"
-                              id="receipients"
+                              id="input"
                               class="input__field peer"
                               placeholder=""
                             />
@@ -831,8 +874,10 @@
                           </div>
                           <div class="relative mb-6">
                             <input
+                              @keyup.enter="addMessage"
+                              v-model="this._airDropTokenAmount"
                               type="text"
-                              id="amount"
+                              id="input"
                               class="input__field peer"
                               placeholder=""
                             />
@@ -858,7 +903,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button @click="airDropToken()"
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1154,7 +1200,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1202,7 +1249,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1248,7 +1296,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1308,7 +1357,8 @@
                             </TomSelect>
                           </div>
 
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1342,7 +1392,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1376,7 +1427,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1453,7 +1505,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1536,7 +1589,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1570,7 +1624,8 @@
                               <option value="3">Polygon</option>
                             </TomSelect>
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Write
@@ -1618,7 +1673,8 @@
                               >Input</label
                             >
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                           >
                             Query
@@ -1657,7 +1713,8 @@
                             >
                           </div>
 
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Update
@@ -1741,7 +1798,8 @@
                             >
                           </div>
 
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Update
@@ -1788,7 +1846,8 @@
                               >Input</label
                             >
                           </div>
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                           >
                             Query
@@ -1871,7 +1930,8 @@
                             >
                           </div>
 
-                          <button type="button"
+                          <button
+                            type="button"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                           >
                             Update
@@ -1914,6 +1974,9 @@ export default {
       _getTotalStakedInPool: "",
       _getUserStakedTokenInPool: "",
       _poolInfo: "",
+      _paused: "",
+      _owner: "",
+      _poolLength:""
     };
   },
   async mounted() {
@@ -1962,7 +2025,7 @@ export default {
         });
     },
     addPoolToDB(receipt) {
-      console.log(receipt)
+      console.log(receipt);
       let finalPayload = {
         lpToken: this.addPoolData.lpToken,
         name: this.addPoolData.name,
@@ -1971,13 +2034,14 @@ export default {
         endTime: this.addPoolData.endTime,
         minimumContributeAmount: this.addPoolData.minimumContributeAmount,
         poolStakableAmount: this.addPoolData.poolStakableAmount,
-        _transactionHash: receipt.transactionHash,
+        // _transactionHash: receipt.transactionHash,
       };
       this.createPool(finalPayload);
     },
-    async airDropToken([addresses], [amounts]) {
+    async airDropToken() {
+      
       await this.contract.methods
-        .airDropToken([], [])
+        .AirdropdropTokens(this._airDropTokenToken,[this._airDropTokenReceiver],[this._airDropTokenAmount])
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
@@ -2130,6 +2194,46 @@ export default {
           console.log(err);
         });
     },
+    async isPaused() {
+      await this.contract.methods
+        .paused()
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._paused = "Bool" + " : " + receipt;;
+        })
+        .catch((err) => {
+          this._paused = err;
+          console.log(err);
+        });
+    },
+    async isOwner() {
+      await this.contract.methods
+        .owner()
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._owner = receipt;
+        })
+        .catch((err) => {
+          this._owner = err;
+          console.log(err);
+        });
+    },
+    async poolLength() {
+      await this.contract.methods
+        .poolLength()
+        .call()
+        .then((receipt) => {
+          console.log(receipt);
+          this._poolLength = "Length" + " : " + receipt;;
+        })
+        .catch((err) => {
+          this._poolLength = err;
+          console.log(err);
+        });
+    },
+
     // async poolInfo() {
     //   await this.contract.methods
     //     .poolInfo(this.poolInfoPid)
