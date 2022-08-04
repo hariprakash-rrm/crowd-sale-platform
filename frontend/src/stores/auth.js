@@ -35,7 +35,11 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    const { token } = res["data"];
+                    const { isUserVerificationRequired, token, profile } = res["data"];
+                    if (isUserVerificationRequired) {
+                        router.push(`/verify-2-step-verification/${profile._id}`);
+                        return res;
+                    }
                     localStorage.setItem("token", JSON.stringify({ token }));
                     this.userData = token;
                     const { role } = parseJwt(token);
@@ -52,7 +56,14 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     return err
                 })
         },
-        logout() {
+        verify2stepVerification(payload) {
+            return auth
+                .verify2stepVerification(payload)
+                .then((res) => {
+                }
+                )
+        }
+        , logout() {
             localStorage.removeItem("token");
             this.userData = {}
             this.user = {}

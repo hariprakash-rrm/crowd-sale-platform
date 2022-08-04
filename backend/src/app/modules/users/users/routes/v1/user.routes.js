@@ -18,7 +18,7 @@ export const routes = (app, version) => {
         version + '/active-user/:Id',
         emailVerification,
     );
-    app.get(
+    app.post(
         version + '/2-step-verification/:id',
         otpVerification,
     );

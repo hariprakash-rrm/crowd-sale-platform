@@ -6,6 +6,7 @@ import EnterOtp from "../pages/OTPVerification.vue";
 import UpdateProfile from "../pages/UpdateProfile.vue";
 import Admin from "../pages/AccordionPage.vue"
 import ResetPassword from "../pages/ResetPassword.vue";
+import Verify2StepVerification from "../pages/Verify2Step.vue"
 import ErrorPage from "../views/error-page/Main.vue";
 import DashboardOverview1 from "../views/dashboard-overview-1/Main.vue";
 import SideMenu from "../layouts/side-menu/Main.vue";
@@ -37,6 +38,11 @@ const routes = [
         path: "/enter-otp/:user_id",
         name: "enter-otp",
         component: EnterOtp,
+    },
+    {
+        path: "/verify-2-step-verification/:id",
+        name: "verify-2-step-verification",
+        component: Verify2StepVerification,
     },
     {
         path: "/reset-password",

@@ -149,9 +149,14 @@ export default {
     ...mapActions(useAuthUserStore, ["login"]),
     onSubmit() {
       this.login({ email: this.email, password: this.password }).then((res) => {
-        let { response, data } = res["data"] || res.response;
+        let { response, data, isUserVerificationRequired } =
+          res["data"] || res.response;
         if (response == 200 || data?.response == 200) {
-          this.showToast("success", "Login Successful");
+          if (isUserVerificationRequired) {
+            this.showToast("warning", "Please verify 2-step authentication");
+          } else {
+            this.showToast("success", "Login Successful");
+          }
         } else {
           this.showToast("error", "Invalid Email or Password");
         }

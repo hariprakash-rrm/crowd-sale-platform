@@ -39,7 +39,10 @@ export const auth = {
     return axios.put(`${BASE_URL}/user-2-step-verification`, is2StepVerificationOn)
   },
   resetPasswordWithToken: (payload) => {
-    return axios.put(`${BASE_URL}/reset-new-password`, payload)
+    return axios.post(`${BASE_URL}/reset-new-password`, payload)
+  },
+  verify2stepVerification: ({ id, otp }) => {
+    return axios.post(`${BASE_URL}/2-step-verification/${id}`, { otp })
   }
 };
 
