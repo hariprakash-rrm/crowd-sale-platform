@@ -36,22 +36,27 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("temp_token");
-                    const { isUserVerificationRequired, token, data } = res["data"];
-                    if (isUserVerificationRequired) {
-                        router.push(`/verify-2-step-verification/${data._id}`);
-                        localStorage.setItem("temp_token", JSON.stringify({ token }));
-                        return res;
-                    }
-                    localStorage.setItem("token", JSON.stringify({ token }));
-                    this.userData = token;
-                    const { role } = parseJwt(token);
-                    if (role == Role.admin) {
-                        router.push("/admin");
-                    }
-                    else {
-                        router.push("/dashboard");
+                    let { success } = res;
+                    if (success) {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("temp_token");
+                        const { isUserVerificationRequired, token, data } = res["data"];
+                        if (isUserVerificationRequired) {
+                            router.push(`/verify-2-step-verification/${data._id}`);
+                            localStorage.setItem("temp_token", JSON.stringify({ token }));
+                            return res;
+                        }
+                        localStorage.setItem("token", JSON.stringify({ token }));
+                        this.userData = token;
+                        const { role } = parseJwt(token);
+                        if (role == Role.admin) {
+                            router.push("/admin");
+                        }
+                        else {
+                            router.push("/dashboard");
+                        }
+                    } else {
+                        toaster.error(res.message);
                     }
                     return res
                 })
