@@ -36,7 +36,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    let { success } = res;
+                    let { success } = res["data"];
                     if (success) {
                         localStorage.removeItem("token");
                         localStorage.removeItem("temp_token");
@@ -56,7 +56,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                             router.push("/dashboard");
                         }
                     } else {
-                        toaster.error(res.message);
+                        toaster.error(res['data'].message);
                     }
                     return res
                 })
