@@ -1,5 +1,5 @@
 
-import { createWalletAddress, getWalletAddresss, removeWalletAddress, updateWalletAddress } from "../../controllers/walletAddressController";
+import { createWalletAddress, getWalletAddress, removeWalletAddress, updateWalletAddress } from "../../controllers/walletAddressController";
 const checkAuth = require('../../../users/helpers/check-auth');
 
 export const routes = (app, version) => {
@@ -16,7 +16,7 @@ export const routes = (app, version) => {
     app.get(
         version + '/wallet-address',
         checkAuth,
-        getWalletAddresss,
+        getWalletAddress,
     );
     app.delete(
         version + '/wallet-address',

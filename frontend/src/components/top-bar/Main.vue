@@ -21,7 +21,9 @@
       <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
           <li class="breadcrumb-item"><a href="#">Application</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Profile</li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ currentPage }}
+          </li>
         </ol>
       </nav>
       <!-- END: Breadcrumb -->
@@ -265,7 +267,7 @@ export default {
       connector: "",
       ethereum: "",
       account: {},
-
+      currentPage: "",
       storageService: StorageService,
       contractService: ContractService,
     };
@@ -290,7 +292,6 @@ export default {
     );
     this.connect();
     this.fetchUser();
-    
   },
 
   methods: {
@@ -350,7 +351,7 @@ export default {
       this.account = Object.assign({}, account);
       this.storageService.setItem("account", JSON.stringify(this.account));
       this.storageService.setItem("address", this.account.address);
-      // this.createWalletAddress("ytyyt");
+      // this.createWalletAddress({walletAddress: this.account.address});
     },
 
     setNetwork(chainId: any) {
@@ -388,6 +389,29 @@ export default {
       }
       return { network, key };
     },
+    getCurrentPage() {
+      if (this.$router.currentRoute.value.path == "/profile") {
+        this.currentPage = "Profile";
+      } else if (
+        ["/dashboard", "/admin"].includes(this.$router.currentRoute.value.path)
+      ) {
+        this.currentPage = "Dashboard";
+      } else if (this.$router.currentRoute.value.path == "/calendar") {
+        this.currentPage = "Calendar";
+      } else if (this.$router.currentRoute.value.path == "/settings") {
+        this.currentPage = "Settings";
+      } else if (this.$router.currentRoute.value.path == "/") {
+        this.currentPage = "Home";
+      }
+    },
+  },
+  watch: {
+    "$route.query": function () {
+      this.getCurrentPage();
+    },
+  },
+  created() {
+    this.getCurrentPage();
   },
 };
 

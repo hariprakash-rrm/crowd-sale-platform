@@ -8,6 +8,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
         userData: JSON.parse(localStorage.getItem("token")) || {},
         user: {},
         userFullName: "",
+        selectedUserData: {}
     }),
     getters: {
         colorScheme(state) {
@@ -35,11 +36,11 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
-                    const { isUserVerificationRequired, token, profile } = res["data"];
-                    // if (isUserVerificationRequired) {
-                    //     router.push(`/verify-2-step-verification/${profile._id}`);
-                    //     return res;
-                    // }
+                    const { isUserVerificationRequired, token, data } = res["data"];
+                    if (isUserVerificationRequired) {
+                        router.push(`/verify-2-step-verification/${data._id}`);
+                        return res;
+                    }
                     localStorage.setItem("token", JSON.stringify({ token }));
                     this.userData = token;
                     const { role } = parseJwt(token);
@@ -223,6 +224,21 @@ export const useAuthUserStore = defineStore("authUserStore", {
             }).catch(err => {
                 toaster.error("Error in resetting password");
                 console.error("error in resetting password", err);
+                return err;
+            })
+        },
+        readUserData(payload) {
+            return auth.readUserData(payload).then(res => {
+                let { success, data } = res["data"]
+                if (success) {
+                    toaster.success("User Data Read Successfully");
+                    this.selectedUserData = data
+                } else {
+                    toaster.error("Error in reading user data");
+                }
+                return res;
+            }).catch(err => {
+                console.error("error in readUserData", err);
                 return err;
             })
         }

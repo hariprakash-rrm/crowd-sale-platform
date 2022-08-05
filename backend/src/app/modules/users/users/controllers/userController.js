@@ -39,7 +39,7 @@ export const userSignup = async (req, res, next) => {
             success: 0,
             message:
               error.code === 11000
-                ? "Email already exists, try differnt email"
+                ? "Email already exists, try different email"
                 : error.message,
             response: 400,
             data: {},
@@ -136,6 +136,11 @@ export const loginUser = async (req, res, next) => {
               specialChars: false,
               lowerCaseAlphabets: false,
             });
+            await User.findOneAndUpdate(
+              { _id: user._id, },
+              { $set: { verificationOtp: otp }, },
+              { new: true, }
+            )
             await send2StepVerificationMail(
               userProfile.userName,
               user.email,
@@ -435,7 +440,7 @@ export const sendWelcomeMail = async (userName, email, otp) => {
 
     let subject = "Your account created successfully";
     let send = await sendMail(email, subject, html);
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const updateProfile = async (req, res) => {
@@ -675,9 +680,8 @@ export const update2StepVerification = async (req, res) => {
       } else {
         return responseModule.successResponse(res, {
           success: 1,
-          message: `${
-            req.body.is2StepVerificationOn ? "Enabled" : "Disabled"
-          } 2-step verification for your unreal account`,
+          message: `${req.body.is2StepVerificationOn ? "Enabled" : "Disabled"
+            } 2-step verification for your unreal account`,
         });
       }
     });
@@ -756,7 +760,7 @@ export const send2StepVerificationMail = async (userName, email, otp) => {
 
     let subject = "2 Step Verification Code - Unreal";
     let send = await sendMail(email, subject, html);
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const otpVerification = async (req, res, next) => {
@@ -784,11 +788,11 @@ export const otpVerification = async (req, res, next) => {
   }
 };
 
-export const forgotPassword = async(req, res) => {
+export const forgotPassword = async (req, res) => {
   try {
-    let user = await User.findOne({email: req.body.email})
-    if(user){
-      let userProfile =  UserProfile.findOne({user: user._id})
+    let user = await User.findOne({ email: req.body.email })
+    if (user) {
+      let userProfile = UserProfile.findOne({ user: user._id })
 
       const token = jwt.sign(
         {
@@ -800,7 +804,7 @@ export const forgotPassword = async(req, res) => {
         }
       );
 
-        let link = `https://159.89.192.6/reset-password?token=${token}`;
+      let link = `https://159.89.192.6/reset-password?token=${token}`;
       const tmpl = fs.readFileSync(
         require.resolve("../../../../../templates/reset-password.ejs"),
         "utf8"
@@ -811,7 +815,7 @@ export const forgotPassword = async(req, res) => {
         link: link,
         year: new Date().getFullYear(),
       });
-  
+
       let subject = "Reset your password - Unreal";
       let send = await sendMail(user.email, subject, html);
       return responseModule.successResponse(res, {
@@ -819,15 +823,15 @@ export const forgotPassword = async(req, res) => {
         message: "Password reset link sent, Check mail",
         data: {},
       });
-    }else{
+    } else {
       return responseModule.errorResponse(res, {
         success: 0,
         message: "Email is not registered",
       });
     }
-   
+
   } catch (error) {
-    console.log("error",error)
+    console.log("error", error)
     return responseModule.errorResponse(res, {
       success: 0,
       message: "Something went wrong",
@@ -835,9 +839,9 @@ export const forgotPassword = async(req, res) => {
   }
 };
 
-export const resetNewPassword = async(req, res)=>{
-  try{
-    const decoded = jwt.verify(req.body.token,config.JWT_KEY)
+export const resetNewPassword = async (req, res) => {
+  try {
+    const decoded = jwt.verify(req.body.token, config.JWT_KEY)
 
     let updateData = {
       password: bcrypt.hashSync(req.body.newPassword, 10),
@@ -862,9 +866,9 @@ export const resetNewPassword = async(req, res)=>{
       }
     });
 
-    
+
   } catch (error) {
-    console.log("error",error)
+    console.log("error", error)
     return responseModule.errorResponse(res, {
       success: 0,
       message: "Invalid password reset link or link expired",

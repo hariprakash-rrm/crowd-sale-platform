@@ -47,7 +47,7 @@ export const updateWalletAddress = async (req, res) => {
   }
 };
 
-export const getWalletAddresss = async (req, res) => {
+export const getWalletAddress = async (req, res) => {
   try {
     let walletAddress = await WalletAddress.find({profile: req.userData.profileId});
     return responseModule.successResponse(res, {

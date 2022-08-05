@@ -263,7 +263,7 @@
                           </button>
 
                           <p class="text-black font-normal text-base pt-4">
-                            {{ this._isAuthoroziedUser }}
+                            {{ _isAuthoroziedUser }}
                           </p>
                         </AccordionPanel>
                       </AccordionItem>
@@ -279,7 +279,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.balanceStakableTokenPid"
+                              v-model="balanceStakableTokenPid"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -317,7 +317,7 @@
                           </button>
 
                           <p class="text-black font-normal text-base pt-4">
-                            {{ this._balanceStakableToken }}
+                            {{ _balanceStakableToken }}
                           </p>
                         </AccordionPanel>
                       </AccordionItem>
@@ -333,7 +333,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.blacklistedAddress"
+                              v-model="blacklistedAddress"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -371,7 +371,7 @@
                           </button>
 
                           <p class="text-black font-normal text-base pt-4">
-                            {{ this._blacklisted }}
+                            {{ _blacklisted }}
                           </p>
                         </AccordionPanel>
                       </AccordionItem>
@@ -419,7 +419,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.getTotalStakedInPoolPid"
+                              v-model="getTotalStakedInPoolPid"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -455,7 +455,7 @@
                             Query
                           </button>
                           <p class="text-black font-normal text-base pt-4">
-                            {{ this._getTotalStakedInPool }}
+                            {{ _getTotalStakedInPool }}
                           </p>
                         </AccordionPanel>
                       </AccordionItem>
@@ -471,7 +471,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.getUserStakedTokenInPoolPid"
+                              v-model="getUserStakedTokenInPoolPid"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -485,7 +485,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.getUserStakedTokenInPoolAddress"
+                              v-model="getUserStakedTokenInPoolAddress"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -523,7 +523,7 @@
                           </a>
 
                           <p class="text-black font-normal text-base pt-4">
-                            {{ this._getUserStakedTokenInPool }}
+                            {{ _getUserStakedTokenInPool }}
                           </p>
                         </AccordionPanel>
                       </AccordionItem>
@@ -592,7 +592,7 @@
                           </button>
                           <div class="relative pl-2">
                             <p class="text-black text-base">
-                              {{ this._owner }}
+                              {{ _owner }}
                             </p>
                           </div>
                         </AccordionPanel>
@@ -632,7 +632,7 @@
                           </button>
                           <div class="relative pl-2">
                             <p class="text-black text-base">
-                              {{ this._paused }}
+                              {{ _paused }}
                             </p>
                           </div>
                         </AccordionPanel>
@@ -649,7 +649,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.poolInfoPid"
+                              v-model="poolInfoPid"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -659,7 +659,7 @@
                               >uint256</label
                             >
                           </div>
-                          <span>{{ this._poolInfo }}</span>
+                          <span>{{ _poolInfo }}</span>
                           <a
                             @click="poolInfo()"
                             class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
@@ -708,7 +708,7 @@
                           </button>
                           <div class="relative pl-2">
                             <p class="text-black text-base">
-                              {{ this._poolLength }}
+                              {{ _poolLength }}
                             </p>
                           </div>
                         </AccordionPanel>
@@ -739,7 +739,7 @@
                           <div class="relative mb-6">
                             <input
                               @keyup.enter="addMessage"
-                              v-model="this.getTotalStakedAmountInPoolAddress"
+                              v-model="getTotalStakedAmountInPoolAddress"
                               type="text"
                               id="input"
                               class="input__field peer"
@@ -846,69 +846,79 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <div class="relative mb-6">
-                             <input
-                              @keyup.enter="addMessage"
-                              v-model="this._airDropTokenToken"
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="reward-tokens" class="input__label"
-                              >Reward Tokens</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                             <input
-                              @keyup.enter="addMessage"
-                              v-model="this._airDropTokenReceiver"
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="receipients" class="input__label"
-                              >Recipients</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              @keyup.enter="addMessage"
-                              v-model="this._airDropTokenAmount"
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="amount" class="input__label"
-                              >Amount</label
-                            >
-                          </div>
-                          <div
-                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                          <form
+                            id="airdrop_token"
+                            @submit.prevent="airDropToken()"
                           >
-                            <label
-                              for="update-profile-form-2"
-                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                              >Network</label
+                            <div class="relative mb-6">
+                              <input
+                                @keyup.enter="addMessage"
+                                v-model="airdrop_token._airDropTokenToken"
+                                type="text"
+                                id="input"
+                                class="input__field peer"
+                                placeholder=""
+                                required
+                              />
+                              <label for="reward-tokens" class="input__label"
+                                >Reward Tokens</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                @keyup.enter="addMessage"
+                                v-model="airdrop_token._airDropTokenReceiver"
+                                type="text"
+                                id="input"
+                                class="input__field peer"
+                                placeholder=""
+                                multiple
+                                required
+                              />
+                              <label for="receipients" class="input__label"
+                                >Recipients</label
+                              >
+                            </div>
+                            <div class="relative mb-6">
+                              <input
+                                @keyup.enter="addMessage"
+                                v-model="airdrop_token._airDropTokenAmount"
+                                type="text"
+                                id="input"
+                                class="input__field peer"
+                                placeholder=""
+                                multiple
+                                required
+                              />
+                              <label for="amount" class="input__label"
+                                >Amount</label
+                              >
+                            </div>
+                            <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
                             >
-                            <TomSelect
-                              id="update-profile-form-2"
-                              v-model="select"
-                              class="w-full absolute top-2"
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
+                            <button
+                              type="submit"
+                              class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                             >
-                              <option value="1">BSC</option>
-                              <option value="2">Ethereum</option>
-                              <option value="3">Polygon</option>
-                            </TomSelect>
-                          </div>
-                          <button @click="airDropToken()"
-                            type="button"
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Write
-                          </button>
+                              Write
+                            </button>
+                          </form>
                         </AccordionPanel>
                       </AccordionItem>
                       <AccordionItem>
@@ -1968,7 +1978,7 @@ export default {
       tab: 2,
       Write: "Write",
       contract: "",
-      _isAuthoroziedUser: "",
+      airdrop_token: {},
       _balanceStakableToken: "",
       _blacklisted: "",
       _getTotalStakedInPool: "",
@@ -1976,14 +1986,16 @@ export default {
       _poolInfo: "",
       _paused: "",
       _owner: "",
-      _poolLength:""
+      _poolLength: "",
+      isAuthoroziedUserAddress: "",
+      _isAuthoroziedUser: "",
     };
   },
   async mounted() {
     this.contract = await contractABI();
   },
   methods: {
-    ...mapActions(usePoolStore, ["createPool"]),
+    ...mapActions(usePoolStore, ["addAirDropToken", "createPool"]),
     handleInput(name, value) {
       this.addPoolData[name] = value;
     },
@@ -2039,12 +2051,16 @@ export default {
       this.createPool(finalPayload);
     },
     async airDropToken() {
-      
       await this.contract.methods
-        .AirdropdropTokens(this._airDropTokenToken,[this._airDropTokenReceiver],[this._airDropTokenAmount])
+        .AirdropdropTokens(
+          this.airdrop_token._airDropTokenToken,
+          [this.airdrop_token._airDropTokenReceiver],
+          [this.airdrop_token._airDropTokenAmount]
+        )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           console.log(receipt);
+          // this.addAirDropToken(receipt);
           this.Write = "Write Successful";
         });
     },
@@ -2200,7 +2216,7 @@ export default {
         .call()
         .then((receipt) => {
           console.log(receipt);
-          this._paused = "Bool" + " : " + receipt;;
+          this._paused = "Bool" + " : " + receipt;
         })
         .catch((err) => {
           this._paused = err;
@@ -2226,7 +2242,7 @@ export default {
         .call()
         .then((receipt) => {
           console.log(receipt);
-          this._poolLength = "Length" + " : " + receipt;;
+          this._poolLength = "Length" + " : " + receipt;
         })
         .catch((err) => {
           this._poolLength = err;

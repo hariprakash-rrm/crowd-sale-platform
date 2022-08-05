@@ -43,6 +43,9 @@ export const auth = {
   },
   verify2stepVerification: ({ id, otp }) => {
     return axios.post(`${BASE_URL}/2-step-verification/${id}`, { otp })
+  },
+  readUserData: (payload) => {
+    return axios.post(`${BASE_URL}/read-user-data`, payload)
   }
 };
 
