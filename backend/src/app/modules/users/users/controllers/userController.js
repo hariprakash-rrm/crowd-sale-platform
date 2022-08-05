@@ -694,9 +694,10 @@ export const update2StepVerification = async (req, res) => {
 };
 export const updateUserStatus = async (req, res) => {
   try {
+     
     const profile = await UserProfile.findOneAndUpdate(
       {
-        _id: req.userData.profileId,
+        _id: req.body.profileId,
       },
       {
         $set: { tier: req.body.tierId },
@@ -708,10 +709,10 @@ export const updateUserStatus = async (req, res) => {
 
     const user = await User.findOneAndUpdate(
       {
-        _id: req.userData.userId,
+        _id: req.body.userId,
       },
       {
-        $set: { isBlocked: req.body.isBlocked },
+        $set: { isBlocked: req.body.isBlocked || false },
       },
       {
         new: true,
