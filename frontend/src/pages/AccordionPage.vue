@@ -106,7 +106,7 @@
             role="tablist"
           >
             <li
-              @click="activeTabOne"
+              @click="toggleTab(1)"
               id="active-read-contract-tab"
               class="nav-item flex-1"
               role="presentation"
@@ -123,7 +123,7 @@
               </button>
             </li>
             <li
-              @click="activeTabTwo"
+              @click="toggleTab(2)"
               id="inactive-write-contract-tab"
               class="nav-item flex-1"
               role="presentation"
@@ -140,7 +140,7 @@
               </button>
             </li>
             <li
-              @click="activeTabThree"
+              @click="toggleTab(3)"
               id="inactive-read-user-tab"
               class="nav-item flex-1"
               role="presentation"
@@ -157,7 +157,7 @@
               </button>
             </li>
             <li
-              @click="activeTabFour"
+              @click="toggleTab(4)"
               id="inactive-write-user-tab"
               class="nav-item flex-1"
               role="presentation"
@@ -175,7 +175,7 @@
               </button>
             </li>
             <li
-              @click="activeTabFive"
+              @click="toggleTab(5)"
               id="inactive-write-user-tab"
               class="nav-item flex-1"
               role="presentation"
@@ -840,7 +840,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            1. Airdropdrop Tokens
+                            1. Airdrop Tokens
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -1672,63 +1672,31 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-                          <button
-                            type="button"
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
+                          <form
+                            id="read-profile-form"
+                            @submit.prevent="searchUser(searchData.email)"
                           >
-                            Query
-                          </button>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
+                            <div class="relative mb-6">
+                              <input
+                                type="email"
+                                id="write-user-data-email"
+                                class="input__field peer"
+                                placeholder=""
+                                v-model="searchData.email"
+                                required
+                              />
+                              <label for="input" class="input__label"
+                                >Email</label
+                              >
+                            </div>
+                            <button
+                              type="submit"
+                              class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                             >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-
-                          <button
-                            type="button"
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Update
-                          </button>
+                              Fetch User
+                            </button>
+                          </form>
+                          <div v-if="fetchUserData">User Data: {{ updatedUserData }}</div>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1758,62 +1726,66 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-                          <a
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
+                          <form
+                            id="write-update-profile-form"
+                            @submit.prevent="searchUser(searchData.email)"
                           >
-                            Fetch Data
-                          </a>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
+                            <div class="relative mb-6">
+                              <input
+                                type="email"
+                                id="write-user-data-email"
+                                class="input__field peer"
+                                placeholder=""
+                                v-model="searchData.email"
+                                required
+                              />
+                              <label for="input" class="input__label"
+                                >Email</label
+                              >
+                            </div>
+                            <button
+                              type="submit"
+                              class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                             >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
+                              Fetch User
+                            </button>
+                          </form>
+                          <div v-if="fetchUserData">
+                            <h5>Name: {{ updatedUserData.name }}</h5>
+                            <h5>Bio: {{ updatedUserData.bio || "--" }}</h5>
+                            <div
+                              class="form-check form-switch flex"
+                              style="justify-content: space-around"
                             >
+                              <div>
+                                <label
+                                  class="form-check-label font-semibold text-base ml-0"
+                                  for="checkbox-switch-7"
+                                  >Blocked</label
+                                >
+                              </div>
+                              <div class="flex gap-4 gap-x-6">
+                                <input
+                                  id="isBlocked"
+                                  name="isBlocked"
+                                  class="form-check-input"
+                                  :value="
+                                    updatedUserData.user.isBlocked || false
+                                  "
+                                  :checked="
+                                    updatedUserData.user.isBlocked || false
+                                  "
+                                  @change="
+                                    handleUserBlock(
+                                      'isBlocked',
+                                      $event.target.checked
+                                    )
+                                  "
+                                  type="checkbox"
+                                />
+                              </div>
+                            </div>
                           </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
-                          </div>
-
-                          <button
-                            type="button"
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Update
-                          </button>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1965,13 +1937,15 @@
 <script>
 import VueTimepicker from "vue2-timepicker";
 import { contractABI } from "@/helpers/helper.js";
-import { mapActions } from "pinia";
+import { mapActions, mapState, mapWritableState } from "pinia";
 import TextInput from "@/components/reusable/TextInput.vue";
 import { usePoolStore } from "@/stores/pool.js";
+import { useAuthUserStore } from "@/stores/auth";
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
+import TextAreaInput from "@/components/reusable/TextAreaInput.vue";
 
 export default {
-  components: { VueTimepicker, TextInput, VerticalBarChart },
+  components: { VueTimepicker, TextInput, VerticalBarChart, TextAreaInput },
   data() {
     return {
       addPoolData: {},
@@ -1989,30 +1963,47 @@ export default {
       _poolLength: "",
       isAuthoroziedUserAddress: "",
       _isAuthoroziedUser: "",
+      searchData: {},
+      updatedUserData: {},
     };
+  },
+  computed: {
+    // ...mapState(useAuthUserStore, ["selectedUserData"]),
+    ...mapWritableState(useAuthUserStore, ["selectedUserData"]),
+    fetchUserData() {
+      if (Object.keys(this.selectedUserData)?.length) {
+        this.setProfileData(this.selectedUserData);
+        return true;
+      }
+      return false;
+    },
   },
   async mounted() {
     this.contract = await contractABI();
   },
   methods: {
     ...mapActions(usePoolStore, ["addAirDropToken", "createPool"]),
+    ...mapActions(useAuthUserStore, ["readUserData", "updateUserStatus"]),
     handleInput(name, value) {
       this.addPoolData[name] = value;
     },
-    activeTabOne() {
-      this.tab = 1;
+    handleUserDataInput(name, value) {
+      this.updatedUserData[name] = value;
     },
-    activeTabTwo() {
-      this.tab = 2;
+    setProfileData(data) {
+      this.updatedUserData = {
+        userId: data.user._id,
+        profileId: data.profile._id,
+        ...data.profile,
+        ...data.user,
+      };
+      return this.updatedUserData;
     },
-    activeTabThree() {
-      this.tab = 3;
-    },
-    activeTabFour() {
-      this.tab = 4;
-    },
-    activeTabFive() {
-      this.tab = 5;
+    toggleTab(tab) {
+      this.searchData = {};
+      this.selectedUserData = {};
+      this.updatedUserData = {};
+      this.tab = tab;
     },
     async addPool() {
       await this.contract.methods
@@ -2249,21 +2240,17 @@ export default {
           console.log(err);
         });
     },
-
-    // async poolInfo() {
-    //   await this.contract.methods
-    //     .poolInfo(this.poolInfoPid)
-    //     .call()
-    //     .then((receipt) => {
-    //       console.log(receipt);
-    //       this._poolInfo = "name" + " : " + receipt.name + "symbol" + " : "+receipt.symbol
-
-    //     })
-    //     .catch((err) => {
-    //       this._poolInfo = "Please check the Pid Number";
-    //       console.log(err);
-    //     });
-    // },
+    searchUser(email) {
+      this.readUserData({ email: email });
+    },
+    handleUserBlock(name, value) {
+      this.updatedUserData[name] = value;
+      this.updateUserStatus({
+        isBlocked: value,
+        profileID: this.updatedUserData.profileId,
+        userId: this.updatedUserData.userId,
+      });
+    },
   },
 };
 </script>

@@ -46,6 +46,9 @@ export const auth = {
   },
   readUserData: (payload) => {
     return axios.post(`${BASE_URL}/read-user-data`, payload)
+  },
+  updateUserStatus: (payload) => {
+    return axios.put(`${BASE_URL}/update-user-status`, payload)
   }
 };
 

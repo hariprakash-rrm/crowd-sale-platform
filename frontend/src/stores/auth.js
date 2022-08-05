@@ -36,9 +36,12 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .logInToken(payload)
                 .then((res) => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("temp_token");
                     const { isUserVerificationRequired, token, data } = res["data"];
                     if (isUserVerificationRequired) {
                         router.push(`/verify-2-step-verification/${data._id}`);
+                        localStorage.setItem("temp_token", JSON.stringify({ token }));
                         return res;
                     }
                     localStorage.setItem("token", JSON.stringify({ token }));
@@ -61,10 +64,29 @@ export const useAuthUserStore = defineStore("authUserStore", {
             return auth
                 .verify2stepVerification(payload)
                 .then((res) => {
-                }
-                )
-        }
-        , logout() {
+                    let { success } = res["data"];
+                    if (success) {
+                        const { token } = JSON.parse(localStorage.getItem("temp_token"));
+                        localStorage.removeItem("temp_token");
+                        localStorage.setItem("token", JSON.stringify({ token }));
+                        this.userData = token;
+                        const { role } = parseJwt(token);
+                        if (role == Role.admin) {
+                            router.push("/admin");
+                        }
+                        else {
+                            router.push("/dashboard");
+                        }
+                    } else {
+                        toaster.error("Invalid OTP");
+                    }
+                }).catch((err) => {
+                    toaster.error("Invalid OTP");
+                    console.error("error in verify2stuepVerification", err);
+                    return err
+                })
+        },
+        logout() {
             localStorage.removeItem("token");
             this.userData = {}
             this.user = {}
@@ -239,6 +261,22 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 return res;
             }).catch(err => {
                 console.error("error in readUserData", err);
+                return err;
+            })
+        },
+        updateUserStatus(payload) {
+            return auth.updateUserStatus(payload).then(res => {
+                let { success } = res["data"]
+                if (success) {
+                    toaster.success("User Status Updated Successfully");
+                }
+                else {
+                    toaster.error("Error in updating user status");
+                }
+                return res;
+            }).catch(err => {
+                toaster.error("Error in updating user status");
+                console.error("error in updating user status", err);
                 return err;
             })
         }
