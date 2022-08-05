@@ -772,7 +772,7 @@ export const otpVerification = async (req, res, next) => {
       return responseModule.successResponse(res, {
         success: 1,
         message: "Otp verified successfully",
-        data: response,
+        data: {},
       });
     } else {
       return res.status(400).json({
