@@ -1909,6 +1909,7 @@ export default {
     obs$.subscribe((d) => {
       this.setCountDown();
     });
+    
   },
   computed: {
     ...mapState(useWeb3DealsStore, ["dealsData"]),
