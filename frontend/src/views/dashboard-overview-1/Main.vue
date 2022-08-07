@@ -373,7 +373,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">Bsc Ongoing</div>
+                <div class="text-xl font-semibold py-5">Ongoing</div>
                 <a
                   @click="bscOngoingModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -790,7 +790,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">BSC Upcoming</div>
+                <div class="text-xl font-semibold py-5">Upcoming</div>
                 <a
                   @click="bscUpcomingModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -1103,7 +1103,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">BSC Completed</div>
+                <div class="text-xl font-semibold py-5">Completed</div>
                 <a
                   @click="bscCompletedModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -1389,7 +1389,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">BSC My Deals</div>
+                <div class="text-xl font-semibold py-5">My Deals</div>
                 <a
                   @click="bscMydealsModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -1836,17 +1836,17 @@ const successModalPreview = ref(false);
 const bscUpcomingModal = ref(false);
 const bscCompletedModal = ref(false);
 const bscMydealsModal = ref(false);
-const ethOngoingModal = ref(false);
-const ethUpcomingModal = ref(false);
-const ethCompletedModal = ref(false);
-const ethMydealsModal = ref(false);
-const polygonOngoingModal = ref(false);
-const polygonUpcomingModal = ref(false);
-const polygonCompletedModal = ref(false);
-const polygonMydealsModal = ref(false);
+// const ethOngoingModal = ref(false);
+// const ethUpcomingModal = ref(false);
+// const ethCompletedModal = ref(false);
+// const ethMydealsModal = ref(false);
+// const polygonOngoingModal = ref(false);
+// const polygonUpcomingModal = ref(false);
+// const polygonCompletedModal = ref(false);
+// const polygonMydealsModal = ref(false);
 const bscContributeModal = ref(false);
-const ethContributeModal = ref(false);
-const polygonContributeModal = ref(false);
+// const ethContributeModal = ref(false);
+// const polygonContributeModal = ref(false);
 
 export default {
   contractResult: "",
@@ -1866,20 +1866,20 @@ export default {
       singlePooldetailTab: 1,
       largeModalSizePreview: false,
       bscContributeModal: false,
-      ethContributeModal: false,
-      polygonContributeModal: false,
+      // ethContributeModal: false,
+      // polygonContributeModal: false,
       bscOngoingModal: false,
       bscUpcomingModal: false,
       bscCompletedModal: false,
       bscMydealsModal: false,
-      ethOngoingModal: false,
-      ethUpcomingModal: false,
-      ethCompletedModal: false,
-      ethMydealsModal: false,
-      polygonOngoingModal: false,
-      polygonUpcomingModal: false,
-      polygonCompletedModal: false,
-      polygonMydealsModal: false,
+      // ethOngoingModal: false,
+      // ethUpcomingModal: false,
+      // ethCompletedModal: false,
+      // ethMydealsModal: false,
+      // polygonOngoingModal: false,
+      // polygonUpcomingModal: false,
+      // polygonCompletedModal: false,
+      // polygonMydealsModal: false,
       currentModalId: "",
       currentModalAmount: 0,
       currentModalName: "",
@@ -1896,7 +1896,6 @@ export default {
       successModalPreview: false,
       modalMessage: "",
       warningModalPreview: false,
-      warningModalPreview: false,
       processingStatus: "",
       currentModalMinimumAmount:0
     };
@@ -1910,6 +1909,7 @@ export default {
     obs$.subscribe((d) => {
       this.setCountDown();
     });
+    
   },
   computed: {
     ...mapState(useWeb3DealsStore, ["dealsData"]),

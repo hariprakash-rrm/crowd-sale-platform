@@ -14,6 +14,10 @@ import UserLayout from "../views/users-layout-1/Main.vue";
 import SingleDeal from "../views/profile-overview-2/Main.vue";
 import Notification from "../views/profile-overview-2/Main.vue"
 import ReadContract from "../views/read-contract/Main.vue";
+import WriteContract from "../views/write-contract/Main.vue";
+import ReadUserData from "../views/read-userdata/Main.vue";
+import WriteUserData from "../views/write-userdata/Main.vue";
+import EditPools from "../views/edit-pools/Main.vue";
 
 import { Role, getScope } from "@/helpers/helper.js";
 import Calendar from "../views/calendar/Main.vue";
@@ -96,6 +100,46 @@ const routes = [
                 path: "/read-contract",
                 name: "read-contract",
                 component: ReadContract,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
+            },
+            {
+                path: "/write-contract",
+                name: "write-contract",
+                component: WriteContract,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
+            },
+            {
+                path: "/read-userdata",
+                name: "read-userdata",
+                component: ReadUserData,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
+            },
+            {
+                path: "/write-userdata",
+                name: "write-userdata",
+                component: WriteUserData,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
+            },
+            {
+                path: "/edit-pools",
+                name: "edit-pools",
+                component: EditPools,
                 meta: {
                     authorize: [
                         Role.admin,
