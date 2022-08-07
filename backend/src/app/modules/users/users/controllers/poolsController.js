@@ -11,6 +11,8 @@ export const createOrUpdatePools = async (data) => {
   try {
     let pool = await Pools.findOne({ id: data.id });
     if (pool) {
+      data["image"] = PoolImage[data['source']];
+      console.log("data",data)
       const pools = await Pools.findOneAndUpdate(
         {
           id: data.id,
