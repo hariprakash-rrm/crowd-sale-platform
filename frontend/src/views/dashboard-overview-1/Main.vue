@@ -1836,17 +1836,7 @@ const successModalPreview = ref(false);
 const bscUpcomingModal = ref(false);
 const bscCompletedModal = ref(false);
 const bscMydealsModal = ref(false);
-// const ethOngoingModal = ref(false);
-// const ethUpcomingModal = ref(false);
-// const ethCompletedModal = ref(false);
-// const ethMydealsModal = ref(false);
-// const polygonOngoingModal = ref(false);
-// const polygonUpcomingModal = ref(false);
-// const polygonCompletedModal = ref(false);
-// const polygonMydealsModal = ref(false);
 const bscContributeModal = ref(false);
-// const ethContributeModal = ref(false);
-// const polygonContributeModal = ref(false);
 
 export default {
   contractResult: "",
@@ -1866,20 +1856,10 @@ export default {
       singlePooldetailTab: 1,
       largeModalSizePreview: false,
       bscContributeModal: false,
-      // ethContributeModal: false,
-      // polygonContributeModal: false,
       bscOngoingModal: false,
       bscUpcomingModal: false,
       bscCompletedModal: false,
       bscMydealsModal: false,
-      // ethOngoingModal: false,
-      // ethUpcomingModal: false,
-      // ethCompletedModal: false,
-      // ethMydealsModal: false,
-      // polygonOngoingModal: false,
-      // polygonUpcomingModal: false,
-      // polygonCompletedModal: false,
-      // polygonMydealsModal: false,
       currentModalId: "",
       currentModalAmount: 0,
       currentModalName: "",
