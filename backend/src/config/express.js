@@ -19,7 +19,7 @@ app.use(express.json({ limit: '4mb' }));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, 'uploads/')));
+app.use('public',express.static(path.resolve(__dirname, '../../uplods/')));
 
 require('./config')((err) => {
     if (err) {

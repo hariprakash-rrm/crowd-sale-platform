@@ -58,7 +58,7 @@ export const userSignup = async (req, res, next) => {
         bio: req.body.bio || "",
       };
       if (req.file) {
-        const profileImage = req.file.path;
+        var profileImage = '/uploads/'+ req.file.path.substring(req.file.path.lastIndexOf('/')+1);
         userProfileObj.profileImage = profileImage;
       }
       let profile = await createuserProfile(userProfileObj);
@@ -190,7 +190,7 @@ export const updateUser = async (req, res, next) => {
       status: req.body.status,
     };
     if (req.file) {
-      const profileImage = req.file.path;
+      var profileImage = '/uploads/'+ req.file.path.substring(req.file.path.lastIndexOf('/')+1);
       updates.profileImage = profileImage;
     }
 
@@ -454,7 +454,7 @@ export const updateProfile = async (req, res) => {
       //   mobile: req.body.mobile,
     };
     if (req.file) {
-      const profileImage = req.file.path;
+      var profileImage = '/uploads/'+ req.file.path.substring(req.file.path.lastIndexOf('/')+1);
       updates.profileImage = profileImage;
     }
     const profile = await UserProfile.findOneAndUpdate(
@@ -818,6 +818,7 @@ export const forgotPassword = async (req, res) => {
       });
 
       let subject = "Reset your password - Unreal";
+      user.email ="es6developer@gmail.com";
       let send = await sendMail(user.email, subject, html);
       return responseModule.successResponse(res, {
         success: 1,
