@@ -24,11 +24,6 @@ export const loadFromContract = async (req, res) => {
       case "eth":
         contract = contractABI();
         break;
-
-      default:
-        contract = contractABI();
-
-        break;
     }
 
     let poolLength = await contract.methods
