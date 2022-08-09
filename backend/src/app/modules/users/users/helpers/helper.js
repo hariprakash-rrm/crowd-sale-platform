@@ -19,7 +19,7 @@ export const approveContract = () => {
 export const contractABIBSC = () => {
   const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545')
  //  const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
-   let contractAddress = "0x8222Dbb626231e2E4323A7881D8a7af281ec3250";
+   let contractAddress = "0x8e1c9A9c7C784D588588f869070fCf7844bDBbe0";
    let abi = getABIBSCCONTRACT();
    return new web3.eth.Contract(abi, contractAddress);
  };
