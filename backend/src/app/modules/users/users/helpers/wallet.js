@@ -82,8 +82,12 @@ export const loadFromContract = async (req, res) => {
       }
     }
   }
-return getPoolsList(req, res);
-  //res.send({ poolsMyDeal, poolsOngoing, poolsUpcoming, poolsCompleted });
+  req.query.isDefault = true;
+  let response =  await getPoolsList(req, res);
+//return getPoolsList(req, res);
+  res.send(response);
+
+ // res.send({ poolsMyDeal, poolsOngoing, poolsUpcoming, poolsCompleted });
 };
 
 //   "lpToken": "0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",

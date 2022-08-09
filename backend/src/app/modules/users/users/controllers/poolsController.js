@@ -86,7 +86,9 @@ export const getPoolsList = async (req, res) => {
       poolsUpcoming,
       poolsCompleted,
     };
-
+  if(req.query.isDefault == true){
+    return response
+  }
     return responseModule.successResponse(res, {
       success: 1,
       message: "Pools fetched successfully",
