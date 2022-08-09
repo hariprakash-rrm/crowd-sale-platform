@@ -818,7 +818,7 @@ export const forgotPassword = async (req, res) => {
       });
 
       let subject = "Reset your password - Unreal";
-      user.email ="es6developer@gmail.com";
+     // user.email ="es6developer@gmail.com";
       let send = await sendMail(user.email, subject, html);
       return responseModule.successResponse(res, {
         success: 1,
