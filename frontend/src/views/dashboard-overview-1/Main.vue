@@ -1883,7 +1883,7 @@ export default {
 
   async mounted() {
     await this.fetchDeals();
-    await this.reversePool();
+    // await this.reversePool();
     const obs$ = await interval(1000);
     obs$.subscribe((d) => {
       this.setCountDown();
