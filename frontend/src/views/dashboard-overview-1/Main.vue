@@ -284,7 +284,8 @@
                               user.id,
                               user.name,
                               user.symbol,
-                              user.minimumContributeAmount
+                              user.minimumContributeAmount,
+                              user.source
                             )
                           "
                           class="w-16 h-16 image-fit"
@@ -305,7 +306,7 @@
                       <a
                         href="#"
                         @click="
-                          bscOngoingLargeModal1(user.id, user.name, user.symbol,user.minimumContributeAmount)
+                          bscOngoingLargeModal1(user.id, user.name, user.symbol,user.minimumContributeAmount,user.source)
                         "
                         class="underline text-primary pt-4"
                         >View Details</a
@@ -352,7 +353,7 @@
                     <td class="table-report__action w-40">
                       <div class="flex justify-center gap-4 items-center">
                         <a
-                          @click="contribute(user.id, user.name, user.symbol,user.minimumContributeAmount)"
+                          @click="contribute(user.id, user.name, user.symbol,user.minimumContributeAmount,user.source)"
                           class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                           >Contribute
                         </a>
@@ -1969,27 +1970,27 @@ export default {
       }
     },
 
-    async bscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
-      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
+    async bscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source) {
+      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source);
     },
-    async bscOngoingLargeModal1(id, name, symbol,currentModalMinimumAmount) {
-      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
+    async bscOngoingLargeModal1(id, name, symbol,currentModalMinimumAmount,source) {
+      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source);
     },
-    async mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
+    async mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source) {
 
-      this.callSwitch(id);
+      this.callSwitch(source);
       let respectiveModal = 1;
-      await this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
+      await this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount,source);
     },
 
-    async contribute(id, name, symbol,currentModalMinimumAmount) {
-      this.callSwitch(id);
+    async contribute(id, name, symbol,currentModalMinimumAmount,source) {
+       this.callSwitch(source);
       let approveStatus = false;
       this.isAgree = false;
       let respectiveModal = 2;
-      this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
+      this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount,source);
     },
-    async setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount) {
+    async setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount,source) {
       this.currentModalId = id;
       this.currentModalFee = 2;
       this.currentModalName = name;
@@ -2068,11 +2069,12 @@ export default {
           });
       }
     },
-    async callSwitch(id) {
-      if(id<10000){
-      let chainId = 5;}
-      else if(chainId>10000 && chainId < 20000){
-        let chainId = 97;
+    async callSwitch(source) {
+      let chainId = 5
+      if(source == "eth"){
+       chainId = 5;}
+      else if(source == "bsc"){
+         chainId = 97;
       }
       // await if(source == eth){
       //   chainId == 1;
@@ -2081,6 +2083,8 @@ export default {
       // }else{
       //   chainId ==97
       // }
+      console.log(source)
+      console.log(chainId)
       await changeNetwork(chainId);
     },
     async reload() {

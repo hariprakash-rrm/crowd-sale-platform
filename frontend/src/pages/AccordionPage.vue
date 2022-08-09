@@ -2104,12 +2104,14 @@ export default {
     setProfileData(data) {
       this.updatedUserData = {
         userId: data.user._id,
-        contributions: data.contributions._id,
+        // contributions: data.contributions._id,
         profileId: data.profile._id,
-        ...data.profile,
-        ...data.contributions,
-        ...data.user,
+        // ...data.profile,
+        // ...data.contributions,
+        // ...data.user,
+        ...data
       };
+      console.log(data)
       return this.updatedUserData;
     },
     toggleTab(tab) {
@@ -2355,7 +2357,7 @@ export default {
     },
     async searchUser(email) {
       await this.readUserData({ email: email });
-      let res = JSON.stringify(this.updatedUserData.amount)
+      let res =JSON.stringify(this.updatedUserData.contributions)
       console.log(res);
     },
     handleUserBlock(name, value) {
