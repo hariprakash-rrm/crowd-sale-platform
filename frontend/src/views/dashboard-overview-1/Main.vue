@@ -1903,7 +1903,6 @@ export default {
 
   async mounted() {
     await this.fetchDeals();
-    console.log(this.poolsOngoing.length);
     await this.reversePool();
     const obs$ = await interval(1000);
     obs$.subscribe((d) => {
