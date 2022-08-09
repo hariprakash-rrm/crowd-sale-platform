@@ -15,7 +15,6 @@ export const approveContract = () => {
   return new web3.eth.Contract(abi, contractAddress);
 };
 
-
 export const contractABIBSC = () => {
   const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545')
  //  const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
