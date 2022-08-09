@@ -11,7 +11,6 @@ export const loadFromContract = async (req, res) => {
   let networks = ["bsc", "eth", "ply"];
   for (let index = 0; index < networks.length; index++) {
     const source = networks[index];
-
     let contract;
 
     switch (source) {
