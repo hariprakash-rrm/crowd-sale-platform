@@ -63,17 +63,17 @@ export const getPoolsList = async (req, res) => {
     let poolsCompleted = await Pools.find({
       poolsStatus: "completed",
     })
-      .sort([["createdAt", -1]])
+      .sort([["endTime", -1]])
       .select();
     let poolsUpcoming = await Pools.find({
       poolsStatus: "upcoming",
     })
-      .sort([["createdAt", -1]])
+      .sort([["startTime", 1]])
       .select();
     let poolsOngoing = await Pools.find({
       poolsStatus: "ongoing",
     })
-      .sort([["createdAt", -1]])
+      .sort([["endTime", 1]])
       .select();
     let poolsMyDeal = await Pools.find({
       poolsStatus: "poolsMyDeal",
