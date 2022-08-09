@@ -1976,13 +1976,14 @@ export default {
       await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
     },
     async mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
-      this.callSwitch();
+
+      this.callSwitch(id);
       let respectiveModal = 1;
       await this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
     },
 
     async contribute(id, name, symbol,currentModalMinimumAmount) {
-      this.callSwitch();
+      this.callSwitch(id);
       let approveStatus = false;
       this.isAgree = false;
       let respectiveModal = 2;
@@ -2067,8 +2068,12 @@ export default {
           });
       }
     },
-    async callSwitch() {
-      let chainId = 5;
+    async callSwitch(id) {
+      if(id<10000){
+      let chainId = 5;}
+      else if(chainId>10000 && chainId < 20000){
+        let chainId = 97;
+      }
       // await if(source == eth){
       //   chainId == 1;
       // }else if(source == bsc){

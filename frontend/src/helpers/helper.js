@@ -65,27 +65,28 @@ export function createUUID() {
 
 export function changeNetwork (chainId) {
   // do not delete
-
-    // window.ethereum
-    //     .request({
-    //       method: "wallet_addEthereumChain",
-    //       params: [
-    //         {
-    //           chainId: "0x61",
-    //           chainName: "Binance Smart Chain",
-    //           nativeCurrency: {
-    //             name: "Binance Coin",
-    //             symbol: "BNB",
-    //             decimals: 18,
-    //           },
-    //           rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
-    //           blockExplorerUrls: ["https://bscscan.com"],
-    //         },
-    //       ],
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
+if(chainId >10000){
+    window.ethereum
+        .request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0x61",
+              chainName: "Binance Smart Chain",
+              nativeCurrency: {
+                name: "Binance Coin",
+                symbol: "BNB",
+                decimals: 18,
+              },
+              rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
+              blockExplorerUrls: ["https://bscscan.com"],
+            },
+          ],
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
   
   if (window.ethereum) {
     try {
