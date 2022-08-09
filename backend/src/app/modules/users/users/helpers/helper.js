@@ -13,7 +13,6 @@ export const approveContract = () => {
   let contractAddress = "0xF77afD529983226E6Bb15Aa3e7f9ADD58BCab035";
   let abi =  getABIJSON1();
   return new web3.eth.Contract(abi, contractAddress);
-  
 };
 
 
