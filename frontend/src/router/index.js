@@ -19,6 +19,7 @@ import ReadUserData from "../views/read-userdata/Main.vue";
 import WriteUserData from "../views/write-userdata/Main.vue";
 import EditPools from "../views/edit-pools/Main.vue";
 import Portfolio from "../views/portfolio/Main.vue";
+import TierUpdate from "../views/tier-update/Main.vue";
 
 import { Role, getScope } from "@/helpers/helper.js";
 import Calendar from "../views/calendar/Main.vue";
@@ -141,6 +142,16 @@ const routes = [
                 path: "/write-userdata",
                 name: "write-userdata",
                 component: WriteUserData,
+                meta: {
+                    authorize: [
+                        Role.admin,
+                    ],
+                },
+            },
+            {
+                path: "/tier-update",
+                name: "tier-update",
+                component: TierUpdate,
                 meta: {
                     authorize: [
                         Role.admin,

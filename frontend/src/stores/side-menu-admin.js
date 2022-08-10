@@ -42,6 +42,11 @@ export const useSideMenuAdminStore = defineStore("sideMenuAdmin", {
             pageName: "edit-pools",
             title: "Edit Pools",
           },
+          {
+            icon: "",
+            pageName: "tier-update",
+            title: "Update Tier",
+          },
         ],
       },
     ],
