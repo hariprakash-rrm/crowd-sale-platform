@@ -2111,7 +2111,7 @@ export default {
         // ...data.user,
         ...data
       };
-      console.log(data.contributions)
+      console.log(JSON.stringify(data.contributions))
       return this.updatedUserData;
     },
     toggleTab(tab) {
