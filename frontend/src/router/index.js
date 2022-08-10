@@ -18,6 +18,7 @@ import WriteContract from "../views/write-contract/Main.vue";
 import ReadUserData from "../views/read-userdata/Main.vue";
 import WriteUserData from "../views/write-userdata/Main.vue";
 import EditPools from "../views/edit-pools/Main.vue";
+import Portfolio from "../views/portfolio/Main.vue";
 
 import { Role, getScope } from "@/helpers/helper.js";
 import Calendar from "../views/calendar/Main.vue";
@@ -80,6 +81,16 @@ const routes = [
                 path: "calendar",
                 name: "side-menu-calendar",
                 component: Calendar,
+                meta: {
+                    authorize: [
+                        Role.user,
+                    ],
+                },
+            },
+            {
+                path: "portfolio",
+                name: "portfolio",
+                component: Portfolio,
                 meta: {
                     authorize: [
                         Role.user,

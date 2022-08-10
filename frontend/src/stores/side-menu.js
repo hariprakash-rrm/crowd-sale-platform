@@ -143,6 +143,11 @@ export const useSideMenuStore = defineStore("sideMenu", {
         pageName: "side-menu-calendar",
         title: "Calendar",
       },
+      {
+        icon: "UserIcon",
+        pageName: "portfolio",
+        title: "Portfolio",
+      },
       // {
       //   icon: "TrelloIcon",
       //   pageName: "side-menu-file-manager",
