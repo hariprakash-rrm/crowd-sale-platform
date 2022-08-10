@@ -1694,7 +1694,7 @@
                             </button>
                           </form>
                           <div v-if="fetchUserData">
-                            User Data: {{ updatedUserData }}
+                            User Data: {{ updatedUserData.contributions }}
                           </div>
                         </AccordionPanel>
                       </AccordionItem>
@@ -2111,7 +2111,7 @@ export default {
         // ...data.user,
         ...data
       };
-      console.log(data)
+      console.log(data.contributions)
       return this.updatedUserData;
     },
     toggleTab(tab) {
@@ -2357,8 +2357,7 @@ export default {
     },
     async searchUser(email) {
       await this.readUserData({ email: email });
-      let res =JSON.stringify(this.updatedUserData.contributions)
-      console.log(res);
+    
     },
     handleUserBlock(name, value) {
       this.updatedUserData[name] = value;
