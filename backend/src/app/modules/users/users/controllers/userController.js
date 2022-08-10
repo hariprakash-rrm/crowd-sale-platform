@@ -10,6 +10,8 @@ import fs from "fs";
 import * as ejs from "ejs";
 const responseModule = require("../../../../../config/response");
 import winston from "../../../../../config/winston";
+import Tier from "./../models/tier.model";
+
 
 /**
  * Function to create a User
@@ -511,6 +513,7 @@ export const getUserData = async (req, res) => {
     );
     let profile = await UserProfile.findOne({ _id: req.userData.profileId });
     let walletAddress = await WalletAddress.findOne({ profile: profile._id });
+    let tier = await Tier.findOne({ _id: profile.tier });
     let notificationSettings = await NotificationSettings.findOne({
       profile: profile._id,
     });
@@ -521,6 +524,7 @@ export const getUserData = async (req, res) => {
       user,
       profile,
       walletAddress,
+      tier:tier,
       notificationSettings,
     });
   } catch (error) {

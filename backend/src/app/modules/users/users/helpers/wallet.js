@@ -1,8 +1,10 @@
-import { createOrUpdatePools, getPoolsList } from "../controllers/poolsController";
+import { createOrUpdatePools, createOrUpdatePoolsMyDeal, getPoolsList } from "../controllers/poolsController";
 import { contractABI, contractABIBSC, contractABIPOLY } from "./helper";
 
 const FROM_ADDRESS = "0x92eA94E6880A93810a5e15e171D03dC57F9514Ed";
 export const loadFromContract = async (req, res) => {
+  
+let fromAddress = req.body.fromAddress || FROM_ADDRESS
   let poolsCompleted = [];
   let poolsUpcoming = [];
   let poolsOngoing = [];
@@ -28,13 +30,13 @@ export const loadFromContract = async (req, res) => {
 
     let poolLength = await contract.methods
       .poolLength()
-      .call({ from: req.body.fromAddress || FROM_ADDRESS });
+      .call({ from: fromAddress});
 
     console.log("poolLength", poolLength);
 
     let i;
     for (i = 0; i < poolLength; i++) {
-      let set = await contract.methods.poolInfo(i).call({ from: FROM_ADDRESS });
+      let set = await contract.methods.poolInfo(i).call({ from: fromAddress });
       var myJSON = JSON.stringify(set);
       console.log("myJSON", myJSON);
       var currentlyStaked = await contract.methods
@@ -49,7 +51,7 @@ export const loadFromContract = async (req, res) => {
         (set.currentlyStaked * 100) / set.poolStakableAmount;
       set.currentPercentage = Math.round(currentPercentage);
       var stakedAmount = await contract.methods
-        .getUserStakedTokenInPool(i, FROM_ADDRESS)
+        .getUserStakedTokenInPool(i, fromAddress)
         .call();
       var currentTime = await Math.floor(Date.now() / 1000);
    //   console.log(currentTime);
@@ -72,9 +74,9 @@ export const loadFromContract = async (req, res) => {
         await createOrUpdatePools(set);
       }
       if (stakedAmount > 0) {
-        //set["poolsStatus"] = "poolsMyDeal";
-      //  await createOrUpdatePools(set);
-       // poolsMyDeal.push(set);
+      set["poolsStatus"] = "poolsMyDeal";
+        await createOrUpdatePoolsMyDeal(set);
+        poolsMyDeal.push(set);
       }
     }
   }

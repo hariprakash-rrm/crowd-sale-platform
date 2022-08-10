@@ -1,5 +1,6 @@
 import { PoolImage } from "../../../../../config/poolImage";
 import Pools from "./../models/pools.model";
+import PoolsMyDeal from "./../models/pools-my-deal.model";
 const responseModule = require("../../../../../config/response");
 
 /**
@@ -11,8 +12,8 @@ export const createOrUpdatePools = async (data) => {
   try {
     let pool = await Pools.findOne({ id: data.id });
     if (pool) {
-      data["image"] = PoolImage[data['source']];
-      console.log("data",data)
+      data["image"] = PoolImage[data["source"]];
+      console.log("data", data);
       const pools = await Pools.findOneAndUpdate(
         {
           id: data.id,
@@ -32,8 +33,41 @@ export const createOrUpdatePools = async (data) => {
       data["faceBookUrl"] = "";
       data["instagramUrl"] = "";
       data["linkedInUrl"] = "";
-      data["image"] = PoolImage[data['source']];
+      data["image"] = PoolImage[data["source"]];
       const pools = new Pools(data);
+      pools.save();
+      return true;
+    }
+  } catch (error) {}
+};
+export const createOrUpdatePoolsMyDeal = async (data) => {
+  try {
+    data['status']='poolsMyDeal'
+    let pool = await PoolsMyDeal.findOne({ id: data.id });
+    if (pool) {
+      data["image"] = PoolImage[data["source"]];
+      console.log("data", data);
+      const pools = await PoolsMyDeal.findOneAndUpdate(
+        {
+          id: data.id,
+        },
+        {
+          $set: data,
+        },
+        {
+          new: true,
+        }
+      ).exec();
+      return true;
+    } else {
+      data["roadMap"] = "";
+      data["team"] = "";
+      data["vcs"] = "";
+      data["faceBookUrl"] = "";
+      data["instagramUrl"] = "";
+      data["linkedInUrl"] = "";
+      data["image"] = PoolImage[data["source"]];
+      const pools = new PoolsMyDeal(data);
       pools.save();
       return true;
     }
@@ -60,35 +94,47 @@ export const createPool = async (req, res) => {
 
 export const getPoolsList = async (req, res) => {
   try {
+    let filter = {};
+    if (req.query.search) {
+      let search = req.query.search;
+      filter = {
+        $or: [
+          { name: { $regex: search, $options: "i" } },
+          { id: { $regex: search, $options: "i" } },
+        ],
+      };
+    }
+
     let poolsCompleted = await Pools.find({
-      poolsStatus: "completed",
+      $and: [{ poolsStatus: "completed" }, filter],
     })
       .sort([["endTime", -1]])
       .select();
+
     let poolsUpcoming = await Pools.find({
-      poolsStatus: "upcoming",
+      $and: [{ poolsStatus: "upcoming" }, filter],
     })
       .sort([["startTime", 1]])
       .select();
     let poolsOngoing = await Pools.find({
-      poolsStatus: "ongoing",
+      $and: [{ poolsStatus: "ongoing" }, filter],
     })
       .sort([["endTime", 1]])
       .select();
-    let poolsMyDeal = await Pools.find({
-      poolsStatus: "poolsMyDeal",
+    let poolsMyDeal = await PoolsMyDeal.find({
+      $and: [{ poolsStatus: "poolsMyDeal" }, filter],
     })
       .sort([["createdAt", -1]])
       .select();
     let response = {
+      poolsCompleted,
       poolsMyDeal,
       poolsOngoing,
       poolsUpcoming,
-      poolsCompleted,
     };
-  if(req.query.isDefault == true){
-    return response
-  }
+    if (req.query.isDefault == true) {
+      return response;
+    }
     return responseModule.successResponse(res, {
       success: 1,
       message: "Pools fetched successfully",
