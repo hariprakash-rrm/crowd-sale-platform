@@ -14,7 +14,8 @@
               <img
                 alt="Midone Tailwind HTML Admin Template"
                 class="rounded-full"
-                :src="$f()[0].photos[0]"
+                :src="profile.profileImage"
+                @error="$event.target.src = 'https://via.placeholder.com/150'"
               />
             </div>
             <div class="ml-4 mr-auto">
@@ -151,10 +152,9 @@
                     <img
                       class="rounded-md"
                       alt="Midone Tailwind HTML Admin Template"
-                      :src="$f()[0].photos[0]"
+                      :src="profile.profileImage"
                       @error="
-                        $event.src = '@/assets/images/uc/profile-avatar.png'
-                      "
+                        $event.target.src = 'https://via.placeholder.com/150'"
                     />
                     <Tippy
                       tag="div"
