@@ -279,15 +279,7 @@
                     <td class="">
                       <div class="flex">
                         <div
-                          @click="
-                            bscOngoingLargeModal(
-                              user.id,
-                              user.name,
-                              user.symbol,
-                              user.minimumContributeAmount,
-                              user.source
-                            )
-                          "
+                          @click="bscOngoingLargeModal(user)"
                           class="w-16 h-16 image-fit"
                         >
                           <img
@@ -305,9 +297,7 @@
                       <br />
                       <a
                         href="#"
-                        @click="
-                          bscOngoingLargeModal1(user.id, user.name, user.symbol,user.minimumContributeAmount,user.source)
-                        "
+                        @click="bscOngoingLargeModal1(user)"
                         class="underline text-primary pt-4"
                         >View Details</a
                       >
@@ -353,7 +343,7 @@
                     <td class="table-report__action w-40">
                       <div class="flex justify-center gap-4 items-center">
                         <a
-                          @click="contribute(user.id, user.name, user.symbol,user.minimumContributeAmount,user.source)"
+                          @click="contribute(user)"
                           class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                           >Contribute
                         </a>
@@ -595,7 +585,10 @@
                               />
                             </div>
                             <p class="text-base mt-1 text-left">
-                              Minimum Amount : <strong>{{this.currentModalMinimumAmount}}</strong>
+                              Minimum Amount :
+                              <strong>{{
+                                this.currentModalMinimumAmount
+                              }}</strong>
                             </p>
                           </div>
                           <div
@@ -1649,7 +1642,8 @@
                           />
                         </td>
                         <p class="text-base mt-1">
-                          Minimum Amount : <strong>{{this.currentModalMinimumAmount}}</strong>
+                          Minimum Amount :
+                          <strong>{{ this.currentModalMinimumAmount }}</strong>
                         </p>
                       </div>
                     </div>
@@ -1827,6 +1821,8 @@ import {
   contractABI,
   approveContract,
   changeNetwork,
+  BSCapproveContract,
+  BSCcontract,
 } from "@/helpers/helper.js";
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
 
@@ -1878,7 +1874,8 @@ export default {
       modalMessage: "",
       warningModalPreview: false,
       processingStatus: "",
-      currentModalMinimumAmount:0
+      currentModalMinimumAmount: 0,
+      currentModalSource: "",
     };
   },
 
@@ -1889,7 +1886,6 @@ export default {
     obs$.subscribe((d) => {
       this.setCountDown();
     });
-    
   },
   computed: {
     ...mapState(useWeb3DealsStore, ["dealsData"]),
@@ -1970,33 +1966,39 @@ export default {
       }
     },
 
-    async bscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source) {
-      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source);
+    async bscOngoingLargeModal(user) {
+      await this.mainBscOngoingLargeModal(user);
     },
-    async bscOngoingLargeModal1(id, name, symbol,currentModalMinimumAmount,source) {
-      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source);
+    async bscOngoingLargeModal1(user) {
+      await this.mainBscOngoingLargeModal(user);
     },
-    async mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount,source) {
-
-      this.callSwitch(source);
+    async mainBscOngoingLargeModal(user) {
+      this.callSwitch(user.source);
       let respectiveModal = 1;
-      await this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount,source);
+      await this.setModalDetails(user, respectiveModal);
     },
 
-    async contribute(id, name, symbol,currentModalMinimumAmount,source) {
-       this.callSwitch(source);
+    async contribute(user) {
+      this.callSwitch(user.source);
       let approveStatus = false;
       this.isAgree = false;
       let respectiveModal = 2;
-      this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount,source);
+      this.setModalDetails(user, respectiveModal);
     },
-    async setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount,source) {
-      this.currentModalId = id;
+
+    async setModalDetails(user, respectiveModal) {
+      this.currentModalId = user.id;
       this.currentModalFee = 2;
-      this.currentModalName = name;
-      this.currentModalSymbol = symbol;
-      this.currentModalMinimumAmount = currentModalMinimumAmount / 10**18;
+      this.currentModalName = user.name;
+      this.currentModalSymbol = user.symbol;
+      this.currentModalSource = user.source;
+      console.log(user.source)
+      this.currentModalMinimumAmount =
+        user.minimumContributeAmount / 10 ** 18;
       let approveToken = approveContract();
+      if (user.source == "bsc") {
+        approveToken = await BSCapproveContract();
+      }
       await approveToken.methods
         .balanceOf(localStorage.getItem("address"))
         .call()
@@ -2015,7 +2017,6 @@ export default {
       }
     },
     async finalContribute() {
-      this.callSwitch();
       this.successModalPreview = true;
       this.currentModalAmount = this.payload[this.currentModalId];
       this.currentModalFeeAmount = await ((this.currentModalAmount *
@@ -2024,19 +2025,28 @@ export default {
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
       this.amountIncludeFee =
         this.totalCurrentModalAmount + this.currentModalFeeAmount;
+      let poolIndex = this.currentModalId - 1;
+      let Atoken = "";
       let contract = contractABI();
+      console.log(contract._address);
+      Atoken = contract._address;
       let approveToken = approveContract();
+      if (this.currentModalSource == "bsc") {
+         contract = BSCcontract();
+         approveToken = BSCapproveContract();
+        this.Atoken =await  contract._address;
+        poolIndex = this.currentModalId - 10001;
+        console.log(contract._address);
+        console.log(approveToken._address)
+      }
       let totalAmountToContribute = BigInt(
         (this.totalCurrentModalAmount + this.currentModalFeeAmount) * 10 ** 18
       );
-      let getTokenAddres = await contract.methods
-        .poolInfo(this.currentModalId - 1)
-        .call();
-      let Atoken = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";
+
       this.successModalPreview = true;
       this.modalMessage = "Approving Please Wait";
       await approveToken.methods
-        .approve(Atoken, totalAmountToContribute)
+        .approve("0x8e1c9A9c7C784D588588f869070fCf7844bDBbe0", totalAmountToContribute)
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
@@ -2050,7 +2060,7 @@ export default {
         });
       if (this.approveStatus == true) {
         await contract.methods
-          .stakeTokens(this.currentModalId - 1, totalAmountToContribute)
+          .stakeTokens(poolIndex, totalAmountToContribute)
           .send({ from: localStorage.getItem("address") })
           .then((receipt) => {
             console.log("receipt", receipt);
@@ -2070,21 +2080,15 @@ export default {
       }
     },
     async callSwitch(source) {
-      let chainId = 5
-      if(source == "eth"){
-       chainId = 5;}
-      else if(source == "bsc"){
-         chainId = 97;
+      let chainId = 5;
+      if (source == "eth") {
+        chainId = 5;
+      } else if (source == "bsc") {
+        chainId = 97;
       }
-      // await if(source == eth){
-      //   chainId == 1;
-      // }else if(source == bsc){
-      //   chainId == 5;
-      // }else{
-      //   chainId ==97
-      // }
-      console.log(source)
-      console.log(chainId)
+
+      console.log(source);
+      console.log(chainId);
       await changeNetwork(chainId);
     },
     async reload() {
