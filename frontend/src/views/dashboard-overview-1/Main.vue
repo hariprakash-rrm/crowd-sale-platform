@@ -1946,7 +1946,6 @@ export default {
     async setCountDown() {
       for (let i = 0; i < this.poolsOngoing.length; i++) {
         let _endTime = this.poolsOngoing[i].endTime;
-        var currentTime = await Math.floor(Date.now() / 1000);
         let future = new Date(_endTime * 1000);
         let now = new Date();
         let diff = future - now;
@@ -1963,6 +1962,9 @@ export default {
 
         this.countDown[i] =
           d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
+        if (d < 0) {
+          this.countDown[i] = "Expired";
+        }
       }
     },
 
@@ -2045,10 +2047,7 @@ export default {
       this.successModalPreview = true;
       this.modalMessage = "Approving Please Wait";
       await approveToken.methods
-        .approve(
-          contract._address.toString(),
-          totalAmountToContribute
-        )
+        .approve(contract._address.toString(), totalAmountToContribute)
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
