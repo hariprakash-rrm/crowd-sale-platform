@@ -1962,9 +1962,7 @@ export default {
 
         this.countDown[i] =
           d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
-        if (d < 0) {
-          this.countDown[i] = "Expired";
-        }
+       
       }
     },
 
