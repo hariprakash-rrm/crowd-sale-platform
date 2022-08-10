@@ -1,7 +1,66 @@
 <template>
   <div>
-    <div class="intro-y flex items-center mt-8">
-      <!-- <h2 class="text-lg font-medium mr-auto">Accordion</h2> -->
+    <div class="col-span-12 mt-8">
+      <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
+        <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+          <div class="report-box report-box__right zoom-in">
+            <div class="box bg-[#ffffff] p-8">
+              <div class="flex items-center">
+                <div>
+                  <div class="text-3xl font-semibold leading-9">4.710</div>
+                  <div class="text-base text-slate-500 mt-1">BSC</div>
+                </div>
+                <div class="ml-auto p-4 rounded-xl bg__icon-bnb">
+                  <!-- <LayersIcon class="report-box__icon text-cyan-600" /> -->
+                  <img
+                    src="@/assets/images/uc/bnb.png"
+                    class="w-12 h-12"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+          <div class="report-box report-box__right zoom-in">
+            <div class="box bg-[#ffffff] p-8">
+              <div class="flex items-center">
+                <div>
+                  <div class="text-3xl font-semibold leading-9">4.710</div>
+                  <div class="text-base text-slate-500 mt-1">Ethereum</div>
+                </div>
+                <div class="ml-auto p-4 rounded-xl bg__icon-eth">
+                  <img
+                    src="@/assets/images/uc/eth.png"
+                    class="w-12 h-12"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+          <div class="report-box report-box__right zoom-in">
+            <div class="box bg-[#ffffff] p-8">
+              <div class="flex items-center">
+                <div>
+                  <div class="text-3xl font-semibold leading-9">4.710</div>
+                  <div class="text-base text-slate-500 mt-1">Polygon</div>
+                </div>
+                <div class="ml-auto p-4 rounded-xl bg__icon-polygon">
+                  <img
+                    src="@/assets/images/uc/polygon.png"
+                    class="w-12 h-12"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="intro-y grid grid-cols-12 gap-6 mt-5">
       <!-- BEGIN: General Report -->
