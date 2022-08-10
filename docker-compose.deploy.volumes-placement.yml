@@ -15,7 +15,11 @@ services:
     volumes:
       - "letsencrypt:/letsencrypt/"
       - /var/run/docker.sock:/var/run/docker.sock:ro
+  backend:
+    volumes:
+      - app-backend-data:/usr/src/app/lib/uploads/
 
 volumes:
   letsencrypt:
   app-db-data:
+  app-backend-data:
