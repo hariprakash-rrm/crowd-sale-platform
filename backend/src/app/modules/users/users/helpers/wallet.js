@@ -71,10 +71,9 @@ export const loadFromContract = async (req, res) => {
         await createOrUpdatePools(set);
       }
       if (stakedAmount > 0) {
-        set["poolsStatus"] = "poolsMyDeal";
-      
-       poolsMyDeal.push(set);
-        await createOrUpdatePools(set);
+        // set["poolsStatus"] = "poolsMyDeal";
+      //  await createOrUpdatePools(set);
+      //  poolsMyDeal.push(set);
       }
     }
   }
