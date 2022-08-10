@@ -13,8 +13,8 @@ let fromAddress = req.body.fromAddress || FROM_ADDRESS
   let networks = ["bsc", "eth", "ply"];
   for (let index = 0; index < networks.length; index++) {
     const source = networks[index];
-
     let contract;
+    
 
     switch (source) {
       case "bsc":
@@ -73,6 +73,7 @@ let fromAddress = req.body.fromAddress || FROM_ADDRESS
         set["poolsStatus"] = "ongoing";
         await createOrUpdatePools(set);
       }
+
       if (stakedAmount > 0) {
       set["poolsStatus"] = "poolsMyDeal";
         await createOrUpdatePoolsMyDeal(set);

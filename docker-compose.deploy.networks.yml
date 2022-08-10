@@ -2,12 +2,12 @@ version: '3.6'
 services:
   proxy:
     networks:
-      - ${TRAEFIK_PUBLIC_NETWORK}
+      - ${TRAEFIK_NETWORK}
       - default
   db:
     ports:
       - '27017:27017'
 
 networks:
-  traefik-public:
+  traefik-unreal:
     external: true
