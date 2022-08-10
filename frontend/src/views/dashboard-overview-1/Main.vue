@@ -279,14 +279,7 @@
                     <td class="">
                       <div class="flex">
                         <div
-                          @click="
-                            bscOngoingLargeModal(
-                              user.id,
-                              user.name,
-                              user.symbol,
-                              user.minimumContributeAmount
-                            )
-                          "
+                          @click="bscOngoingLargeModal(user)"
                           class="w-16 h-16 image-fit"
                         >
                           <img
@@ -304,9 +297,7 @@
                       <br />
                       <a
                         href="#"
-                        @click="
-                          bscOngoingLargeModal1(user.id, user.name, user.symbol,user.minimumContributeAmount)
-                        "
+                        @click="bscOngoingLargeModal1(user)"
                         class="underline text-primary pt-4"
                         >View Details</a
                       >
@@ -352,7 +343,7 @@
                     <td class="table-report__action w-40">
                       <div class="flex justify-center gap-4 items-center">
                         <a
-                          @click="contribute(user.id, user.name, user.symbol,user.minimumContributeAmount)"
+                          @click="contribute(user)"
                           class="flex items-center text-white text-center bg-primary p-2 px-6 rounded"
                           >Contribute
                         </a>
@@ -373,7 +364,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">Bsc Ongoing</div>
+                <div class="text-xl font-semibold py-5">Ongoing</div>
                 <a
                   @click="bscOngoingModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -594,7 +585,10 @@
                               />
                             </div>
                             <p class="text-base mt-1 text-left">
-                              Minimum Amount : <strong>{{this.currentModalMinimumAmount}}</strong>
+                              Minimum Amount :
+                              <strong>{{
+                                this.currentModalMinimumAmount
+                              }}</strong>
                             </p>
                           </div>
                           <div
@@ -790,7 +784,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">BSC Upcoming</div>
+                <div class="text-xl font-semibold py-5">Upcoming</div>
                 <a
                   @click="bscUpcomingModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -1103,7 +1097,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">BSC Completed</div>
+                <div class="text-xl font-semibold py-5">Completed</div>
                 <a
                   @click="bscCompletedModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -1389,7 +1383,7 @@
               <div
                 class="flex justify-between items-center px-6 border-b border-slate-200 border-solid border-t-2xl"
               >
-                <div class="text-xl font-semibold py-5">BSC My Deals</div>
+                <div class="text-xl font-semibold py-5">My Deals</div>
                 <a
                   @click="bscMydealsModal = false"
                   class="absolute right-0 top-0 mt-5 mr-3"
@@ -1648,7 +1642,8 @@
                           />
                         </td>
                         <p class="text-base mt-1">
-                          Minimum Amount : <strong>{{this.currentModalMinimumAmount}}</strong>
+                          Minimum Amount :
+                          <strong>{{ this.currentModalMinimumAmount }}</strong>
                         </p>
                       </div>
                     </div>
@@ -1826,6 +1821,8 @@ import {
   contractABI,
   approveContract,
   changeNetwork,
+  BSCapproveContract,
+  BSCcontract,
 } from "@/helpers/helper.js";
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
 
@@ -1836,17 +1833,7 @@ const successModalPreview = ref(false);
 const bscUpcomingModal = ref(false);
 const bscCompletedModal = ref(false);
 const bscMydealsModal = ref(false);
-const ethOngoingModal = ref(false);
-const ethUpcomingModal = ref(false);
-const ethCompletedModal = ref(false);
-const ethMydealsModal = ref(false);
-const polygonOngoingModal = ref(false);
-const polygonUpcomingModal = ref(false);
-const polygonCompletedModal = ref(false);
-const polygonMydealsModal = ref(false);
 const bscContributeModal = ref(false);
-const ethContributeModal = ref(false);
-const polygonContributeModal = ref(false);
 
 export default {
   contractResult: "",
@@ -1866,20 +1853,10 @@ export default {
       singlePooldetailTab: 1,
       largeModalSizePreview: false,
       bscContributeModal: false,
-      ethContributeModal: false,
-      polygonContributeModal: false,
       bscOngoingModal: false,
       bscUpcomingModal: false,
       bscCompletedModal: false,
       bscMydealsModal: false,
-      ethOngoingModal: false,
-      ethUpcomingModal: false,
-      ethCompletedModal: false,
-      ethMydealsModal: false,
-      polygonOngoingModal: false,
-      polygonUpcomingModal: false,
-      polygonCompletedModal: false,
-      polygonMydealsModal: false,
       currentModalId: "",
       currentModalAmount: 0,
       currentModalName: "",
@@ -1896,16 +1873,15 @@ export default {
       successModalPreview: false,
       modalMessage: "",
       warningModalPreview: false,
-      warningModalPreview: false,
       processingStatus: "",
-      currentModalMinimumAmount:0
+      currentModalMinimumAmount: 0,
+      currentModalSource: "",
     };
   },
 
   async mounted() {
     await this.fetchDeals();
-    console.log(this.poolsOngoing.length);
-    await this.reversePool();
+    // await this.reversePool();
     const obs$ = await interval(1000);
     obs$.subscribe((d) => {
       this.setCountDown();
@@ -1990,32 +1966,38 @@ export default {
       }
     },
 
-    async bscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
-      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
+    async bscOngoingLargeModal(user) {
+      await this.mainBscOngoingLargeModal(user);
     },
-    async bscOngoingLargeModal1(id, name, symbol,currentModalMinimumAmount) {
-      await this.mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount);
+    async bscOngoingLargeModal1(user) {
+      await this.mainBscOngoingLargeModal(user);
     },
-    async mainBscOngoingLargeModal(id, name, symbol,currentModalMinimumAmount) {
-      this.callSwitch();
+    async mainBscOngoingLargeModal(user) {
+      this.callSwitch(user.source);
       let respectiveModal = 1;
-      await this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
+      await this.setModalDetails(user, respectiveModal);
     },
 
-    async contribute(id, name, symbol,currentModalMinimumAmount) {
-      this.callSwitch();
+    async contribute(user) {
+      this.callSwitch(user.source);
       let approveStatus = false;
       this.isAgree = false;
       let respectiveModal = 2;
-      this.setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount);
+      this.setModalDetails(user, respectiveModal);
     },
-    async setModalDetails(id, name, symbol, respectiveModal,currentModalMinimumAmount) {
-      this.currentModalId = id;
+
+    async setModalDetails(user, respectiveModal) {
+      this.currentModalId = user.id;
       this.currentModalFee = 2;
-      this.currentModalName = name;
-      this.currentModalSymbol = symbol;
-      this.currentModalMinimumAmount = currentModalMinimumAmount / 10**18;
+      this.currentModalName = user.name;
+      this.currentModalSymbol = user.symbol;
+      this.currentModalSource = user.source;
+      console.log(user.source);
+      this.currentModalMinimumAmount = user.minimumContributeAmount / 10 ** 18;
       let approveToken = approveContract();
+      if (user.source == "bsc") {
+        approveToken = await BSCapproveContract();
+      }
       await approveToken.methods
         .balanceOf(localStorage.getItem("address"))
         .call()
@@ -2034,7 +2016,6 @@ export default {
       }
     },
     async finalContribute() {
-      this.callSwitch();
       this.successModalPreview = true;
       this.currentModalAmount = this.payload[this.currentModalId];
       this.currentModalFeeAmount = await ((this.currentModalAmount *
@@ -2043,19 +2024,31 @@ export default {
       this.totalCurrentModalAmount = await parseInt(this.currentModalAmount);
       this.amountIncludeFee =
         this.totalCurrentModalAmount + this.currentModalFeeAmount;
+      let poolIndex = this.currentModalId - 1;
+      let Atoken = "";
       let contract = contractABI();
+      console.log(contract._address);
+      Atoken = contract._address;
       let approveToken = approveContract();
+      if (this.currentModalSource == "bsc") {
+        contract = BSCcontract();
+        approveToken = BSCapproveContract();
+        this.Atoken = await contract._address;
+        poolIndex = this.currentModalId - 10001;
+        console.log(contract._address);
+        console.log(approveToken._address);
+      }
       let totalAmountToContribute = BigInt(
         (this.totalCurrentModalAmount + this.currentModalFeeAmount) * 10 ** 18
       );
-      let getTokenAddres = await contract.methods
-        .poolInfo(this.currentModalId - 1)
-        .call();
-      let Atoken = "0x336a7847E0e8C8456814d6eAC54a5E90610e2628";
+
       this.successModalPreview = true;
       this.modalMessage = "Approving Please Wait";
       await approveToken.methods
-        .approve(Atoken, totalAmountToContribute)
+        .approve(
+          contract._address.toString(),
+          totalAmountToContribute
+        )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
@@ -2069,7 +2062,7 @@ export default {
         });
       if (this.approveStatus == true) {
         await contract.methods
-          .stakeTokens(this.currentModalId - 1, totalAmountToContribute)
+          .stakeTokens(poolIndex, totalAmountToContribute)
           .send({ from: localStorage.getItem("address") })
           .then((receipt) => {
             console.log("receipt", receipt);
@@ -2088,15 +2081,16 @@ export default {
           });
       }
     },
-    async callSwitch() {
+    async callSwitch(source) {
       let chainId = 5;
-      // await if(source == eth){
-      //   chainId == 1;
-      // }else if(source == bsc){
-      //   chainId == 5;
-      // }else{
-      //   chainId ==97
-      // }
+      if (source == "eth") {
+        chainId = 5;
+      } else if (source == "bsc") {
+        chainId = 97;
+      }
+
+      console.log(source);
+      console.log(chainId);
       await changeNetwork(chainId);
     },
     async reload() {

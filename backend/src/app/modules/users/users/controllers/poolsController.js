@@ -11,6 +11,8 @@ export const createOrUpdatePools = async (data) => {
   try {
     let pool = await Pools.findOne({ id: data.id });
     if (pool) {
+      data["image"] = PoolImage[data['source']];
+      console.log("data",data)
       const pools = await Pools.findOneAndUpdate(
         {
           id: data.id,
@@ -61,17 +63,17 @@ export const getPoolsList = async (req, res) => {
     let poolsCompleted = await Pools.find({
       poolsStatus: "completed",
     })
-      .sort([["createdAt", -1]])
+      .sort([["endTime", -1]])
       .select();
     let poolsUpcoming = await Pools.find({
       poolsStatus: "upcoming",
     })
-      .sort([["createdAt", -1]])
+      .sort([["startTime", 1]])
       .select();
     let poolsOngoing = await Pools.find({
       poolsStatus: "ongoing",
     })
-      .sort([["createdAt", -1]])
+      .sort([["endTime", 1]])
       .select();
     let poolsMyDeal = await Pools.find({
       poolsStatus: "poolsMyDeal",
@@ -84,7 +86,9 @@ export const getPoolsList = async (req, res) => {
       poolsUpcoming,
       poolsCompleted,
     };
-
+  if(req.query.isDefault == true){
+    return response
+  }
     return responseModule.successResponse(res, {
       success: 1,
       message: "Pools fetched successfully",
