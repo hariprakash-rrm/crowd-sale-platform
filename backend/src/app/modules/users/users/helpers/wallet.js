@@ -12,6 +12,7 @@ export const loadFromContract = async (req, res) => {
   for (let index = 0; index < networks.length; index++) {
     const source = networks[index];
     let contract;
+    
 
     switch (source) {
       case "bsc":
@@ -70,7 +71,7 @@ export const loadFromContract = async (req, res) => {
         set["poolsStatus"] = "ongoing";
         await createOrUpdatePools(set);
       }
-      
+
       if (stakedAmount > 0) {
         // set["poolsStatus"] = "poolsMyDeal";
       //  await createOrUpdatePools(set);
