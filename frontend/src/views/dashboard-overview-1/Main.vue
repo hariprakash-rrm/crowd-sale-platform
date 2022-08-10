@@ -1992,9 +1992,8 @@ export default {
       this.currentModalName = user.name;
       this.currentModalSymbol = user.symbol;
       this.currentModalSource = user.source;
-      console.log(user.source)
-      this.currentModalMinimumAmount =
-        user.minimumContributeAmount / 10 ** 18;
+      console.log(user.source);
+      this.currentModalMinimumAmount = user.minimumContributeAmount / 10 ** 18;
       let approveToken = approveContract();
       if (user.source == "bsc") {
         approveToken = await BSCapproveContract();
@@ -2032,12 +2031,12 @@ export default {
       Atoken = contract._address;
       let approveToken = approveContract();
       if (this.currentModalSource == "bsc") {
-         contract = BSCcontract();
-         approveToken = BSCapproveContract();
-        this.Atoken =await  contract._address;
+        contract = BSCcontract();
+        approveToken = BSCapproveContract();
+        this.Atoken = await contract._address;
         poolIndex = this.currentModalId - 10001;
         console.log(contract._address);
-        console.log(approveToken._address)
+        console.log(approveToken._address);
       }
       let totalAmountToContribute = BigInt(
         (this.totalCurrentModalAmount + this.currentModalFeeAmount) * 10 ** 18
@@ -2046,7 +2045,10 @@ export default {
       this.successModalPreview = true;
       this.modalMessage = "Approving Please Wait";
       await approveToken.methods
-        .approve("0x8e1c9A9c7C784D588588f869070fCf7844bDBbe0", totalAmountToContribute)
+        .approve(
+          contract._address.toString(),
+          totalAmountToContribute
+        )
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
