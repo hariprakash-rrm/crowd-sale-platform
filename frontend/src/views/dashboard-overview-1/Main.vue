@@ -1074,7 +1074,7 @@
                     <td class="text-center">{{ user.symbol }}</td>
                     <td class="text-center">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
-                      <div class="eth"></div>
+                      <div :class="user.source"></div>
                     </td>
                     <td class="text-center">
                       <span
@@ -1962,6 +1962,9 @@ export default {
 
         this.countDown[i] =
           d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
+        if (d < 0) {
+          this.countDown[i] = "Expired";
+        }
       }
     },
 

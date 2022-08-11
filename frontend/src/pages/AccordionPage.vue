@@ -1835,6 +1835,24 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
+                        <div
+                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-8 mt-8 focus:border focus:border-solid focus:border-primary"
+                          >
+                            <label
+                              for="update-profile-form-2"
+                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                              >Network</label
+                            >
+                            <TomSelect
+                              id="update-profile-form-2"
+                              v-model="select"
+                              class="w-full absolute top-2"
+                            >
+                              <option value="1">BSC</option>
+                              <option value="2">Ethereum</option>
+                              <option value="3">Polygon</option>
+                            </TomSelect>
+                          </div>
                           <div class="relative mb-6">
                             <input
                               type="text"
@@ -1860,7 +1878,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Product URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1871,7 +1889,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Roadmap URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1882,7 +1900,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Team URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1893,7 +1911,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >VC's URl</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1904,7 +1922,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Facebook URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1915,7 +1933,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Instagram URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1926,9 +1944,10 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Linkedin URL</label
                             >
                           </div>
+                          
 
                           <button
                             type="button"
@@ -1954,7 +1973,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Modify LP Token
+                            Add LP Token
                           </p>
                         </Accordion>
                         <AccordionPanel
