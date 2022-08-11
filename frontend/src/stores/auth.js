@@ -61,6 +61,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                     return res
                 })
                 .catch((err) => {
+                    toaster.error(err.response['data'].message);
                     console.error("error in login", err);
                     return err
                 })
