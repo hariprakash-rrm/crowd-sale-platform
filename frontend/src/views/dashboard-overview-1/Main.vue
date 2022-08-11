@@ -1962,7 +1962,6 @@ export default {
 
         this.countDown[i] =
           d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
-       
       }
     },
 
