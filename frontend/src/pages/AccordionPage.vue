@@ -189,6 +189,24 @@
                 Edit Pool
               </button>
             </li>
+             <li
+              @click="toggleTab(6)"
+              id="inactive-write-user-tab"
+              class="nav-item flex-1"
+              role="presentation"
+            >
+              <button
+                class="nav-link w-full py-1.5 px-2"
+                data-tw-toggle="pill"
+                data-tw-target="#active-users"
+                type="button"
+                role="tab"
+                aria-controls="active-users"
+                aria-selected="true"
+              >
+                Update Tier
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -929,8 +947,26 @@
                         >
                           <form
                             @submit.prevent="addPool()"
-                            class="validate-form pt-4"
+                            class="validate-form"
                           >
+                            <div
+                              class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-8 focus:border focus:border-solid focus:border-primary"
+                            >
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="update-profile-form-2"
+                                v-model="select"
+                                class="w-full absolute top-2"
+                              >
+                                <option value="1">BSC</option>
+                                <option value="2">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
                             <div class="relative mb-6">
                               <TextInput
                                 type="url"
@@ -999,24 +1035,7 @@
                               </TomSelect>
                             </div>
 
-                            <div
-                              class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                            >
-                              <label
-                                for="update-profile-form-2"
-                                class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                                >Network</label
-                              >
-                              <TomSelect
-                                id="update-profile-form-2"
-                                v-model="select"
-                                class="w-full absolute top-2"
-                              >
-                                <option value="1">BSC</option>
-                                <option value="2">Ethereum</option>
-                                <option value="3">Polygon</option>
-                              </TomSelect>
-                            </div>
+                     
 
                             <div class="relative mb-6">
                               <Litepicker
@@ -1816,6 +1835,24 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
+                        <div
+                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-8 mt-8 focus:border focus:border-solid focus:border-primary"
+                          >
+                            <label
+                              for="update-profile-form-2"
+                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                              >Network</label
+                            >
+                            <TomSelect
+                              id="update-profile-form-2"
+                              v-model="select"
+                              class="w-full absolute top-2"
+                            >
+                              <option value="1">BSC</option>
+                              <option value="2">Ethereum</option>
+                              <option value="3">Polygon</option>
+                            </TomSelect>
+                          </div>
                           <div class="relative mb-6">
                             <input
                               type="text"
@@ -1841,7 +1878,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Product URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1852,7 +1889,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Roadmap URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1863,7 +1900,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Team URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1874,7 +1911,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >VC's URl</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1885,7 +1922,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Facebook URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1896,7 +1933,7 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Instagram URL</label
                             >
                           </div>
                           <div class="relative mb-6">
@@ -1907,9 +1944,10 @@
                               placeholder=""
                             />
                             <label for="input" class="input__label"
-                              >Input</label
+                              >Linkedin URL</label
                             >
                           </div>
+                          
 
                           <button
                             type="button"
@@ -1935,7 +1973,7 @@
                       <AccordionItem>
                         <Accordion>
                           <p class="text-black font-semibold text-base">
-                            Modify LP Token
+                            Add LP Token
                           </p>
                         </Accordion>
                         <AccordionPanel
@@ -2039,6 +2077,125 @@
           </div>
         </div>
         <!-- END: TAB EDIT POOL -->
+        <div v-show="tab === 6">
+           <div class="grid grid-cols-12 gap-4">
+    <div class="col-span-12 lg:col-span-6">
+      <PreviewComponent class="intro-y box mt-5">
+        <div
+          class="
+            p-8
+            rounded-xl
+            border-b border-slate-200/60
+            dark:border-darkmode-400
+          "
+        >
+          <!-- <div class="p-5"> -->
+          <Preview>
+            <AccordionGroup class="accordion-boxed">
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">Update Tier</p>
+                </Accordion>
+                <AccordionPanel
+                  class="
+                    text-slate-600
+                    dark:text-slate-500
+                    leading-relaxed
+                    mt-8
+                  "
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="input"
+                      class="input__field peer"
+                      placeholder=""
+                    />
+                    <label for="input" class="input__label">Email</label>
+                  </div>
+                  <button
+                    type="button"
+                    class="
+                      flex
+                      items-center
+                      w-40
+                      justify-center
+                      text-white text-center
+                      bg-primary
+                      p-2
+                      px-6
+                      mb-6
+                      rounded
+                    "
+                  >
+                    Query
+                  </button>
+                    <div class="font-bold text-base cursor-pointer">Label</div>
+                     <div
+                    class="
+                      relative
+                      px-0
+                      input__field
+                      dark:border-darkmode-600
+                      border border-solid
+                      rounded-md
+                      bg-transparent
+                      h-14
+                      mb-6
+                      mt-8
+                      focus:border focus:border-solid focus:border-primary
+                    "
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="
+                        absolute
+                        input__label
+                        form-label
+                        left-2.5
+                        -top-3
+                        mb-0
+                        pb-0
+                        px-2
+                        bg-[#131c25]
+                      "
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="
+                      flex
+                      items-center
+                      w-40
+                      justify-center
+                      text-white text-center
+                      bg-primary
+                      p-2
+                      px-6
+                      rounded
+                    "
+                  >
+                    Update
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+            </AccordionGroup>
+          </Preview>
+        </div>
+      </PreviewComponent>
+    </div>
+  </div>
+        </div>
       </div>
       <!-- END: Basic Accordion -->
     </div>

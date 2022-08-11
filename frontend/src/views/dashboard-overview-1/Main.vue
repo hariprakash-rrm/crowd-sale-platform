@@ -338,7 +338,7 @@
                       {{ this.countDown[index] }}
                     </td>
                     <td class="text-center text-base font-bold">
-                      <div class="bnb"></div>
+                      <div :class="user.source"></div>
                     </td>
                     <td class="table-report__action w-40">
                       <div class="flex justify-center gap-4 items-center">
@@ -766,7 +766,7 @@
                       {{ user.poolStakableAmount }}
                     </td>
                     <td class="text-center text-base font-bold">
-                      <div class="eth"></div>
+                      <div :class="user.source"></div>
                     </td>
                     <td class="text-center">{{ user.humanEndTime }}</td>
                   </tr>
@@ -1074,7 +1074,7 @@
                     <td class="text-center">{{ user.symbol }}</td>
                     <td class="text-center">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
-                      <div class="eth"></div>
+                      <div :class="user.source"></div>
                     </td>
                     <td class="text-center">
                       <span
@@ -1365,7 +1365,7 @@
                     <td class="text-center">{{ user.symbol }}</td>
                     <td class="text-center">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
-                      <div class="pgn"></div>
+                      <div :class="user.source"></div>
                     </td>
                     <td class="text-center">{{ user.poolsStatus }}</td>
                   </tr>
@@ -1946,7 +1946,6 @@ export default {
     async setCountDown() {
       for (let i = 0; i < this.poolsOngoing.length; i++) {
         let _endTime = this.poolsOngoing[i].endTime;
-        var currentTime = await Math.floor(Date.now() / 1000);
         let future = new Date(_endTime * 1000);
         let now = new Date();
         let diff = future - now;
@@ -1963,6 +1962,9 @@ export default {
 
         this.countDown[i] =
           d + "d" + " : " + h + "h" + " : " + m + "m" + " : " + s;
+        if (d < 0) {
+          this.countDown[i] = "Expired";
+        }
       }
     },
 
@@ -2045,10 +2047,7 @@ export default {
       this.successModalPreview = true;
       this.modalMessage = "Approving Please Wait";
       await approveToken.methods
-        .approve(
-          contract._address.toString(),
-          totalAmountToContribute
-        )
+        .approve(contract._address.toString(), totalAmountToContribute)
         .send({ from: localStorage.getItem("address") })
         .then((receipt) => {
           this.modalMessage = "Approve Successful & now contributing ";
@@ -2172,9 +2171,9 @@ const nextImportantNotes = () => {
 .table th {
   font-weight: 600 !important;
 }
-.bnb::before,
-.bnb::after,
-.bnb {
+.bsc::before,
+.bsc::after,
+.bsc {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2182,7 +2181,7 @@ const nextImportantNotes = () => {
   right: 0;
 }
 
-.bnb {
+.bsc {
   width: 40px;
   height: 40px;
   margin: auto 14.25rem auto auto;
@@ -2190,15 +2189,15 @@ const nextImportantNotes = () => {
   color: #f3ba2f;
   box-shadow: inset 0 0 0 1px rgba(243, 186, 47, 0.5);
 }
-.bnb::before,
-.bnb::after {
+.bsc::before,
+.bsc::after {
   content: "";
   z-index: 1;
   margin: -9.9999%;
   box-shadow: inset 0 0 0 2px;
   animation: clipMe 8s linear infinite;
 }
-.bnb::before {
+.bsc::before {
   animation-delay: -4s;
 }
 /* .bnb:hover::after, .bnb:hover::before {
@@ -2218,7 +2217,7 @@ const nextImportantNotes = () => {
 .eth {
   width: 40px;
   height: 40px;
-  margin: auto 19.5rem auto auto;
+  margin: auto 14.25rem auto auto;
   background: url("@/assets/images/uc/eth.png") no-repeat 50%/80%;
   color: #3c3c3d;
   box-shadow: inset 0 0 0 1px rgba(60, 60, 61, 0.5);
@@ -2238,9 +2237,9 @@ const nextImportantNotes = () => {
   background-color: rgba(255, 0, 0, 0.3);
 } */
 /* Polygon */
-.pgn::before,
-.pgn::after,
-.pgn {
+.ply::before,
+.ply::after,
+.ply {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2248,23 +2247,23 @@ const nextImportantNotes = () => {
   right: 0;
 }
 
-.pgn {
+.ply {
   width: 40px;
   height: 40px;
-  margin: auto 17.25rem auto auto;
+  margin: auto 14.25rem auto auto;
   background: url("@/assets/images/uc/polygon.png") no-repeat 50%/80%;
   color: rgb(130, 71, 229);
   box-shadow: inset 0 0 0 1px rgba(130, 71, 229, 0.5);
 }
-.pgn::before,
-.pgn::after {
+.ply::before,
+.ply::after {
   content: "";
   z-index: 1;
   margin: -9.9999%;
   box-shadow: inset 0 0 0 2px;
   animation: clipMe 8s linear infinite;
 }
-.pgn::before {
+.ply::before {
   animation-delay: -4s;
 }
 /* .eth:hover::after, .eth:hover::before {

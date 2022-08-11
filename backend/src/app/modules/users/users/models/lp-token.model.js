@@ -17,6 +17,9 @@ const lpTokenSchema = Schema({
     source: {
         type: String
         },
+        symbol: {
+            type: String
+            },
 }, {
     timestamps: true
 });
