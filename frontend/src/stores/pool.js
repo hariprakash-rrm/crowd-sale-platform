@@ -4,7 +4,9 @@ import { toaster } from "@/helpers/helper.js";
 
 
 export const usePoolStore = defineStore("poolStore", {
-    state: () => ({}),
+    state: () => ({
+        LPTokens: [],
+    }),
     getters: {},
     actions: {
         addAirDropToken(payload) {
@@ -26,7 +28,6 @@ export const usePoolStore = defineStore("poolStore", {
             return pool
                 .createPool(payload)
                 .then((res) => {
-                    // const { data } = res["data"];
                     toaster.success("Pool created successfully");
                     return res;
                 })
@@ -36,5 +37,17 @@ export const usePoolStore = defineStore("poolStore", {
                     return err;
                 });
         },
+        fetchLPTokens() {
+            return pool
+                .fetchLPTokens()
+                .then((res) => {
+                    const { data, success } = res['data'];
+                    if (success) {
+                        this.LPTokens = data;
+                    }
+                    return res;
+                })
+                .catch((err) => console.log(err));
+        }
     },
 });

@@ -8,7 +8,7 @@ const setValue = (el, props) => {
   }
 };
 
-const init = (originalEl, clonedEl, props, emit, computedOptions) => {
+const init = (originalEl, clonedEl, props, emit, computedOptions, allowEmptyOption, create) => {
   // On option add
   if (Array.isArray(props.modelValue)) {
     computedOptions = {
@@ -25,8 +25,7 @@ const init = (originalEl, clonedEl, props, emit, computedOptions) => {
       ...computedOptions,
     };
   }
-
-  clonedEl.TomSelect = new TomSelect(clonedEl, computedOptions);
+  clonedEl.TomSelect = new TomSelect(clonedEl, { ...computedOptions, allowEmptyOption: allowEmptyOption, create: create });
 
   // On change
   clonedEl.TomSelect.on("change", function (selectedItems) {
@@ -55,7 +54,9 @@ const updateValue = (
   modelValue,
   props,
   emit,
-  computedOptions
+  computedOptions,
+  allowEmptyOption,
+  create
 ) => {
   // Remove old options
   for (const [optionKey, option] of Object.entries(
@@ -94,7 +95,7 @@ const updateValue = (
     clonedEl.TomSelect.destroy();
     dom(clonedEl).html(dom(clonedEl).prev().html());
     setValue(clonedEl, props);
-    init(originalEl, clonedEl, props, emit, computedOptions);
+    init(originalEl, clonedEl, props, emit, computedOptions, allowEmptyOption, create);
   }
 };
 

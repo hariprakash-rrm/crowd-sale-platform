@@ -20,18 +20,34 @@ const vSelectDirective = {
 
     // Initialize tom select
     setValue(clonedEl, value.props);
-    init(el, clonedEl, value.props, value.emit, value.computedOptions);
+    const allowEmptyOption = value.props.allowEmptyOption;
+    const create = value.props.allowEmptyOption ? true : false;
+    init(
+      el,
+      clonedEl,
+      value.props,
+      value.emit,
+      value.computedOptions,
+      allowEmptyOption,
+      create
+    );
   },
   updated(el, { value }) {
     const clonedEl = dom(el).next()[0];
+    console.log('updated 1',value.props.modelValue)
     const modelValue = toRaw(value.props.modelValue);
+    console.log("updated 2", modelValue)
+    const allowEmptyOption = value.props.allowEmptyOption;
+    const create = value.props.allowEmptyOption ? true : false;
     updateValue(
       el,
       clonedEl,
       modelValue,
       value.props,
       value.emit,
-      value.computedOptions
+      value.computedOptions,
+      allowEmptyOption,
+      create
     );
   },
 };
@@ -47,6 +63,14 @@ const props = defineProps({
     type: [String, Number, Array],
     default: "",
   },
+  name: {
+    type: String,
+    default: "",
+  },
+  allowEmptyOption: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits();
@@ -60,8 +84,9 @@ const computedOptions = computed(() => {
       ...props.options.plugins,
     },
   };
-
+  console.log('check', Array.isArray(props.modelValue))
   if (Array.isArray(props.modelValue)) {
+    console.log('INSIDE ARRAY', props.modelValue)
     options = {
       persist: false,
       create: true,
@@ -91,7 +116,7 @@ const computedOptions = computed(() => {
 watch(
   computed(() => props.modelValue),
   () => {
-    emit("change");
+    emit("change", props.name, props.modelValue);
   }
 );
 </script>

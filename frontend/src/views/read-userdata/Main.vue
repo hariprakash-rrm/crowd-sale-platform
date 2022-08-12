@@ -98,6 +98,7 @@ export default {
   },
   async mounted() {
     this.contract = await contractABI();
+    this.resetData();
   },
   methods: {
     ...mapActions(usePoolStore, ["addAirDropToken", "createPool"]),
@@ -117,11 +118,10 @@ export default {
       };
       return this.updatedUserData;
     },
-    toggleTab(tab) {
+    resetData() {
       this.searchData = {};
       this.selectedUserData = {};
       this.updatedUserData = {};
-      this.tab = tab;
     },
     async addPool() {
       await this.contract.methods

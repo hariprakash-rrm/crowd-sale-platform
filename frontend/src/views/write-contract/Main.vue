@@ -1,141 +1,132 @@
 <template>
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12 lg:col-span-6">
-            <PreviewComponent class="intro-y box mt-5">
-            <div
-                class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
-            >
-                <!-- <div class="p-5"> -->
-                <Preview>
-                <AccordionGroup class="accordion-boxed">
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        1. Airdrop Tokens
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+  <div class="grid grid-cols-12 gap-4">
+    <div class="col-span-12 lg:col-span-6">
+      <PreviewComponent class="intro-y box mt-5">
+        <div
+          class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
+        >
+          <!-- <div class="p-5"> -->
+          <Preview>
+            <AccordionGroup class="accordion-boxed">
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    1. Airdrop Tokens
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <form id="airdrop_token" @submit.prevent="airDropToken()">
+                    <div class="relative mb-6">
+                      <input
+                        @keyup.enter="addMessage"
+                        v-model="airdrop_token._airDropTokenToken"
+                        type="text"
+                        id="input"
+                        class="input__field peer"
+                        placeholder=""
+                        required
+                      />
+                      <label for="reward-tokens" class="input__label"
+                        >Reward Tokens</label
+                      >
+                    </div>
+                    <div class="relative mb-6">
+                      <input
+                        @keyup.enter="addMessage"
+                        v-model="airdrop_token._airDropTokenReceiver"
+                        type="text"
+                        id="input"
+                        class="input__field peer"
+                        placeholder=""
+                        multiple
+                        required
+                      />
+                      <label for="receipients" class="input__label"
+                        >Recipients</label
+                      >
+                    </div>
+                    <div class="relative mb-6">
+                      <input
+                        @keyup.enter="addMessage"
+                        v-model="airdrop_token._airDropTokenAmount"
+                        type="text"
+                        id="input"
+                        class="input__field peer"
+                        placeholder=""
+                        multiple
+                        required
+                      />
+                      <label for="amount" class="input__label">Amount</label>
+                    </div>
+                    <div
+                      class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
                     >
-                        <form
-                        id="airdrop_token"
-                        @submit.prevent="airDropToken()"
-                        >
-                        <div class="relative mb-6">
-                            <input
-                            @keyup.enter="addMessage"
-                            v-model="airdrop_token._airDropTokenToken"
-                            type="text"
-                            id="input"
-                            class="input__field peer"
-                            placeholder=""
-                            required
-                            />
-                            <label for="reward-tokens" class="input__label"
-                            >Reward Tokens</label
-                            >
-                        </div>
-                        <div class="relative mb-6">
-                            <input
-                            @keyup.enter="addMessage"
-                            v-model="airdrop_token._airDropTokenReceiver"
-                            type="text"
-                            id="input"
-                            class="input__field peer"
-                            placeholder=""
-                            multiple
-                            required
-                            />
-                            <label for="receipients" class="input__label"
-                            >Recipients</label
-                            >
-                        </div>
-                        <div class="relative mb-6">
-                            <input
-                            @keyup.enter="addMessage"
-                            v-model="airdrop_token._airDropTokenAmount"
-                            type="text"
-                            id="input"
-                            class="input__field peer"
-                            placeholder=""
-                            multiple
-                            required
-                            />
-                            <label for="amount" class="input__label"
-                            >Amount</label
-                            >
-                        </div>
-                        <div
-                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                            <label
-                            for="update-profile-form-2"
-                            class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                            >
-                            <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                            >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                            </TomSelect>
-                        </div>
-                        <button
-                            type="submit"
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                            Write
-                        </button>
-                        </form>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        2. Add Pool
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                      <label
+                        for="update-profile-form-2"
+                        class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                        >Network</label
+                      >
+                      <TomSelect
+                        id="update-profile-form-2"
+                        v-model="select"
+                        class="w-full absolute top-2"
+                      >
+                        <option value="">Select a network...</option>
+                        <option value="1">BSC</option>
+                        <option value="2">Ethereum</option>
+                        <option value="3">Polygon</option>
+                      </TomSelect>
+                    </div>
+                    <button
+                      type="submit"
+                      class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
-                        <form
-                        @submit.prevent="addPool()"
-                        class="validate-form pt-4"
-                        >
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            name="image"
-                            label="Product Url"
-                            :value="addPoolData.image"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="text"
-                            name="name"
-                            label="name"
-                            :value="addPoolData.name"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="text"
-                            name="symbol"
-                            label="symbol"
-                            :value="addPoolData.symbol"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <!-- <div class="relative mb-6">
+                      Write
+                    </button>
+                  </form>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">2. Add Pool</p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <form @submit.prevent="addPool()" class="validate-form pt-4">
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        name="image"
+                        label="Product Url"
+                        :value="addPoolData.image"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="text"
+                        name="name"
+                        label="name"
+                        :value="addPoolData.name"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="text"
+                        name="symbol"
+                        label="symbol"
+                        :value="addPoolData.symbol"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <!-- <div class="relative mb-6">
                             <input
                             type="text"
                             id="ip-token"
@@ -152,491 +143,485 @@
                             >
                         </div> -->
 
-                        <div
-                            class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                            <label
-                            for="update-profile-form-2"
-                            class="absolute input__label--accordion form-label z-10 left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >lp Token</label
-                            >
-                            <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                            >
-                            <option value="1">Admiralty</option>
-                            <option value="2">Aljunied</option>
-                            <option value="3">Ang Mo Kio</option>
-                            <option value="4">Bartley</option>
-                            <option value="5">Beauty World</option>
-                            </TomSelect>
-                        </div>
-
-                        <div
-                            class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                            <label
-                            for="update-profile-form-2"
-                            class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                            >
-                            <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                            >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                            </TomSelect>
-                        </div>
-
-                        <div class="relative mb-6">
-                            <Litepicker
-                            v-model="addPoolData.startTime"
-                            @input="
-                                handleInput('startTime', $event.target.value)
-                            "
-                            :options="{
-                                autoApply: false,
-                                showWeekNumbers: true,
-                                dropdowns: {
-                                minYear: 1990,
-                                maxYear: null,
-                                months: true,
-                                years: true,
-                                },
-                            }"
-                            class="input__field--accordion peer"
-                            />
-                            <label
-                            for="start-time"
-                            class="input__label--accordion"
-                            >Start Time</label
-                            >
-                        </div>
-
-                        <div class="relative mb-6">
-                            <Litepicker
-                            v-model="addPoolData.endTime"
-                            @input="
-                                handleInput('endTime', $event.target.value)
-                            "
-                            :options="{
-                                autoApply: false,
-                                showWeekNumbers: true,
-                                dropdowns: {
-                                minYear: 1990,
-                                maxYear: null,
-                                months: true,
-                                years: true,
-                                },
-                            }"
-                            class="input__field--accordion peer"
-                            />
-
-                            <label
-                            for="end-time"
-                            class="input__label--accordion"
-                            >End Time</label
-                            >
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="number"
-                            id="pool-stable-amount"
-                            name="poolStakableAmount"
-                            label="Pool Stakable Amount"
-                            :value="addPoolData.poolStakableAmount"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="number"
-                            id="minimum-contribution"
-                            name="minimumContributeAmount"
-                            label="Minimum Contribution"
-                            :value="addPoolData.minimumContributeAmount"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            id="roadMap"
-                            name="roadMap"
-                            label="Road map Url"
-                            :value="addPoolData.roadMap"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            id="team"
-                            name="team"
-                            label="Team Url"
-                            :value="addPoolData.team"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            id="vcs"
-                            name="vcs"
-                            label="VCS Url"
-                            :value="addPoolData.vcs"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            id="facebook-url"
-                            name="faceBookUrl"
-                            label="Facebook Url"
-                            :value="addPoolData.faceBookUrl"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            id="instagram-url"
-                            name="instagramUrl"
-                            label="Instagram Url"
-                            :value="addPoolData.instagramUrl"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-                        <div class="relative mb-6">
-                            <TextInput
-                            type="url"
-                            id="linkedin-url"
-                            name="linkedInUrl"
-                            label="Linkedin Url"
-                            :value="addPoolData.linkedInUrl"
-                            @input="handleInput"
-                            :required="true"
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                            {{ Write }}
-                        </button>
-                        </form>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        3. Exclude all from Authorized User
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                    <div
+                      class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
                     >
-                        <div class="relative mb-6">
-                        <input
-                            type="text"
-                            id="accounts"
-                            class="input__field peer"
-                            placeholder=""
-                        />
-                        <label for="accounts" class="input__label"
-                            >Accounts</label
-                        >
-                        </div>
+                      <label
+                        for="update-profile-form-2"
+                        class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                        >Network</label
+                      >
+                      <TomSelect
+                        id="update-profile-form-2"
+                        v-model="addPoolData._network"
+                        :modelValue="addPoolData._network"
+                        @change="handleSelect"
+                        name="_network"
+                        class="w-full absolute top-2"
+                      >
+                        <option value="">Select a network...</option>
+                        <option value="BSC">BSC</option>
+                        <option value="ETH">Ethereum</option>
+                        <option value="3">Polygon</option>
+                      </TomSelect>
+                    </div>
 
-                        <div
-                        class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        4. Exclude all from Blacklist
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                    <div
+                      class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
                     >
-                        <div class="relative mb-6">
-                        <input
-                            type="text"
-                            id="accounts"
-                            class="input__field--accordion peer"
-                            placeholder=""
-                        />
-                        <label
-                            for="accounts"
-                            class="input__label--accordion"
-                            >Accounts</label
+                      <label
+                        for="update-profile-form-3"
+                        class="absolute input__label--accordion form-label z-10 left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                        >lp Token</label
+                      >
+                      <TomSelect
+                        id="update-profile-form-3"
+                        v-model="addPoolData.lpToken"
+                        :modelValue="addPoolData.lpToken"
+                        @change="handleSelect"
+                        name="_lpToken"
+                        class="w-full absolute top-2"
+                      >
+                        <option value="">Select a token...</option>
+                        <option
+                          :value="lpToken"
+                          v-for="{ lpToken } in options.lpToken"
+                          :key="lpToken"
                         >
-                        </div>
+                          {{ lpToken }}
+                        </option>
+                      </TomSelect>
+                    </div>
 
-                        <div
-                        class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        5. Include All in Authorized User
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                    <div class="relative mb-6">
+                      <Litepicker
+                        v-model="addPoolData.startTime"
+                        @input="handleInput('startTime', $event.target.value)"
+                        :options="{
+                          autoApply: false,
+                          showWeekNumbers: true,
+                          dropdowns: {
+                            minYear: 1990,
+                            maxYear: null,
+                            months: true,
+                            years: true,
+                          },
+                        }"
+                        class="input__field--accordion peer"
+                      />
+                      <label for="start-time" class="input__label--accordion"
+                        >Start Time</label
+                      >
+                    </div>
+
+                    <div class="relative mb-6">
+                      <Litepicker
+                        v-model="addPoolData.endTime"
+                        @input="handleInput('endTime', $event.target.value)"
+                        :options="{
+                          autoApply: false,
+                          showWeekNumbers: true,
+                          dropdowns: {
+                            minYear: 1990,
+                            maxYear: null,
+                            months: true,
+                            years: true,
+                          },
+                        }"
+                        class="input__field--accordion peer"
+                      />
+
+                      <label for="end-time" class="input__label--accordion"
+                        >End Time</label
+                      >
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="number"
+                        id="pool-stable-amount"
+                        name="poolStakableAmount"
+                        label="Pool Stakable Amount"
+                        :value="addPoolData.poolStakableAmount"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="number"
+                        id="minimum-contribution"
+                        name="minimumContributeAmount"
+                        label="Minimum Contribution"
+                        :value="addPoolData.minimumContributeAmount"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="roadMap"
+                        name="roadMap"
+                        label="Road map Url"
+                        :value="addPoolData.roadMap"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="team"
+                        name="team"
+                        label="Team Url"
+                        :value="addPoolData.team"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="vcs"
+                        name="vcs"
+                        label="VCS Url"
+                        :value="addPoolData.vcs"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="facebook-url"
+                        name="faceBookUrl"
+                        label="Facebook Url"
+                        :value="addPoolData.faceBookUrl"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="instagram-url"
+                        name="instagramUrl"
+                        label="Instagram Url"
+                        :value="addPoolData.instagramUrl"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="linkedin-url"
+                        name="linkedInUrl"
+                        label="Linkedin Url"
+                        :value="addPoolData.linkedInUrl"
+                        @input="handleInput"
+                        :required="true"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                     >
-                        <div class="relative mb-6">
-                        <input
-                            type="text"
-                            id="accounts"
-                            class="input__field peer"
-                            placeholder=""
-                        />
-                        <label for="accounts" class="input__label"
-                            >Accounts</label
-                        >
-                        </div>
+                      {{ Write }}
+                    </button>
+                  </form>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    3. Exclude all from Authorized User
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="accounts"
+                      class="input__field peer"
+                      placeholder=""
+                    />
+                    <label for="accounts" class="input__label">Accounts</label>
+                  </div>
 
-                        <div
-                        class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                </AccordionGroup>
-                </Preview>
-            </div>
-            </PreviewComponent>
+                  <div
+                    class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    4. Exclude all from Blacklist
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="accounts"
+                      class="input__field--accordion peer"
+                      placeholder=""
+                    />
+                    <label for="accounts" class="input__label--accordion"
+                      >Accounts</label
+                    >
+                  </div>
+
+                  <div
+                    class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    5. Include All in Authorized User
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="accounts"
+                      class="input__field peer"
+                      placeholder=""
+                    />
+                    <label for="accounts" class="input__label">Accounts</label>
+                  </div>
+
+                  <div
+                    class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+            </AccordionGroup>
+          </Preview>
         </div>
-        <div class="col-span-12 lg:col-span-6">
-            <PreviewComponent class="intro-y box mt-5">
-            <div
-                class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
-            >
-                <!-- <div class="p-5"> -->
-                <Preview>
-                <AccordionGroup class="accordion-boxed">
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        6. Include All in Blacklist
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
-                    >
-                        <div class="relative mb-6">
-                        <input
-                            type="text"
-                            id="accounts"
-                            class="input__field peer"
-                            placeholder=""
-                        />
-                        <label for="accounts" class="input__label"
-                            >Accounts</label
-                        >
-                        </div>
+      </PreviewComponent>
+    </div>
+    <div class="col-span-12 lg:col-span-6">
+      <PreviewComponent class="intro-y box mt-5">
+        <div
+          class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
+        >
+          <!-- <div class="p-5"> -->
+          <Preview>
+            <AccordionGroup class="accordion-boxed">
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    6. Include All in Blacklist
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="accounts"
+                      class="input__field peer"
+                      placeholder=""
+                    />
+                    <label for="accounts" class="input__label">Accounts</label>
+                  </div>
 
-                        <div
-                        class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
+                  <div
+                    class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
 
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        7. Pause Contract
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    7. Pause Contract
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div
+                    class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
                     >
-                        <div
-                        class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        8. Renounce Ownership
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
                     >
-                        <div
-                        class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        9. Set Pool Staking End Time
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    8. Renounce Ownership
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div
+                    class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
                     >
-                        <div class="relative mb-6">
-                        <input
-                            type="text"
-                            id="p-id"
-                            class="input__field--accordion peer"
-                            placeholder=""
-                        />
-                        <label for="p-id" class="input__label--accordion"
-                            >Pid</label
-                        >
-                        </div>
-                        <!-- <div class="relative mb-6">
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    9. Set Pool Staking End Time
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="p-id"
+                      class="input__field--accordion peer"
+                      placeholder=""
+                    />
+                    <label for="p-id" class="input__label--accordion"
+                      >Pid</label
+                    >
+                  </div>
+                  <!-- <div class="relative mb-6">
                         <input
                             type="text"
                             id="end-time"
@@ -647,54 +632,52 @@
                             >End Time</label
                         >
                         </div> -->
-                        <div class="relative mb-6">
-                        <Litepicker
-                            :options="{
-                            autoApply: false,
-                            showWeekNumbers: true,
-                            dropdowns: {
-                                minYear: 1990,
-                                maxYear: null,
-                                months: true,
-                                years: true,
-                            },
-                            }"
-                            class="input__field--accordion peer"
-                        />
+                  <div class="relative mb-6">
+                    <Litepicker
+                      :options="{
+                        autoApply: false,
+                        showWeekNumbers: true,
+                        dropdowns: {
+                          minYear: 1990,
+                          maxYear: null,
+                          months: true,
+                          years: true,
+                        },
+                      }"
+                      class="input__field--accordion peer"
+                    />
 
-                        <label
-                            for="end-time"
-                            class="input__label--accordion"
-                            >End Time</label
-                        >
-                        </div>
-                        <div
-                        class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <!-- <AccordionItem>
+                    <label for="end-time" class="input__label--accordion"
+                      >End Time</label
+                    >
+                  </div>
+                  <div
+                    class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <!-- <AccordionItem>
                     <Accordion>
                         <p class="text-black font-semibold text-base">
                         10. Stake Tokens
@@ -732,95 +715,95 @@
                         </a>
                     </AccordionPanel>
                     </AccordionItem> -->
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        10. Transfer Ownership
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    10. Transfer Ownership
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div class="relative mb-6">
+                    <input
+                      type="text"
+                      id="new-owner"
+                      class="input__field peer"
+                      placeholder=""
+                    />
+                    <label for="new-owner" class="input__label"
+                      >New Owner</label
                     >
-                        <div class="relative mb-6">
-                        <input
-                            type="text"
-                            id="new-owner"
-                            class="input__field peer"
-                            placeholder=""
-                        />
-                        <label for="new-owner" class="input__label"
-                            >New Owner</label
-                        >
-                        </div>
-                        <div
-                        class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        11. Un Pause Contract
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                  </div>
+                  <div
+                    class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
                     >
-                        <div
-                        class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
-                        >
-                        <label
-                            for="update-profile-form-2"
-                            class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                            >Network</label
-                        >
-                        <TomSelect
-                            id="update-profile-form-2"
-                            v-model="select"
-                            class="w-full absolute top-2"
-                        >
-                            <option value="1">BSC</option>
-                            <option value="2">Ethereum</option>
-                            <option value="3">Polygon</option>
-                        </TomSelect>
-                        </div>
-                        <button
-                        type="button"
-                        class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                        >
-                        Write
-                        </button>
-                    </AccordionPanel>
-                    </AccordionItem>
-                </AccordionGroup>
-                </Preview>
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    11. Un Pause Contract
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                >
+                  <div
+                    class="relative px-0 input__field--accordion dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 focus:border focus:border-solid focus:border-primary"
+                  >
+                    <label
+                      for="update-profile-form-2"
+                      class="absolute input__label--accordion form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                      >Network</label
+                    >
+                    <TomSelect
+                      id="update-profile-form-2"
+                      v-model="select"
+                      class="w-full absolute top-2"
+                    >
+                      <option value="1">BSC</option>
+                      <option value="2">Ethereum</option>
+                      <option value="3">Polygon</option>
+                    </TomSelect>
+                  </div>
+                  <button
+                    type="button"
+                    class="flex items-center w-24 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  >
+                    Write
+                  </button>
+                </AccordionPanel>
+              </AccordionItem>
+            </AccordionGroup>
+          </Preview>
 
-                <!-- </div> -->
-            </div>
-            </PreviewComponent>
+          <!-- </div> -->
         </div>
+      </PreviewComponent>
     </div>
+  </div>
 </template>
 
 <script>
@@ -859,6 +842,7 @@ export default {
   computed: {
     // ...mapState(useAuthUserStore, ["selectedUserData"]),
     ...mapWritableState(useAuthUserStore, ["selectedUserData"]),
+    ...mapState(usePoolStore, ["LPTokens"]),
     fetchUserData() {
       if (Object.keys(this.selectedUserData)?.length) {
         this.setProfileData(this.selectedUserData);
@@ -866,15 +850,36 @@ export default {
       }
       return false;
     },
+    options() {
+      return {
+        lpToken:
+          this.LPTokens?.filter(
+            (val) => val.source == this.addPoolData._network
+          ) || [],
+      };
+    },
   },
   async mounted() {
     this.contract = await contractABI();
+    this.fetchLPTokens();
+    this.resetData()
   },
   methods: {
-    ...mapActions(usePoolStore, ["addAirDropToken", "createPool"]),
+    ...mapActions(usePoolStore, [
+      "addAirDropToken",
+      "createPool",
+      "fetchLPTokens",
+    ]),
     ...mapActions(useAuthUserStore, ["readUserData", "updateUserStatus"]),
     handleInput(name, value) {
       this.addPoolData[name] = value;
+    },
+    handleSelect(name, value) {
+      this.addPoolData[name] = value;
+    },
+    handleAirdropSelect(name, value) {
+      console.log(name, value);
+      this.airdrop_token[name] = value;
     },
     handleUserDataInput(name, value) {
       this.updatedUserData[name] = value;
@@ -888,11 +893,10 @@ export default {
       };
       return this.updatedUserData;
     },
-    toggleTab(tab) {
+    resetData() {
       this.searchData = {};
       this.selectedUserData = {};
       this.updatedUserData = {};
-      this.tab = tab;
     },
     async addPool() {
       await this.contract.methods
