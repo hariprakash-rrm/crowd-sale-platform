@@ -7,6 +7,9 @@
 
     <div class="col-span-12 mt-8">
       <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
+        <div class="col-span-12 mb-6 hidden lg:flex">
+             <Dashboard></Dashboard>
+        </div>
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">
             <div class="box bg-[#ffffff] p-8">
@@ -1825,6 +1828,7 @@ import {
   BSCcontract,
 } from "@/helpers/helper.js";
 import VerticalBarChart from "@/components/vertical-bar-chart/Main.vue";
+import Dashboard from '../../crypto-dashboard/views/Dashboard.vue'
 
 const largeModalSizePreview = ref(false);
 const warningModalPreview = ref(false);
@@ -1839,6 +1843,7 @@ export default {
   contractResult: "",
   components: {
     VerticalBarChart,
+    Dashboard
   },
   data() {
     return {
