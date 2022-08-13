@@ -1,0 +1,106 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn -i
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.14.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: connect ENETUNREACH 104.16.24.35:443 - Local (0.0.0.0:52239)
+      at internalConnect (node:net:931:16)
+      at defaultTriggerAsyncIdScope (node:internal/async_hooks:465:18)
+      at emitLookup (node:net:1075:9)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:103587:28
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:103496:13
+      at RawTask.module.exports.RawTask.call (/usr/local/lib/node_modules/yarn/lib/cli.js:79584:19)
+      at flush (/usr/local/lib/node_modules/yarn/lib/cli.js:79666:29)
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+npm manifest: 
+  {
+    "name": "unreal-capital",
+    "version": "0.1.0",
+    "scripts": {
+      "serve": "vite --port 8080 --host",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@ckeditor/ckeditor5-build-balloon": "^29.1.0",
+      "@ckeditor/ckeditor5-build-balloon-block": "^29.1.0",
+      "@ckeditor/ckeditor5-build-classic": "^29.1.0",
+      "@ckeditor/ckeditor5-build-decoupled-document": "^29.1.0",
+      "@ckeditor/ckeditor5-build-inline": "^29.1.0",
+      "@fullcalendar/core": "^5.5.1",
+      "@fullcalendar/daygrid": "^5.5.0",
+      "@fullcalendar/interaction": "^5.5.0",
+      "@fullcalendar/list": "^5.5.0",
+      "@fullcalendar/timegrid": "^5.5.1",
+      "@googlemaps/js-api-loader": "^1.11.4",
+      "@googlemaps/markerclustererplus": "^1.1.0",
+      "@left4code/tw-starter": "^3.1.35",
+      "@meforma/vue-toaster": "^1.3.0",
+      "@metamask/providers": "^9.0.0",
+      "@popperjs/core": "^2.7.0",
+      "@vuelidate/core": "^2.0.0-alpha.12",
+      "@vuelidate/validators": "^2.0.0-alpha.11",
+      "@walletconnect/client": "^1.7.8",
+      "@walletconnect/qrcode-modal": "^1.7.8",
+      "apexcharts": "^3.35.4",
+      "axios": "^0.27.2",
+      "chart.js": "^3.7.1",
+      "dayjs": "^1.10.4",
+      "dropzone": "^5.7.6",
+      "highlight.js": "^10.6.0",
+      "js-beautify": "^1.13.5",
+      "litepicker": "^2.0.11",
+      "lucide": "^0.17.3",
+      "lucide-vue-next": "^0.17.3",
+      "pinia": "^2.0.9",
+      "rxjs": "^7.5.6",
+      "simplebar": "^5.3.6",
+      "tabulator-tables": "^4.9.3",
+      "tiny-slider": "^2.9.3",
+      "tippy.js": "^6.2.7",
+      "toastify-js": "^1.9.3",
+      "tom-select": "^1.7.5",
+      "uint-js": "0.0.4",
+      "vue": "^3.2.25",
+      "vue-router": "4",
+      "vue2-timepicker": "^1.1.6",
+      "vue3-apexcharts": "^1.4.1",
+      "web3": "^1.7.4",
+      "web3-core-requestmanager": "^1.7.4",
+      "web3-eth-contract": "^1.7.4",
+      "xlsx": "^0.16.9",
+      "zoom-vanilla.js": "^2.0.6",
+      "amcharts3": "github:amcharts/amcharts3",
+      "amstock3": "^3.21.15"
+    },
+    "devDependencies": {
+      "@tailwindcss/forms": "^0.5.1",
+      "@vitejs/plugin-vue": "^2.0.0",
+      "autoprefixer": "10.4.6",
+      "lodash": "^4.17.21",
+      "next-tick": "^1.1.0",
+      "postcss": "^8.4.5",
+      "postcss-advanced-variables": "^3.0.1",
+      "postcss-import": "^14.0.2",
+      "tailwindcss": "^3.0.24",
+      "vite": "^2.7.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
