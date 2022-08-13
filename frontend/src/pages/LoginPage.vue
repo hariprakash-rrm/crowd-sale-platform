@@ -1,7 +1,7 @@
 <template>
   <div>
     <DarkModeSwitcher />
-            <Dashboard></Dashboard>
+            <!-- <Dashboard></Dashboard> -->
 
     <div class="container">
       <div class="block xl:grid grid-cols-2 gap-4">
@@ -138,12 +138,12 @@ import { useAuthUserStore } from "../stores/auth";
 import { mapActions } from "pinia";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
-import Dashboard from '../crypto-dashboard/views/Dashboard.vue'
+// import Dashboard from '../crypto-dashboard/views/Dashboard.vue'
 export default {
   name: "LoginPage",
   components: {
     DarkModeSwitcher,
-    Dashboard
+    // Dashboard
   },
   data: () => ({
     email: "",
