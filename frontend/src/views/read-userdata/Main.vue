@@ -1,55 +1,312 @@
 <template>
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12 lg:col-span-6">
-            <PreviewComponent class="intro-y box mt-5">
-            <div
-                class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
-            >
-                <!-- <div class="p-5"> -->
-                <Preview>
-                <AccordionGroup class="accordion-boxed">
-                    <AccordionItem>
-                    <Accordion>
-                        <p class="text-black font-semibold text-base">
-                        Read User Data
-                        </p>
-                    </Accordion>
-                    <AccordionPanel
-                        class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+  <div class="grid grid-cols-10 gap-4">
+    <div class="col-span-10 lg:col-span-10">
+      <PreviewComponent class="intro-y box mt-5">
+        <div
+          class="
+            p-8
+            rounded-xl
+            border-b border-slate-200/60
+            dark:border-darkmode-400
+          "
+        >
+          <!-- <div class="p-5"> -->
+          <Preview>
+            <AccordionGroup class="accordion-boxed">
+              <AccordionItem>
+                <Accordion>
+                  <p class="text-black font-semibold text-base">
+                    Read User Data
+                  </p>
+                </Accordion>
+                <AccordionPanel
+                  class="
+                    text-slate-600
+                    dark:text-slate-500
+                    leading-relaxed
+                    mt-8
+                  "
+                >
+                  <form
+                    id="read-profile-form"
+                    @submit.prevent="searchUser(searchData.email)"
+                  >
+                    <div class="relative mb-6">
+                      <input
+                        type="email"
+                        id="write-user-data-email"
+                        class="input__field peer"
+                        placeholder=""
+                        v-model="searchData.email"
+                        required
+                      />
+                      <label for="input" class="input__label">Email</label>
+                    </div>
+                    <button
+                      type="submit"
+                      class="
+                        flex
+                        items-center
+                        w-40
+                        justify-center
+                        text-white text-center
+                        bg-primary
+                        p-2
+                        px-6
+                        mb-8
+                        rounded
+                      "
                     >
-                        <form
-                        id="read-profile-form"
-                        @submit.prevent="searchUser(searchData.email)"
+                      Fetch User
+                    </button>
+                  </form>
+                  <div v-if="fetchUserData">
+                    <!-- User Data: {{ updatedUserData }} -->
+                    <div
+                      class="
+                        overflow-x-auto
+                        relative
+                        shadow-md
+                        sm:rounded-lg
+                        p-2
+                      "
+                    >
+                      <div class="p-4 rounded-lg md:p-3 dark:bg-gray-800 mb-2">
+                        <h3
+                          class="
+                            mb-3
+                            text-2xl
+                            font-extrabold
+                            tracking-tight
+                            text-gray-900
+                            dark:text-white
+                          "
                         >
-                        <div class="relative mb-6">
-                            <input
-                            type="email"
-                            id="write-user-data-email"
-                            class="input__field peer"
-                            placeholder=""
-                            v-model="searchData.email"
-                            required
-                            />
-                            <label for="input" class="input__label"
-                            >Email</label
-                            >
+                          User Details
+                        </h3>
+
+                        <div class="p-8 mb-2">
+                          <div class="grid gap-4 grid-cols-2">
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>NAME</b></div>
+                                <div>
+                                  {{ updatedUserData?.profile?.name || "-" }}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>MOBILE</b></div>
+                                <div>
+                                  {{ updatedUserData?.profile?.mobile || "-" }}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>USER NAME</b></div>
+                                <div>
+                                  {{
+                                    updatedUserData?.profile?.userName || "-"
+                                  }}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>BIO</b></div>
+                                <div>
+                                  {{ updatedUserData?.profile?.bio || "-" }}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>PERSONAL TELEGRAM URL</b></div>
+                                <div>
+                                  {{
+                                    updatedUserData?.profile?.telegramUrl || "-"
+                                  }}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>TELEGRAM URL</b></div>
+                                <div>
+                                  {{
+                                    updatedUserData?.profile
+                                      ?.socialTelegramUrl || "-"
+                                  }}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div class="grid gap-4 grid-cols-2">
+                                <div><b>TWITTER URL</b></div>
+                                <div>
+                                  {{
+                                    updatedUserData?.profile
+                                      ?.socialTwitterUrl || "-"
+                                  }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <button
-                            type="submit"
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
+                      </div>
+                      <div class="p-4 rounded-lg md:p-3 dark:bg-gray-800 mb-4">
+                        <h3
+                          class="
+                            mb-3
+                            text-2xl
+                            font-extrabold
+                            tracking-tight
+                            text-gray-900
+                            dark:text-white
+                          "
                         >
-                            Fetch User
-                        </button>
-                        </form>
-                        <div v-if="fetchUserData">User Data: {{ updatedUserData }}</div>
-                    </AccordionPanel>
-                    </AccordionItem>
-                </AccordionGroup>
-                </Preview>
-            </div>
-            </PreviewComponent>
+                          Contributions
+                          <span class="text-right" style="float: right">
+                            <span
+                              class="sm:w-auto mt-1 sm:mt-0 sm:ml-auto md:ml-0"
+                            >
+                              <span
+                                class="
+                                  ml-auto
+                                  w-56
+                                  lg:w-64
+                                  relative
+                                  text-slate-500
+                                "
+                              >
+                                <input
+                                  v-model="searchText"
+                                  type="text"
+                                  class="
+                                    form-control
+                                    w-64
+                                    rounded-md
+                                    input--rounded
+                                    box
+                                    pr-10
+                                  "
+                                  placeholder="Search..."
+                                  @change="filterContribution"
+                                />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  icon-name="search"
+                                  class="
+                                    lucide lucide-search
+                                    w-4
+                                    h-4
+                                    absolute
+                                    my-auto
+                                    inset-y-0
+                                    mr-3
+                                    right-0
+                                  "
+                                  data-lucide="search"
+                                >
+                                  <circle cx="11" cy="11" r="8"></circle>
+                                  <line
+                                    x1="21"
+                                    y1="21"
+                                    x2="16.65"
+                                    y2="16.65"
+                                  ></line>
+                                </svg>
+                              </span>
+                            </span>
+                          </span>
+                        </h3>
+
+                        <table
+                          class="
+                            w-full
+                            text-sm text-left text-gray-500
+                            dark:text-gray-400
+                          "
+                        >
+                          <thead
+                            class="
+                              text-xs text-gray-700
+                              uppercase
+                              bg-gray-100
+                              dark:bg-gray-700 dark:text-gray-400
+                            "
+                          >
+                            <th scope="col" class="py-3 px-6">S. No</th>
+                            <th scope="col" class="py-3 px-6">Deal Id</th>
+                            <th scope="col" class="py-3 px-6">Deal Name</th>
+                            <th scope="col" class="py-3 px-6">Symbol</th>
+                            <th scope="col" class="py-3 px-6">Network</th>
+                            <th scope="col" class="py-3 px-6">Amount</th>
+                            <th scope="col" class="py-3 px-6">Fee</th>
+                            <th scope="col" class="py-3 px-6">Created At</th>
+                          </thead>
+                          <tbody>
+                            <tr
+                              class="
+                                bg-white
+                                border-b
+                                dark:bg-gray-900 dark:border-gray-700
+                              "
+                              v-for="(
+                                item, index
+                              ) in updatedUserData?.contributions"
+                              :key="item._id"
+                            >
+                              <td class="py-4 px-6">{{ index || "-" }}</td>
+                              <td class="py-4 px-6">
+                                {{ item.poolId || "-" }}
+                              </td>
+                              <td class="py-4 px-6">
+                                {{ item.poolName || "-" }}
+                              </td>
+                              <td class="py-4 px-6">
+                                {{ item.symbol || "-" }}
+                              </td>
+                              <td class="py-4 px-6">
+                                {{ item.source || "-" }}
+                              </td>
+                              <td class="py-4 px-6">
+                                {{ item.amount || "-" }}
+                              </td>
+                              <td class="py-4 px-6">{{ item.fee || "-" }}</td>
+                              <td class="py-4 px-6">
+                                {{ getDate(item.createdAt) || "-" }}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </AccordionPanel>
+              </AccordionItem>
+            </AccordionGroup>
+          </Preview>
         </div>
+      </PreviewComponent>
     </div>
+  </div>
 </template>
 
 <script>
@@ -83,6 +340,7 @@ export default {
       _isAuthoroziedUser: "",
       searchData: {},
       updatedUserData: {},
+      searchText: "",
     };
   },
   computed: {
@@ -115,6 +373,7 @@ export default {
         profileId: data.profile._id,
         ...data.profile,
         ...data.user,
+        ...data,
       };
       return this.updatedUserData;
     },
@@ -361,6 +620,12 @@ export default {
     searchUser(email) {
       this.readUserData({ email: email });
     },
+    filterContribution() {
+      this.readUserData({
+        email: this.searchData.email,
+        search: this.searchText,
+      });
+    },
     handleUserBlock(name, value) {
       this.updatedUserData[name] = value;
       this.updateUserStatus({
@@ -368,6 +633,16 @@ export default {
         profileID: this.updatedUserData.profileId,
         userId: this.updatedUserData.userId,
       });
+    },
+
+    getDate(datetime) {
+      let date = new Date(datetime);
+
+      let dateString = `${date.getFullYear()}/${
+        date.getMonth() + 1
+      }/${date.getDate()}  `;
+
+      return dateString;
     },
   },
 };
