@@ -167,7 +167,7 @@ export const loginUser = async (req, res, next) => {
       });
     } else {
       return res.status(401).json({
-        message: "You are not an Verified User",
+        message: "Email not registered",
         data: {},
         response: 401,
       });
@@ -512,7 +512,7 @@ export const getUserData = async (req, res) => {
       "-password"
     );
     let profile = await UserProfile.findOne({ _id: req.userData.profileId });
-    let walletAddress = await WalletAddress.findOne({ profile: profile._id });
+    let walletAddress = await WalletAddress.find({ profile: req.userData.profileId });
     let tier = await Tier.findOne({ _id: profile.tier });
     let notificationSettings = await NotificationSettings.findOne({
       profile: profile._id,
