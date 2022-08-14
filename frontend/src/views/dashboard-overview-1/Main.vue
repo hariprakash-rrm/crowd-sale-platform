@@ -2120,6 +2120,7 @@ export default {
         };
         console.log(contribute);
         this.createContribution(contribute);
+        
       }
     },
   },
