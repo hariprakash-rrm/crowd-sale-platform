@@ -4,17 +4,24 @@ const responseModule = require("../../../../../config/response");
 export const createWalletAddress = async (req, res) => {
   try {
     if(req.body._id){
+      let data  = req.body;
+      delete data._id
       const walletAddressUpdate = await WalletAddress.findOneAndUpdate(
         {
-          id: req.body._id,
+          walletAddress: req.body.walletAddress,
         },
         {
-          $set: req.body,
+          $set: data,
         },
         {
           new: true,
         }
       ).exec();
+      return responseModule.successResponse(res, {
+        success: 1,
+        message: "WalletAddress updated successfully",
+        data: walletAddress,
+      });
     }else{
       req.body.profile = req.userData.profileId;
       let walletAddress = new WalletAddress(req.body);

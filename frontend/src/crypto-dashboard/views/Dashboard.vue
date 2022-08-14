@@ -9,7 +9,7 @@
 
 <script>
     // import vSelect from 'vue-select'
-    import coins from '../assets/group.json'
+    // import coins from '../assets/group.json'
     import CryptoBoard from './CryptoBoard.vue'
     import {isEmpty} from '../util/Utility'
     import {subscribeSymbol} from '../services/binance'
@@ -19,7 +19,7 @@
         name: 'dashboard',
         data() {
             return {
-                currencyList: coins,
+                // currencyList: coins,
                 quote: 'BNB',
                 baseCurrency: {}
             }
