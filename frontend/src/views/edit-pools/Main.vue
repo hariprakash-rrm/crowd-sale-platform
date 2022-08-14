@@ -1,265 +1,262 @@
 <template>
-  <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-6">
-      <PreviewComponent class="intro-y box mt-5">
-        <div
-          class="
-            p-8
-            rounded-xl
-            border-b border-slate-200/60
-            dark:border-darkmode-400
-          "
-        >
-          <!-- <div class="p-5"> -->
-          <Preview>
-            <AccordionGroup class="accordion-boxed">
-              <AccordionItem>
-                <Accordion>
-                  <p class="text-black font-semibold text-base">Edit Pool</p>
-                </Accordion>
-                <AccordionPanel
-                  class="
-                    text-slate-600
-                    dark:text-slate-500
-                    leading-relaxed
-                    mt-8
-                  "
+   <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-12 lg:col-span-6">
+              <PreviewComponent class="intro-y box mt-5">
+                <div
+                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
                 >
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <button
-                    type="button"
-                    class="
-                      flex
-                      items-center
-                      w-40
-                      justify-center
-                      text-white text-center
-                      bg-primary
-                      p-2
-                      px-6
-                      mb-8
-                      rounded
-                    "
-                  >
-                    Query
-                  </button>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Input</label>
-                  </div>
+                  <!-- <div class="p-5"> -->
+                  <Preview>
+                    <AccordionGroup class="accordion-boxed">
+                      <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">
+                            Edit Pool
+                          </p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                        <div
+                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-8 mt-8 focus:border focus:border-solid focus:border-primary"
+                          >
+                            <label
+                              for="update-profile-form-2"
+                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                              >Network</label
+                            >
+                            <TomSelect
+                              id="update-profile-form-2"
+                              v-model="select"
+                              class="w-full absolute top-2"
+                            >
+                              <option value="1">BSC</option>
+                              <option value="2">Ethereum</option>
+                              <option value="3">Polygon</option>
+                            </TomSelect>
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Input</label
+                            >
+                          </div>
+                          <button
+                            type="button"
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
+                          >
+                            Query
+                          </button>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Product URL</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Roadmap URL</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Team URL</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >VC's URl</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Facebook URL</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Instagram URL</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Linkedin URL</label
+                            >
+                          </div>
+                          
 
-                  <button
-                    type="button"
-                    class="
-                      flex
-                      items-center
-                      w-40
-                      justify-center
-                      text-white text-center
-                      bg-primary
-                      p-2
-                      px-6
-                      rounded
-                    "
-                  >
-                    Update
-                  </button>
-                </AccordionPanel>
-              </AccordionItem>
-            </AccordionGroup>
-          </Preview>
-        </div>
-      </PreviewComponent>
-    </div>
-    <div class="col-span-12 lg:col-span-6">
-      <PreviewComponent class="intro-y box mt-5">
-        <div
-          class="
-            p-8
-            rounded-xl
-            border-b border-slate-200/60
-            dark:border-darkmode-400
-          "
-        >
-          <!-- <div class="p-5"> -->
-          <Preview>
-            <AccordionGroup class="accordion-boxed">
-              <AccordionItem>
-                <Accordion>
-                  <p class="text-black font-semibold text-base">Modify LP Token</p>
-                </Accordion>
-                <AccordionPanel
-                  class="
-                    text-slate-600
-                    dark:text-slate-500
-                    leading-relaxed
-                    mt-8
-                  "
-                >
-
-                  <div
-                    class="
-                      relative
-                      px-0
-                      input__field
-                      dark:border-darkmode-600
-                      border border-solid
-                      rounded-md
-                      bg-transparent
-                      h-14
-                      mb-6
-                      mt-8
-                      focus:border focus:border-solid focus:border-primary
-                    "
-                  >
-                    <label
-                      for="update-profile-form-2"
-                      class="
-                        absolute
-                        input__label
-                        form-label
-                        left-2.5
-                        -top-3
-                        mb-0
-                        pb-0
-                        px-2
-                        bg-[#131c25]
-                      "
-                      >Network</label
-                    >
-                    <TomSelect
-                      id="update-profile-form-2"
-                      v-model="select"
-                      class="w-full absolute top-2"
-                    >
-                      <option value="1">BSC</option>
-                      <option value="2">Ethereum</option>
-                      <option value="3">Polygon</option>
-                    </TomSelect>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Token Symbol</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Token Address</label>
-                  </div>
-                   <button
-                    type="button"
-                    class="
-                      flex
-                      items-center
-                      w-40
-                      justify-center
-                      text-white text-center
-                      bg-primary
-                      p-2
-                      px-6
-                      rounded
-                    "
-                  >
-                    Update
-                  </button>
-
-                  <div class="mt-4 py-4 mb-3 flex items-center">
-                    <div class="font-medium  w-2/12 text-base cursor-pointer">Network</div>
-                    <div class="ml-4 w-2/12">
-                        <div class="font-medium text-base cursor-pointer">Symbol</div>
-                    </div>
-                    <div class="ml-4 w-6/12">
-                        <div class="font-medium text-base cursor-pointer">Address</div>
-                    </div>
-                    <a class="flex items-center text-danger" href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2" class="lucide lucide-trash-2 w-4 h-4 mr-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> Delete
-                    </a>
+                          <button
+                            type="button"
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Update
+                          </button>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </AccordionGroup>
+                  </Preview>
                 </div>
+              </PreviewComponent>
+            </div>
+            <div class="col-span-12 lg:col-span-6">
+              <PreviewComponent class="intro-y box mt-5">
+                <div
+                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
+                >
+                  <!-- <div class="p-5"> -->
+                  <Preview>
+                    <AccordionGroup class="accordion-boxed">
+                      <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">
+                            Add LP Token
+                          </p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                          <div
+                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 mt-8 focus:border focus:border-solid focus:border-primary"
+                          >
+                            <label
+                              for="update-profile-form-2"
+                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                              >Network</label
+                            >
+                            <TomSelect
+                              id="update-profile-form-2"
+                              v-model="select"
+                              class="w-full absolute top-2"
+                            >
+                              <option value="1">BSC</option>
+                              <option value="2">Ethereum</option>
+                              <option value="3">Polygon</option>
+                            </TomSelect>
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Token Symbol</label
+                            >
+                          </div>
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Token Address</label
+                            >
+                          </div>
+                          <button
+                            type="button"
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Update
+                          </button>
 
-                </AccordionPanel>
-              </AccordionItem>
-            </AccordionGroup>
-          </Preview>
-        </div>
-      </PreviewComponent>
-    </div>
-  </div>
+                          <div class="mt-4 py-4 mb-3 flex items-center">
+                            <div
+                              class="font-medium w-2/12 text-base cursor-pointer"
+                            >
+                              Network
+                            </div>
+                            <div class="ml-4 w-2/12">
+                              <div class="font-medium text-base cursor-pointer">
+                                Symbol
+                              </div>
+                            </div>
+                            <div class="ml-4 w-6/12">
+                              <div class="font-medium text-base cursor-pointer">
+                                Address
+                              </div>
+                            </div>
+                            <a class="flex items-center text-danger" href="">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                icon-name="trash-2"
+                                data-lucide="trash-2"
+                                class="lucide lucide-trash-2 w-4 h-4 mr-1"
+                              >
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                  d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"
+                                ></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                              </svg>
+                              Delete
+                            </a>
+                          </div>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </AccordionGroup>
+                  </Preview>
+                </div>
+              </PreviewComponent>
+            </div>
+          </div>
 </template>
 
 <script>
