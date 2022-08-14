@@ -14,7 +14,13 @@ const contributionSchema = Schema({
         type: ObjectId, ref: 'Pools' 
     },
     poolId: {
-        type: Number,
+        type: String,
+    },
+    poolName: {
+        type: String,
+    },
+    symbol: {
+        type: String,
     },
     amount: {
         type: Number,

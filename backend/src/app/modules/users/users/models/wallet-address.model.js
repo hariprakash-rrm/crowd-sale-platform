@@ -16,6 +16,9 @@ const walletAddressSchema = Schema({
         lowercase: true,
         unique: true,
         sparse: true
+    },
+    description: {
+        type: String,
     }
 }, {
     timestamps: true

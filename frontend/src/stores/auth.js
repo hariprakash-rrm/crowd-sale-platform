@@ -49,6 +49,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                         localStorage.setItem("token", JSON.stringify({ token }));
                         this.userData = token;
                         const { role } = parseJwt(token);
+                        console.log("role",role)
                         if (role == Role.admin) {
                             router.push("/admin");
                         }
@@ -77,6 +78,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                         localStorage.setItem("token", JSON.stringify({ token }));
                         this.userData = token;
                         const { role } = parseJwt(token);
+                        console.log("role",role)
                         if (role == Role.admin) {
                             router.push("/admin");
                         }
@@ -214,7 +216,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 toaster.success("Wallet Address Created Successfully");
                 return res;
             }).catch(err => {
-                toaster.error("Error in creating wallet address");
+                toaster.error(err.response['data'].message);
                 console.error("error in creating wallet address", err);
                 return err;
             })
@@ -285,7 +287,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                 console.error("error in updating user status", err);
                 return err;
             })
-        }
+        },
     },
 
 });

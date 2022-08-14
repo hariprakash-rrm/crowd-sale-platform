@@ -1,0 +1,23 @@
+[
+  {
+    "cid": 1839,
+    "symbol": "BNBUSDT",
+    "base": "BNB",
+    "quote": "USDT",
+    "name": "Binance"
+  },
+  {
+    "cid": 1027,
+    "symbol": "ETHUSDT",
+    "base": "ETH",
+    "quote": "USDT",
+    "name": "Ethereum"
+  },
+  {
+    "base": "MATIC",
+    "cid": 3890,
+    "name": "Polygon",
+    "quote": "USDT",
+    "symbol": "MATICUSDT"
+  }
+]

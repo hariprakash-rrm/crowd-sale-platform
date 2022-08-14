@@ -3,14 +3,53 @@ const responseModule = require("../../../../../config/response");
 
 export const createWalletAddress = async (req, res) => {
   try {
-    req.body.profile = req.userData.profileId;
-    let walletAddress = new WalletAddress(req.body);
-    walletAddress.save();
-    return responseModule.successResponse(res, {
-      success: 1,
-      message: "WalletAddress created successfully",
-      data: walletAddress,
-    });
+    if(req.body._id){
+      const walletAddressUpdate = await WalletAddress.findOneAndUpdate(
+        {
+          id: req.body._id,
+        },
+        {
+          $set: req.body,
+        },
+        {
+          new: true,
+        }
+      ).exec();
+    }else{
+      req.body.profile = req.userData.profileId;
+      let walletAddress = new WalletAddress(req.body);
+      // walletAddress.save();
+      await walletAddress.save(async (error, result) => {
+        console.log("error", error);
+        if (error) {
+          if (error.name == "ValidationError" || "MongoServerError") {
+            return res.status(400).json({
+              success: 0,
+              message:
+                error.code === 11000
+                  ? "Wallet Address already exists"
+                  : error.message,
+              response: 400,
+              data: {},
+            });
+          }else{
+            return responseModule.errorResponse(res, {
+              success: 0,
+              message: error.message,
+              data: {},
+            });
+          }
+        
+    }else{
+      return responseModule.successResponse(res, {
+        success: 1,
+        message: "WalletAddress saved successfully",
+        data: walletAddress,
+      });
+    }
+  })
+}
+    
   } catch (error) {
     return responseModule.errorResponse(res, {
       success: 0,
