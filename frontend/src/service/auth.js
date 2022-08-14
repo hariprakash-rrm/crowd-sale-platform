@@ -33,7 +33,7 @@ export const auth = {
     return axios.post(`${BASE_URL}/wallet-address`, walletAddress)
   },
   deleteWalletAddress: (walletId) => {
-    return axios.delete(`${BASE_URL}/wallet-address`, walletId)
+    return axios.delete(`${BASE_URL}/wallet-address?walletId=${walletId}`)
   },
   toggle2StepVerification: (is2StepVerificationOn) => {
     return axios.put(`${BASE_URL}/user-2-step-verification`, is2StepVerificationOn)
@@ -49,6 +49,7 @@ export const auth = {
   },
   updateUserStatus: (payload) => {
     return axios.put(`${BASE_URL}/update-user-status`, payload)
-  }
+  },
+ 
 };
 
