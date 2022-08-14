@@ -19,7 +19,7 @@
         }
     }
     .form-check-input {
-        @apply border-slate-400;
+        @apply border-[#444];
         &:checked {
             @apply border-primary;
         }

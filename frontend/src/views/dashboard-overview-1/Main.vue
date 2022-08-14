@@ -1,25 +1,22 @@
 <template>
   <div class="grid grid-cols-12 gap-6">
-    <!-- BEGIN: General Report -->
-    <!-- END: General Report -->
 
     <!-- BEGIN: General Report -->
     <div class="col-span-12 mt-8">
       <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
-        <div class="col-span-12 mb-6 hidden lg:flex">
-                       <Dashboard></Dashboard>
-
+        <div class="col-span-12 intro-y mb-6 hidden lg:flex">
+            <Dashboard></Dashboard>
         </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+        <!-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
+            <div class="box bg-[#313131] p-8">
               <div class="flex items-center">
                 <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
+                  <div class="text-3xl font-semibold leading-9 text-white">4.710</div>
                   <div class="text-base text-slate-500 mt-1">BSC</div>
                 </div>
                 <div class="ml-auto p-4 rounded-xl bg__icon-bnb">
-                  <!-- <LayersIcon class="report-box__icon text-cyan-600" /> -->
+                 
                   <img
                     src="@/assets/images/uc/bnb.png"
                     class="w-12 h-12"
@@ -32,10 +29,10 @@
         </div>
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
+            <div class="box bg-[#313131] p-8">
               <div class="flex items-center">
                 <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
+                  <div class="text-3xl font-semibold leading-9 text-white">4.710</div>
                   <div class="text-base text-slate-500 mt-1">Ethereum</div>
                 </div>
                 <div class="ml-auto p-4 rounded-xl bg__icon-eth">
@@ -51,10 +48,10 @@
         </div>
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">
-            <div class="box bg-[#ffffff] p-8">
+            <div class="box bg-[#313131] p-8">
               <div class="flex items-center">
                 <div>
-                  <div class="text-3xl font-semibold leading-9">4.710</div>
+                  <div class="text-3xl font-semibold leading-9 text-white">4.710</div>
                   <div class="text-base text-slate-500 mt-1">Polygon</div>
                 </div>
                 <div class="ml-auto p-4 rounded-xl bg__icon-polygon">
@@ -67,15 +64,15 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- END: General Report -->
 
     <!-- BEGIN: Deals Info -->
-    <div class="intro-y col-span-12 mt-12">
-      <h2 class="text-2xl font-semibold truncate mr-5">Deals</h2>
-      <p class="text-lg text-slate-500 mt-2">Available Deals</p>
+    <div class="intro-y col-span-12">
+      <h2 class="text-2xl font-semibold text-white truncate mr-5">Deals</h2>
+      <p class="text-lg text-white mt-2">Available Deals</p>
     </div>
     <div class="intro-y col-span-12">
       <!-- BEGIN: NETWORK TAB -->
@@ -153,7 +150,7 @@
             class="flex flex-col lg:flex-row items-center justify-between mb-4 lg:mb-8"
           >
             <ul
-              class="nav nav-pills w-full lg:w-2/6 bg-slate-200 dark:bg-black/10 rounded-md mr-auto p-1"
+              class="nav nav-pills w-full lg:w-2/6 bg-[#313131] dark:bg-black/10 rounded-md mr-auto p-1"
               role="tablist"
             >
               <li
@@ -163,7 +160,7 @@
                 role="presentation"
               >
                 <button
-                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 active"
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 text-white active"
                   data-tw-toggle="pill"
                   data-tw-target="#active-users"
                   type="button"
@@ -181,7 +178,7 @@
                 role="presentation"
               >
                 <button
-                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 text-white"
                   data-tw-toggle="pill"
                   data-tw-target="#inactive-users"
                   type="button"
@@ -198,7 +195,7 @@
                 role="presentation"
               >
                 <button
-                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 text-white"
                   data-tw-toggle="pill"
                   data-tw-target="#inactive-users"
                   type="button"
@@ -215,7 +212,7 @@
                 role="presentation"
               >
                 <button
-                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2"
+                  class="nav-link text-xs lg:text-sm w-full py-1.5 px-2 text-white"
                   data-tw-toggle="pill"
                   data-tw-target="#inactive-users"
                   type="button"
@@ -230,7 +227,7 @@
               <div class="ml-auto w-56 lg:w-64 relative text-slate-500">
                 <input
                   type="text"
-                  class="form-control w-64 rounded-md input--rounded box pr-10"
+                  class="form-control w-64 rounded-md input--rounded box bg-[#313131] pr-10"
                   placeholder="Search..."
                 />
                 <svg
@@ -261,15 +258,15 @@
               <table class="table table-report" v-if="getDeals">
                 <thead>
                   <tr>
-                    <th class="whitespace-nowrap">PRODUCT</th>
-                    <th class="text-center whitespace-nowrap">POOL ID</th>
-                    <th class="whitespace-nowrap w-72">NAME</th>
-                    <th class="text-center whitespace-nowrap">SYMBOL</th>
+                    <th class="whitespace-nowrap text-white">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap text-white">POOL ID</th>
+                    <th class="whitespace-nowrap text-white w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap text-white">SYMBOL</th>
 
-                    <th class="text-center whitespace-nowrap">PERCENTAGE</th>
-                    <th class="text-center whitespace-nowrap">END TIME</th>
-                    <th class="text-center whitespace-nowrap">NETWORK</th>
-                    <th class="text-center whitespace-nowrap">CONTRIBUTION</th>
+                    <th class="text-center whitespace-nowrap text-white">PERCENTAGE</th>
+                    <th class="text-center whitespace-nowrap text-white">END TIME</th>
+                    <th class="text-center whitespace-nowrap text-white">NETWORK</th>
+                    <th class="text-center whitespace-nowrap text-white">CONTRIBUTION</th>
                   </tr>
                 </thead>
 
@@ -295,8 +292,8 @@
                         </div>
                       </div>
                     </td>
-                    <td class="text-center">
-                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                    <td class="text-center text-white">
+                      <a class="font-semibold text-lg text-white">{{ user.id }}</a>
                       <br />
                       <a
                         href="#"
@@ -309,15 +306,15 @@
                     <td>
                       <a
                         href=""
-                        class="text-lg font-semibold capitalize whitespace-nowrap"
+                        class="text-lg font-semibold capitalize whitespace-nowrap text-white"
                         >{{ user.name }}</a
                       >
                       <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                         <div class="flex gap-4 text-slate-500 text-xs">
-                          <div class="mr-auto font-semibold">
+                          <div class="mr-auto font-semibold text-slate-200">
                             Total contribution
                           </div>
-                          <div>
+                          <div class="text-slate-200">
                             {{ user.currentlyStaked }} /
                             {{ user.poolStakableAmount }}
                           </div>
@@ -335,9 +332,9 @@
                       </div>
                     </td>
 
-                    <td class="text-center">{{ user.symbol }}</td>
-                    <td class="text-center">{{ user.currentPercentage }}%</td>
-                    <td class="text-center font-semibold">
+                    <td class="text-center text-white">{{ user.symbol }}</td>
+                    <td class="text-center text-white">{{ user.currentPercentage }}%</td>
+                    <td class="text-center font-semibold text-white">
                       {{ this.countDown[index] }}
                     </td>
                     <td class="text-center text-base font-bold">
@@ -376,7 +373,7 @@
                   <XIcon class="w-6 h-6 text-slate-400" />
                 </a>
               </div>
-              <ModalBody class="text-center">
+              <ModalBody class="text-center text-white">
                 <TabGroup>
                   <!-- BEGIN: Profile Info -->
                   <div class="intro-y mt-5">
@@ -561,7 +558,7 @@
                         <div
                           class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
                         >
-                          <div class="text-center">
+                          <div class="text-center text-white">
                             <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
@@ -690,16 +687,16 @@
               <table class="table table-report">
                 <thead>
                   <tr>
-                    <th class="whitespace-nowrap">PRODUCT</th>
-                    <th class="text-center whitespace-nowrap">POOL ID</th>
-                    <th class="whitespace-nowrap w-72">NAME</th>
-                    <th class="text-center whitespace-nowrap">SYMBOL</th>
+                    <th class="whitespace-nowrap text-white">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap text-white">POOL ID</th>
+                    <th class="whitespace-nowrap text-white w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap text-white">SYMBOL</th>
 
-                    <th class="text-center whitespace-nowrap">
+                    <th class="text-center whitespace-nowrap text-white">
                       MAXIMUM CONTRIBUTION
                     </th>
-                    <th class="text-center whitespace-nowrap">NETWORK</th>
-                    <th class="text-center whitespace-nowrap">START TIME</th>
+                    <th class="text-center whitespace-nowrap text-white">NETWORK</th>
+                    <th class="text-center whitespace-nowrap text-white">START TIME</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -724,8 +721,8 @@
                         </div>
                       </div>
                     </td>
-                    <td class="text-center">
-                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                    <td class="text-center text-white">
+                      <a class="font-semibold text-lg text-white">{{ user.id }}</a>
                       <br />
                       <a
                         href="#"
@@ -738,15 +735,15 @@
                     <td>
                       <a
                         href=""
-                        class="text-lg font-semibold whitespace-nowrap"
+                        class="text-lg font-semibold text-white whitespace-nowrap"
                         >{{ user.name }}</a
                       >
                       <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                         <div class="flex text-slate-500 text-xs">
-                          <div class="mr-auto font-semibold">
+                          <div class="mr-auto font-semibold text-slate-200">
                             Total contribution
                           </div>
-                          <div>
+                          <div class="text-slate-200">
                             {{ user.currentlyStaked }} /
                             {{ user.poolStakableAmount }}
                           </div>
@@ -764,14 +761,14 @@
                       </div>
                     </td>
 
-                    <td class="text-center">{{ user.symbol }}</td>
-                    <td class="text-center">
+                    <td class="text-center text-white">{{ user.symbol }}</td>
+                    <td class="text-center text-white">
                       {{ user.poolStakableAmount }}
                     </td>
                     <td class="text-center text-base font-bold">
                       <div :class="user.source"></div>
                     </td>
-                    <td class="text-center">{{ user.humanEndTime }}</td>
+                    <td class="text-center text-white">{{ user.humanEndTime }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -982,7 +979,7 @@
                         <div
                           class="flex items-center justify-center bottom-4 right-[28.5rem] border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
                         >
-                          <div class="text-center">
+                          <div class="text-center text-white">
                             <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
@@ -1000,16 +997,16 @@
               <table class="table table-report">
                 <thead>
                   <tr>
-                    <th class="whitespace-nowrap">PRODUCT</th>
-                    <th class="text-center whitespace-nowrap">POOL ID</th>
-                    <th class="whitespace-nowrap w-72">NAME</th>
-                    <th class="text-center whitespace-nowrap">SYMBOL</th>
+                    <th class="whitespace-nowrap text-white">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap text-white">POOL ID</th>
+                    <th class="whitespace-nowrap text-white w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap text-white">SYMBOL</th>
 
-                    <th class="text-center whitespace-nowrap">
+                    <th class="text-center whitespace-nowrap text-white">
                       TOTAL CONTRIBUTION
                     </th>
-                    <th class="text-center whitespace-nowrap">NETWORK</th>
-                    <th class="text-center whitespace-nowrap">STATUS</th>
+                    <th class="text-center whitespace-nowrap text-white">NETWORK</th>
+                    <th class="text-center whitespace-nowrap text-white">STATUS</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1034,8 +1031,8 @@
                         </div>
                       </div>
                     </td>
-                    <td class="text-center">
-                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                    <td class="text-center text-white">
+                      <a class="font-semibold text-lg text-white">{{ user.id }}</a>
                       <br />
                       <a
                         href="#"
@@ -1048,15 +1045,15 @@
                     <td>
                       <a
                         href=""
-                        class="text-lg font-semibold whitespace-nowrap"
+                        class="text-lg font-semibold text-white whitespace-nowrap"
                         >{{ user.name }}</a
                       >
                       <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                         <div class="flex text-slate-500 text-xs">
-                          <div class="mr-auto font-semibold">
+                          <div class="mr-auto font-semibold text-slate-200">
                             Total contribution
                           </div>
-                          <div>
+                          <div class="text-slate-200">
                             {{ user.currentlyStaked }} /
                             {{ user.poolStakableAmount }}
                           </div>
@@ -1074,12 +1071,12 @@
                       </div>
                     </td>
 
-                    <td class="text-center">{{ user.symbol }}</td>
-                    <td class="text-center">{{ user.currentPercentage }}%</td>
+                    <td class="text-center text-white">{{ user.symbol }}</td>
+                    <td class="text-center text-white">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
                       <div :class="user.source"></div>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center text-white">
                       <span
                         class="bg-gray-400/20 text-gray-600 text-sm m-2 px-2 py-1 rounded z-10"
                         >Sale Ended</span
@@ -1273,7 +1270,7 @@
                         <div
                           class="flex items-center justify-center bottom-4 right-12 border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
                         >
-                          <div class="text-center">
+                          <div class="text-center text-white">
                             <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
@@ -1291,16 +1288,16 @@
               <table class="table table-report">
                 <thead>
                   <tr>
-                    <th class="whitespace-nowrap">PRODUCT</th>
-                    <th class="text-center whitespace-nowrap">POOL ID</th>
-                    <th class="whitespace-nowrap w-72">NAME</th>
-                    <th class="text-center whitespace-nowrap">SYMBOL</th>
+                    <th class="whitespace-nowrap text-white">PRODUCT</th>
+                    <th class="text-center whitespace-nowrap text-white">POOL ID</th>
+                    <th class="whitespace-nowrap text-white w-72">NAME</th>
+                    <th class="text-center whitespace-nowrap text-white">SYMBOL</th>
 
-                    <th class="text-center whitespace-nowrap">
+                    <th class="text-center whitespace-nowrap text-white">
                       MAXIMUM CONTRIBUTION
                     </th>
-                    <th class="text-center whitespace-nowrap">NETWORK</th>
-                    <th class="text-center whitespace-nowrap">STATUS</th>
+                    <th class="text-center whitespace-nowrap text-white">NETWORK</th>
+                    <th class="text-center whitespace-nowrap text-white">STATUS</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1325,8 +1322,8 @@
                         </div>
                       </div>
                     </td>
-                    <td class="text-center">
-                      <a class="font-semibold text-lg">{{ user.id }}</a>
+                    <td class="text-center text-white">
+                      <a class="font-semibold text-lg text-white">{{ user.id }}</a>
                       <br />
                       <a
                         href="#"
@@ -1339,15 +1336,15 @@
                     <td>
                       <a
                         href=""
-                        class="text-lg font-semibold whitespace-nowrap"
+                        class="text-lg text-white font-semibold whitespace-nowrap"
                         >{{ user.name }}</a
                       >
                       <div class="w-full mb-4 mt-2 lg:mb-0 mr-auto">
                         <div class="flex text-slate-500 text-xs">
-                          <div class="mr-auto font-semibold">
+                          <div class="mr-auto font-semibold text-slate-200">
                             Total contribution
                           </div>
-                          <div>
+                          <div class="text-slate-200">
                             {{ user.currentlyStaked }} /
                             {{ user.poolStakableAmount }}
                           </div>
@@ -1365,12 +1362,12 @@
                       </div>
                     </td>
 
-                    <td class="text-center">{{ user.symbol }}</td>
-                    <td class="text-center">{{ user.currentPercentage }}%</td>
+                    <td class="text-center text-white">{{ user.symbol }}</td>
+                    <td class="text-center text-white">{{ user.currentPercentage }}%</td>
                     <td class="text-center text-base font-bold">
                       <div :class="user.source"></div>
                     </td>
-                    <td class="text-center">{{ user.poolsStatus }}</td>
+                    <td class="text-center text-white">{{ user.poolsStatus }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -1559,7 +1556,7 @@
                         <div
                           class="flex items-center justify-center bottom-4 right-12 border bg-primary animate-bounce rounded-md w-12 h-12 fixed scroll-to-down"
                         >
-                          <div class="text-center">
+                          <div class="text-center text-white">
                             <ArrowDownIcon class="text-white" />
                           </div>
                         </div>
@@ -1633,7 +1630,7 @@
                     <div class="col-span-12 md:col-span-7">
                       <div class="p-6 rounded-xl w-full bg-[#d1a5651c]">
                         <p class="text-base pb-1">Pay</p>
-                        <td class="text-center">
+                        <td class="text-center text-white">
                           <input
                             @input="handleInput(currentModalId, $event)"
                             :value="payload[currentModalId]"
@@ -2150,6 +2147,8 @@ const nextImportantNotes = () => {
   width: 100% !important;
   margin-left: 12px !important;
   border-radius: 0.675rem !important;
+  /* background: #303030 !important; */
+  /* background-color: rgb(var(--color-darkmode-800) / var(--tw-bg-opacity)) !important; */
 }
 /* .bg-report-box-1 {
     background: linear-gradient(50.1deg, rgba(69, 145, 178, 0.6) 0%, rgba(211, 220, 251, 0.6) 124.36%) !important;

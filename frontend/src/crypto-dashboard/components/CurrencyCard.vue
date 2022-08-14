@@ -1,5 +1,5 @@
 <template>
-    <div class="coin-box" @dblclick.stop="openDetails">
+    <div class="coin-box box bg-[#313131] zoom-in" @dblclick.stop="openDetails">
         <div class="row no-gutters coin-info">
             <div class="col-7">
                 
@@ -8,8 +8,8 @@
                         <span :style="{ backgroundImage : 'url('+ iconbase +')' }"></span>
                     </div>
                     <div class="col text-left" v-if="ticker">
-                      <div class="font-weight-bold">{{info.name}}</div>
-                        <div><b>{{info.base}}</b>/{{info.quote}}</div>
+                      <div class="font-weight-bold text-white">{{info.name}}</div>
+                        <div class="text-white"><strong>{{info.base}}</strong>/{{info.quote}}</div>
                         <div class="coin-price text-primary text-bold font-weight-bold"  v-if="ticker?.price">{{ticker?.price || '' }}<span style="font-size: x-small; font-weight: 700; padding-left: 3px;">{{info.quote}}</span></div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
               <div :class="[Number(ticker?.percent < 0)?'down':'up', 'col-5','text-right']" v-if="ticker?.price">
                 <div class="coin-per"><span class="indicator"></span><span>{{ ticker.percent }}%</span></div>
                 <div class="coin-chg">{{parseFloat(Number(ticker.chg)).toFixed((info.quote === 'USDT') ? 3 : 8)}} </div>
-                <div><span class="text-primary">Vol:</span> <span class="text-dark">{{ ticker.vol }}</span></div>
+                <div><span class="text-primary">Vol:</span> <span class="text-white">{{ ticker.vol }}</span></div>
             </div>
         </div>
         <div class="sparkline-chart" v-if="ticker?.price" style="margin-top: -7rem;padding:5px">

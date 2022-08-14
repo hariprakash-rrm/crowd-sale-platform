@@ -4,7 +4,7 @@
     <!-- <MainColorSwitcher /> -->
     <MobileMenu />
     <TopBar />
-    <div class="flex overflow-hidden">
+    <div class="flex">
       <!-- BEGIN: Side Menu -->
       <nav class="side-nav">
         <ul>
@@ -127,7 +127,7 @@
       </nav>
       <!-- END: Side Menu -->
       <!-- BEGIN: Content -->
-      <div class="content">
+      <div class="content overflow-y-scroll h-screen" style="position: initial!important">
         <router-view />
       </div>
       <!-- END: Content -->
