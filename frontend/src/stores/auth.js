@@ -49,6 +49,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                         localStorage.setItem("token", JSON.stringify({ token }));
                         this.userData = token;
                         const { role } = parseJwt(token);
+                        console.log("role",role)
                         if (role == Role.admin) {
                             router.push("/admin");
                         }
@@ -77,6 +78,7 @@ export const useAuthUserStore = defineStore("authUserStore", {
                         localStorage.setItem("token", JSON.stringify({ token }));
                         this.userData = token;
                         const { role } = parseJwt(token);
+                        console.log("role",role)
                         if (role == Role.admin) {
                             router.push("/admin");
                         }

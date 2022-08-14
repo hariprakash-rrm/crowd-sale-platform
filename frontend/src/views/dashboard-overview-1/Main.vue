@@ -4,11 +4,11 @@
     <!-- END: General Report -->
 
     <!-- BEGIN: General Report -->
-
     <div class="col-span-12 mt-8">
       <div class="grid grid-cols-12 gap-6 lg:gap-x-8">
         <div class="col-span-12 mb-6 hidden lg:flex">
-             <Dashboard></Dashboard>
+                       <Dashboard></Dashboard>
+
         </div>
         <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
           <div class="report-box report-box__right zoom-in">

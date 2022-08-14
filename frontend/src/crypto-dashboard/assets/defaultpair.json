@@ -1,10 +1,10 @@
 [
   {
-    "cid": 1,
-    "symbol": "BTCUSDT",
-    "base": "BTC",
+    "cid": 1839,
+    "symbol": "BNBUSDT",
+    "base": "BNB",
     "quote": "USDT",
-    "name": "Bitcoin"
+    "name": "Binance"
   },
   {
     "cid": 1027,

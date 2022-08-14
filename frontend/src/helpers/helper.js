@@ -56,7 +56,7 @@ export const getScope = () => {
   let userData = JSON.parse(localStorage.getItem("token")) || {};
   if (userData && userData.token) {
     let userDetails = parseJwt(userData.token || "")
-    return userDetails && userDetails.role.length ? userDetails.role : "";
+    return userDetails && userDetails.role ? userDetails.role : "";
   } else {
     return ""
   }

@@ -116,19 +116,19 @@
 }
 .board {
     /* padding-top: 60px; */
-    max-width: 1650px;
     margin: 0 auto 30px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     grid-gap: 10px;
 }
 .board .card-block {
-    display: flex;
+    /* display: flex; */
+    width: calc(100%/3);
     justify-content: center;
 }
-.coin-box {
+.coin-box { 
     position: relative;
-    width: 390px;
+    /* width: 390px; */
     height: 200px;
     background: #fff;
     border: 1px solid rgba(220, 220, 220, 0.58);
@@ -499,7 +499,7 @@
         padding: 10px 15px 5px 10px;
    }
     .coin-box {
-        width: 346px;
+        /* width: 346px; */
    }
     .board {
         grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
@@ -527,5 +527,5 @@
     justify-content: space-between;
 }
 .coin-box {
-    width: 512px !important;
+    /* width: 512px !important; */
   }

@@ -1,11 +1,7 @@
 <template>
-<div class="cryptoCard-new">
+<div class="cryptoCard-new"  style="width:100% !important">
     <div class="content-box">
-        <div class="menu-bar">
-            <button class="add-btn" @click="addCoinPair"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></button>
-        </div>
         <CryptoBoard></CryptoBoard>
-        <!-- <button class="clear-btn" @click="clear">Clear All</button> -->
     </div>
     </div>
 </template>

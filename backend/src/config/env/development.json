@@ -1,7 +1,7 @@
 {
     "appTitle": "Node Project",
     "env": "staging",
-    "PORT": 8080,
+    "PORT": 3000,
     "baseUrl": "http://www.mukilselvam.com",
     "mongodb": {
         "host": "mongodb://db/",

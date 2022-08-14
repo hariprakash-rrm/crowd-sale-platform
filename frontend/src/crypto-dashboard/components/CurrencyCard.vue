@@ -10,17 +10,17 @@
                     <div class="col text-left" v-if="ticker">
                       <div class="font-weight-bold">{{info.name}}</div>
                         <div><b>{{info.base}}</b>/{{info.quote}}</div>
-                        <div class="coin-price" v-if="ticker?.price">{{ticker?.price || '' }}<span style="font-size: x-small; font-weight: 700; padding-left: 3px;">{{info.quote}}</span></div>
+                        <div class="coin-price text-primary text-bold font-weight-bold"  v-if="ticker?.price">{{ticker?.price || '' }}<span style="font-size: x-small; font-weight: 700; padding-left: 3px;">{{info.quote}}</span></div>
                     </div>
                 </div>
             </div>
               <div :class="[Number(ticker?.percent < 0)?'down':'up', 'col-5','text-right']" v-if="ticker?.price">
                 <div class="coin-per"><span class="indicator"></span><span>{{ ticker.percent }}%</span></div>
                 <div class="coin-chg">{{parseFloat(Number(ticker.chg)).toFixed((info.quote === 'USDT') ? 3 : 8)}} </div>
-                <div><span class="text-secondary">Vol:</span> <span class="text-dark">{{ ticker.vol }}</span></div>
+                <div><span class="text-primary">Vol:</span> <span class="text-dark">{{ ticker.vol }}</span></div>
             </div>
         </div>
-        <div class="sparkline-chart" v-if="ticker?.price" style="margin-top: -7rem;">
+        <div class="sparkline-chart" v-if="ticker?.price" style="margin-top: -7rem;padding:5px">
             <Sparkline :cdata="ticker?.price" :width="380" :height="90"></Sparkline>
         </div>
     </div>
