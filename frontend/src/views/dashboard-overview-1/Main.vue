@@ -232,6 +232,8 @@
                   type="text"
                   class="form-control w-64 rounded-md input--rounded box pr-10"
                   placeholder="Search..."
+                  v-model="searchText"
+                  @change="searchPools"
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1881,6 +1883,7 @@ export default {
       processingStatus: "",
       currentModalMinimumAmount: 0,
       currentModalSource: "",
+      searchText:""
     };
   },
 
@@ -2122,6 +2125,9 @@ export default {
         this.createContribution(contribute);
       }
     },
+    async searchPools(){
+         await this.fetchDeals(this.searchText);
+    }
   },
 };
 

@@ -2,14 +2,15 @@ import { createOrUpdatePools, createOrUpdatePoolsMyDeal, getPoolsList } from "..
 import { contractABI, contractABIBSC, contractABIPOLY } from "./helper";
 
 const FROM_ADDRESS = "0x92eA94E6880A93810a5e15e171D03dC57F9514Ed";
-export const loadFromContract = async (req, res) => {
+export const loadFromContractAndSave = async (req, res) => {
   
-let fromAddress = req.body.fromAddress || FROM_ADDRESS
+let fromAddress = req.query.fromAddress || FROM_ADDRESS
   let poolsCompleted = [];
   let poolsUpcoming = [];
   let poolsOngoing = [];
   let poolsMyDeal = [];
 
+  console.log("fromAddress",fromAddress)
   let networks = ["bsc", "eth", "ply"];
   for (let index = 0; index < networks.length; index++) {
     const source = networks[index];
@@ -81,13 +82,15 @@ let fromAddress = req.body.fromAddress || FROM_ADDRESS
       }
     }
   }
-  req.query.isDefault = true;
-  let response =  await getPoolsList(req, res);
-//return getPoolsList(req, res);
-  res.send(response);
-
-  // res.send({ poolsMyDeal, poolsOngoing, poolsUpcoming, poolsCompleted });
+ return 1;
 };
+export const loadFromContract = async (req, res) => {
+
+req.query.isDefault = true;
+  let response =  await getPoolsList(req, res);
+  loadFromContractAndSave(req, res);
+  res.send(response);
+}
 
 //   "lpToken": "0x2811dE52B41267D6FD126B4F8d0ac2248E1C9624",
 //             "name": "madhan",

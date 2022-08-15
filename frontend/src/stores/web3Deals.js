@@ -9,9 +9,9 @@ export const useWeb3DealsStore = defineStore("web3DealsStore", {
     getDealsData: (state) => state.dealsData || {},
   },
   actions: {
-    fetchDeals() {
+    fetchDeals(searchText ="") {
       return web3Deals
-        .fetchPoolsDetails()
+        .fetchPoolsDetails(searchText)
         .then((res) => {
           const { data } = res;
           this.dealsData = data;
