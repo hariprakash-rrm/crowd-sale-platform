@@ -34,92 +34,119 @@
                     </TomSelect>
                   </div>
                   <div class="relative mb-6">
-                    <input
+                    <TextInput
                       type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
+                      name="_id"
+                      label="ID"
+                      :value="editPoolSearch._id"
+                      @input="handleSearchPool"
+                      :required="true"
                     />
-                    <label for="input" class="input__label">Input</label>
                   </div>
                   <button
                     type="button"
+                    @click="searchPool(editPoolSearch._id)"
                     class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                   >
                     Query
                   </button>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Product URL</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Roadmap URL</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Team URL</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">VC's URl</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Facebook URL</label>
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label"
-                      >Instagram URL</label
-                    >
-                  </div>
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Linkedin URL</label>
-                  </div>
-
-                  <button
-                    type="button"
-                    class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                  <form
+                    @submit.prevent="updatePool()"
+                    v-if="fetchPoolData"
+                    class="validate-form"
                   >
-                    Update
-                  </button>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        name="image"
+                        label="Product Url"
+                        :value="updatedPoolData.image"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="roadMap"
+                        name="roadMap"
+                        label="Road map Url"
+                        :value="updatedPoolData.roadMap"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="team"
+                        name="team"
+                        label="Team Url"
+                        :value="updatedPoolData.team"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="vcs"
+                        name="vcs"
+                        label="VCS Url"
+                        :value="updatedPoolData.vcs"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="facebook-url"
+                        name="faceBookUrl"
+                        label="Facebook Url"
+                        :value="updatedPoolData.faceBookUrl"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="instagram-url"
+                        name="instagramUrl"
+                        label="Instagram Url"
+                        :value="updatedPoolData.instagramUrl"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="relative mb-6">
+                      <TextInput
+                        type="url"
+                        id="linkedin-url"
+                        name="linkedInUrl"
+                        label="Linkedin Url"
+                        :value="updatedPoolData.linkedInUrl"
+                        @input="handleEditPoolInput"
+                        :required="true"
+                      />
+                    </div>
+                    <div class="flex items-center">
+                      <button
+                        type="submit"
+                        class="flex items-center w-40 justify-center text-white mr-3 text-center bg-primary p-2 px-6 rounded"
+                      >
+                        Update
+                      </button>
+                      <button
+                        type="button"
+                        @click="resetData()"
+                        class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  </form>
                 </AccordionPanel>
               </AccordionItem>
             </AccordionGroup>
@@ -285,6 +312,7 @@ export default {
   components: { VueTimepicker, TextInput, VerticalBarChart, TextAreaInput },
   data() {
     return {
+      select: {},
       addPoolData: {},
       tab: 2,
       Write: "Write",
@@ -305,14 +333,24 @@ export default {
       addLPToken: {
         source: "BSC",
       },
+      editPoolSearch: {},
+      updatedPoolData: {},
     };
   },
   computed: {
     ...mapState(usePoolStore, ["LPTokens"]),
     ...mapWritableState(useAuthUserStore, ["selectedUserData"]),
+    ...mapWritableState(usePoolStore, ["selectedPoolData"]),
     fetchUserData() {
       if (Object.keys(this.selectedUserData)?.length) {
         this.setProfileData(this.selectedUserData);
+        return true;
+      }
+      return false;
+    },
+    fetchPoolData() {
+      if (Object.keys(this.selectedPoolData)?.length) {
+        this.setPoolData(this.selectedPoolData);
         return true;
       }
       return false;
@@ -330,6 +368,8 @@ export default {
       "fetchLPTokens",
       "createLPToken",
       "deleteLPToken",
+      "editPool",
+      "getPoolsById",
     ]),
     ...mapActions(useAuthUserStore, ["readUserData", "updateUserStatus"]),
     handleInput(name, value) {
@@ -338,8 +378,14 @@ export default {
     handleLPTokenInput(name, value) {
       this.addLPToken[name] = value;
     },
+    handleEditPoolInput(name, value) {
+      this.updatedPoolData[name] = value;
+    },
     handleUserDataInput(name, value) {
       this.updatedUserData[name] = value;
+    },
+    handleSearchPool(name, value) {
+      this.editPoolSearch[name] = value;
     },
     setProfileData(data) {
       this.updatedUserData = {
@@ -350,10 +396,16 @@ export default {
       };
       return this.updatedUserData;
     },
+    setPoolData(data) {
+      this.updatedPoolData = { ...data };
+      return this.updatedPoolData;
+    },
     resetData() {
       this.searchData = {};
       this.selectedUserData = {};
       this.updatedUserData = {};
+      this.editPoolSearch = {};
+      this.selectedPoolData = {};
     },
     async addPool() {
       await this.contract.methods
@@ -401,6 +453,12 @@ export default {
     },
     deleteLPTokenData(token) {
       this.deleteLPToken({ lpTokenId: token._id });
+    },
+    searchPool(id) {
+      this.getPoolsById(id);
+    },
+    updatePool() {
+      this.editPool(this.updatedPoolData);
     },
     async airDropToken() {
       await this.contract.methods
@@ -475,7 +533,6 @@ export default {
           this.Write = "Write Successful";
         });
     },
-
     async transferOwnership(_address) {
       await this.contract.methods
         .transferOwnership(_address)

@@ -8,6 +8,12 @@ export const pool = {
     createPool: (payload) => {
         return axios.post(`${BASE_URL}/pools`, payload);
     },
+    getPoolsById: (payload) => {
+        return axios.get(`${BASE_URL}/pools/${payload}`);
+    },
+    editPool: (payload) => {
+        return axios.put(`${BASE_URL}/pools/${payload.id}`, payload);
+    },
     fetchLPTokens: () => {
         return axios.get(`${BASE_URL}/lp-token`);
     },

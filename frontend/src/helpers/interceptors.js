@@ -1,5 +1,6 @@
 import axios from "axios";
 // import stores from "../stores";
+import router from "@/router";
 
 export const interceptorsSetup = () => {
   axios.interceptors.request.use(
@@ -40,6 +41,10 @@ export function interceptorsResponse() {
       if (originalRequest.url.includes("/login/refresh-token")) {
         return Promise.reject(error);
       }
+    if (status === 401) {
+      localStorage.removeItem("token");
+      router.push("/login");
+    }
     //   if (status === 403) {
     //     stores.dispatch("logout");
     //     stores.dispatch("showToast", {

@@ -34,9 +34,7 @@ const vSelectDirective = {
   },
   updated(el, { value }) {
     const clonedEl = dom(el).next()[0];
-    console.log('updated 1',value.props.modelValue)
     const modelValue = toRaw(value.props.modelValue);
-    console.log("updated 2", modelValue)
     const allowEmptyOption = value.props.allowEmptyOption;
     const create = value.props.allowEmptyOption ? true : false;
     updateValue(
@@ -84,9 +82,7 @@ const computedOptions = computed(() => {
       ...props.options.plugins,
     },
   };
-  console.log('check', Array.isArray(props.modelValue))
   if (Array.isArray(props.modelValue)) {
-    console.log('INSIDE ARRAY', props.modelValue)
     options = {
       persist: false,
       create: true,

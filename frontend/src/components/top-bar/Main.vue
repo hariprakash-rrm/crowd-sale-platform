@@ -390,18 +390,43 @@ export default {
       return { network, key };
     },
     getCurrentPage() {
-      if (this.$router.currentRoute.value.path == "/profile") {
-        this.currentPage = "Profile";
-      } else if (
-        ["/dashboard", "/admin"].includes(this.$router.currentRoute.value.path)
-      ) {
-        this.currentPage = "Dashboard";
-      } else if (this.$router.currentRoute.value.path == "/calendar") {
-        this.currentPage = "Calendar";
-      } else if (this.$router.currentRoute.value.path == "/settings") {
-        this.currentPage = "Settings";
-      } else if (this.$router.currentRoute.value.path == "/") {
-        this.currentPage = "Home";
+      switch (this.$router.currentRoute.value.path) {
+        case "/profile":
+          this.currentPage = "Profile";
+          break;
+        case "/dashboard":
+          this.currentPage = "Dashboard";
+          break;
+        case "/admin":
+          this.currentPage = "Dashboard";
+          break;
+        case "/settings":
+          this.currentPage = "Settings";
+          break;
+        case "/":
+          this.currentPage = "Home";
+          break;
+        case "/read-contract":
+          this.currentPage = "Read Contract";
+          break;
+        case "/write-contract":
+          this.currentPage = "Write Contract";
+          break;
+        case "/read-userdata":
+          this.currentPage = "Read User data";
+          break;
+        case "/write-userdata":
+          this.currentPage = "Write User data";
+          break;
+        case "/edit-pools":
+          this.currentPage = "Edit Pools";
+          break;
+        case "/tier-update":
+          this.currentPage = "Tier Update";
+          break;
+        default:
+          this.currentPage = "Home";
+          break;
       }
     },
   },

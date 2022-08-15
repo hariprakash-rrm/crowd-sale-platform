@@ -189,7 +189,7 @@
                 Edit Pool
               </button>
             </li>
-             <li
+            <li
               @click="toggleTab(6)"
               id="inactive-write-user-tab"
               class="nav-item flex-1"
@@ -1035,8 +1035,6 @@
                               </TomSelect>
                             </div>
 
-                     
-
                             <div class="relative mb-6">
                               <Litepicker
                                 v-model="addPoolData.startTime"
@@ -1835,7 +1833,7 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                        <div
+                          <div
                             class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-8 mt-8 focus:border focus:border-solid focus:border-primary"
                           >
                             <label
@@ -1854,107 +1852,119 @@
                             </TomSelect>
                           </div>
                           <div class="relative mb-6">
-                            <input
+                            <TextInput
                               type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
+                              name="_id"
+                              label="ID"
+                              :value="editPoolSearch._id"
+                              @input="handleSearchPool"
+                              :required="true"
                             />
-                            <label for="input" class="input__label"
-                              >Input</label
-                            >
                           </div>
                           <button
                             type="button"
+                            @click="searchPool(editPoolSearch._id)"
                             class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-8 rounded"
                           >
                             Query
                           </button>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Product URL</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Roadmap URL</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Team URL</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >VC's URl</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Facebook URL</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Instagram URL</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Linkedin URL</label
-                            >
-                          </div>
-                          
-
-                          <button
-                            type="button"
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          <form
+                            @submit.prevent="updatePool()"
+                            v-if="fetchPoolData"
+                            class="validate-form"
                           >
-                            Update
-                          </button>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                name="image"
+                                label="Product Url"
+                                :value="updatedPoolData.image"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                id="roadMap"
+                                name="roadMap"
+                                label="Road map Url"
+                                :value="updatedPoolData.roadMap"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                id="team"
+                                name="team"
+                                label="Team Url"
+                                :value="updatedPoolData.team"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                id="vcs"
+                                name="vcs"
+                                label="VCS Url"
+                                :value="updatedPoolData.vcs"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                id="facebook-url"
+                                name="faceBookUrl"
+                                label="Facebook Url"
+                                :value="updatedPoolData.faceBookUrl"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                id="instagram-url"
+                                name="instagramUrl"
+                                label="Instagram Url"
+                                :value="updatedPoolData.instagramUrl"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="url"
+                                id="linkedin-url"
+                                name="linkedInUrl"
+                                label="Linkedin Url"
+                                :value="updatedPoolData.linkedInUrl"
+                                @input="handleEditPoolInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="flex items-center">
+                              <button
+                                type="submit"
+                                class="flex items-center w-40 justify-center text-white mr-3 text-center bg-primary p-2 px-6 rounded"
+                              >
+                                Update
+                              </button>
+                              <button
+                                type="button"
+                                @click="resetData()"
+                                class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                              >
+                                Clear
+                              </button>
+                            </div>
+                          </form>
                         </AccordionPanel>
                       </AccordionItem>
                     </AccordionGroup>
@@ -1967,7 +1977,6 @@
                 <div
                   class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
                 >
-                  <!-- <div class="p-5"> -->
                   <Preview>
                     <AccordionGroup class="accordion-boxed">
                       <AccordionItem>
@@ -1979,53 +1988,61 @@
                         <AccordionPanel
                           class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
                         >
-                          <div
-                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 mt-8 focus:border focus:border-solid focus:border-primary"
+                          <form
+                            id="add-lp-token"
+                            @submit.prevent="addLPTokenData()"
                           >
-                            <label
-                              for="update-profile-form-2"
-                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
-                              >Network</label
+                            <div
+                              class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 mt-8 focus:border focus:border-solid focus:border-primary"
                             >
-                            <TomSelect
-                              id="update-profile-form-2"
-                              v-model="select"
-                              class="w-full absolute top-2"
+                              <label
+                                for="update-profile-form-2"
+                                class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                                >Network</label
+                              >
+                              <TomSelect
+                                id="create-lptoken-network"
+                                v-model="addLPToken.source"
+                                :modelValue="addLPToken.source"
+                                @change="handleLPTokenInput"
+                                name="source"
+                                class="w-full absolute top-2"
+                                :required="true"
+                              >
+                                <option value="BSC">BSC</option>
+                                <option value="ETH">Ethereum</option>
+                                <option value="3">Polygon</option>
+                              </TomSelect>
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="text"
+                                id="symbol"
+                                name="symbol"
+                                label="Token Symbol"
+                                :value="addLPToken.symbol"
+                                @input="handleLPTokenInput"
+                                :required="true"
+                              />
+                            </div>
+                            <div class="relative mb-6">
+                              <TextInput
+                                type="text"
+                                id="lpToken"
+                                name="lpToken"
+                                label="Token Address"
+                                :value="addLPToken.lpToken"
+                                @input="handleLPTokenInput"
+                                :required="true"
+                              />
+                            </div>
+                            <button
+                              type="submit"
+                              class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
                             >
-                              <option value="1">BSC</option>
-                              <option value="2">Ethereum</option>
-                              <option value="3">Polygon</option>
-                            </TomSelect>
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Token Symbol</label
-                            >
-                          </div>
-                          <div class="relative mb-6">
-                            <input
-                              type="text"
-                              id="input"
-                              class="input__field peer"
-                              placeholder=""
-                            />
-                            <label for="input" class="input__label"
-                              >Token Address</label
-                            >
-                          </div>
-                          <button
-                            type="button"
-                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
-                          >
-                            Update
-                          </button>
-
+                              Add
+                            </button>
+                          </form>
                           <div class="mt-4 py-4 mb-3 flex items-center">
                             <div
                               class="font-medium w-2/12 text-base cursor-pointer"
@@ -2042,7 +2059,38 @@
                                 Address
                               </div>
                             </div>
-                            <a class="flex items-center text-danger" href="">
+                          </div>
+                          <div
+                            class="mt-4 py-4 mb-3 flex items-center"
+                            v-for="token in LPTokens"
+                            :key="token._id"
+                          >
+                            <div
+                              class="font-medium w-2/12 text-base cursor-pointer"
+                            >
+                              {{ token.source }}
+                            </div>
+                            <div class="ml-4 w-2/12">
+                              <div
+                                class="font-medium text-base cursor-pointer"
+                                style="overflow: auto"
+                              >
+                                {{ token.symbol }}
+                              </div>
+                            </div>
+                            <div class="ml-4 w-6/12">
+                              <div
+                                class="font-medium text-base cursor-pointer"
+                                style="overflow: auto"
+                              >
+                                {{ token.lpToken }}
+                              </div>
+                            </div>
+                            <a
+                              class="flex items-center text-danger"
+                              @click="deleteLPTokenData(token)"
+                              style="cursor: pointer"
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -2078,123 +2126,76 @@
         </div>
         <!-- END: TAB EDIT POOL -->
         <div v-show="tab === 6">
-           <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-6">
-      <PreviewComponent class="intro-y box mt-5">
-        <div
-          class="
-            p-8
-            rounded-xl
-            border-b border-slate-200/60
-            dark:border-darkmode-400
-          "
-        >
-          <!-- <div class="p-5"> -->
-          <Preview>
-            <AccordionGroup class="accordion-boxed">
-              <AccordionItem>
-                <Accordion>
-                  <p class="text-black font-semibold text-base">Update Tier</p>
-                </Accordion>
-                <AccordionPanel
-                  class="
-                    text-slate-600
-                    dark:text-slate-500
-                    leading-relaxed
-                    mt-8
-                  "
+          <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-12 lg:col-span-6">
+              <PreviewComponent class="intro-y box mt-5">
+                <div
+                  class="p-8 rounded-xl border-b border-slate-200/60 dark:border-darkmode-400"
                 >
-                  <div class="relative mb-6">
-                    <input
-                      type="text"
-                      id="input"
-                      class="input__field peer"
-                      placeholder=""
-                    />
-                    <label for="input" class="input__label">Email</label>
-                  </div>
-                  <button
-                    type="button"
-                    class="
-                      flex
-                      items-center
-                      w-40
-                      justify-center
-                      text-white text-center
-                      bg-primary
-                      p-2
-                      px-6
-                      mb-6
-                      rounded
-                    "
-                  >
-                    Query
-                  </button>
-                    <div class="font-bold text-base cursor-pointer">Label</div>
-                     <div
-                    class="
-                      relative
-                      px-0
-                      input__field
-                      dark:border-darkmode-600
-                      border border-solid
-                      rounded-md
-                      bg-transparent
-                      h-14
-                      mb-6
-                      mt-8
-                      focus:border focus:border-solid focus:border-primary
-                    "
-                  >
-                    <label
-                      for="update-profile-form-2"
-                      class="
-                        absolute
-                        input__label
-                        form-label
-                        left-2.5
-                        -top-3
-                        mb-0
-                        pb-0
-                        px-2
-                        bg-[#131c25]
-                      "
-                      >Network</label
-                    >
-                    <TomSelect
-                      id="update-profile-form-2"
-                      v-model="select"
-                      class="w-full absolute top-2"
-                    >
-                      <option value="1">BSC</option>
-                      <option value="2">Ethereum</option>
-                      <option value="3">Polygon</option>
-                    </TomSelect>
-                  </div>
-                  <button
-                    type="button"
-                    class="
-                      flex
-                      items-center
-                      w-40
-                      justify-center
-                      text-white text-center
-                      bg-primary
-                      p-2
-                      px-6
-                      rounded
-                    "
-                  >
-                    Update
-                  </button>
-                </AccordionPanel>
-              </AccordionItem>
-            </AccordionGroup>
-          </Preview>
-        </div>
-      </PreviewComponent>
-    </div>
-  </div>
+                  <!-- <div class="p-5"> -->
+                  <Preview>
+                    <AccordionGroup class="accordion-boxed">
+                      <AccordionItem>
+                        <Accordion>
+                          <p class="text-black font-semibold text-base">
+                            Update Tier
+                          </p>
+                        </Accordion>
+                        <AccordionPanel
+                          class="text-slate-600 dark:text-slate-500 leading-relaxed mt-8"
+                        >
+                          <div class="relative mb-6">
+                            <input
+                              type="text"
+                              id="input"
+                              class="input__field peer"
+                              placeholder=""
+                            />
+                            <label for="input" class="input__label"
+                              >Email</label
+                            >
+                          </div>
+                          <button
+                            type="button"
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 mb-6 rounded"
+                          >
+                            Query
+                          </button>
+                          <div class="font-bold text-base cursor-pointer">
+                            Label
+                          </div>
+                          <div
+                            class="relative px-0 input__field dark:border-darkmode-600 border border-solid rounded-md bg-transparent h-14 mb-6 mt-8 focus:border focus:border-solid focus:border-primary"
+                          >
+                            <label
+                              for="update-profile-form-2"
+                              class="absolute input__label form-label left-2.5 -top-3 mb-0 pb-0 px-2 bg-[#131c25]"
+                              >Network</label
+                            >
+                            <TomSelect
+                              id="update-profile-form-2"
+                              v-model="select"
+                              class="w-full absolute top-2"
+                            >
+                              <option value="1">BSC</option>
+                              <option value="2">Ethereum</option>
+                              <option value="3">Polygon</option>
+                            </TomSelect>
+                          </div>
+                          <button
+                            type="button"
+                            class="flex items-center w-40 justify-center text-white text-center bg-primary p-2 px-6 rounded"
+                          >
+                            Update
+                          </button>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </AccordionGroup>
+                  </Preview>
+                </div>
+              </PreviewComponent>
+            </div>
+          </div>
         </div>
       </div>
       <!-- END: Basic Accordion -->
@@ -2233,11 +2234,17 @@ export default {
       _isAuthoroziedUser: "",
       searchData: {},
       updatedUserData: {},
+      addLPToken: {
+        source: "BSC",
+      },
+      editPoolSearch: {},
+      updatedPoolData: {},
     };
   },
   computed: {
-    // ...mapState(useAuthUserStore, ["selectedUserData"]),
+    ...mapState(usePoolStore, ["LPTokens"]),
     ...mapWritableState(useAuthUserStore, ["selectedUserData"]),
+    ...mapWritableState(usePoolStore, ["selectedPoolData"]),
     fetchUserData() {
       if (Object.keys(this.selectedUserData)?.length) {
         this.setProfileData(this.selectedUserData);
@@ -2245,18 +2252,43 @@ export default {
       }
       return false;
     },
+    fetchPoolData() {
+      if (Object.keys(this.selectedPoolData)?.length) {
+        this.setPoolData(this.selectedPoolData);
+        return true;
+      }
+      return false;
+    },
   },
   async mounted() {
     this.contract = await contractABI();
+    this.fetchLPTokens();
   },
   methods: {
-    ...mapActions(usePoolStore, ["addAirDropToken", "createPool"]),
+    ...mapActions(usePoolStore, [
+      "addAirDropToken",
+      "createPool",
+      "fetchLPTokens",
+      "createLPToken",
+      "deleteLPToken",
+      "editPool",
+      "getPoolsById",
+    ]),
     ...mapActions(useAuthUserStore, ["readUserData", "updateUserStatus"]),
     handleInput(name, value) {
       this.addPoolData[name] = value;
     },
+    handleEditPoolInput(name, value) {
+      this.updatedPoolData[name] = value;
+    },
     handleUserDataInput(name, value) {
       this.updatedUserData[name] = value;
+    },
+    handleSearchPool(name, value) {
+      this.editPoolSearch[name] = value;
+    },
+    handleLPTokenInput(name, value) {
+      this.addLPToken[name] = value;
     },
     setProfileData(data) {
       this.updatedUserData = {
@@ -2266,16 +2298,39 @@ export default {
         // ...data.profile,
         // ...data.contributions,
         // ...data.user,
-        ...data
+        ...data,
       };
-      console.log(JSON.stringify(data.contributions))
       return this.updatedUserData;
+    },
+    setPoolData(data) {
+      this.updatedPoolData = { ...data };
+      return this.updatedPoolData;
     },
     toggleTab(tab) {
       this.searchData = {};
       this.selectedUserData = {};
       this.updatedUserData = {};
       this.tab = tab;
+      this.editPoolSearch = {};
+      this.selectedPoolData = {};
+    },
+    resetData() {
+      this.searchData = {};
+      this.selectedUserData = {};
+      this.updatedUserData = {};
+      this.editPoolSearch = {};
+      this.selectedPoolData = {};
+    },
+    addLPTokenData() {
+      let finalPayload = {
+        source: this.addLPToken.source,
+        lpToken: this.addLPToken.lpToken,
+        symbol: this.addLPToken.symbol,
+      };
+      this.createLPToken(finalPayload);
+    },
+    deleteLPTokenData(token) {
+      this.deleteLPToken({ lpTokenId: token._id });
     },
     async addPool() {
       await this.contract.methods
@@ -2312,6 +2367,12 @@ export default {
         // _transactionHash: receipt.transactionHash,
       };
       this.createPool(finalPayload);
+    },
+    searchPool(id) {
+      this.getPoolsById(id);
+    },
+    updatePool() {
+      this.editPool(this.updatedPoolData);
     },
     async airDropToken() {
       await this.contract.methods
@@ -2514,7 +2575,6 @@ export default {
     },
     async searchUser(email) {
       await this.readUserData({ email: email });
-    
     },
     handleUserBlock(name, value) {
       this.updatedUserData[name] = value;

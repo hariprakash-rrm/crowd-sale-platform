@@ -6,6 +6,8 @@ import { toaster } from "@/helpers/helper.js";
 export const usePoolStore = defineStore("poolStore", {
     state: () => ({
         LPTokens: [],
+        selectedPoolData: {},
+        poolData: []
     }),
     getters: {},
     actions: {
@@ -32,10 +34,33 @@ export const usePoolStore = defineStore("poolStore", {
                     return res;
                 })
                 .catch((err) => {
-                    console.error("creating contribution");
                     console.error("creating pool", err);
                     return err;
                 });
+        },
+        getPoolsById(payload) {
+            return pool
+                .getPoolsById(payload)
+                .then((res) => {
+                    const { data } = res['data'];
+                    this.selectedPoolData = data;
+                    return res;
+                }).catch((err) => {
+                    toaster.error("No data found");
+                    console.error("get pools by id", err);
+                    return err;
+                })
+        },
+        editPool(payload) {
+            return pool
+                .editPool(payload)
+                .then((res) => {
+                    toaster.success("Pool updated successfully");
+                    return res;
+                }).catch((err) => {
+                    console.error("error while updating pool", err);
+                    return err;
+                })
         },
         fetchLPTokens() {
             return pool
