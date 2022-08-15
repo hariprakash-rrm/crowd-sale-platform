@@ -10,5 +10,11 @@ export const pool = {
     },
     fetchLPTokens: () => {
         return axios.get(`${BASE_URL}/lp-token`);
+    },
+    createLPToken: (payload) => {
+        return axios.post(`${BASE_URL}/lp-token`, payload);
+    },
+    deleteLPToken: (payload) => {
+        return axios.delete(`${BASE_URL}/lp-token/?lpTokenId=${payload.lpTokenId}`);
     }
 };

@@ -48,6 +48,31 @@ export const usePoolStore = defineStore("poolStore", {
                     return res;
                 })
                 .catch((err) => console.log(err));
+        },
+        createLPToken(payload) {
+            return pool
+                .createLPToken(payload)
+                .then((res) => {
+                    this.fetchLPTokens();
+                    toaster.success("LPToken created successfully");
+                    return res;
+                }).catch((err) => {
+                    console.error("error while creating pool", err);
+                    return err;
+                });
+        },
+        deleteLPToken(payload) {
+            return pool
+                .deleteLPToken(payload)
+                .then((res) => {
+                    this.fetchLPTokens();
+                    toaster.success("LPToken deleted successfully");
+                    return res;
+                }).catch((err) => {
+                    console.error("error while deleting pool", err);
+                    return err;
+                });
         }
+
     },
 });
