@@ -27,10 +27,20 @@ const setDarkModeClass = () => {
     : dom("html").removeClass("dark");
 };
 
+const setVideoForDarkMode = () => {
+ if(darkMode.value){
+   document.getElementById("video-overlay").style.display="block"
+ }else{
+      document.getElementById("video-overlay").style.display="none"
+ }
+};
+
 const switchMode = () => {
   darkModeStore.setDarkMode(!darkMode.value);
   setDarkModeClass();
+  setVideoForDarkMode()
 };
 
 setDarkModeClass();
+setVideoForDarkMode()
 </script>

@@ -1,5 +1,5 @@
 <template>
-<div class="cryptoCard-new"  style="width:100% !important">
+<div class="cryptoCard-new"  style="width:100% !important;z-index:9999 !important">
     <div class="content-box">
         <CryptoBoard></CryptoBoard>
     </div>
