@@ -862,7 +862,7 @@ export default {
   async mounted() {
     this.contract = await contractABI();
     this.fetchLPTokens();
-    this.resetData()
+    this.resetData();
   },
   methods: {
     ...mapActions(usePoolStore, [
