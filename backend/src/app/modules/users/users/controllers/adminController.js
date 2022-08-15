@@ -15,6 +15,7 @@ export const readAllUserData = async (req, res) => {
           { poolName: { $regex: search, $options: "i" } },
           { poolId: { $regex: search, $options: "i" } },
           { source: { $regex: search, $options: "i" } },
+          { symbol: { $regex: search, $options: "i" } },
         ],
       };
     }
